@@ -3,26 +3,36 @@ import pandas as pd
 import os
 import time
 import torch
-
-
+from csvToSubTiltle import csv_to_subtitle
+#Constants
 start_time = time.time()
 
 
 
+#Variables
+filename= "3_video.wav"
+
+
+##################################################################
+#Credit https://github.com/pyannote/pyannote-audio README.md
+##################################################################
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",
     use_auth_token="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")
 
-# # send pipeline to GPU (when available)
+# send pipeline to GPU (when available)
 if torch.cuda.is_available():
     pipeline.to(torch.device("cuda"))
-    print("GPU available : ",torch.cuda.get_device_name(0))  # should say GTX 1070
+    print("GPU available : ",torch.cuda.get_device_name(0))  
 else:
     print("GPU not available. Running on CPU.")
 
-# apply pretrained pipeline
-filename= "2_video.wav"
+
+
+# apply pretrained pipeline with 2 speakers
 diarization = pipeline("./V0DataSet/wav/"+filename,max_speakers=2,min_speakers=2)
+
+
 
 # Create a dataframe from the diarization results
 data = []
@@ -33,6 +43,8 @@ df = pd.DataFrame(data)
 # Display the dataframe
 print(df)
 
+
+
 # Save dataframe as CSV with file name and timestamp
 timestamp = time.strftime("%Y%m%d-%H%M%S")
 pathname = f"./V0DataSet/Diarization_Results/{filename}_diarization_results_{timestamp}.csv"
@@ -40,7 +52,16 @@ df.to_csv(pathname, index=False)
 print(f"Saved diarization results here: {pathname}")
 
 
-# Measure execution time
+# Convert CSV as subtilefile and save it
+csv_to_subtitle(
+    pathname,
+    f"./V0DataSet/Subtitle/{filename}.srt"
+)
+
+
+
+
+# Measure execution time and print it
 end_time = time.time()
 execution_time = end_time - start_time
 print("Execution time: ", execution_time, " seconds")
