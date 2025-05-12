@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import time
 import torch
+from pyannote.audio.pipelines.utils.hook import ProgressHook
 from csvToSubTiltle import csv_to_subtitle
 #Constants
 start_time = time.time()
@@ -30,7 +31,8 @@ else:
 
 
 # apply pretrained pipeline with 2 speakers
-diarization = pipeline("./V0DataSet/wav/"+filename,max_speakers=2,min_speakers=2)
+with ProgressHook() as hook:
+    diarization = pipeline("./V0DataSet/wav/"+filename,max_speakers=2,min_speakers=0,hook=hook)
 
 
 
