@@ -35,6 +35,26 @@ def download_youtube_video(url, output_path):
         ydl.download([url])
     print(f"Vidéo téléchargée : {output_path}")
 
+# --- Fonction d'extract audio ---
+def extract_audio_to_wav(video_path, wav_output_path):
+    os.makedirs(os.path.dirname(wav_output_path), exist_ok=True)
+
+    if os.path.exists(wav_output_path):
+        print(f"Fichier audio déjà présent : {wav_output_path}")
+        return
+    try:
+        (
+            ffmpeg
+            .input(video_path)
+            .output(wav_output_path, format='wav', acodec='pcm_s16le', ac=1, ar='16000')
+            .overwrite_output()
+            .run(quiet=True)
+        )
+        print(f"Audio extrait : {wav_output_path}")
+    except ffmpeg.Error as e:
+        print("Erreur lors de l'extraction audio :")
+        print(e.stderr.decode())
+
 # --- Fonction améliorée de détection des visages ---
 def detect_faces_mediapipe(frame):
     # Prétraitement de l'image
@@ -144,12 +164,16 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
 
 # --- Pipeline principal ---
 def process_video(url, index):
-    output_name = f"video/video_{index:03d}.mp4"
-    segments_csv = f"segments/segments_{index:03d}.csv"
-    clips_dir = f"clips/video_{index:03d}"
+    output_name = f"V0DataSet/mp4/{index}_video.mp4"
+    segments_csv = f"V0DataSet/segments/{index}_segments.csv"
+    clips_dir = f"V0DataSet/clips/{index}_video"
+    wav_dir = f"V0DataSet/wav/{index}_video.wav"
 
     print(f"\n--- Traitement de la vidéo {index}: {url} ---")
     download_youtube_video(url, output_name)
+
+    print("Extraction de l'audio...")
+    extract_audio_to_wav(output_name, wav_dir)
 
     if os.path.exists(segments_csv):
         print("Segments déjà détectés, chargement depuis CSV...")
@@ -176,5 +200,5 @@ def main_batch(video_list_file='videoV0.txt'):
         except Exception as e:
             print(f"Erreur lors du traitement de la vidéo {url} : {e}")
 
-if __name__ == "__main__":
-    main_batch()
+# if __name__ == "__main__":
+#     main_batch()

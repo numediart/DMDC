@@ -2,6 +2,11 @@
 video
 segments
 clips
+Diarization_Results
+mp4
+Subtitle
+wav
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

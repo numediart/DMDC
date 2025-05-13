@@ -1,5 +1,6 @@
 import csv
 import datetime
+import os
 
 
 def format_srt_time(seconds):
@@ -12,6 +13,7 @@ def format_srt_time(seconds):
     return f"{hours:02}:{minutes:02}:{secs:02},{millis:03}"
 
 def csv_to_subtitle(csv_file, subtitle_file):
+    os.makedirs(os.path.dirname(subtitle_file), exist_ok=True)
     with open(csv_file, 'r') as file:
         reader = csv.reader(file)
         next(reader)  # Skip header
@@ -33,7 +35,7 @@ def csv_to_subtitle(csv_file, subtitle_file):
         file.writelines(subtitle_lines)
 
 # Utilisation
-csv_to_subtitle(
-    './V0DataSet/Diarization_Results/2_video.wav_diarization_results_20250512-144731.csv',
-    './V0DataSet/Subtitle/2_video.srt'
-)
+# csv_to_subtitle(
+#     './V0DataSet/Diarization_Results/3_video.wav_diarization_results_20250512-150225.csv',
+#     './V0DataSet/Subtitle/3_video.srt'
+# )
