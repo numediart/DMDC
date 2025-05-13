@@ -10,9 +10,12 @@ To use this project, ensure you have the following dependencies installed:
    - `numpy`
    - `pyannote-audio`
    - `pytorch`
+   - `matplotlib`
    - `pytubefix`
+   - `librosa`
+
 
 Install the required libraries using the following command:
 
 ```bash
-pip install pandas numpy pyannote-audio pytorch pytubefix
+pip install pandas numpy pyannote-audio pytorch pytubefix librosa matplotlib
