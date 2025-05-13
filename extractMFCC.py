@@ -26,9 +26,9 @@ def extractAndSaveMFCC(signal, folder, fileName):
    
 
 
-# Example usage
-wav_path = os.path.abspath('./V0DataSet/wav/1_video.wav')
-signal, sr = librosa.load(wav_path)
+# # Example usage
+# wav_path = os.path.abspath('./V0DataSet/wav/1_video.wav')
+# signal, sr = librosa.load(wav_path)
 
 
-extractAndSaveMFCC(signal, './V0DataSet/mffc', '1_video')
+# extractAndSaveMFCC(signal, './V0DataSet/mffc', '1_video')
