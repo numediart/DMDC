@@ -13,6 +13,8 @@ To use this project, ensure you have the following dependencies installed:
    - `matplotlib`
    - `pytubefix`
    - `librosa`
+   - `openface`
+
 
 
 Install the required libraries using the following command:
