@@ -6,9 +6,9 @@ command = ["docker", "ps"]
 result = subprocess.run(command, capture_output=True, text=True)
 
 # Extract the container ID
-print("docker ps",result.stdout)
+# print("docker ps",result.stdout)
 container_id = result.stdout.split("\n")[1][0:11]
-print("Container ID:", container_id, "is running.")
+print("[Info] Container ID:", container_id, "is running.")
 
 
 def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=True):
@@ -27,19 +27,17 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
     """
 
     # Copy the image file into the container
-    print("input path", input_path)
     command = ["docker", "cp", input_path, f"{container_id}:/home/openface-build"]
     result = subprocess.run(command, capture_output=True, text=True)
 
     if result.returncode != 0:
-        print("Error copying file to container:", result.stderr)
+        print("[ERR] Error copying file to container:", result.stderr)
         exit(1)
 
-    print("File copied successfully.")
     # Extract the word between the last slash or backslash and .png
     file_name = os.path.basename(input_path)
     copiedFile = file_name.split("/")[-1]
-    print("File copied is", copiedFile)
+    print("[CP] File(",copiedFile,") copied successfully.")
 
     # Run the FaceLandmarkImg command inside the container
     command = [
@@ -52,7 +50,7 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
         print("Error running FaceLandmarkImg:", result.stderr)
         exit(1)
 
-    print("FaceLandmarkImg executed successfully.")
+    print("[OpenFace] FaceLandmarkImg executed successfully.")
 
     # Copy the processed folder from the container to the specified output directory
     os.makedirs(output_path, exist_ok=True)
@@ -72,19 +70,19 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
     result = subprocess.run(command, capture_output=True, text=True)
 
     if result.returncode != 0:
-        print("Error copying processed folder from container:", result.stderr)
+        print("[ERR] Error copying processed folder from container:", result.stderr)
         exit(1)
 
-    print("Processed folder copied successfully to", output_folder)
+    print("[CP] Processed folder copied successfully to", output_folder)
 
     # Delete the processed folder inside the container to clean up
     command = ["docker", "exec", "-it", container_id, "rm", "-rf", "/home/openface-build/processed"]
     result = subprocess.run(command, capture_output=True, text=True)
 
     if result.returncode != 0:
-        print("Error deleting processed folder inside the container:", result.stderr)
+        print("[ERR] Error deleting processed folder inside the container:", result.stderr)
         exit(1)
 
-    print("Processed folder deleted successfully inside the container.")
+    print("[Del] Processed folder deleted successfully inside the container.")
     return True
 

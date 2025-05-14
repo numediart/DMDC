@@ -34,7 +34,7 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
         frame_count += 1
 
     cap.release()
-    print(f"Frames saved in '{tempfolder}'")
+    print(f"[PreProcess] Frames saved in '{tempfolder}'")
 
     # Process all frames
     for frame_file in sorted(os.listdir(tempfolder)):
@@ -44,6 +44,6 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
 
     # Delete the frames folder and its contents
     shutil.rmtree(tempfolder)
-    print(f"Deleted folder '{tempfolder}'")
+    print(f"[Del] Deleted folder '{tempfolder}'")
 
 
