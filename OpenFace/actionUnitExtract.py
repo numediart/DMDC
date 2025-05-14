@@ -11,7 +11,7 @@ container_id = result.stdout.split("\n")[1][0:11]
 print("Container ID:", container_id, "is running.")
 
 
-def process_FaceLandMark_from_container(input_path, output_path):
+def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=True):
     """
     Processes a facial landmark image using a Docker container.
     Args:
@@ -58,10 +58,18 @@ def process_FaceLandMark_from_container(input_path, output_path):
     # Copy the processed folder from the container to the specified output directory
     os.makedirs(output_path, exist_ok=True)
     processed_folder_name = f"{copiedFile}_processed"
-    output_folder = os.path.join(output_path, processed_folder_name)
-    os.makedirs(output_folder, exist_ok=True)
 
-    command = ["docker", "cp", f"{container_id}:/home/openface-build/processed", output_folder]
+
+    if(onlyCSVOutput==True):#Just the CSV
+        output_folder = os.path.join(output_path)
+        os.makedirs(output_folder, exist_ok=True)   
+        csv_file_name = os.path.splitext(copiedFile)[0] + ".csv"
+        command = ["docker", "cp", f"{container_id}:/home/openface-build/processed/{csv_file_name}", output_folder]
+    elif(onlyCSVOutput==False):#All the file
+        output_folder = os.path.join(output_path, processed_folder_name)
+        os.makedirs(output_folder, exist_ok=True)
+        command = ["docker", "cp", f"{container_id}:/home/openface-build/processed", output_folder]
+        
     result = subprocess.run(command, capture_output=True, text=True)
 
     if result.returncode != 0:
@@ -81,8 +89,8 @@ def process_FaceLandMark_from_container(input_path, output_path):
     print("Processed folder deleted successfully inside the container.")
     return True
 
-# example case
-# input_path = os.path.join(os.path.dirname(__file__), "input", "image2.png")
+#example case
+# input_path = os.path.join(os.path.dirname(__file__), "input", "image2.jgp")
 # output_path = os.path.join(os.path.dirname(__file__), "output")
 
 # process_FaceLandMark_from_container(input_path,output_path)
