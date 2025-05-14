@@ -27,7 +27,6 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
     """
 
     # Copy the image file into the container
-    current_folder = os.path.abspath(os.path.dirname(__file__))
     print("input path", input_path)
     command = ["docker", "cp", input_path, f"{container_id}:/home/openface-build"]
     result = subprocess.run(command, capture_output=True, text=True)
