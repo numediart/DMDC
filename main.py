@@ -25,6 +25,8 @@ def main_batch(video_list_file='videoV0.txt'):
                     # Diarization
                     run_diarization(wav_path)
 
+                    print("Diarization terminée")
+
                     # MFCC
                     signal, sr = librosa.load(wav_path, sr=None)
                     output_base_name = os.path.splitext(file)[0]

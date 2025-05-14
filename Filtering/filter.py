@@ -45,7 +45,7 @@ def download_youtube_video(url, output_path):
         'outtmpl': output_path,
         'quiet': False,
         'merge_output_format': 'mp4',
-        'ffmpeg_location': ffmpeg_path  # << Ajout ici
+        'ffmpeg_location': ffmpeg_path 
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
@@ -192,7 +192,7 @@ def process_video(url, index):
     output_name = f"V0DataSet/mp4/{index}_video.mp4"
     segments_csv = f"V0DataSet/segments/{index}_segments.csv"
     clips_dir = f"V0DataSet/clips/{index}_video"
-    wav_dir = f"V0DataSet/wav/{index}_video.wav"
+    wav_dir = f"V0DataSet/wav/{index}_video"
 
     print(f"\n--- Traitement de la vidéo {index}: {url} ---")
     download_youtube_video(url, output_name)

@@ -6,6 +6,8 @@ Diarization_Results
 mp4
 Subtitle
 wav
+mfcc
+V0DataSet
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

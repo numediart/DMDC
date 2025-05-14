@@ -7,12 +7,6 @@ from pyannote.audio.pipelines.utils.hook import ProgressHook
 from csvToSubTiltle import csv_to_subtitle
 #Constants
 
-
-
-
-#Variables
-filename= "3_video.wav"
-
 def run_diarization(filename):
     start_time = time.time()
     ##################################################################
@@ -33,7 +27,7 @@ def run_diarization(filename):
 
     # apply pretrained pipeline with 2 speakers
     with ProgressHook() as hook:
-        diarization = pipeline("./V0DataSet/wav/"+filename,max_speakers=2,min_speakers=0,hook=hook)
+        diarization = pipeline(filename,max_speakers=2,min_speakers=0,hook=hook)
 
 
 
@@ -49,22 +43,20 @@ def run_diarization(filename):
 
 
     # Save dataframe as CSV with file name and timestamp
+    base_filename = os.path.splitext(os.path.basename(filename))[0]  # clip_001
+    parent_folder = os.path.basename(os.path.dirname(filename))      # 1_video
+    output_dir = os.path.join("V0DataSet", "Diarization_Results", parent_folder)
+    os.makedirs(output_dir, exist_ok=True)
+
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    os.makedirs(os.path.dirname("V0DataSet/Diarization_Results/"), exist_ok=True)
-    pathname = f"./V0DataSet/Diarization_Results/{filename}_diarization_results_{timestamp}.csv"
+    pathname = os.path.join(output_dir, f"{base_filename}_diarization_results_{timestamp}.csv")
     df.to_csv(pathname, index=False)
     print(f"Saved diarization results here: {pathname}")
 
-    # Convert CSV as subtilefile and save it
-    csv_to_subtitle(
-        pathname,
-        f"./V0DataSet/Subtitle/{filename}.srt"
-    )
+    # Convert CSV as subtitle file and save it
+    subtitle_output = os.path.join("V0DataSet", "Subtitle", parent_folder)
+    os.makedirs(subtitle_output, exist_ok=True)
+    csv_to_subtitle(pathname, os.path.join(subtitle_output, f"{base_filename}.srt"))
 
-
-
-
-    # Measure execution time and print it
     end_time = time.time()
-    execution_time = end_time - start_time
-    print("Execution time: ", execution_time, " seconds")
+    print("Execution time:", end_time - start_time, "seconds")
