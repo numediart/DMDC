@@ -38,7 +38,7 @@ def process_FaceLandMark_from_container(input_path):
     print("File copied successfully.")
     # Extract the word between the last slash or backslash and .png
     file_name = os.path.basename(input_path)
-    copiedFile = file_name.split(".png")[0]+".png"
+    copiedFile = file_name.split("/")[-1]
     print("File copied is", copiedFile)
 
     # Run the FaceLandmarkImg command inside the container
@@ -82,5 +82,5 @@ def process_FaceLandMark_from_container(input_path):
     print("Processed folder deleted successfully inside the container.")
     return True
 
-input_path = os.path.join(os.path.dirname(__file__), "input", "image2.png")
-process_FaceLandMark_from_container(input_path)
+# input_path = os.path.join(os.path.dirname(__file__), "input", "image2.png")
+# process_FaceLandMark_from_container(input_path)

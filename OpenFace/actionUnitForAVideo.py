@@ -1,5 +1,7 @@
 import cv2
 import os
+from actionUnitExtract import process_FaceLandMark_from_container
+import shutil
 
 # Path to the video file
 video_path = './input/2_video.mp4'
@@ -16,7 +18,8 @@ fps = int(cap.get(cv2.CAP_PROP_FPS))
 frame_count = 0
 
 # Process the first second of the video
-while frame_count < fps:
+seconds=10
+while frame_count < fps*seconds:
     ret, frame = cap.read()
     if not ret:
         break
@@ -27,3 +30,14 @@ while frame_count < fps:
 
 cap.release()
 print(f"Frames saved in '{output_folder}'")
+
+
+# Process all frames
+for frame_file in sorted(os.listdir(output_folder)):
+    if frame_file.endswith('.jpg'):
+        input_path = os.path.join(output_folder, frame_file)
+        process_FaceLandMark_from_container(input_path)
+
+# Delete the frames folder and its contents
+shutil.rmtree(output_folder)
+print(f"Deleted folder '{output_folder}'")
