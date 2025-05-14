@@ -5,6 +5,7 @@ import pandas as pd
 import yt_dlp
 import mediapipe as mp
 from tqdm import tqdm
+import platform
 
 # --- PARAMÈTRES ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
@@ -20,6 +21,20 @@ DEBUG_MODE = False  # Activer/désactiver l'affichage du débogage
 mp_face_detection = mp.solutions.face_detection
 FACE_DETECTION_THRESHOLD = 0.7  # Seuil de confiance
 
+# --- Détection automatique de ffmpeg ---
+def get_ffmpeg_path():
+    base_path = os.path.join(os.path.dirname(__file__), "bin", "ffmpeg")
+    if platform.system() == "Windows":
+        return os.path.join(base_path, "ffmpeg.exe")
+    else:
+        return os.path.join(base_path, "ffmpeg")
+
+ffmpeg_path = get_ffmpeg_path()
+
+# Rendre le fichier exécutable sur Linux si besoin
+if platform.system() != "Windows" and os.path.exists(ffmpeg_path):
+    os.chmod(ffmpeg_path, 0o755)
+
 # --- Télécharger la vidéo si absente ---
 def download_youtube_video(url, output_path):
     if os.path.exists(output_path):
@@ -29,7 +44,8 @@ def download_youtube_video(url, output_path):
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
         'outtmpl': output_path,
         'quiet': False,
-        'merge_output_format': 'mp4'
+        'merge_output_format': 'mp4',
+        'ffmpeg_location': ffmpeg_path  # << Ajout ici
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
@@ -162,6 +178,15 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
         )
         print(f"Segment sauvegardé : {output_clip}")
 
+
+def extract_audio_clips(clips_dir, wav_output_dir):
+    os.makedirs(wav_output_dir, exist_ok=True)
+    for clip_file in sorted(os.listdir(clips_dir)):
+        if clip_file.endswith(".mp4"):
+            clip_path = os.path.join(clips_dir, clip_file)
+            wav_path = os.path.join(wav_output_dir, os.path.splitext(clip_file)[0] + ".wav")
+            extract_audio_to_wav(clip_path, wav_path)
+
 # --- Pipeline principal ---
 def process_video(url, index):
     output_name = f"V0DataSet/mp4/{index}_video.mp4"
@@ -172,9 +197,6 @@ def process_video(url, index):
     print(f"\n--- Traitement de la vidéo {index}: {url} ---")
     download_youtube_video(url, output_name)
 
-    print("Extraction de l'audio...")
-    extract_audio_to_wav(output_name, wav_dir)
-
     if os.path.exists(segments_csv):
         print("Segments déjà détectés, chargement depuis CSV...")
         segments = load_segments_from_csv(segments_csv)
@@ -184,7 +206,13 @@ def process_video(url, index):
         save_segments_to_csv(segments, output_csv=segments_csv)
 
     print("Extraction des clips...")
-    cut_video_segments(output_name, segments, output_dir=clips_dir)
+    try:
+        cut_video_segments(output_name, segments, output_dir=clips_dir)
+    except Exception as e:
+        print(f"Erreur cut video segments : {e}")
+
+    print("Extraction de l'audio...")
+    extract_audio_clips(clips_dir, wav_dir)
 
     if os.path.exists(output_name):
         os.remove(output_name)

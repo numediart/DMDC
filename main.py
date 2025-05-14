@@ -11,12 +11,25 @@ def main_batch(video_list_file='videoV0.txt'):
     for idx, url in enumerate(video_urls, start=1):
         try:
             process_video(url, idx)
-            run_diarization(f"{idx}_video.wav")
 
-            wav_path = os.path.abspath(f'./V0DataSet/wav/{idx}_video.wav')
-            signal, sr = librosa.load(wav_path)
-            os.makedirs(os.path.dirname("V0DataSet/mffc/"), exist_ok=True)
-            extractAndSaveMFCC(signal, './V0DataSet/mffc', f'{idx}_video')
+            # Dossier contenant les fichiers .wav extraits pour chaque clip
+            clip_wav_dir = f'V0DataSet/wav/{idx}_video'
+            mfcc_output_dir = f'V0DataSet/mfcc/{idx}_video'
+            os.makedirs(mfcc_output_dir, exist_ok=True)
+
+            for file in os.listdir(clip_wav_dir):
+                if file.endswith('.wav'):
+                    wav_path = os.path.join(clip_wav_dir, file)
+                    print(f"\nTraitement du fichier audio : {wav_path}")
+
+                    # Diarization
+                    run_diarization(wav_path)
+
+                    # MFCC
+                    signal, sr = librosa.load(wav_path, sr=None)
+                    output_base_name = os.path.splitext(file)[0]
+                    extractAndSaveMFCC(signal, mfcc_output_dir, output_base_name)
+
         except Exception as e:
             print(f"Erreur lors du traitement de la vidéo {url} : {e}")
 
