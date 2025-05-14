@@ -1,0 +1,13 @@
+Input:frame_0027.jpg
+Input full path:/home/openface-build/frame_0027.jpg
+Camera parameters:437.5,437.5,320,180
+Output HOG:frame_0027.hog
+Output image:frame_0027.jpg
+Output aligned directory:frame_0027_aligned
+Output csv:frame_0027.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1

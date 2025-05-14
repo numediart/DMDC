@@ -3,17 +3,18 @@ import os
 from actionUnitExtract import process_FaceLandMark_from_container
 import shutil
 
-def process_video(video_path, output_folder, seconds=1):
+def process_video(video_path, output,tempfolder = "temp_frames", seconds=1):
     """
     Extracts frames from a video.
     Args:
         video_path (str): Path to the input video file.
-        output_folder (str): Directory to save extracted frames temporarily.
+        output (str):  Path to the output process file.
+        tempFolder(str,optional): Path where the frames will me temporary put.
         seconds (int, optional): Number of seconds to process. Defaults to 1.
     """
 
     # Create output folder if it doesn't exist
-    os.makedirs(output_folder, exist_ok=True)
+    os.makedirs(tempfolder, exist_ok=True)
 
     # Open the video file
     cap = cv2.VideoCapture(video_path)
@@ -28,27 +29,27 @@ def process_video(video_path, output_folder, seconds=1):
         if not ret:
             break
         # Save the frame as an image
-        frame_filename = os.path.join(output_folder, f'frame_{frame_count:04d}.jpg')
+        frame_filename = os.path.join(tempfolder, f'frame_{frame_count:04d}.jpg')
         cv2.imwrite(frame_filename, frame)
         frame_count += 1
 
     cap.release()
-    print(f"Frames saved in '{output_folder}'")
+    print(f"Frames saved in '{tempfolder}'")
 
     # Process all frames
-    for frame_file in sorted(os.listdir(output_folder)):
+    for frame_file in sorted(os.listdir(tempfolder)):
         if frame_file.endswith('.jpg'):
-            input_path = os.path.join(output_folder, frame_file)
-            process_FaceLandMark_from_container(input_path)
+            input_path = os.path.join(tempfolder, frame_file)
+            process_FaceLandMark_from_container(input_path,output)
 
     # Delete the frames folder and its contents
-    shutil.rmtree(output_folder)
-    print(f"Deleted folder '{output_folder}'")
+    shutil.rmtree(tempfolder)
+    print(f"Deleted folder '{tempfolder}'")
 
 
 # Example usage
 video_path = "./input/2_video.mp4"  # Replace with the path to your video file
-output_folder = "temp_frames"    # Temporary folder to store frames
+output = "./output/2_video/"    # Temporary folder to store frames
 seconds_to_process = 2         # Number of seconds to process
 
-process_video(video_path, output_folder, seconds_to_process)
+process_video(video_path,output)

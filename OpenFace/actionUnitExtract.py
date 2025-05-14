@@ -11,17 +11,18 @@ container_id = result.stdout.split("\n")[1][0:11]
 print("Container ID:", container_id, "is running.")
 
 
-def process_FaceLandMark_from_container(input_path):
+def process_FaceLandMark_from_container(input_path, output_path):
     """
     Processes a facial landmark image using a Docker container.
     Args:
         input_path (str): The path to the input image file.
+        output_path (str): The path to the output directory.
     Returns:
         bool: True if the process completes successfully.
     Steps:
         1. Copies the input image file into the Docker container.
         2. Executes the FaceLandmarkImg command inside the container.
-        3. Copies the processed output folder from the container to the local output directory.
+        3. Copies the processed output folder from the container to the specified output directory.
         4. Cleans up by deleting the processed folder inside the container.
     """
 
@@ -54,12 +55,10 @@ def process_FaceLandMark_from_container(input_path):
 
     print("FaceLandmarkImg executed successfully.")
 
-
-    # Copy the processed folder from the container to the local ./output directory
-    output_parent_folder = os.path.join(current_folder, "output")
-    os.makedirs(output_parent_folder, exist_ok=True)
+    # Copy the processed folder from the container to the specified output directory
+    os.makedirs(output_path, exist_ok=True)
     processed_folder_name = f"{copiedFile}_processed"
-    output_folder = os.path.join(output_parent_folder, processed_folder_name)
+    output_folder = os.path.join(output_path, processed_folder_name)
     os.makedirs(output_folder, exist_ok=True)
 
     command = ["docker", "cp", f"{container_id}:/home/openface-build/processed", output_folder]
@@ -69,7 +68,7 @@ def process_FaceLandMark_from_container(input_path):
         print("Error copying processed folder from container:", result.stderr)
         exit(1)
 
-    print("Processed folder copied successfully to .",output_folder,"output_folder")
+    print("Processed folder copied successfully to", output_folder)
 
     # Delete the processed folder inside the container to clean up
     command = ["docker", "exec", "-it", container_id, "rm", "-rf", "/home/openface-build/processed"]
@@ -82,5 +81,8 @@ def process_FaceLandMark_from_container(input_path):
     print("Processed folder deleted successfully inside the container.")
     return True
 
+# example case
 # input_path = os.path.join(os.path.dirname(__file__), "input", "image2.png")
-# process_FaceLandMark_from_container(input_path)
+# output_path = os.path.join(os.path.dirname(__file__), "output")
+
+# process_FaceLandMark_from_container(input_path,output_path)
