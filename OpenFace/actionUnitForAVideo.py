@@ -3,7 +3,7 @@ import os
 from actionUnitExtract import process_FaceLandMark_from_container
 import shutil
 
-def process_video(video_path, output,tempfolder = "temp_frames", seconds=1):
+def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", seconds=1):
     """
     Extracts frames from a video.
     Args:
@@ -47,9 +47,3 @@ def process_video(video_path, output,tempfolder = "temp_frames", seconds=1):
     print(f"Deleted folder '{tempfolder}'")
 
 
-# Example usage
-video_path = "./input/2_video.mp4"  # Replace with the path to your video file
-output = "./output/2_video/"    # Temporary folder to store frames
-seconds_to_process = 2         # Number of seconds to process
-
-process_video(video_path,output)

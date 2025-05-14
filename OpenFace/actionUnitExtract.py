@@ -89,8 +89,3 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
     print("Processed folder deleted successfully inside the container.")
     return True
 
-#example case
-# input_path = os.path.join(os.path.dirname(__file__), "input", "image2.jgp")
-# output_path = os.path.join(os.path.dirname(__file__), "output")
-
-# process_FaceLandMark_from_container(input_path,output_path)
