@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-
+#Check if at least one container is running
 command = ["docker", "ps"]
 result = subprocess.run(command, capture_output=True, text=True)
 
@@ -12,6 +12,19 @@ print("Container ID:", container_id, "is running.")
 
 
 def process_FaceLandMark_from_container(input_path):
+    """
+    Processes a facial landmark image using a Docker container.
+    Args:
+        input_path (str): The path to the input image file.
+    Returns:
+        bool: True if the process completes successfully.
+    Steps:
+        1. Copies the input image file into the Docker container.
+        2. Executes the FaceLandmarkImg command inside the container.
+        3. Copies the processed output folder from the container to the local output directory.
+        4. Cleans up by deleting the processed folder inside the container.
+    """
+
     # Copy the image file into the container
     current_folder = os.path.abspath(os.path.dirname(__file__))
     print("input path", input_path)
@@ -69,5 +82,5 @@ def process_FaceLandMark_from_container(input_path):
     print("Processed folder deleted successfully inside the container.")
     return True
 
-input_path = os.path.join(os.path.dirname(__file__), "input", "image1.png")
+input_path = os.path.join(os.path.dirname(__file__), "input", "image2.png")
 process_FaceLandMark_from_container(input_path)
