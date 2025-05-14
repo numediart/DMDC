@@ -2,6 +2,9 @@ import cv2
 import os
 from actionUnitExtract import process_FaceLandMark_from_container
 import shutil
+import time
+
+start_time_all_pross=time.time()
 
 def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", seconds=1):
     """
@@ -39,11 +42,32 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
     # Process all frames
     for frame_file in sorted(os.listdir(tempfolder)):
         if frame_file.endswith('.jpg'):
+            start_time = time.time()
             input_path = os.path.join(tempfolder, frame_file)
+            print("----------------------------------------------------")
+            print("[Info] Process of the frames : ",frame_file)
+            print("----------------------------------------------------")
             process_FaceLandMark_from_container(input_path,output)
+            # Measure execution time and print it
+            end_time = time.time()
+            execution_time = end_time - start_time
+            print("[Info] Execution time: ", round(execution_time*1000, 1), " ms")
+            print("\n")
+
 
     # Delete the frames folder and its contents
     shutil.rmtree(tempfolder)
+
+    # Measure total execution time
+    end_time = time.time()
+    execution_time_all_pross = end_time - start_time_all_pross
+
     print(f"[Del] Deleted folder '{tempfolder}'")
+    print("--------------------------------------------------------------")
+    print("[Info] Processing complete. All frames have been processed.")
+    print("[Info] Total frames processed: ", frame_count)
+    print("[Info] Total Execution time: ", round(execution_time_all_pross, 1), " seconds")
+    print("--------------------------------------------------------------")
+
 
 

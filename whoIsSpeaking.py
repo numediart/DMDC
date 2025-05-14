@@ -1,10 +1,10 @@
 from pyannote.audio import Pipeline
 import pandas as pd
 import os
-import time
 import torch
 from pyannote.audio.pipelines.utils.hook import ProgressHook
 from csvToSubTiltle import csv_to_subtitle
+import time
 #Constants
 start_time = time.time()
 
