@@ -1,0 +1,13 @@
+Input:image1.png
+Input full path:/home/openface-build/image1.png
+Camera parameters:160.938,160.938,82,93
+Output HOG:image1.hog
+Output image:image1.jpg
+Output aligned directory:image1_aligned
+Output csv:image1.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1
