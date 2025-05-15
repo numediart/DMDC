@@ -30,6 +30,9 @@ def get_ffmpeg_path():
         return os.path.join(base_path, "ffmpeg")
 
 ffmpeg_path = get_ffmpeg_path()
+ffmpeg_dir = os.path.dirname(ffmpeg_path)
+if os.path.exists(ffmpeg_path):
+    os.environ["PATH"] = os.pathsep.join([ffmpeg_dir, os.environ["PATH"]])
 
 # Rendre le fichier exécutable sur Linux si besoin
 if platform.system() != "Windows" and os.path.exists(ffmpeg_path):
