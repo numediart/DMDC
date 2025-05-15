@@ -2,12 +2,22 @@ import subprocess
 import os
 
 #Check if at least one container is running
+# Check if at least one container is running
 command = ["docker", "ps"]
 result = subprocess.run(command, capture_output=True, text=True)
 
-# Extract the container ID
-# print("docker ps",result.stdout)
-container_id = result.stdout.split("\n")[1][0:11]
+lines = result.stdout.strip().split("\n")
+
+# Vérifie qu’il y a bien au moins un conteneur (2 lignes minimum avec l’en-tête)
+if len(lines) < 2:
+    raise RuntimeError("Aucun conteneur actif trouvé.")
+
+# Récupère la première ligne de conteneur, après l’en-tête
+first_container_line = lines[1]
+
+# Découpe la ligne sur les espaces (ignorer l’alignement)
+container_id = first_container_line.split()[0]
+
 print("[Info] Container ID:", container_id, "is running.")
 
 
