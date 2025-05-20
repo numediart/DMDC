@@ -60,7 +60,7 @@ def extract_audio_to_wav(video_path, wav_output_path):
     os.makedirs(os.path.dirname(wav_output_path), exist_ok=True)
 
     if os.path.exists(wav_output_path):
-        print(f"Audio file already present: {wav_output_path}")
+        print(f"[Filter] Audio file already present: {wav_output_path}")
         return
     try:
         (
@@ -70,9 +70,9 @@ def extract_audio_to_wav(video_path, wav_output_path):
             .overwrite_output()
             .run(quiet=True)
         )
-        print(f"Audio extracted: {wav_output_path}")
+        print(f"[Filter] Audio extracted: {wav_output_path}")
     except ffmpeg.Error as e:
-        print("Error during audio extraction:")
+        print("[ERR] Error during audio extraction:")
         print(e.stderr.decode())
 
 # --- Enhanced face detection function ---
@@ -113,7 +113,7 @@ def detect_faces_in_video(video_path):
     confirmation_count = 0
     frame_count = 0
 
-    with tqdm(total=total_frames, desc="Frame-by-frame analysis") as pbar:
+    with tqdm(total=total_frames, desc="[Filter/Face Detection] Analyzing frame per frame ") as pbar:
         while cap.isOpened():
             ret, frame = cap.read()
             if not ret:
@@ -167,7 +167,7 @@ def save_segments_to_csv(segments, output_csv=SEGMENTS_CSV):
     df = pd.DataFrame(segments, columns=["start_time", "end_time"])
     df["duration"] = df["end_time"] - df["start_time"]
     df.to_csv(output_csv, index=False)
-    print(f"Segments saved to {output_csv}")
+    print(f"[Filter] Segments saved to {output_csv}")
 
 def export_segments_with_speaker_to_csv(segments, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -188,7 +188,7 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
     for i, (start, end) in enumerate(segments):
         output_clip = os.path.join(output_dir, f"clip_{i+1:03d}.mp4")
         if os.path.exists(output_clip):
-            print(f"Clip already exists, skipping: {output_clip}")
+            print(f"[Filter/Info] Clip already exists, skipping: {output_clip}")
             continue
         duration = end - start
         (
@@ -198,7 +198,7 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
             .overwrite_output()
             .run(quiet=True)
         )
-        print(f"Segment saved: {output_clip}")
+        print(f"[Filter] Segment saved: {output_clip}")
 
 
 def extract_audio_clips(clips_dir, wav_output_dir):

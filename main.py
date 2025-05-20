@@ -36,7 +36,7 @@ def main_batch(video_list_file='videoV0.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=2):
+    for idx, url in enumerate(video_urls, start=1):
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
@@ -45,7 +45,7 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             # Download
             #####################
-            print(f"\n [Youtube] Downloading the video n°{idx} : {url}")
+            print(f"\n\n\n[Youtube] Downloading the video n°{idx} : {url}")
             download_youtube_video(url, output_name)
 
             
@@ -105,7 +105,7 @@ def main_batch(video_list_file='videoV0.txt'):
             # Whisper (Transcript) 
             #####################
             output_folder_whisper=os.path.join("V0DataSet", "transcript")
-            transcriptFromAudio(wav_dir,output_folder_whisper,modelType="")
+            transcriptFromAudio(audiofile=wav_dir,outputFolder=output_folder_whisper,modelType="tiny")
 
             #####################
             # Openface Action Unit
