@@ -2,6 +2,8 @@ import whisper
 import pandas as pd
 import os
 import warnings
+import time
+
 
 
 #Warnings deletes
@@ -17,6 +19,10 @@ def transcriptFromAudio(audiofile,outputFolder,modelType="base.en"):
             modelType (str, optional): Type of Whisper model to use for transcription. 
                                        Defaults to "base.en".
     """
+    #Start the timer for the monitoring
+    start_time=time.time()
+
+
     audioFileName = os.path.splitext(os.path.basename(audiofile))[0]
 
     #Load the model
@@ -24,7 +30,12 @@ def transcriptFromAudio(audiofile,outputFolder,modelType="base.en"):
     #Run the model
     print("[Whisper] Transcription in progress...")
     result = model.transcribe(audiofile)
-    print("[Whisper] Transcription done")
+
+    #PRINTING/MONITORING Measure total execution time
+    end_time = time.time()
+    execution_time_all_pross = end_time - start_time
+    print("[Whisper] Transcription done in ", round(execution_time_all_pross, 1), " seconds")
+
 
     #Take just the segments
     segments = result["segments"]
