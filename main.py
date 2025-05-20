@@ -65,55 +65,61 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             extract_audio_to_wav(output_name, wav_dir)
 
-            
-            #####################
-            # Diarization (Identify which person is speaking)
-            #####################
-            print("[Diarization] Diarization starts")
-            run_diarization(wav_dir)
-            print("[Diarization] Diarization completed")
+            # Skip Diarization and Assignment if Segments Exist
+            if os.path.exists(segments_csv):
+                print("[Info] Segments already exist, skipping diarization and assignment...")
+            else :
+                #####################
+                # Diarization (Identify which person is speaking)
+                #####################
+                print("[Diarization] Diarization starts")
+                run_diarization(wav_dir)
+                print("[Diarization] Diarization completed")
 
-            csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
-            df_diarization = pd.read_csv(csv_path)
+                csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
+                df_diarization = pd.read_csv(csv_path)
 
 
-            #####################
-            # Identify which speaker is speaking during each segment using diarization results
-            #####################
-            print("[Assignment] Assigning speakers to segments...")
+                #####################
+                # Identify which speaker is speaking during each segment using diarization results
+                #####################
+                print("[Assignment] Assigning speakers to segments...")
 
-            merged = assign_speakers_to_segments_from_df(segments, df_diarization)
+                merged = assign_speakers_to_segments_from_df(segments, df_diarization)
 
-            print("[Assignment] Assignment completed")
-            export_segments_with_speaker_to_csv(merged, segments_csv)
-            print("[Assignment] Assignment Exported")
+                print("[Assignment] Assignment completed")
+                export_segments_with_speaker_to_csv(merged, segments_csv)
+                print("[Assignment] Assignment Exported")
 
-            mfcc_output_dir = f'V0DataSet/mfcc'
-            os.makedirs(mfcc_output_dir, exist_ok=True)
+             
 
 
             #####################
             # MFCC Extract 
             #####################
+            mfcc_output_dir = f'V0DataSet/mfcc'
+            os.makedirs(mfcc_output_dir, exist_ok=True)
             signal, sr = librosa.load(wav_dir, sr=None)
             audio_name = os.path.splitext(os.path.basename(wav_dir))[0]
             extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
             print("[MFCC] MFCC extraction done")
 
-
             #####################
             # Whisper (Transcript) 
             #####################
-            output_folder_whisper=os.path.join("V0DataSet", "transcript")
-            transcriptFromAudio(audiofile=wav_dir,outputFolder=output_folder_whisper,modelType="tiny")
+            output_folder_whisper = os.path.join(os.path.dirname(__file__),"V0DataSet", "transcript", f"{idx}_video")
+            if not os.path.exists(output_folder_whisper):
+                os.makedirs(output_folder_whisper, exist_ok=True)
+            transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             #####################
             # Openface Action Unit
             #####################
             print(f"[AU] Processing AU")
-            output = os.path.join('V0DataSet/output', f'{idx}_video')
-            os.makedirs(output, exist_ok=True)
-            process_FaceLandMark_video(output_name,output,seconds=0.5 )
+            output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
+            if not os.path.exists(output):
+                os.makedirs(output, exist_ok=True)
+            process_FaceLandMark_video(output_name, output, seconds=0.5)
 
 
             #####################
@@ -124,7 +130,7 @@ def main_batch(video_list_file='videoV0.txt'):
                 print(f"Vidéo supprimée : {output_name}")
 
         except Exception as e:
-            print(f"Erreur lors du traitement de la vidéo {url} : {e}")
+            print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
 if __name__ == "__main__":
     main_batch()

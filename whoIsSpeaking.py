@@ -50,7 +50,7 @@ def run_diarization(filename):
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     pathname = os.path.join(output_dir, f"{base_filename}_diarization_results_{timestamp}.csv")
     df.to_csv(pathname, index=False)
-    print(f"Saved diarization results here: {pathname}")
+    print(f"[Diarization] Saved diarization results here: {pathname}")
 
     # Convert CSV as subtitle file and save it
     subtitle_output = os.path.join("V0DataSet", "Subtitle")
@@ -58,7 +58,7 @@ def run_diarization(filename):
     csv_to_subtitle(pathname, os.path.join(subtitle_output, f"{base_filename}.srt"))
 
     end_time = time.time()
-    print("Execution time:", end_time - start_time, "seconds")
+    print("[Diarization] Execution time:", end_time - start_time, "seconds")
 
 
 def assign_speakers_to_segments_from_df(visual_segments, diarization_df):
