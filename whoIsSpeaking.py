@@ -44,8 +44,7 @@ def run_diarization(filename):
 
     # Save dataframe as CSV with file name and timestamp
     base_filename = os.path.splitext(os.path.basename(filename))[0]  # clip_001
-    parent_folder = os.path.basename(os.path.dirname(filename))      # 1_video
-    output_dir = os.path.join("V0DataSet", "Diarization_Results", parent_folder)
+    output_dir = os.path.join("V0DataSet", "Diarization_Results")
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -54,9 +53,44 @@ def run_diarization(filename):
     print(f"Saved diarization results here: {pathname}")
 
     # Convert CSV as subtitle file and save it
-    subtitle_output = os.path.join("V0DataSet", "Subtitle", parent_folder)
+    subtitle_output = os.path.join("V0DataSet", "Subtitle")
     os.makedirs(subtitle_output, exist_ok=True)
     csv_to_subtitle(pathname, os.path.join(subtitle_output, f"{base_filename}.srt"))
 
     end_time = time.time()
     print("Execution time:", end_time - start_time, "seconds")
+
+
+def assign_speakers_to_segments_from_df(visual_segments, diarization_df):
+    result_segments = []
+
+    for v_start, v_end, category in visual_segments:
+        overlap = diarization_df[
+            (diarization_df['end'] > v_start) & (diarization_df['start'] < v_end)
+        ]
+
+        if overlap.empty:
+            speaker = "NA"
+        else:
+            # Calcule la durée de parole par speaker
+            speaker_durations = {}
+            for _, row in overlap.iterrows():
+                overlap_start = max(v_start, row['start'])
+                overlap_end = min(v_end, row['end'])
+                duration = overlap_end - overlap_start
+
+                speaker_durations[row['speaker']] = speaker_durations.get(row['speaker'], 0) + duration
+
+            if len(speaker_durations) == 1:
+                speaker = list(speaker_durations.keys())[0]
+            else:
+                # Si égalité ou multiple speakers, choisir le plus long (ou NA selon logique)
+                sorted_durations = sorted(speaker_durations.items(), key=lambda x: x[1], reverse=True)
+                if sorted_durations[0][1] - sorted_durations[1][1] < 0.5:
+                    speaker = "NA"
+                else:
+                    speaker = sorted_durations[0][0]
+
+        result_segments.append((v_start, v_end, category, speaker))
+
+    return result_segments

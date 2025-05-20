@@ -6,6 +6,7 @@ import yt_dlp
 import mediapipe as mp
 from tqdm import tqdm
 import platform
+import csv
 
 # --- PARAMÈTRES ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
@@ -103,11 +104,14 @@ def detect_faces_in_video(video_path):
     frame_rate = cap.get(cv2.CAP_PROP_FPS)
     total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
 
+    CONFIRMATION_FRAMES = 3
+
     segments = []
+
+    current_category = None
     current_start = None
-    frame_count = 0
     confirmation_count = 0
-    CONFIRMATION_FRAMES = 3  # Nombre de frames nécessaires pour confirmer
+    frame_count = 0
 
     with tqdm(total=total_frames, desc="Analyse frame par frame") as pbar:
         while cap.isOpened():
@@ -119,35 +123,42 @@ def detect_faces_in_video(video_path):
                 current_time = frame_count / frame_rate
                 num_faces = detect_faces_mediapipe(frame)
 
-                # Logique de vérification croisée
-                if num_faces == 2:
-                    confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
-                    if confirmation_count >= CONFIRMATION_FRAMES and current_start is None:
-                        current_start = current_time - (CONFIRMATION_FRAMES-1)/frame_rate  # Compensation du délai
+                # Déterminer la catégorie
+                if num_faces == 1:
+                    category = "single"
+                elif num_faces == 2:
+                    category = "dyadic"
                 else:
-                    confirmation_count = 0
-                    if current_start is not None:
-                        segment_end = current_time
-                        if (segment_end - current_start) >= MIN_DURATION_SEC:
-                            segments.append((current_start, segment_end))
-                        current_start = None
+                    category = "other"
+
+                # Si la catégorie reste la même, incrémenter
+                if category == current_category:
+                    confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
+                else:
+                    # Nouvelle catégorie → confirmer avec des frames stables
+                    if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
+                        segment_end = current_time - (CONFIRMATION_FRAMES - 1) / frame_rate
+                        if segment_end - current_start >= MIN_DURATION_SEC:
+                            segments.append((round(current_start, 2), round(segment_end, 2), current_category))
+
+                    # Redémarrer une nouvelle catégorie
+                    current_category = category
+                    current_start = current_time
+                    confirmation_count = 1
 
             frame_count += 1
             pbar.update(1)
 
-            if DEBUG_MODE and cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-    # Gestion du dernier segment
-    if current_start is not None:
-        segment_end = frame_count / frame_rate
-        if (segment_end - current_start) >= MIN_DURATION_SEC:
-            segments.append((current_start, segment_end))
+    # Fin de la dernière séquence
+    end_time = frame_count / frame_rate
+    if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
+        if end_time - current_start >= MIN_DURATION_SEC:
+            segments.append((round(current_start, 2), round(end_time, 2), current_category))
 
     cap.release()
     if DEBUG_MODE:
         cv2.destroyAllWindows()
-    
+
     return segments
 
 # --- Sauvegarder les segments détectés ---
@@ -157,6 +168,14 @@ def save_segments_to_csv(segments, output_csv=SEGMENTS_CSV):
     df["duration"] = df["end_time"] - df["start_time"]
     df.to_csv(output_csv, index=False)
     print(f"Segments sauvegardés dans {output_csv}")
+
+def export_segments_with_speaker_to_csv(segments, output_path):
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["start_time", "end_time", "category", "speaker"])
+        for start, end, category, speaker in segments:
+            writer.writerow([f"{start:.2f}", f"{end:.2f}", category, speaker])
 
 # --- Recharger les segments depuis un CSV ---
 def load_segments_from_csv(csv_path=SEGMENTS_CSV):
@@ -189,47 +208,3 @@ def extract_audio_clips(clips_dir, wav_output_dir):
             clip_path = os.path.join(clips_dir, clip_file)
             wav_path = os.path.join(wav_output_dir, os.path.splitext(clip_file)[0] + ".wav")
             extract_audio_to_wav(clip_path, wav_path)
-
-# --- Pipeline principal ---
-def process_video(url, index):
-    output_name = f"V0DataSet/mp4/{index}_video.mp4"
-    segments_csv = f"V0DataSet/segments/{index}_segments.csv"
-    clips_dir = f"V0DataSet/clips/{index}_video"
-    wav_dir = f"V0DataSet/wav/{index}_video"
-
-    print(f"\n--- Traitement de la vidéo {index}: {url} ---")
-    download_youtube_video(url, output_name)
-
-    if os.path.exists(segments_csv):
-        print("Segments déjà détectés, chargement depuis CSV...")
-        segments = load_segments_from_csv(segments_csv)
-    else:
-        print("Détection des visages en cours...")
-        segments = detect_faces_in_video(output_name)
-        save_segments_to_csv(segments, output_csv=segments_csv)
-
-    print("Extraction des clips...")
-    try:
-        cut_video_segments(output_name, segments, output_dir=clips_dir)
-    except Exception as e:
-        print(f"Erreur cut video segments : {e}")
-
-    print("Extraction de l'audio...")
-    extract_audio_clips(clips_dir, wav_dir)
-
-    if os.path.exists(output_name):
-        os.remove(output_name)
-        print(f"Vidéo supprimée : {output_name}")
-
-def main_batch(video_list_file='videoV0.txt'):
-    with open(video_list_file, 'r') as f:
-        video_urls = [line.strip() for line in f if line.strip()]
-    
-    for idx, url in enumerate(video_urls, start=1):
-        try:
-            process_video(url, idx)
-        except Exception as e:
-            print(f"Erreur lors du traitement de la vidéo {url} : {e}")
-
-# if __name__ == "__main__":
-#     main_batch()
