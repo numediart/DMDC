@@ -16,7 +16,7 @@ def main_batch(video_list_file='videoV0.txt'):
     with open(video_list_file, 'r') as f:
         video_urls = [line.strip() for line in f if line.strip()]
     
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls, start=2):
         try:
             process_video(url, idx)
 
