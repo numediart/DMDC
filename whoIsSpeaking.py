@@ -19,9 +19,9 @@ def run_diarization(filename):
     # send pipeline to GPU (when available)
     if torch.cuda.is_available():
         pipeline.to(torch.device("cuda"))
-        print("GPU available : ",torch.cuda.get_device_name(0))  
+        print("[Diarization/pyTorch] GPU available : ",torch.cuda.get_device_name(0))  
     else:
-        print("GPU not available. Running on CPU.")
+        print("[Diarization/pyTorch] GPU not available. Running on CPU.")
 
 
 
@@ -72,7 +72,7 @@ def assign_speakers_to_segments_from_df(visual_segments, diarization_df):
         if overlap.empty:
             speaker = "NA"
         else:
-            # Calcule la durée de parole par speaker
+            # Calculate the speaking duration per speaker
             speaker_durations = {}
             for _, row in overlap.iterrows():
                 overlap_start = max(v_start, row['start'])
@@ -84,7 +84,7 @@ def assign_speakers_to_segments_from_df(visual_segments, diarization_df):
             if len(speaker_durations) == 1:
                 speaker = list(speaker_durations.keys())[0]
             else:
-                # Si égalité ou multiple speakers, choisir le plus long (ou NA selon logique)
+                # If there is a tie or multiple speakers, choose the one with the longest duration (or NA based on logic)
                 sorted_durations = sorted(speaker_durations.items(), key=lambda x: x[1], reverse=True)
                 if sorted_durations[0][1] - sorted_durations[1][1] < 0.5:
                     speaker = "NA"

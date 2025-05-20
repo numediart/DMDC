@@ -8,7 +8,7 @@ from tqdm import tqdm
 import platform
 import csv
 
-# --- PARAMÈTRES ---
+# --- PARAMETERS ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
 OUTPUT_NAME = "video/video.mp4"
 FRAME_SKIP = 5
@@ -16,13 +16,13 @@ FPS = 25
 MIN_DURATION_SEC = 3
 SEGMENTS_CSV = "segments/"
 CLIPS_DIR = "clips/"
-DEBUG_MODE = False  # Activer/désactiver l'affichage du débogage
+DEBUG_MODE = False  # Enable/disable debug display
 
-# Initialisation MediaPipe
+# MediaPipe Initialization
 mp_face_detection = mp.solutions.face_detection
-FACE_DETECTION_THRESHOLD = 0.7  # Seuil de confiance
+FACE_DETECTION_THRESHOLD = 0.7  # Confidence threshold
 
-# --- Détection automatique de ffmpeg ---
+# --- Automatic ffmpeg detection ---
 def get_ffmpeg_path():
     base_path = os.path.join(os.path.dirname(__file__), "bin", "ffmpeg")
     if platform.system() == "Windows":
@@ -35,14 +35,14 @@ ffmpeg_dir = os.path.dirname(ffmpeg_path)
 if os.path.exists(ffmpeg_path):
     os.environ["PATH"] = os.pathsep.join([ffmpeg_dir, os.environ["PATH"]])
 
-# Rendre le fichier exécutable sur Linux si besoin
+# Make the file executable on Linux if needed
 if platform.system() != "Windows" and os.path.exists(ffmpeg_path):
     os.chmod(ffmpeg_path, 0o755)
 
-# --- Télécharger la vidéo si absente ---
+# --- Download the video if missing ---
 def download_youtube_video(url, output_path):
     if os.path.exists(output_path):
-        print(f"Vidéo déjà présente localement : {output_path}")
+        print(f"Video already present locally: {output_path}")
         return
     ydl_opts = {
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
@@ -53,14 +53,14 @@ def download_youtube_video(url, output_path):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-    print(f"Vidéo téléchargée : {output_path}")
+    print(f"Video downloaded: {output_path}")
 
-# --- Fonction d'extract audio ---
+# --- Function to extract audio ---
 def extract_audio_to_wav(video_path, wav_output_path):
     os.makedirs(os.path.dirname(wav_output_path), exist_ok=True)
 
     if os.path.exists(wav_output_path):
-        print(f"Fichier audio déjà présent : {wav_output_path}")
+        print(f"Audio file already present: {wav_output_path}")
         return
     try:
         (
@@ -70,16 +70,16 @@ def extract_audio_to_wav(video_path, wav_output_path):
             .overwrite_output()
             .run(quiet=True)
         )
-        print(f"Audio extrait : {wav_output_path}")
+        print(f"Audio extracted: {wav_output_path}")
     except ffmpeg.Error as e:
-        print("Erreur lors de l'extraction audio :")
+        print("Error during audio extraction:")
         print(e.stderr.decode())
 
-# --- Fonction améliorée de détection des visages ---
+# --- Enhanced face detection function ---
 def detect_faces_mediapipe(frame):
-    # Prétraitement de l'image
-    frame = cv2.convertScaleAbs(frame, alpha=1.2, beta=30)  # Amélioration contraste
-    frame = cv2.GaussianBlur(frame, (3, 3), 0)  # Réduction du bruit
+    # Image preprocessing
+    frame = cv2.convertScaleAbs(frame, alpha=1.2, beta=30)  # Contrast enhancement
+    frame = cv2.GaussianBlur(frame, (3, 3), 0)  # Noise reduction
     
     with mp_face_detection.FaceDetection(
         model_selection=1, 
@@ -98,7 +98,7 @@ def detect_faces_mediapipe(frame):
         
         return len(results.detections) if results.detections else 0
 
-# --- Détection des segments avec vérification croisée ---
+# --- Detect segments with cross-checking ---
 def detect_faces_in_video(video_path):
     cap = cv2.VideoCapture(video_path)
     frame_rate = cap.get(cv2.CAP_PROP_FPS)
@@ -113,7 +113,7 @@ def detect_faces_in_video(video_path):
     confirmation_count = 0
     frame_count = 0
 
-    with tqdm(total=total_frames, desc="Analyse frame par frame") as pbar:
+    with tqdm(total=total_frames, desc="Frame-by-frame analysis") as pbar:
         while cap.isOpened():
             ret, frame = cap.read()
             if not ret:
@@ -123,7 +123,7 @@ def detect_faces_in_video(video_path):
                 current_time = frame_count / frame_rate
                 num_faces = detect_faces_mediapipe(frame)
 
-                # Déterminer la catégorie
+                # Determine the category
                 if num_faces == 1:
                     category = "single"
                 elif num_faces == 2:
@@ -131,17 +131,17 @@ def detect_faces_in_video(video_path):
                 else:
                     category = "other"
 
-                # Si la catégorie reste la même, incrémenter
+                # If the category remains the same, increment
                 if category == current_category:
                     confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
                 else:
-                    # Nouvelle catégorie → confirmer avec des frames stables
+                    # New category → confirm with stable frames
                     if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
                         segment_end = current_time - (CONFIRMATION_FRAMES - 1) / frame_rate
                         if segment_end - current_start >= MIN_DURATION_SEC:
                             segments.append((round(current_start, 2), round(segment_end, 2), current_category))
 
-                    # Redémarrer une nouvelle catégorie
+                    # Restart a new category
                     current_category = category
                     current_start = current_time
                     confirmation_count = 1
@@ -149,7 +149,7 @@ def detect_faces_in_video(video_path):
             frame_count += 1
             pbar.update(1)
 
-    # Fin de la dernière séquence
+    # End of the last sequence
     end_time = frame_count / frame_rate
     if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
         if end_time - current_start >= MIN_DURATION_SEC:
@@ -161,13 +161,13 @@ def detect_faces_in_video(video_path):
 
     return segments
 
-# --- Sauvegarder les segments détectés ---
+# --- Save detected segments ---
 def save_segments_to_csv(segments, output_csv=SEGMENTS_CSV):
     os.makedirs(os.path.dirname(output_csv), exist_ok=True)
     df = pd.DataFrame(segments, columns=["start_time", "end_time"])
     df["duration"] = df["end_time"] - df["start_time"]
     df.to_csv(output_csv, index=False)
-    print(f"Segments sauvegardés dans {output_csv}")
+    print(f"Segments saved to {output_csv}")
 
 def export_segments_with_speaker_to_csv(segments, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -177,18 +177,18 @@ def export_segments_with_speaker_to_csv(segments, output_path):
         for start, end, category, speaker in segments:
             writer.writerow([f"{start:.2f}", f"{end:.2f}", category, speaker])
 
-# --- Recharger les segments depuis un CSV ---
+# --- Reload segments from a CSV ---
 def load_segments_from_csv(csv_path=SEGMENTS_CSV):
     df = pd.read_csv(csv_path)
     return list(zip(df["start_time"], df["end_time"]))
 
-# --- Couper les segments avec ffmpeg ---
+# --- Cut segments with ffmpeg ---
 def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
     os.makedirs(output_dir, exist_ok=True)
     for i, (start, end) in enumerate(segments):
         output_clip = os.path.join(output_dir, f"clip_{i+1:03d}.mp4")
         if os.path.exists(output_clip):
-            print(f"Clip déjà existant, on saute : {output_clip}")
+            print(f"Clip already exists, skipping: {output_clip}")
             continue
         duration = end - start
         (
@@ -198,7 +198,7 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
             .overwrite_output()
             .run(quiet=True)
         )
-        print(f"Segment sauvegardé : {output_clip}")
+        print(f"Segment saved: {output_clip}")
 
 
 def extract_audio_clips(clips_dir, wav_output_dir):
