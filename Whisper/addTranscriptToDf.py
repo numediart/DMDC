@@ -22,7 +22,7 @@ def addTranscriptToDf(df_segment,df_transcript_associated):
     df_segment.to_csv("example.csv", index=False)
 
 
-def mergeTranscripts(df_segment, df_transcript, output_csv="example.csv"):
+def mergeTranscripts(df_segment, df_transcript, output_csv="example2.csv"):
 
 
     df_segment["transcript"] = ""
