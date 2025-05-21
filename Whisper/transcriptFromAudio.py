@@ -9,16 +9,16 @@ import time
 #Warnings deletes
 warnings.filterwarnings("ignore", message="FP16 is not supported on CPU; using FP32 instead")
 
-def transcriptFromAudio(audiofile,outputFolder,modelType="base.en"):
+def transcriptFromAudio(audiofile, outputFolder, listTimeStamp="", modelType="base.en"):
     """
         Transcribes an audio file into text and saves the transcription as a CSV file.
 
         Args:
             audiofile (str): Path to the audio file to be transcribed.
             outputFolder (str): Path to the folder where the output CSV file will be saved.
+            listTimeStamp(list(str),optional): List of the video timeStamp.
             modelType (str, optional): Type of Whisper model to use for transcription. 
                                        Defaults to "base.en".
-
         Available models:
         -----------------------------------------------------------------
         | Size   | Parameters | English-only model | Multilingual model | Required VRAM | Relative speed |
@@ -41,7 +41,12 @@ def transcriptFromAudio(audiofile,outputFolder,modelType="base.en"):
     model = whisper.load_model(modelType)
     #Run the model
     print("[Whisper] Transcription in progress...")
-    result = model.transcribe(audiofile)
+    if listTimeStamp=="":
+        result = model.transcribe(audiofile)
+    else:
+        # result = model.transcribe(audiofile, initial_prompt="",word_timestamps=True)
+        result = model.transcribe(audiofile, clip_timestamps=listTimeStamp)
+
 
     #PRINTING/MONITORING Measure total execution time
     end_time = time.time()
@@ -56,5 +61,6 @@ def transcriptFromAudio(audiofile,outputFolder,modelType="base.en"):
     output_file = os.path.join(outputFolder, audioFileName+"_transcript.csv")
     df.to_csv(output_file, index=False)
     print("[Whisper] Transcription save at: "+output_file)
+    return df
 
 
