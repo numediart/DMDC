@@ -37,7 +37,7 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
         frame_count += 1
 
     cap.release()
-    print(f"[PreProcess] Frames saved in '{tempfolder}'")
+    print(f"[AU/PreProcess] Frames saved in '{tempfolder}'")
 
     # Process all frames
     for frame_file in sorted(os.listdir(tempfolder)):
@@ -45,13 +45,13 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
             start_time = time.time()
             input_path = os.path.join(tempfolder, frame_file)
             print("----------------------------------------------------")
-            print("[Info] Process of the frames : ",frame_file)
+            print("[AU/Info] Process of the frames : ",frame_file)
             print("----------------------------------------------------")
             process_FaceLandMark_from_container(input_path,output)
             # Measure execution time and print it
             end_time = time.time()
             execution_time = end_time - start_time
-            print("[Info] Execution time: ", round(execution_time*1000, 1), " ms")
+            print("[AU/Info] Execution time: ", round(execution_time*1000, 1), " ms")
             print("\n")
 
 
@@ -62,11 +62,11 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
     end_time = time.time()
     execution_time_all_pross = end_time - start_time_all_pross
 
-    print(f"[Del] Deleted folder '{tempfolder}'")
+    print(f"[AU/Del] Deleted cache folder '{tempfolder}'")
     print("--------------------------------------------------------------")
-    print("[Info] Processing complete. All frames have been processed.")
-    print("[Info] Total frames processed: ", frame_count)
-    print("[Info] Total Execution time: ", round(execution_time_all_pross, 1), " seconds")
+    print("[AU/Info] Processing complete. All frames have been processed.")
+    print("[AU/Info] Total frames processed: ", frame_count)
+    print("[AU/Info] Total Execution time: ", round(execution_time_all_pross, 1), " seconds")
     print("--------------------------------------------------------------")
 
 
