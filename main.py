@@ -1,6 +1,6 @@
 from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df
 from extractMFCC import extractAndSaveMFCC
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video
+from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav
 from Whisper.transcriptFromAudio import transcriptFromAudio
 import librosa
@@ -8,12 +8,11 @@ import os
 import warnings
 import pandas as pd
 import glob
+import shutil
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
-warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was deprecated.*")
-
-
+warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was deprecated.*")     
 
 def get_diarization_csv(wav_path):
     base_filename = os.path.splitext(os.path.basename(wav_path))[0]  # e.g. "1_video"
@@ -77,7 +76,7 @@ def main_batch(video_list_file='videoV0.txt'):
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
-            wav_dir = f"V0DataSet/wav/{idx}_video"
+            wav_dir = f"V0DataSet/wav/{idx}_video"         
 
             #####################
             # Download
@@ -159,7 +158,8 @@ def main_batch(video_list_file='videoV0.txt'):
             output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
             if not os.path.exists(output):
                 os.makedirs(output, exist_ok=True)
-            process_FaceLandMark_video(output_name, output, seconds=0.5)
+            process_AU_for_segments(segments_csv, output_name, output_root=output)
+            print(f"[AU] AU processing done")
 
 
             #####################

@@ -3,6 +3,12 @@ import os
 from OpenFace.actionUnitExtract import process_FaceLandMark_from_container
 import shutil
 import time
+import csv
+from moviepy.video.io.VideoFileClip import VideoFileClip
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+import subprocess
+
+TEMP_CLIPS_DIR = "V0DataSet/temp_clips"
 
 start_time_all_pross=time.time()
 
@@ -69,5 +75,44 @@ def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", se
     print("[AU/Info] Total Execution time: ", round(execution_time_all_pross, 1), " seconds")
     print("--------------------------------------------------------------")
 
+
+def extract_subclip(video_path, start_time, duration, output_path):
+    cmd = [
+        "ffmpeg",
+        "-ss", str(start_time),
+        "-i", video_path,
+        "-t", str(duration),
+        "-c:v", "libx264",
+        "-c:a", "aac",
+        "-y",
+        output_path
+    ]
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def process_AU_for_segments(csv_path, video_path, output_root):
+    with open(csv_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for idx, row in enumerate(reader):
+            start = float(row['start_time'])
+            segment_name = f"{os.path.splitext(os.path.basename(video_path))[0]}_segment_{idx}"
+            
+            os.makedirs(TEMP_CLIPS_DIR, exist_ok=True)
+            temp_clip_path = os.path.join(TEMP_CLIPS_DIR, f"{segment_name}.mp4")
+            output_folder = os.path.join(output_root, segment_name)
+            os.makedirs(output_folder, exist_ok=True)
+
+            print(f"[AU] Processing of segment {idx} - {start:.2f}s à {start+0.5:.2f}s")
+
+            try:
+                duration = float(row['end_time']) - start
+                extract_subclip(video_path, start, duration, temp_clip_path)
+                process_FaceLandMark_video(temp_clip_path, output_folder, seconds=0.5)
+            except Exception as e:
+                print(f"[!] Error on segment {idx}: {e}")
+        print(f"[AU] Processing of segments completed")
+    # Clean up temporary clips
+    print(f"[AU/Del] Deleting temporary clips in '{TEMP_CLIPS_DIR}'")
+    shutil.rmtree(TEMP_CLIPS_DIR)
 
 
