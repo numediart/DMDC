@@ -28,6 +28,43 @@ def get_diarization_csv(wav_path):
         raise FileNotFoundError(f"No CSV file found for {base_filename} in {diarization_folder}")
 
 def main_batch(video_list_file='videoV0.txt'):
+    """
+    Processes a batch of videos listed in a text file, performing a series of operations 
+    including downloading, segmentation, audio extraction, diarization, speaker assignment, 
+    feature extraction, transcription, and facial action unit analysis.
+    Args:
+        video_list_file (str): Path to the text file containing video URLs, one per line.
+    Pipeline:
+        1. **Video Download**:
+           - Downloads each video from the provided URL and saves it as an MP4 file.
+        2. **Segmentation**:
+           - If a segments CSV file exists, loads the segments from it.
+           - Otherwise, performs face detection to create segments.
+        3. **Audio Extraction**:
+           - Extracts audio from the video and saves it as WAV files.
+        4. **Diarization**:
+           - If segments already exist, skips diarization.
+           - Otherwise, performs speaker diarization to identify speakers in the audio.
+        5. **Speaker Assignment**:
+           - Assigns speakers to the detected segments using diarization results.
+           - Exports the segments with speaker information to a CSV file.
+        6. **MFCC Extraction**:
+           - Extracts Mel-Frequency Cepstral Coefficients (MFCC) from the audio signal 
+             and saves them for further analysis.
+        7. **Transcription**:
+           - Uses the Whisper model to transcribe the audio into text and saves the transcript.
+        8. **Facial Action Unit Analysis**:
+           - Processes the video to extract facial action units (AUs) using OpenFace.
+        9. **Cleanup**:
+           - Deletes the downloaded video file to free up storage.
+    Exceptions:
+        - Catches and logs any errors encountered during the processing of each video.
+    Note:
+        Ensure all required dependencies and external tools (e.g., Whisper, OpenFace) 
+        are properly installed and configured before running this function.
+        Check : requirement.txt
+    """
+
 
     ###################
     # Open videos
@@ -101,7 +138,10 @@ def main_batch(video_list_file='videoV0.txt'):
             os.makedirs(mfcc_output_dir, exist_ok=True)
             signal, sr = librosa.load(wav_dir, sr=None)
             audio_name = os.path.splitext(os.path.basename(wav_dir))[0]
-            extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
+            mfcc=extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
+            df_mfcc=pd.DataFrame(mfcc)
+            df_mfcc.to_csv(os.path.join(mfcc_output_dir, f"{audio_name}_mfcc.csv"), index=False)
+            
             print("[MFCC] MFCC extraction done")
 
             #####################
@@ -127,8 +167,7 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             if os.path.exists(output_name):
                 os.remove(output_name)
-                print(f"Vidéo supprimée : {output_name}")
-
+                print(f"[Main/Info] Video deleted: {output_name}")
         except Exception as e:
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
