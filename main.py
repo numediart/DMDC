@@ -1,4 +1,4 @@
-from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df
+from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav
@@ -122,6 +122,7 @@ def main_batch(video_list_file='videoV0.txt'):
                 print("[Assignment] Assigning speakers to segments...")
 
                 merged = assign_speakers_to_segments_from_df(segments, df_diarization)
+                merged = merge_contiguous_segments(merged, max_gap=0.6)
 
                 print("[Assignment] Assignment completed")
                 export_segments_with_speaker_to_csv(merged, segments_csv)

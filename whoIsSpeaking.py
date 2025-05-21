@@ -70,27 +70,30 @@ def assign_speakers_to_segments_from_df(visual_segments, diarization_df):
         ]
 
         if overlap.empty:
-            speaker = "NA"
+            result_segments.append((v_start, v_end, category, "NA"))
         else:
-            # Calculate the speaking duration per speaker
-            speaker_durations = {}
             for _, row in overlap.iterrows():
-                overlap_start = max(v_start, row['start'])
-                overlap_end = min(v_end, row['end'])
-                duration = overlap_end - overlap_start
-
-                speaker_durations[row['speaker']] = speaker_durations.get(row['speaker'], 0) + duration
-
-            if len(speaker_durations) == 1:
-                speaker = list(speaker_durations.keys())[0]
-            else:
-                # If there is a tie or multiple speakers, choose the one with the longest duration (or NA based on logic)
-                sorted_durations = sorted(speaker_durations.items(), key=lambda x: x[1], reverse=True)
-                if sorted_durations[0][1] - sorted_durations[1][1] < 0.5:
-                    speaker = "NA"
-                else:
-                    speaker = sorted_durations[0][0]
-
-        result_segments.append((v_start, v_end, category, speaker))
+                seg_start = max(v_start, row['start'])
+                seg_end = min(v_end, row['end'])
+                speaker = row['speaker']
+                result_segments.append((seg_start, seg_end, category, speaker))
 
     return result_segments
+
+def merge_contiguous_segments(segments, max_gap):
+    if not segments:
+        return []
+
+    merged = [segments[0]]
+
+    for current in segments[1:]:
+        last = merged[-1]
+        last_end = float(last[1])
+        current_start = float(current[0])
+
+        if last[2] == current[2] and last[3] == current[3] and (current_start - last_end) <= max_gap:
+            merged[-1] = (last[0], current[1], last[2], last[3])
+        else:
+            merged.append(current)
+
+    return merged
