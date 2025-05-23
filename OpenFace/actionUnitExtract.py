@@ -2,23 +2,21 @@ import subprocess
 import os
 
 #Check if at least one container is running
-# Check if at least one container is running
 command = ["docker", "ps"]
 result = subprocess.run(command, capture_output=True, text=True)
 
 lines = result.stdout.strip().split("\n")
 
-# Vérifie qu’il y a bien au moins un conteneur (2 lignes minimum avec l’en-tête)
+# Check that there is at least 2 container
 if len(lines) < 2:
     raise RuntimeError("Aucun conteneur actif trouvé.")
 
-# Récupère la première ligne de conteneur, après l’en-tête
 first_container_line = lines[1]
 
-# Découpe la ligne sur les espaces (ignorer l’alignement)
+# Remove space
 container_id = first_container_line.split()[0]
 
-print("[Info] Container ID:", container_id, "is running.")
+print("[Docker/Info] Container ID:", container_id, "is running.")
 
 
 def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=True):
@@ -47,7 +45,7 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
     # Extract the word between the last slash or backslash and .png
     file_name = os.path.basename(input_path)
     copiedFile = file_name.split("/")[-1]
-    print("[CP] File(",copiedFile,") copied successfully.")
+    print("[OpenFace/Copy] File(",copiedFile,") copied successfully.")
 
     # Run the FaceLandmarkImg command inside the container
     command = [
@@ -60,7 +58,7 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
         print("Error running FaceLandmarkImg:", result.stderr)
         exit(1)
 
-    print("[OpenFace] FaceLandmarkImg executed successfully.")
+    print("[OpenFace/Info] FaceLandmarkImg executed successfully.")
 
     # Copy the processed folder from the container to the specified output directory
     os.makedirs(output_path, exist_ok=True)
@@ -93,6 +91,6 @@ def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=Tr
         print("[ERR] Error deleting processed folder inside the container:", result.stderr)
         exit(1)
 
-    print("[Del] Processed folder deleted successfully inside the container.")
+    print("[OpenFace/Del] Processed folder deleted successfully inside the container.")
     return True
 
