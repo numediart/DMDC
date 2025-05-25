@@ -3,6 +3,7 @@ from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav
 from Whisper.transcriptFromAudio import transcriptFromAudio
+from MFCCmergeWithDF import MFCCmergeWithDF
 import librosa
 import os
 import warnings
@@ -141,8 +142,21 @@ def main_batch(video_list_file='videoV0.txt'):
             mfcc=extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
             df_mfcc=pd.DataFrame(mfcc)
             df_mfcc.to_csv(os.path.join(mfcc_output_dir, f"{audio_name}_mfcc.csv"), index=False)
-            
+
+
             print("[MFCC] MFCC extraction done")
+
+            print("[MFCC] MFCC DF merge in progress")
+            mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/")
+            segments_csv= pd.read_csv("./V0DataSet/segments/1_segments.csv")
+            mfcc= pd.read_csv("./V0DataSet/mfcc/1_video_mfcc.csv")
+            mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/","1_segments.csv")
+            MFCCmergeWithDF(segments_csv,mfcc,mfccExportPath)
+            print("######[MFCC/DEBUG]######",segments_csv,mfccExportPath)
+            MFCCmergeWithDF(segments_csv,mfcc,mfccExportPath)
+            print("[MFCC] MFCC DF merge done")
+
+
 
             #####################
             # Whisper (Transcript) 
