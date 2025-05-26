@@ -148,12 +148,12 @@ def main_batch(video_list_file='videoV0.txt'):
 
             print("[MFCC] MFCC DF merge in progress")
             mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/")
-            segments_csv= pd.read_csv("./V0DataSet/segments/1_segments.csv")
+            segments_mfcc_csv= pd.read_csv("./V0DataSet/segments/1_segments.csv")
             mfcc= pd.read_csv("./V0DataSet/mfcc/1_video_mfcc.csv")
             mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/","1_segments.csv")
-            MFCCmergeWithDF(segments_csv,mfcc,mfccExportPath)
-            print("######[MFCC/DEBUG]######",segments_csv,mfccExportPath)
-            MFCCmergeWithDF(segments_csv,mfcc,mfccExportPath)
+            MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
+            print("######[MFCC/DEBUG]######",segments_mfcc_csv,mfccExportPath)
+            MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
             print("[MFCC] MFCC DF merge done")
 
 

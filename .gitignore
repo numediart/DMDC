@@ -8,6 +8,7 @@ Subtitle
 wav
 mfcc
 V0DataSet
+temp_frames
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
