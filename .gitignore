@@ -1,4 +1,5 @@
 .venv
+.venv_parakeet
 video
 segments
 clips

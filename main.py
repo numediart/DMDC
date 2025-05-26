@@ -1,7 +1,7 @@
 from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav
+from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
 import librosa
@@ -10,6 +10,7 @@ import warnings
 import pandas as pd
 import glob
 import shutil
+import subprocess
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
@@ -135,36 +136,53 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             # MFCC Extract 
             #####################
-            mfcc_output_dir = f'V0DataSet/mfcc'
-            os.makedirs(mfcc_output_dir, exist_ok=True)
-            signal, sr = librosa.load(wav_dir, sr=None)
-            audio_name = os.path.splitext(os.path.basename(wav_dir))[0]
-            mfcc=extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
-            df_mfcc=pd.DataFrame(mfcc)
-            df_mfcc.to_csv(os.path.join(mfcc_output_dir, f"{audio_name}_mfcc.csv"), index=False)
+            # mfcc_output_dir = f'V0DataSet/mfcc'
+            # os.makedirs(mfcc_output_dir, exist_ok=True)
+            # signal, sr = librosa.load(wav_dir, sr=None)
+            # audio_name = os.path.splitext(os.path.basename(wav_dir))[0]
+            # mfcc=extractAndSaveMFCC(signal, mfcc_output_dir, audio_name)
+            # df_mfcc=pd.DataFrame(mfcc)
+            # df_mfcc.to_csv(os.path.join(mfcc_output_dir, f"{audio_name}_mfcc.csv"), index=False)
 
 
-            print("[MFCC] MFCC extraction done")
+            # print("[MFCC] MFCC extraction done")
 
-            print("[MFCC] MFCC DF merge in progress")
-            mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/")
-            segments_mfcc_csv= pd.read_csv("./V0DataSet/segments/1_segments.csv")
-            mfcc= pd.read_csv("./V0DataSet/mfcc/1_video_mfcc.csv")
-            mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/","1_segments.csv")
-            MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
-            print("######[MFCC/DEBUG]######",segments_mfcc_csv,mfccExportPath)
-            MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
-            print("[MFCC] MFCC DF merge done")
+            # print("[MFCC] MFCC DF merge in progress")
+            # mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/")
+            # segments_mfcc_csv= pd.read_csv("./V0DataSet/segments/1_segments.csv")
+            # mfcc= pd.read_csv("./V0DataSet/mfcc/1_video_mfcc.csv")
+            # mfccExportPath=os.path.join(os.path.dirname(__file__),"V0DataSet/segments/","1_segments.csv")
+            # MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
+            # print("######[MFCC/DEBUG]######",segments_mfcc_csv,mfccExportPath)
+            # MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
+            # print("[MFCC] MFCC DF merge done")
 
 
+            base_dir = os.path.dirname(__file__)
+            output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
+            output_folder_whisper = os.path.join(base_dir, "V0DataSet", "transcript", f"{idx}_video")
+            python_path = ".venv_parakeet/Scripts/python.exe"
+
+            #####################
+            # Splitting WAV from timestamps
+            #####################
+            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            os.makedirs(output_folder_whisper, exist_ok=True)
+            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
             #####################
             # Whisper (Transcript) 
             #####################
-            output_folder_whisper = os.path.join(os.path.dirname(__file__),"V0DataSet", "transcript", f"{idx}_video")
-            if not os.path.exists(output_folder_whisper):
-                os.makedirs(output_folder_whisper, exist_ok=True)
-            transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
+
+            os.makedirs(output_folder_whisper, exist_ok=True)
+
+            subprocess.run([
+                python_path,
+                "transcribe_parakeet.py",
+                output_folder_whisper,
+                *segment_paths
+            ])
+            # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             #####################
             # Openface Action Unit

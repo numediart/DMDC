@@ -7,6 +7,7 @@ import mediapipe as mp
 from tqdm import tqdm
 import platform
 import csv
+from pydub import AudioSegment
 
 # --- PARAMETERS ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
@@ -200,6 +201,29 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
         )
         print(f"[Filter] Segment saved: {output_clip}")
 
+def split_audio_from_csv(audio_path, csv_path, output_dir):
+    from pydub import AudioSegment
+    import pandas as pd
+    import os
+
+    audio = AudioSegment.from_wav(audio_path)
+    df = pd.read_csv(csv_path)
+    os.makedirs(output_dir, exist_ok=True)
+
+    generated_files = []
+
+    for idx, row in df.iterrows():
+        start_ms = int(float(row['start_time']) * 1000)
+        end_ms = int(float(row['end_time']) * 1000)
+        
+        segment = audio[start_ms:end_ms]
+        segment_name = f"segment_{idx:04d}_{start_ms}ms_{end_ms}ms.wav"
+        segment_path = os.path.join(output_dir, segment_name)
+        
+        segment.export(segment_path, format="wav")
+        generated_files.append(segment_path)
+
+    return generated_files
 
 def extract_audio_clips(clips_dir, wav_output_dir):
     os.makedirs(wav_output_dir, exist_ok=True)
