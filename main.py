@@ -158,9 +158,9 @@ def main_batch(video_list_file='videoV0.txt'):
             # MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
             # print("[MFCC] MFCC DF merge done")
 
-            #####################
-            # Path for transcription
-            #####################
+            # #####################
+            # # Path for transcription
+            # #####################
 
             base_dir = os.path.dirname(__file__)
             output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
@@ -170,28 +170,28 @@ def main_batch(video_list_file='videoV0.txt'):
             else:
                 python_path = os.path.join(".venv_parakeet", "bin", "python")
 
-            #####################
-            # Splitting WAV from timestamps
-            #####################
-            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
-            os.makedirs(output_folder_whisper, exist_ok=True)
-            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+            # #####################
+            # # Splitting WAV from timestamps
+            # #####################
+            # output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            # os.makedirs(output_folder_whisper, exist_ok=True)
+            # segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
-            #####################
-            # Whisper (Transcript) 
-            #####################
+            # #####################
+            # # Whisper (Transcript) 
+            # #####################
 
-            os.makedirs(output_folder_whisper, exist_ok=True)
+            # os.makedirs(output_folder_whisper, exist_ok=True)
 
-            subprocess.run([
-                python_path,
-                "transcribe_parakeet.py",
-                output_folder_whisper,
-                *segment_paths
-            ])
+            # subprocess.run([
+            #     python_path,
+            #     "transcribe_parakeet.py",
+            #     output_folder_whisper,
+            #     *segment_paths
+            # ])
 
-            if os.path.exists(output_tmp_wav):
-                os.remove(output_tmp_wav)
+            # if os.path.exists(output_tmp_wav):
+            #     os.remove(output_tmp_wav)
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             #####################
