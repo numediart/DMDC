@@ -1,0 +1,5 @@
+,start_time,end_time,type,valid
+0,0,1,Test,True
+1,5,10,dyadic,True
+2,5,10,dyadic,False
+3,5,10,dyadic,True
