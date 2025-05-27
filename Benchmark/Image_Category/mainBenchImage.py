@@ -66,6 +66,7 @@ def mainBenchImage(play_speed=2):
     index=0
     for video in os.listdir(inputBenchVideo):
         segments_file=pd.read_csv(os.path.join(inputBenchSegments,str(index+1)+"_segments.csv"))
+        # Cut segments in smaller filer
         # segments_file = generate_segments(video, segments_file)
         print(segments_file)
         segments_file_size = len(segments_file)
