@@ -99,7 +99,7 @@ def mainBenchImage(play_speed=2):
             while True:
                 user_input_for_validation = input(
                     "The video was valid & only " + str(video_type) +
-                    " or not (0️⃣: false, 1️⃣: true, 2️⃣: replay) : "
+                    " or not (0️⃣: false, 1️⃣: true, 2️⃣: replay, 3️⃣: save) : "
                 )
                 if user_input_for_validation == "1":
                     user_input_for_validation = True
@@ -109,6 +109,12 @@ def mainBenchImage(play_speed=2):
                     cap_replay = cv2.VideoCapture(os.path.join(inputBenchVideo, video))
                     play_segment(cap_replay, start_frame, end_frame, fps, play_speed)
                     cap_replay.release()
+                elif user_input_for_validation == "3":
+                    # Save benchmark table so far
+                    df_bench = pd.DataFrame(benchmarkTable)
+                    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                    df_bench.to_csv(os.path.join(outputBenchImage, "benchmark_results_" + now + ".csv"))
+                    print("Benchmark table saved.")
                 else:
                     user_input_for_validation = False
                     break
