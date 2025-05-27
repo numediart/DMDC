@@ -8,6 +8,7 @@ from tqdm import tqdm
 import platform
 import csv
 from pydub import AudioSegment
+import subprocess
 
 # --- PARAMETERS ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
@@ -202,25 +203,27 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
         print(f"[Filter] Segment saved: {output_clip}")
 
 def split_audio_from_csv(audio_path, csv_path, output_dir):
-    from pydub import AudioSegment
-    import pandas as pd
-    import os
-
-    audio = AudioSegment.from_wav(audio_path)
     df = pd.read_csv(csv_path)
     os.makedirs(output_dir, exist_ok=True)
 
     generated_files = []
 
     for idx, row in df.iterrows():
-        start_ms = int(float(row['start_time']) * 1000)
-        end_ms = int(float(row['end_time']) * 1000)
-        
-        segment = audio[start_ms:end_ms]
-        segment_name = f"segment_{idx:04d}_{start_ms}ms_{end_ms}ms.wav"
+        start = float(row['start_time'])
+        duration = float(row['end_time']) - float(row['start_time'])
+
+        segment_name = f"segment_{idx:04d}_{int(start*1000)}ms_{int((start+duration)*1000)}ms.wav"
         segment_path = os.path.join(output_dir, segment_name)
-        
-        segment.export(segment_path, format="wav")
+
+        # Utilise ffmpeg pour extraire proprement le segment
+        subprocess.run([
+            "ffmpeg", "-y", "-i", audio_path,
+            "-ss", str(start),
+            "-t", str(duration),
+            "-acodec", "copy",
+            segment_path
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         generated_files.append(segment_path)
 
     return generated_files

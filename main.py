@@ -157,6 +157,9 @@ def main_batch(video_list_file='videoV0.txt'):
             # MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
             # print("[MFCC] MFCC DF merge done")
 
+            #####################
+            # Path for transcription
+            #####################
 
             base_dir = os.path.dirname(__file__)
             output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
@@ -182,25 +185,28 @@ def main_batch(video_list_file='videoV0.txt'):
                 output_folder_whisper,
                 *segment_paths
             ])
+
+            if os.path.exists(output_tmp_wav):
+                os.remove(output_tmp_wav)
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             #####################
             # Openface Action Unit
             #####################
-            print(f"[AU] Processing AU")
-            output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
-            if not os.path.exists(output):
-                os.makedirs(output, exist_ok=True)
-            process_AU_for_segments(segments_csv, output_name, output_root=output)
-            print(f"[AU] AU processing done")
+            # print(f"[AU] Processing AU")
+            # output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
+            # if not os.path.exists(output):
+            #     os.makedirs(output, exist_ok=True)
+            # process_AU_for_segments(segments_csv, output_name, output_root=output)
+            # print(f"[AU] AU processing done")
 
 
             #####################
             # End of the pipe, delete cache
             #####################
-            if os.path.exists(output_name):
-                os.remove(output_name)
-                print(f"[Main/Info] Video deleted: {output_name}")
+            # if os.path.exists(output_name):
+            #     os.remove(output_name)
+            #     print(f"[Main/Info] Video deleted: {output_name}")
         except Exception as e:
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
