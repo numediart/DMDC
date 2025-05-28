@@ -3,11 +3,25 @@ import cv2
 import pandas as pd
 from datetime import datetime
 
+
+# Benchmark Parameter and path
 inputBenchVideo = os.path.join(os.path.dirname(__file__), "../../V0DataSet/mp4/")
 inputBenchSegments = os.path.join(os.path.dirname(__file__), "../../V0DataSet/segments/")
 outputBenchImage = os.path.join(os.path.dirname(__file__), "./output/")
 
+
+# We are not using it
 def generate_segments(video, segments_file, max_size=128):
+    """
+    Generates video segments of a given maximum size and assigns a category to each segment based on overlap with provided segment annotations.
+    Args:
+        video (str): Name of the video file.
+        segments_file (pd.DataFrame): DataFrame with 'start_time', 'end_time', and 'category' columns.
+        max_size (int, optional): Maximum number of frames per segment. Defaults to 128.
+    Returns:
+        pd.DataFrame: DataFrame with 'start_time', 'end_time', and 'category' for each segment.
+    """
+
     video_path = os.path.join(inputBenchVideo, video)
     cap = cv2.VideoCapture(video_path)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -63,9 +77,9 @@ def mainBenchImage(play_speed=2):
     """
 
     benchmarkTable=[]
-    index=0
     for video in os.listdir(inputBenchVideo):
-        segments_file=pd.read_csv(os.path.join(inputBenchSegments,str(index+1)+"_segments.csv"))
+        id=video.split("_")[0]
+        segments_file=pd.read_csv(os.path.join(inputBenchSegments,str(id)+"_segments.csv"))
         # Cut segments in smaller filer
         # segments_file = generate_segments(video, segments_file)
         print(segments_file)
@@ -86,7 +100,7 @@ def mainBenchImage(play_speed=2):
                 "\n",
                 "\t\t\t[Benchmark]",
                 "\n",
-                "\t ℹ️  Video N°", str(index + 1), "segments n°:",_,"/",str(segments_file_size),"\n ",
+                "\t ℹ️  Video N°", str(id),"Video Name :", video,"segments n°:",_,"/",str(segments_file_size),"\n ",
                 "\t ⏳ Start sec=", round(start_sec,1),"(Frame n°", start_frame, ")\n",
                 "\t ⌛ End sec=", round(end_sec,1),"(Frame n°", end_frame, ")\n",
                 "\t 📼 Video_typ: ", video_type,
@@ -97,6 +111,8 @@ def mainBenchImage(play_speed=2):
 
             play_segment(cap, start_frame, end_frame, fps, play_speed)
 
+
+            # USER INPUT "while"  0️⃣: false, 1️⃣: true, 2️⃣: replay, 3️⃣: save)
             while True:
                 user_input_for_validation = input(
                     "The video was valid & only " + str(video_type) +
@@ -124,6 +140,7 @@ def mainBenchImage(play_speed=2):
 
             benchmarkTable.append(
             {
+                "video": video,
                 "start_time": start_sec,
                 "end_time": end_sec,
                 "type": video_type,
@@ -138,17 +155,20 @@ def mainBenchImage(play_speed=2):
             user_input_for_validation=True
         else:
             user_input_for_validation=False
+    
         print("You entered:", user_input_for_validation)
         benchmarkTable.append(
             { 
+                "video":video,
                 "start_time":start_sec,
                 "end_time":end_sec,
                 "type":video_type,
                 "valid":user_input_for_validation,
         }
         )
-        index+=1
 
+
+    # Benchmark export
     df_bench=pd.DataFrame(benchmarkTable)
     print(df_bench)
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
