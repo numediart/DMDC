@@ -94,6 +94,7 @@ def mainBenchImage(play_speed=2):
             fps = cap.get(cv2.CAP_PROP_FPS)
             start_frame = int(start_sec * fps)
             end_frame = int(end_sec * fps)
+
             print(
                 "\n"*20,
                 "="*60,
