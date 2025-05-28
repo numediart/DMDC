@@ -9,6 +9,7 @@ import platform
 import csv
 from pydub import AudioSegment
 import subprocess
+import time
 
 # --- PARAMETERS ---
 URL = "https://www.youtube.com/watch?v=Ksi9rL2sDXo"
@@ -227,6 +228,16 @@ def split_audio_from_csv(audio_path, csv_path, output_dir):
         generated_files.append(segment_path)
 
     return generated_files
+
+def wait_for_file_release(path, timeout=5):
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            with open(path, 'rb'):
+                return True
+        except PermissionError:
+            time.sleep(0.5)
+    return False
 
 def extract_audio_clips(clips_dir, wav_output_dir):
     os.makedirs(wav_output_dir, exist_ok=True)

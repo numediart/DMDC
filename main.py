@@ -1,7 +1,7 @@
 from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv
+from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
 import librosa
@@ -161,33 +161,36 @@ def main_batch(video_list_file='videoV0.txt'):
             # Path for transcription
             #####################
 
-            base_dir = os.path.dirname(__file__)
-            output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
-            output_folder_whisper = os.path.join(base_dir, "V0DataSet", "transcript", f"{idx}_video")
-            python_path = ".venv_parakeet/Scripts/python.exe"
+            # base_dir = os.path.dirname(__file__)
+            # output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
+            # output_folder_whisper = os.path.join(base_dir, "V0DataSet", "transcript", f"{idx}_video")
+            # python_path = ".venv_parakeet/Scripts/python.exe"
 
-            #####################
-            # Splitting WAV from timestamps
-            #####################
-            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
-            os.makedirs(output_folder_whisper, exist_ok=True)
-            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+            # #####################
+            # # Splitting WAV from timestamps
+            # #####################
+            # output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            # os.makedirs(output_folder_whisper, exist_ok=True)
+            # segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
-            #####################
-            # Whisper (Transcript) 
-            #####################
+            # #####################
+            # # Whisper (Transcript) 
+            # #####################
 
-            os.makedirs(output_folder_whisper, exist_ok=True)
+            # os.makedirs(output_folder_whisper, exist_ok=True)
 
-            subprocess.run([
-                python_path,
-                "transcribe_parakeet.py",
-                output_folder_whisper,
-                *segment_paths
-            ])
+            # subprocess.run([
+            #     python_path,
+            #     "transcribe_parakeet.py",
+            #     output_folder_whisper,
+            #     *segment_paths
+            # ])
 
-            if os.path.exists(output_tmp_wav):
-                os.remove(output_tmp_wav)
+            # if os.path.exists(output_tmp_wav):
+            #     if wait_for_file_release(output_tmp_wav):
+            #         os.remove(output_tmp_wav)
+            #     else:
+            #         print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             #####################
