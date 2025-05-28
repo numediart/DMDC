@@ -1,0 +1,4 @@
+,audio,start_time,end_time,speaker,valid
+0,1_video,0.03,16.95,SPEAKER_00,True
+1,1_video,17.02,35.03,SPEAKER_00,False
+2,1_video,36.94,42.81,SPEAKER_01,True

@@ -98,7 +98,7 @@ def mainBenchImage(play_speed=2):
                 "\n"*20,
                 "="*60,
                 "\n",
-                "\t\t\t[Benchmark]",
+                "\t\t[Benchmark Category]",
                 "\n",
                 "\t ℹ️  Video N°", str(id),"Video Name :", video,"segments n°:",_,"/",str(segments_file_size),"\n ",
                 "\t ⏳ Start sec=", round(start_sec,1),"(Frame n°", start_frame, ")\n",
@@ -116,7 +116,7 @@ def mainBenchImage(play_speed=2):
             while True:
                 user_input_for_validation = input(
                     "The video was valid & only " + str(video_type) +
-                    " or not (0️⃣: false, 1️⃣: true, 2️⃣: replay, 3️⃣: save) : "
+                    " or not (0️⃣: false, 1️⃣: true, 2️⃣: replay(slow motion), 3️⃣: save) : "
                 )
                 if user_input_for_validation == "1":
                     user_input_for_validation = True
@@ -124,7 +124,7 @@ def mainBenchImage(play_speed=2):
                 elif user_input_for_validation == "2":
                     # Replay the segment
                     cap_replay = cv2.VideoCapture(os.path.join(inputBenchVideo, video))
-                    play_segment(cap_replay, start_frame, end_frame, fps, play_speed)
+                    play_segment(cap_replay, start_frame, end_frame, fps, 0.7)
                     cap_replay.release()
                 elif user_input_for_validation == "3":
                     # Save benchmark table so far
