@@ -1,4 +1,6 @@
 import os
+import sys
+
 import cv2
 import ffmpeg
 import pandas as pd
@@ -20,6 +22,8 @@ MIN_DURATION_SEC = 3
 SEGMENTS_CSV = "segments/"
 CLIPS_DIR = "clips/"
 DEBUG_MODE = False  # Enable/disable debug display
+
+DISPLAY_DISABLE_LINUX=False
 
 # MediaPipe Initialization
 mp_face_detection = mp.solutions.face_detection
@@ -116,41 +120,77 @@ def detect_faces_in_video(video_path):
     confirmation_count = 0
     frame_count = 0
 
-    with tqdm(total=total_frames, desc="[Filter/Face Detection] Analyzing frame per frame ") as pbar:
+
+    if DISPLAY_DISABLE_LINUX == False:
+        with tqdm(total=total_frames, desc="[Filter/Face Detection] Analyzing frame per frame ") as pbar:
+            while cap.isOpened():
+                ret, frame = cap.read()
+                if not ret:
+                    break
+
+                if frame_count % FRAME_SKIP == 0:
+                    current_time = frame_count / frame_rate
+                    num_faces = detect_faces_mediapipe(frame)
+
+                    # Determine the category
+                    if num_faces == 1:
+                        category = "single"
+                    elif num_faces == 2:
+                        category = "dyadic"
+                    else:
+                        category = "other"
+
+                    # If the category remains the same, increment
+                    if category == current_category:
+                        confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
+                    else:
+                        # New category → confirm with stable frames
+                        if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
+                            segment_end = current_time - (CONFIRMATION_FRAMES - 1) / frame_rate
+                            if segment_end - current_start >= MIN_DURATION_SEC:
+                                segments.append((round(current_start, 2), round(segment_end, 2), current_category))
+
+                        # Restart a new category
+                        current_category = category
+                        current_start = current_time
+                        confirmation_count = 1
+
+                frame_count += 1
+                pbar.update(1)
+    elif DISPLAY_DISABLE_LINUX == True:
         while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
+                ret, frame = cap.read()
+                if not ret:
+                    break
 
-            if frame_count % FRAME_SKIP == 0:
-                current_time = frame_count / frame_rate
-                num_faces = detect_faces_mediapipe(frame)
+                if frame_count % FRAME_SKIP == 0:
+                    current_time = frame_count / frame_rate
+                    num_faces = detect_faces_mediapipe(frame)
 
-                # Determine the category
-                if num_faces == 1:
-                    category = "single"
-                elif num_faces == 2:
-                    category = "dyadic"
-                else:
-                    category = "other"
+                    # Determine the category
+                    if num_faces == 1:
+                        category = "single"
+                    elif num_faces == 2:
+                        category = "dyadic"
+                    else:
+                        category = "other"
 
-                # If the category remains the same, increment
-                if category == current_category:
-                    confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
-                else:
-                    # New category → confirm with stable frames
-                    if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
-                        segment_end = current_time - (CONFIRMATION_FRAMES - 1) / frame_rate
-                        if segment_end - current_start >= MIN_DURATION_SEC:
-                            segments.append((round(current_start, 2), round(segment_end, 2), current_category))
+                    # If the category remains the same, increment
+                    if category == current_category:
+                        confirmation_count = min(confirmation_count + 1, CONFIRMATION_FRAMES)
+                    else:
+                        # New category → confirm with stable frames
+                        if confirmation_count >= CONFIRMATION_FRAMES and current_category is not None:
+                            segment_end = current_time - (CONFIRMATION_FRAMES - 1) / frame_rate
+                            if segment_end - current_start >= MIN_DURATION_SEC:
+                                segments.append((round(current_start, 2), round(segment_end, 2), current_category))
 
-                    # Restart a new category
-                    current_category = category
-                    current_start = current_time
-                    confirmation_count = 1
+                        # Restart a new category
+                        current_category = category
+                        current_start = current_time
+                        confirmation_count = 1
 
-            frame_count += 1
-            pbar.update(1)
+                frame_count += 1
 
     # End of the last sequence
     end_time = frame_count / frame_rate

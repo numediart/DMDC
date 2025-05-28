@@ -11,6 +11,7 @@ import pandas as pd
 import glob
 import shutil
 import subprocess
+import platform
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
@@ -157,14 +158,17 @@ def main_batch(video_list_file='videoV0.txt'):
             # MFCCmergeWithDF(segments_mfcc_csv,mfcc,mfccExportPath)
             # print("[MFCC] MFCC DF merge done")
 
-            #####################
-            # Path for transcription
-            #####################
+            # #####################
+            # # Path for transcription
+            # #####################
 
             # base_dir = os.path.dirname(__file__)
             # output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
             # output_folder_whisper = os.path.join(base_dir, "V0DataSet", "transcript", f"{idx}_video")
-            # python_path = ".venv_parakeet/Scripts/python.exe"
+            # if platform.system() == "Windows":
+            #     python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            # else:
+            #     python_path = os.path.join(".venv_parakeet", "bin", "python")
 
             # #####################
             # # Splitting WAV from timestamps
