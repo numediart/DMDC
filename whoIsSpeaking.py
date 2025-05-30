@@ -97,3 +97,6 @@ def merge_contiguous_segments(segments, max_gap):
             merged.append(current)
 
     return merged
+
+def filter_short_segments(segments, min_duration=0.5):
+    return [seg for seg in segments if float(seg[1]) - float(seg[0]) >= min_duration]

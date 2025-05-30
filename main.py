@@ -1,4 +1,4 @@
-from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments
+from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
@@ -125,7 +125,8 @@ def main_batch(video_list_file='videoV0.txt'):
                 print("[Assignment] Assigning speakers to segments...")
 
                 merged = assign_speakers_to_segments_from_df(segments, df_diarization)
-                merged = merge_contiguous_segments(merged, max_gap=0.6)
+                merged = merge_contiguous_segments(merged, max_gap=1)
+                merged = filter_short_segments(merged, min_duration=1.5)
 
                 print("[Assignment] Assignment completed")
                 export_segments_with_speaker_to_csv(merged, segments_csv)
@@ -162,33 +163,29 @@ def main_batch(video_list_file='videoV0.txt'):
             # # Path for transcription
             # #####################
 
-            # base_dir = os.path.dirname(__file__)
-            # output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
-            # output_folder_whisper = os.path.join(base_dir, "V0DataSet", "transcript", f"{idx}_video")
-            # if platform.system() == "Windows":
-            #     python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            # else:
-            #     python_path = os.path.join(".venv_parakeet", "bin", "python")
+            base_dir = os.path.dirname(__file__)
+            output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
+            if platform.system() == "Windows":
+                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            else:
+                python_path = os.path.join(".venv_parakeet", "bin", "python")
 
             # #####################
             # # Splitting WAV from timestamps
             # #####################
-            # output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
-            # os.makedirs(output_folder_whisper, exist_ok=True)
-            # segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
             # #####################
-            # # Whisper (Transcript) 
+            # # Parakeet (Transcript) 
             # #####################
 
-            # os.makedirs(output_folder_whisper, exist_ok=True)
-
-            # subprocess.run([
-            #     python_path,
-            #     "transcribe_parakeet.py",
-            #     output_folder_whisper,
-            #     *segment_paths
-            # ])
+            subprocess.run([
+                python_path,
+                "transcribe_parakeet.py",
+                str(idx),
+                *segment_paths
+            ])
 
             # if os.path.exists(output_tmp_wav):
             #     if wait_for_file_release(output_tmp_wav):

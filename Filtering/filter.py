@@ -270,14 +270,15 @@ def split_audio_from_csv(audio_path, csv_path, output_dir):
     return generated_files
 
 def wait_for_file_release(path, timeout=5):
-    start = time.time()
-    while time.time() - start < timeout:
+    start_time = time.time()
+    while True:
         try:
             with open(path, 'rb'):
                 return True
         except PermissionError:
+            if time.time() - start_time > timeout:
+                return False
             time.sleep(0.5)
-    return False
 
 def extract_audio_clips(clips_dir, wav_output_dir):
     os.makedirs(wav_output_dir, exist_ok=True)
