@@ -1,0 +1,6 @@
+sudo apt install python3.12-dev
+sudo apt install build-essential
+python3.12 -m venv .venv_parakeet
+source .venv_parakeet/bin/activate
+pip install -r requirements_parakeet.txt
+pip install parakeet
