@@ -27,7 +27,7 @@ def run_diarization(filename):
 
     # apply pretrained pipeline with 2 speakers
     with ProgressHook() as hook:
-        diarization = pipeline(filename,max_speakers=2,min_speakers=0,hook=hook)
+        diarization = pipeline(filename,min_speakers=0,hook=hook)
 
 
 

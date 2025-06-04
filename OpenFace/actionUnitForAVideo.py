@@ -116,3 +116,18 @@ def process_AU_for_segments(csv_path, video_path, output_root):
     shutil.rmtree(TEMP_CLIPS_DIR)
 
 
+def extract_openface_features(video_path, output_dir):
+    openface_path = r"D:/Users/Gaspard/OpenFace/FaceLandmarkVidMulti.exe"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    cmd = [
+        openface_path,
+        "-f", video_path,
+        "-out_dir", output_dir,
+        "-aus",
+        "-tracked",
+    ]
+    
+    print(f"[OpenFace] Processing video: {video_path}")
+    subprocess.run(cmd, check=True)
+    print(f"[OpenFace] Output saved to: {output_dir}")
