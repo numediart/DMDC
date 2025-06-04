@@ -1,6 +1,6 @@
 from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from extractMFCC import extractAndSaveMFCC
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments
+from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
@@ -197,12 +197,12 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             # Openface Action Unit
             #####################
-            # print(f"[AU] Processing AU")
-            # output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
-            # if not os.path.exists(output):
-            #     os.makedirs(output, exist_ok=True)
-            # process_AU_for_segments(segments_csv, output_name, output_root=output)
-            # print(f"[AU] AU processing done")
+            print(f"[AU] Processing AU")
+            output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
+            if not os.path.exists(output):
+                os.makedirs(output, exist_ok=True)
+            extract_openface_features(output_name, output)
+            print(f"[AU] AU processing done")
 
 
             #####################
