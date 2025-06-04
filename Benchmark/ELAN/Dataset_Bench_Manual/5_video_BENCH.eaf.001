@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-06-04T16:22:23+01:00"
+    FORMAT="3.0" VERSION="3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR
+            MEDIA_URL="file:///C:/UMONS/DMDC/V0.2DataSet/mp4/5_video.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../../../V0.2DataSet/mp4/5_video.mp4"/>
+        <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:749f3ee0-c8ab-4168-9d5c-929b98a07cf4</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">166</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="10580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="10580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="10610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="10610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="15820"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="15860"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="15860"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="15860"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="45830"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="45830"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="47040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="47040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="64000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="64000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="66900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="66900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="74570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="74570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="75600"/>
+        <TIME_SLOT TIME_SLOT_ID="ts23" TIME_VALUE="75600"/>
+        <TIME_SLOT TIME_SLOT_ID="ts24" TIME_VALUE="84840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts25" TIME_VALUE="84840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts26" TIME_VALUE="85840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts27" TIME_VALUE="85840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts28" TIME_VALUE="89190"/>
+        <TIME_SLOT TIME_SLOT_ID="ts29" TIME_VALUE="89240"/>
+        <TIME_SLOT TIME_SLOT_ID="ts30" TIME_VALUE="89273"/>
+        <TIME_SLOT TIME_SLOT_ID="ts31" TIME_VALUE="89273"/>
+        <TIME_SLOT TIME_SLOT_ID="ts32" TIME_VALUE="96900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts33" TIME_VALUE="96920"/>
+        <TIME_SLOT TIME_SLOT_ID="ts34" TIME_VALUE="96930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts35" TIME_VALUE="96930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts36" TIME_VALUE="105130"/>
+        <TIME_SLOT TIME_SLOT_ID="ts37" TIME_VALUE="105182"/>
+        <TIME_SLOT TIME_SLOT_ID="ts38" TIME_VALUE="106070"/>
+        <TIME_SLOT TIME_SLOT_ID="ts39" TIME_VALUE="106070"/>
+        <TIME_SLOT TIME_SLOT_ID="ts40" TIME_VALUE="108840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts41" TIME_VALUE="108840"/>
+        <TIME_SLOT TIME_SLOT_ID="ts42" TIME_VALUE="110360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts43" TIME_VALUE="110360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts44" TIME_VALUE="236110"/>
+        <TIME_SLOT TIME_SLOT_ID="ts45" TIME_VALUE="236110"/>
+        <TIME_SLOT TIME_SLOT_ID="ts46" TIME_VALUE="237510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts47" TIME_VALUE="237510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts48" TIME_VALUE="287510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts49" TIME_VALUE="287510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts50" TIME_VALUE="288210"/>
+        <TIME_SLOT TIME_SLOT_ID="ts51" TIME_VALUE="288210"/>
+        <TIME_SLOT TIME_SLOT_ID="ts52" TIME_VALUE="290530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts53" TIME_VALUE="290530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts54" TIME_VALUE="291530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts55" TIME_VALUE="291530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts56" TIME_VALUE="312250"/>
+        <TIME_SLOT TIME_SLOT_ID="ts57" TIME_VALUE="312250"/>
+        <TIME_SLOT TIME_SLOT_ID="ts58" TIME_VALUE="312810"/>
+        <TIME_SLOT TIME_SLOT_ID="ts59" TIME_VALUE="312810"/>
+        <TIME_SLOT TIME_SLOT_ID="ts60" TIME_VALUE="312810"/>
+        <TIME_SLOT TIME_SLOT_ID="ts61" TIME_VALUE="312810"/>
+        <TIME_SLOT TIME_SLOT_ID="ts62" TIME_VALUE="322636"/>
+        <TIME_SLOT TIME_SLOT_ID="ts63" TIME_VALUE="322636"/>
+        <TIME_SLOT TIME_SLOT_ID="ts64" TIME_VALUE="322700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts65" TIME_VALUE="322700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts66" TIME_VALUE="323490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts67" TIME_VALUE="323490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts68" TIME_VALUE="358250"/>
+        <TIME_SLOT TIME_SLOT_ID="ts69" TIME_VALUE="358250"/>
+        <TIME_SLOT TIME_SLOT_ID="ts70" TIME_VALUE="359820"/>
+        <TIME_SLOT TIME_SLOT_ID="ts71" TIME_VALUE="359820"/>
+        <TIME_SLOT TIME_SLOT_ID="ts72" TIME_VALUE="365880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts73" TIME_VALUE="365880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts74" TIME_VALUE="366220"/>
+        <TIME_SLOT TIME_SLOT_ID="ts75" TIME_VALUE="366220"/>
+        <TIME_SLOT TIME_SLOT_ID="ts76" TIME_VALUE="371650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts77" TIME_VALUE="371650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts78" TIME_VALUE="372260"/>
+        <TIME_SLOT TIME_SLOT_ID="ts79" TIME_VALUE="372260"/>
+        <TIME_SLOT TIME_SLOT_ID="ts80" TIME_VALUE="373140"/>
+        <TIME_SLOT TIME_SLOT_ID="ts81" TIME_VALUE="373140"/>
+        <TIME_SLOT TIME_SLOT_ID="ts82" TIME_VALUE="373140"/>
+        <TIME_SLOT TIME_SLOT_ID="ts83" TIME_VALUE="373140"/>
+        <TIME_SLOT TIME_SLOT_ID="ts84" TIME_VALUE="376770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts85" TIME_VALUE="376770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts86" TIME_VALUE="376770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts87" TIME_VALUE="376770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts88" TIME_VALUE="386490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts89" TIME_VALUE="386490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts90" TIME_VALUE="387130"/>
+        <TIME_SLOT TIME_SLOT_ID="ts91" TIME_VALUE="387130"/>
+        <TIME_SLOT TIME_SLOT_ID="ts92" TIME_VALUE="407510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts93" TIME_VALUE="407510"/>
+        <TIME_SLOT TIME_SLOT_ID="ts94" TIME_VALUE="407740"/>
+        <TIME_SLOT TIME_SLOT_ID="ts95" TIME_VALUE="407740"/>
+        <TIME_SLOT TIME_SLOT_ID="ts96" TIME_VALUE="430290"/>
+        <TIME_SLOT TIME_SLOT_ID="ts97" TIME_VALUE="430290"/>
+        <TIME_SLOT TIME_SLOT_ID="ts98" TIME_VALUE="431636"/>
+        <TIME_SLOT TIME_SLOT_ID="ts99" TIME_VALUE="431790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts100" TIME_VALUE="431790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts101" TIME_VALUE="431790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts102" TIME_VALUE="433370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts103" TIME_VALUE="433370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts104" TIME_VALUE="433370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts105" TIME_VALUE="433770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts106" TIME_VALUE="433770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts107" TIME_VALUE="433770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts108" TIME_VALUE="497930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts109" TIME_VALUE="497930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts110" TIME_VALUE="498960"/>
+        <TIME_SLOT TIME_SLOT_ID="ts111" TIME_VALUE="498960"/>
+        <TIME_SLOT TIME_SLOT_ID="ts112" TIME_VALUE="516610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts113" TIME_VALUE="516610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts114" TIME_VALUE="517710"/>
+        <TIME_SLOT TIME_SLOT_ID="ts115" TIME_VALUE="517710"/>
+        <TIME_SLOT TIME_SLOT_ID="ts116" TIME_VALUE="590440"/>
+        <TIME_SLOT TIME_SLOT_ID="ts117" TIME_VALUE="590440"/>
+        <TIME_SLOT TIME_SLOT_ID="ts118" TIME_VALUE="591360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts119" TIME_VALUE="591360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts120" TIME_VALUE="613030"/>
+        <TIME_SLOT TIME_SLOT_ID="ts121" TIME_VALUE="613030"/>
+        <TIME_SLOT TIME_SLOT_ID="ts122" TIME_VALUE="613660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts123" TIME_VALUE="613660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts124" TIME_VALUE="629230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts125" TIME_VALUE="629230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts126" TIME_VALUE="629550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts127" TIME_VALUE="629550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts128" TIME_VALUE="630730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts129" TIME_VALUE="630730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts130" TIME_VALUE="630730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts131" TIME_VALUE="630730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts132" TIME_VALUE="633718"/>
+        <TIME_SLOT TIME_SLOT_ID="ts133" TIME_VALUE="633732"/>
+        <TIME_SLOT TIME_SLOT_ID="ts134" TIME_VALUE="633831"/>
+        <TIME_SLOT TIME_SLOT_ID="ts135" TIME_VALUE="633845"/>
+        <TIME_SLOT TIME_SLOT_ID="ts136" TIME_VALUE="650780"/>
+        <TIME_SLOT TIME_SLOT_ID="ts137" TIME_VALUE="650780"/>
+        <TIME_SLOT TIME_SLOT_ID="ts138" TIME_VALUE="651490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts139" TIME_VALUE="651490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts140" TIME_VALUE="688940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts141" TIME_VALUE="688940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts142" TIME_VALUE="689700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts143" TIME_VALUE="689700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts144" TIME_VALUE="718060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts145" TIME_VALUE="718060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts146" TIME_VALUE="718300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts147" TIME_VALUE="718300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts148" TIME_VALUE="755020"/>
+        <TIME_SLOT TIME_SLOT_ID="ts149" TIME_VALUE="755020"/>
+        <TIME_SLOT TIME_SLOT_ID="ts150" TIME_VALUE="755460"/>
+        <TIME_SLOT TIME_SLOT_ID="ts151" TIME_VALUE="755460"/>
+        <TIME_SLOT TIME_SLOT_ID="ts152" TIME_VALUE="797850"/>
+        <TIME_SLOT TIME_SLOT_ID="ts153" TIME_VALUE="797850"/>
+        <TIME_SLOT TIME_SLOT_ID="ts154" TIME_VALUE="797970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts155" TIME_VALUE="797970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts156" TIME_VALUE="803040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts157" TIME_VALUE="803040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts158" TIME_VALUE="803040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts159" TIME_VALUE="803040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts160" TIME_VALUE="863100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts161" TIME_VALUE="863100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts162" TIME_VALUE="863680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts163" TIME_VALUE="863680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts164" TIME_VALUE="867950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts165" TIME_VALUE="867950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts166" TIME_VALUE="868100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts167" TIME_VALUE="868100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts168" TIME_VALUE="895790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts169" TIME_VALUE="895790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts170" TIME_VALUE="896770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts171" TIME_VALUE="896770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts172" TIME_VALUE="901040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts173" TIME_VALUE="901040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts174" TIME_VALUE="901310"/>
+        <TIME_SLOT TIME_SLOT_ID="ts175" TIME_VALUE="901310"/>
+        <TIME_SLOT TIME_SLOT_ID="ts176" TIME_VALUE="962070"/>
+        <TIME_SLOT TIME_SLOT_ID="ts177" TIME_VALUE="962070"/>
+        <TIME_SLOT TIME_SLOT_ID="ts178" TIME_VALUE="963340"/>
+        <TIME_SLOT TIME_SLOT_ID="ts179" TIME_VALUE="963340"/>
+        <TIME_SLOT TIME_SLOT_ID="ts180" TIME_VALUE="980940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts181" TIME_VALUE="980940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts182" TIME_VALUE="981770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts183" TIME_VALUE="981770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts184" TIME_VALUE="1040640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts185" TIME_VALUE="1040640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts186" TIME_VALUE="1040672"/>
+        <TIME_SLOT TIME_SLOT_ID="ts187" TIME_VALUE="1042455"/>
+        <TIME_SLOT TIME_SLOT_ID="ts188" TIME_VALUE="1042455"/>
+        <TIME_SLOT TIME_SLOT_ID="ts189" TIME_VALUE="1042492"/>
+        <TIME_SLOT TIME_SLOT_ID="ts190" TIME_VALUE="1042541"/>
+        <TIME_SLOT TIME_SLOT_ID="ts191" TIME_VALUE="1043210"/>
+        <TIME_SLOT TIME_SLOT_ID="ts192" TIME_VALUE="1059320"/>
+        <TIME_SLOT TIME_SLOT_ID="ts193" TIME_VALUE="1059320"/>
+        <TIME_SLOT TIME_SLOT_ID="ts194" TIME_VALUE="1059320"/>
+        <TIME_SLOT TIME_SLOT_ID="ts195" TIME_VALUE="1059548"/>
+        <TIME_SLOT TIME_SLOT_ID="ts196" TIME_VALUE="1059560"/>
+        <TIME_SLOT TIME_SLOT_ID="ts197" TIME_VALUE="1059560"/>
+        <TIME_SLOT TIME_SLOT_ID="ts198" TIME_VALUE="1075761"/>
+        <TIME_SLOT TIME_SLOT_ID="ts199" TIME_VALUE="1075761"/>
+        <TIME_SLOT TIME_SLOT_ID="ts200" TIME_VALUE="1075807"/>
+        <TIME_SLOT TIME_SLOT_ID="ts201" TIME_VALUE="1075807"/>
+        <TIME_SLOT TIME_SLOT_ID="ts202" TIME_VALUE="1078387"/>
+        <TIME_SLOT TIME_SLOT_ID="ts203" TIME_VALUE="1078387"/>
+        <TIME_SLOT TIME_SLOT_ID="ts204" TIME_VALUE="1078409"/>
+        <TIME_SLOT TIME_SLOT_ID="ts205" TIME_VALUE="1078423"/>
+        <TIME_SLOT TIME_SLOT_ID="ts206" TIME_VALUE="1082479"/>
+        <TIME_SLOT TIME_SLOT_ID="ts207" TIME_VALUE="1082484"/>
+        <TIME_SLOT TIME_SLOT_ID="ts208" TIME_VALUE="1082490"/>
+    </TIME_ORDER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="SPEAKER_00">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
+                TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE>We're going to talk about organizational ethics and why they're so important. And to do that, we have a very special guest, Dr. Ryan Beisel. So let's get into the details.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2"
+                TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts12">
+                <ANNOTATION_VALUE>Hey there, Alex Lyon. Welcome back to the channel. Today we have a very special guest with us, Dr. Ryan Beisel. He is a professor at the University of Oklahoma. He studies organizational communication and also has a special focus on leadership, morals, and ethics. And so he is the perfect person to come and talk to us about this topic, organizational ethics. And in fact, he wrote a book about organizational moral learning. And this is actually the</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3"
+                TIME_SLOT_REF1="ts14" TIME_SLOT_REF2="ts16">
+                <ANNOTATION_VALUE>Second video in a two-part series. In that first video, we talked about what are organizational ethics and morals and looking at comparing and contrasting the similarities and differences. So, I encourage you to go take a look at that video when you're done with this one. I will put a link to that in the description below. And you can find his book.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
+                TIME_SLOT_REF1="ts18" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE>Book in the description below. Feel free to check it out. So, Ryan, welcome back to the channel. Good to have you on again. Thanks, Alex. Good to be back.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5"
+                TIME_SLOT_REF1="ts22" TIME_SLOT_REF2="ts24">
+                <ANNOTATION_VALUE>I'm really excited today because we're just getting deeper and deeper into your particular area of expertise. So let's start with a big question. What are organizational ethics?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8"
+                TIME_SLOT_REF1="ts38" TIME_SLOT_REF2="ts40">
+                <ANNOTATION_VALUE>And so why do organizational ethics matter?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a10"
+                TIME_SLOT_REF1="ts46" TIME_SLOT_REF2="ts48">
+                <ANNOTATION_VALUE>Yeah, I love that. They're just the right thing to do. I have an expression that I talk about in workshops and also in my college classes is that good ethics is good business. They're one and the same. When organizations are doing unethical things, it harms their organization. It harms their bottom line. And when they're acting well, when they're behaving ethically, it helps their business grow and thrive. So they're one and the same. It's not like, oh, ethics are off to the side. It's central to what organizations do. But nevertheless, as you mentioned, they don't always do well. It seems like organizations are always in the news. Their leaders are often in the news for doing and getting caught doing unethical things, even criminal activity. So what is the research in organizational communication?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a11"
+                TIME_SLOT_REF1="ts50" TIME_SLOT_REF2="ts52">
+                <ANNOTATION_VALUE>offer, what kind of explanations do we have for that?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a15"
+                TIME_SLOT_REF1="ts70" TIME_SLOT_REF2="ts72">
+                <ANNOTATION_VALUE>Yeah, really hard to talk about. Much easier to talk about, oh, we lost money last quarter.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a16"
+                TIME_SLOT_REF1="ts74" TIME_SLOT_REF2="ts76">
+                <ANNOTATION_VALUE>You know, much harder to talk about, hey, that was a moral failing on your part.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a17"
+                TIME_SLOT_REF1="ts78" TIME_SLOT_REF2="ts80">
+                <ANNOTATION_VALUE>So how do we know that you get very</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a19"
+                TIME_SLOT_REF1="ts84" TIME_SLOT_REF2="ts88">
+                <ANNOTATION_VALUE>Yeah, how do I talk about my own problems? So it's super interesting research. You know, I've read some of your research, but how do we know the moral mum effect is common in organizations?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a24"
+                TIME_SLOT_REF1="ts110" TIME_SLOT_REF2="ts112">
+                <ANNOTATION_VALUE>Yeah, really hard to talk about those kinds of issues, even when we know personally, that's not ethical. That's not the right way to go. But how do I say something about it? It's like we lack the vocabulary. So what's the big deal with the moral mum effect?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a26"
+                TIME_SLOT_REF1="ts118" TIME_SLOT_REF2="ts120">
+                <ANNOTATION_VALUE>Yeah, huge. They grow in the dark, right? They become extremely harmful, extremely expensive to rectify when we don't address them early. And then by the time it eventually becomes public knowledge, which it almost always does, it's very hard to keep, you know, very hard nowadays to keep any secrets.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a27"
+                TIME_SLOT_REF1="ts122" TIME_SLOT_REF2="ts124">
+                <ANNOTATION_VALUE>And especially in corporations, people will post things on social media eventually and it'll get out and then you have to pay, you know, sometimes ten times the amount of money, it's caused ten times the amount of harm. We've seen case after case in the news where people knew about this stuff.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a28"
+                TIME_SLOT_REF1="ts126" TIME_SLOT_REF2="ts128">
+                <ANNOTATION_VALUE>Yes, that's a common theme.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a30"
+                TIME_SLOT_REF1="ts135" TIME_SLOT_REF2="ts136">
+                <ANNOTATION_VALUE>So when they know, let's transition now to these five steps that I want to talk about, that you want to talk about. And that is, what can we do to combat the moral mom effect? You have five steps, so let's walk through them. Number one, speak by example. Tell us more about that.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a32"
+                TIME_SLOT_REF1="ts142" TIME_SLOT_REF2="ts144">
+                <ANNOTATION_VALUE>So you use those labels, which is funny because we're told, oh, labels are bad. But when you see something unethical, something immoral, it's a moment where you pop that bubble of silence and you say, that's wrong. And then everybody goes, hey, look at the world didn't end. Someone said it was wrong. And now, like you said, now it's discussable. We can talk about right and wrong. Number two. Number two, avoid excessively philosophical language. Tell us about that.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a35"
+                TIME_SLOT_REF1="ts154" TIME_SLOT_REF2="ts156">
+                <ANNOTATION_VALUE>Great. Number three, talk about what the body knows. What does that mean?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a37"
+                TIME_SLOT_REF1="ts162" TIME_SLOT_REF2="ts164">
+                <ANNOTATION_VALUE>Yeah, we're going to feel it before we have the words, right? Yes, we will.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a38"
+                TIME_SLOT_REF1="ts166" TIME_SLOT_REF2="ts168">
+                <ANNOTATION_VALUE>I'm not going to say what it was. I remember years ago, you know, I saw something happen at work and I felt it like, oh, that's not right. But there's a distance there between feeling it and knowing in my body that it was not cool what I was witnessing and being able to talk about it. But you got to, you know, you got to trust that feeling that, look, that's real. What you saw wasn't right. And that's the beginning of being able to have that conversation.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a39"
+                TIME_SLOT_REF1="ts170" TIME_SLOT_REF2="ts172">
+                <ANNOTATION_VALUE>Number four, retell stories of heroes who spoke up. Tell us about that.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a41"
+                TIME_SLOT_REF1="ts178" TIME_SLOT_REF2="ts180">
+                <ANNOTATION_VALUE>Yeah, great. And then they hear that other people have done it who have come before them, and it makes the path forward much more clear for them when those heroes are being held up as the people to look up to and emulate. And number five, build trusting relationships. Can you explain that?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a43"
+                TIME_SLOT_REF1="ts186" TIME_SLOT_REF2="ts192">
+                <ANNOTATION_VALUE>Wander full dozer 5 steps to have the hard conversations about ethical questions, unethical activities, something that you might notice and not know how to begin that conversation. These five approaches are excellent. So, thank you for unpacking that.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a44"
+                TIME_SLOT_REF1="ts196" TIME_SLOT_REF2="ts198">
+                <ANNOTATION_VALUE>So, Ryan, thanks again for being on the channel. And I want to remind everybody that Ryan does have this book, Organizational Moral Learning, and that is available on Amazon. You can find the link in the description below. You feel free to check that out. Ryan, thanks for being on, man. Thank you. </ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a140"
+                TIME_SLOT_REF1="ts205" TIME_SLOT_REF2="ts206">
+                <ANNOTATION_VALUE>And until the next time, we'll see you all later. Take care.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="category">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a45"
+                TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts4">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a133"
+                TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts8">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a46"
+                TIME_SLOT_REF1="ts10" TIME_SLOT_REF2="ts30">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a134"
+                TIME_SLOT_REF1="ts31" TIME_SLOT_REF2="ts33">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a51"
+                TIME_SLOT_REF1="ts34" TIME_SLOT_REF2="ts58">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a144"
+                TIME_SLOT_REF1="ts60" TIME_SLOT_REF2="ts62">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a145"
+                TIME_SLOT_REF1="ts63" TIME_SLOT_REF2="ts98">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a66"
+                TIME_SLOT_REF1="ts99" TIME_SLOT_REF2="ts102">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a67"
+                TIME_SLOT_REF1="ts105" TIME_SLOT_REF2="ts187">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a86"
+                TIME_SLOT_REF1="ts188" TIME_SLOT_REF2="ts189">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a87"
+                TIME_SLOT_REF1="ts190" TIME_SLOT_REF2="ts193">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a88"
+                TIME_SLOT_REF1="ts195" TIME_SLOT_REF2="ts208">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="speaker">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a89"
+                TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts7">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a90"
+                TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts13">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a91"
+                TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts17">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a92"
+                TIME_SLOT_REF1="ts19" TIME_SLOT_REF2="ts21">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a93"
+                TIME_SLOT_REF1="ts23" TIME_SLOT_REF2="ts25">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a94"
+                TIME_SLOT_REF1="ts26" TIME_SLOT_REF2="ts37">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a96"
+                TIME_SLOT_REF1="ts39" TIME_SLOT_REF2="ts41">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a97"
+                TIME_SLOT_REF1="ts42" TIME_SLOT_REF2="ts44">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a98"
+                TIME_SLOT_REF1="ts47" TIME_SLOT_REF2="ts49">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a99"
+                TIME_SLOT_REF1="ts51" TIME_SLOT_REF2="ts53">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a100"
+                TIME_SLOT_REF1="ts54" TIME_SLOT_REF2="ts56">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a101"
+                TIME_SLOT_REF1="ts59" TIME_SLOT_REF2="ts64">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a102"
+                TIME_SLOT_REF1="ts66" TIME_SLOT_REF2="ts68">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a103"
+                TIME_SLOT_REF1="ts71" TIME_SLOT_REF2="ts73">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a104"
+                TIME_SLOT_REF1="ts75" TIME_SLOT_REF2="ts77">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a105"
+                TIME_SLOT_REF1="ts79" TIME_SLOT_REF2="ts81">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a106"
+                TIME_SLOT_REF1="ts82" TIME_SLOT_REF2="ts85">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a107"
+                TIME_SLOT_REF1="ts86" TIME_SLOT_REF2="ts89">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a108"
+                TIME_SLOT_REF1="ts90" TIME_SLOT_REF2="ts92">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a109"
+                TIME_SLOT_REF1="ts94" TIME_SLOT_REF2="ts96">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a110"
+                TIME_SLOT_REF1="ts100" TIME_SLOT_REF2="ts103">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a111"
+                TIME_SLOT_REF1="ts106" TIME_SLOT_REF2="ts108">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a112"
+                TIME_SLOT_REF1="ts111" TIME_SLOT_REF2="ts113">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a113"
+                TIME_SLOT_REF1="ts114" TIME_SLOT_REF2="ts116">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a114"
+                TIME_SLOT_REF1="ts119" TIME_SLOT_REF2="ts121">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a115"
+                TIME_SLOT_REF1="ts123" TIME_SLOT_REF2="ts125">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a116"
+                TIME_SLOT_REF1="ts127" TIME_SLOT_REF2="ts129">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a117"
+                TIME_SLOT_REF1="ts130" TIME_SLOT_REF2="ts132">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a118"
+                TIME_SLOT_REF1="ts134" TIME_SLOT_REF2="ts137">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a119"
+                TIME_SLOT_REF1="ts138" TIME_SLOT_REF2="ts140">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a120"
+                TIME_SLOT_REF1="ts143" TIME_SLOT_REF2="ts145">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a121"
+                TIME_SLOT_REF1="ts146" TIME_SLOT_REF2="ts148">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a122"
+                TIME_SLOT_REF1="ts150" TIME_SLOT_REF2="ts152">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a123"
+                TIME_SLOT_REF1="ts155" TIME_SLOT_REF2="ts157">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a124"
+                TIME_SLOT_REF1="ts158" TIME_SLOT_REF2="ts160">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a125"
+                TIME_SLOT_REF1="ts163" TIME_SLOT_REF2="ts165">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a126"
+                TIME_SLOT_REF1="ts167" TIME_SLOT_REF2="ts169">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a127"
+                TIME_SLOT_REF1="ts171" TIME_SLOT_REF2="ts173">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a128"
+                TIME_SLOT_REF1="ts174" TIME_SLOT_REF2="ts176">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a129"
+                TIME_SLOT_REF1="ts179" TIME_SLOT_REF2="ts181">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a130"
+                TIME_SLOT_REF1="ts182" TIME_SLOT_REF2="ts184">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a131"
+                TIME_SLOT_REF1="ts191" TIME_SLOT_REF2="ts194">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a141"
+                TIME_SLOT_REF1="ts197" TIME_SLOT_REF2="ts200">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a142"
+                TIME_SLOT_REF1="ts201" TIME_SLOT_REF2="ts203">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a143"
+                TIME_SLOT_REF1="ts202" TIME_SLOT_REF2="ts207">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="SPEAKER_01">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a146"
+                TIME_SLOT_REF1="ts27" TIME_SLOT_REF2="ts28">
+                <ANNOTATION_VALUE>Yes, great. So let's just start with ethics first.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a147"
+                TIME_SLOT_REF1="ts29" TIME_SLOT_REF2="ts32">
+                <ANNOTATION_VALUE>They're widely shared standards of right conduct and so
+[01:36.780 --&gt; 01:43.340]  organizational ethics then is widely shared standards of right conduct in the workplace setting and of course</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a148"
+                TIME_SLOT_REF1="ts35" TIME_SLOT_REF2="ts36">
+                <ANNOTATION_VALUE>Ethics then is widely shared standards of right conduct in the workplace setting. And of course, a very important topic.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a149"
+                TIME_SLOT_REF1="ts43" TIME_SLOT_REF2="ts45">
+                <ANNOTATION_VALUE>Yeah, organizational ethics matter because without standards of right conduct, organizations can hurt people, their employees and customers, the environment as well. That list goes on and on. You know, without strong organizational ethics, of course, organizations run the risk of hurting their reputations, not just people, but hurting themselves. I mean, fact of the matter is, with poor organizational ethics, organizations run the risks of undoing themselves, downright failing. A classic example of this, of course, would be Enron during the 2000s. Enron was doing a lot of unscrupulous accounting practices, which were eventually caught. And of course, Enron eventually folded, and lots of people were devastated because of it. Just a really sad story. You know, furthermore, it's not just that bad ethics hurt, it's that good ethics help. You know, there's some fascinating studies of the fact that, at least in the long run, you might say, virtuous organizations do tend to do quite well. A study right after 9-11 of some of the U.S. airlines, of course, people weren't flying as much after 9-11. There was some constriction of the airline industry. And there was a study of how airline industry companies handled that. And what you find is where airlines did the right thing, where they were generous and compassionate and transparent with employees. And 12 months later, they were doing well. A lot of airlines were not compassionate and transparent. And as a matter of fact, you saw that in their profits a year later. You saw it harm their profits. Now, I think it's important also when we talk about why do ethics matter. I mean, ethics matter also just say that they matter because they matter. It matters because doing the right thing is important, full stop. We can do it just for its own good, and we're right to do so.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a150"
+                TIME_SLOT_REF1="ts55" TIME_SLOT_REF2="ts57">
+                <ANNOTATION_VALUE>Yeah, great question. It's absolutely true. As we read the news, we just see organizations behaving badly, even criminally, all over the place. And organizational communication research provides some interesting insights into why that might be. Now, one idea is that there exists what's called a moral mum effect, a moral mum effect in the workplace. Now, a moral mummy,</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a151"
+                TIME_SLOT_REF1="ts61" TIME_SLOT_REF2="ts65">
+                <ANNOTATION_VALUE>Basically, it refers to this idea that organizational members have a tendency to avoid labeling unethical behavior as unethical. They might privately have.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a152"
+                TIME_SLOT_REF1="ts67" TIME_SLOT_REF2="ts69">
+                <ANNOTATION_VALUE>Concerns, but they don't tend to publicly discuss those concerns. And that can kick off a series of other problematic communication dynamics. You know, we don't speak up about private ethical concerns because we think that ethics talk, or what I call here and now ethics talk, it's just out of bounds for the workplace. It doesn't belong in the workplace. We just don't like to talk that way. And of course, that's even besides the silencing power of power, where people are, of course, concerned about retribution and what would happen if they do bring up a concern that they might have.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a153"
+                TIME_SLOT_REF1="ts83" TIME_SLOT_REF2="ts87">
+                <ANNOTATION_VALUE>[overlap]Or my part. Yeah. Right. Or my part. How do I make it very personal? Yeah.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a154"
+                TIME_SLOT_REF1="ts91" TIME_SLOT_REF2="ts93">
+                <ANNOTATION_VALUE>Yes, great. And this is where the research can really help us. So, in communication, what we will often do in order to demonstrate this is rely on experiments. And what you do is you put people in a situation, a scenario, and you see how they communicate. And so, imagine yourself in this kind of scenario. Let me, I'll give you a flavor for what that seems like.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a155"
+                TIME_SLOT_REF1="ts95" TIME_SLOT_REF2="ts97">
+                <ANNOTATION_VALUE>Imagine that you're a bookkeeper of a company, okay? And your coworker asks you to write a check from company funds to reimburse them for their own personal computer. Now you know this request is unethical, it's a violation of the wage policy, there wouldn't even be discretionary funds after this for the rest of the month if you did it. Now respond to your coworker as though this were a real situation.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a156"
+                TIME_SLOT_REF1="ts101" TIME_SLOT_REF2="ts104">
+                <ANNOTATION_VALUE>And so we put people in such in</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a157"
+                TIME_SLOT_REF1="ts107" TIME_SLOT_REF2="ts109">
+                <ANNOTATION_VALUE>Scenarios like that. And one of the key things that we do is we then ask them privately, okay, so was that request unethical? And we absolutely confirm that, yeah, that was unethical of my coworker to ask me. But then we go ahead and code what they say. Now, we now have several data sets of hundreds of working adults. Here's what we find: despite the fact that 100% of these working adults say that request was unethical, only a fraction, only 10%, ever deny the request on ethical grounds. I mean, they did not deny the request. They might say, oh, I can't do that, or there's an operational reason why I can't do that, or maybe there's a policy, but they don't bring up ethics. They don't say, I can't do that because that seems wrong or not right, or that doesn't seem, that would be against my integrity or my conscience. We don't talk that way because we've been socialized to say that that doesn't belong in the workplace. And that's a problem because if we can't talk that way, how can we think that way together? And so that's what's important.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a158"
+                TIME_SLOT_REF1="ts115" TIME_SLOT_REF2="ts117">
+                <ANNOTATION_VALUE>Yeah, absolutely. So I think one of the big deals with the moral mom effect is the more we understand how pervasive this issue is in the workplace, that people might privately have a concern, but they don't publicly discuss it. And then we start to clock a little bit and we start thinking, well, what's the implication of that over time? Start to have some interesting realizations. Now, if people can't or won't talk ethics in the here and now, it'll be hard for them to catch ethical concerns or problems while those problems are still small and resolvable. And that can be a huge thing where if issues are allowed to go on, people might privately have concerns, but they look around and nobody else is talking that way. And then that might lead them to believe over time, oh, maybe I'm alone here. And maybe that's silly of me. This is just the way business is done. This is just the way it works. And so then you get that gradual incremental step down. Unfortunately, you get rationalizations, self-deceptions or group self-deceptions. And it's in other words, then you get ethical problems and private ethical concerns. They go unaddressed. They begin to fester and grow, unfortunately, until they become intractable. They become impossible to address.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a159"
+                TIME_SLOT_REF1="ts131" TIME_SLOT_REF2="ts133">
+                <ANNOTATION_VALUE>That's a common theme. Somebody knew.Yes</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a160"
+                TIME_SLOT_REF1="ts139" TIME_SLOT_REF2="ts141">
+                <ANNOTATION_VALUE>Yeah, great. I mean, I think for the people who care about ethics in the workplace, leaders and aspiring leaders out there, I want you to not just lead by example. I want you to speak by example. Use language like integrity and ethics, right and wrong. And go ahead and use that language. The research is showing that when bosses use that kind of plain but ethically charged language, it helps everybody else say, oh, okay, I can talk that way. And it can be a really powerful way in which we speak by example. We say, this is what I care about. Talk to me about it because this is an important value to us. Yeah.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a161"
+                TIME_SLOT_REF1="ts147" TIME_SLOT_REF2="ts149">
+                <ANNOTATION_VALUE>Yeah, yeah. I think one of the reasons that people avoid ethics talk is because it might feel like too fuzzy, philosophical, or religious. And the fact of the matter is, not everybody needs to be a philosopher. We can all just take a deep breath here. There really are ethical dilemmas and puzzles, but for the most part, we know we shouldn't steal. We know we shouldn't harm people. And for the most part, a lot of us agree with that. So just be comfortable and confident in that fact. And what we want to do is we want to focus on the realization that for the most part, people have private ethical judgments. They already have them.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a162"
+                TIME_SLOT_REF1="ts151" TIME_SLOT_REF2="ts153">
+                <ANNOTATION_VALUE>They're already there. And so, can we just have the conversation, be mindful, and try to adapt our work and pursue ethical excellence. Work towards moving the conversation from is this right or wrong only to how can we be better today? How can we keep doing work with increasing amount of integrity? And something we can be proud of. So, we're going to avoid that philosophical language where possible because we want to hear from people and we don't want to end up excluding voices when people feel like, oh, I can't really participate in high philosophy discourse with you. Say, hey, don't worry about that. Let's just tell me what you think and where are you? And then let's have the conversation. Yeah.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a163"
+                TIME_SLOT_REF1="ts159" TIME_SLOT_REF2="ts161">
+                <ANNOTATION_VALUE>Yeah, this is sort of an interesting realization that the research is pointing to. And that's when, and it's related to the first two really, when we make a habit of talking about the body and what the body knows, for example, hey, follow your heart, or what's our heart telling us here? What's our gut? What's our gut telling us here? What do we know to be true in our bones? What do we know to be really valuable in our bones? All of those kinds of uses, descriptions of the body, believe it or not, helps people feel more calm. and more willing to have here and now ethics talk because I think what's happening there is they do trust those some of those signals they're getting from their body and they feel like they can reference those maybe easier than they can engage in some sort of sort of philosophical discourse or religious debate. That's not where we need to go necessarily. We can actually do have a lot of conversation where we just sort of reference, hey, this is the way I'm feeling and it's going to open some of those doors for us to be able to have an authentic moral dialogue.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a164"
+                TIME_SLOT_REF1="ts175" TIME_SLOT_REF2="ts177">
+                <ANNOTATION_VALUE>Yeah, for leaders and aspiring leaders out there, I just want to I want to encourage you to find examples of times in your past or in the team's past where somebody spoke up and really helped you, really helped you all pursue ethical excellence, helped you pursue work with a lot of integrity, and tell those stories. They can be quick little stories, little reminders, and that begins to put people on notice that that's what we're looking for. That's really what we want. We don't want yes men and yes women. We want people who can be help us be moral barometers as we move through the complexity of work life sometimes. Organizational communication scholar, Dr. Jeff Cassing, he reminds us of an organization who described their, quote, guardian angels. And you would get guardian angel status if you were somebody who spoke up when the time was right with something we really needed to hear. And I think that's a wonderful way in which leaders can demonstrate that this is what they value. This is the kind of talk that they want from people.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a165"
+                TIME_SLOT_REF1="ts183" TIME_SLOT_REF2="ts185">
+                <ANNOTATION_VALUE>Yeah, I think this is really the backbone to all of it. When we build trusting relationships, that's really what helps people have the courage to talk this way and feel safe about talking this way. And we need to build those trusting relationships so that we can, you know, we need to be humble and patient and loving towards people, but we need to also have this conversation because the alternative is silence. And that silence can be the source of a lot of festering problems. And so as we build trusting relationships, I mean, what does that look like? Sometimes that looks like just remembering people's kids' names or their grandkids' names, asking about their hobbies. Not, you know, not five days out of five days a week, but enough to let people know, hey, we're approachable. We do care about you as an individual. And you can trust us. You can trust me to speak up and tell me what you really think. So building trusting relationships really is such a key. It's a foundation to all of this.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a166"
+                TIME_SLOT_REF1="ts199" TIME_SLOT_REF2="ts204">
+                <ANNOTATION_VALUE>Had a great time. And until the next time, we'll see you all later. Take care.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="imported-sep" TIME_ALIGNABLE="true"/>
+    <CONSTRAINT
+        DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT
+        DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT
+        DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>
