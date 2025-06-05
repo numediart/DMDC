@@ -20,7 +20,7 @@ FRAME_SKIP = 5
 FPS = 25
 MIN_DURATION_SEC = 3
 SEGMENTS_CSV = "segments/"
-CLIPS_DIR = "clips/"
+CLIPS_DIR = "V0DataSet/clips_dyadic/"
 DEBUG_MODE = False  # Enable/disable debug display
 
 DISPLAY_DISABLE_LINUX=False
@@ -243,6 +243,23 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
         )
         print(f"[Filter] Segment saved: {output_clip}")
 
+# --- Extract segments from a CSV ---
+def extract_dyadic_clips(video_id):
+    video_path = f"V0DataSet/mp4/{video_id}_video.mp4"
+    segment_path = f"V0DataSet/segments/{video_id}_segments.csv"
+    output_dir = os.path.join(CLIPS_DIR, f"{video_id}_video")
+    
+    df = pd.read_csv(segment_path)
+    dyadic_df = df[df["category"] == "dyadic"]
+
+    dyadic_segments = [(float(row["start_time"]), float(row["end_time"])) for _, row in dyadic_df.iterrows()]
+    
+    if not dyadic_segments:
+        print(f"[Info] No dyadic segments found for video {video_id}.")
+        return
+
+    cut_video_segments(video_path, dyadic_segments, output_dir)
+
 def split_audio_from_csv(audio_path, csv_path, output_dir):
     df = pd.read_csv(csv_path)
     os.makedirs(output_dir, exist_ok=True)
@@ -256,7 +273,6 @@ def split_audio_from_csv(audio_path, csv_path, output_dir):
         segment_name = f"segment_{idx:04d}_{int(start*1000)}ms_{int((start+duration)*1000)}ms.wav"
         segment_path = os.path.join(output_dir, segment_name)
 
-        # Utilise ffmpeg pour extraire proprement le segment
         subprocess.run([
             "ffmpeg", "-y", "-i", audio_path,
             "-ss", str(start),

@@ -1,9 +1,10 @@
 from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from extractMFCC import extractAndSaveMFCC
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
+from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
+from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
+from formatAUSpeakerListener import format_all_clips
 import librosa
 import os
 import warnings
@@ -170,9 +171,9 @@ def main_batch(video_list_file='videoV0.txt'):
             else:
                 python_path = os.path.join(".venv_parakeet", "bin", "python")
 
-            # #####################
-            # # Splitting WAV from timestamps
-            # #####################
+            #####################
+            # Splitting WAV from timestamps
+            #####################
             output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
             segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
@@ -187,12 +188,19 @@ def main_batch(video_list_file='videoV0.txt'):
                 *segment_paths
             ])
 
-            # if os.path.exists(output_tmp_wav):
-            #     if wait_for_file_release(output_tmp_wav):
-            #         os.remove(output_tmp_wav)
-            #     else:
-            #         print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
+            if os.path.exists(output_tmp_wav):
+                if wait_for_file_release(output_tmp_wav):
+                    os.remove(output_tmp_wav)
+                else:
+                    print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
+
+            #####################
+            # Split the video into dyadic clips
+            #####################
+            print(f"[Splitting] Processing dyadic clips for video {idx}")
+            extract_dyadic_clips(str(idx))
+            print(f"[Splitting] Dyadic clips processing done")
 
             #####################
             # Openface Action Unit
@@ -201,9 +209,32 @@ def main_batch(video_list_file='videoV0.txt'):
             output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
             if not os.path.exists(output):
                 os.makedirs(output, exist_ok=True)
-            extract_openface_features(output_name, output)
+            clips_dir = f"V0DataSet/clips_dyadic/{idx}_video"
+            openface_out_dir = f"V0DataSet/openface_clips/{idx}_video"
+            os.makedirs(openface_out_dir, exist_ok=True)
+            run_openface_on_all_clips(clips_dir, openface_out_dir)
             print(f"[AU] AU processing done")
 
+            #################
+            # Who is speaking
+            #################
+            print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
+            detect_who_speaking_from_clips(
+                video_id=str(idx),
+                segments_csv_path=f"V0DataSet/segments/{idx}_segments.csv",
+                openface_dir=openface_out_dir,
+                output_path=f"V0DataSet/mapping_results/{idx}_video/mapping.csv"
+            )
+            print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
+
+            #####################
+            # Format AU with Speaker-Listener
+            #####################
+            format_all_clips(
+                mapping_csv=f"V0DataSet/mapping_results/{idx}_video/mapping.csv",
+                openface_dir=f"V0DataSet/openface_clips/{idx}_video",
+                output_dir=f"V0DataSet/formatted_clips/{idx}_video"
+            )
 
             #####################
             # End of the pipe, delete cache

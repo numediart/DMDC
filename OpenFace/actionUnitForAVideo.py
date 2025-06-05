@@ -7,10 +7,11 @@ import csv
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 import subprocess
+import pandas as pd
 
 TEMP_CLIPS_DIR = "V0DataSet/temp_clips"
 
-start_time_all_pross=time.time()
+# start_time_all_pross=time.time()
 
 def process_FaceLandMark_video(video_path, output,tempfolder = "temp_frames", seconds=1):
     """
@@ -124,10 +125,73 @@ def extract_openface_features(video_path, output_dir):
         openface_path,
         "-f", video_path,
         "-out_dir", output_dir,
-        "-aus",
-        "-tracked",
+        '-aus',
+        '-tracked'
     ]
     
     print(f"[OpenFace] Processing video: {video_path}")
     subprocess.run(cmd, check=True)
     print(f"[OpenFace] Output saved to: {output_dir}")
+
+def detect_who_speaking_from_clips(video_id, segments_csv_path, openface_dir, output_path):
+    segments = pd.read_csv(segments_csv_path)
+    dyadic_segments = segments[segments["category"] == "dyadic"].reset_index(drop=True)
+    
+    results = []
+    for i, row in dyadic_segments.iterrows():
+        clip_name = f"clip_{i+1:03d}.mp4"
+        au_csv_path = os.path.join(openface_dir, f"clip_{i+1:03d}.csv")
+        speaker = row["speaker"]
+        
+        try:
+            df = load_au_csv_with_defaults(au_csv_path)
+            df.columns = df.columns.str.strip()
+            face_activity = (
+                df.groupby("face_id")[["AU25_r", "AU26_r", "AU27_r"]]
+                .mean()
+                .sum(axis=1)
+            )
+            if not face_activity.empty:
+                face_id = face_activity.idxmax()
+                results.append({"clip": clip_name, "speaker": speaker, "face_id": face_id})
+                print(f"[✓] {clip_name}: {speaker} → face_id {face_id}")
+            else:
+                print(f"[!] No AU data for {clip_name}")
+        except Exception as e:
+            print(f"[✗] Error on {clip_name}: {e}")
+
+    if results:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        pd.DataFrame(results).to_csv(output_path, index=False)
+        print(f"[✓] Mapping saved to {output_path}")
+
+def run_openface_on_all_clips(clips_dir, openface_out_dir):
+    os.makedirs(openface_out_dir, exist_ok=True)
+    for clip in sorted(os.listdir(clips_dir)):
+        if not clip.endswith(".mp4"):
+            continue
+        clip_path = os.path.join(clips_dir, clip)
+        output_clip_dir = openface_out_dir
+        csv_output = os.path.join(output_clip_dir, clip.replace(".mp4", ".csv"))
+        if os.path.exists(csv_output):
+            print(f"[OpenFace] Already processed: {clip}")
+            continue
+        print(f"[OpenFace] Processing {clip}")
+        subprocess.run([
+            r"D:/Users/Gaspard/OpenFace/FaceLandmarkVidMulti.exe",
+            "-f", clip_path,
+            "-out_dir", openface_out_dir,
+            '-aus',
+            '-tracked'
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+EXPECTED_AUS = ["AU25_r", "AU26_r", "AU27_r"]
+
+def load_au_csv_with_defaults(csv_path):
+    df = pd.read_csv(csv_path)
+
+    for au in EXPECTED_AUS:
+        if au not in df.columns:
+            df[au] = 0.0
+
+    return df

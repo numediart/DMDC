@@ -1,22 +1,22 @@
 import subprocess
 import os
 
-#Check if at least one container is running
-command = ["docker", "ps"]
-result = subprocess.run(command, capture_output=True, text=True)
+# #Check if at least one container is running
+# command = ["docker", "ps"]
+# result = subprocess.run(command, capture_output=True, text=True)
 
-lines = result.stdout.strip().split("\n")
+# lines = result.stdout.strip().split("\n")
 
-# Check that there is at least 2 container
-if len(lines) < 2:
-    raise RuntimeError("Aucun conteneur actif trouvé.")
+# # Check that there is at least 2 container
+# if len(lines) < 2:
+#     raise RuntimeError("Aucun conteneur actif trouvé.")
 
-first_container_line = lines[1]
+# first_container_line = lines[1]
 
-# Remove space
-container_id = first_container_line.split()[0]
+# # Remove space
+# container_id = first_container_line.split()[0]
 
-print("[Docker/Info] Container ID:", container_id, "is running.")
+# print("[Docker/Info] Container ID:", container_id, "is running.")
 
 
 def process_FaceLandMark_from_container(input_path, output_path,onlyCSVOutput=True):
