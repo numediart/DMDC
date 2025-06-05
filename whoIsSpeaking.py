@@ -6,8 +6,9 @@ from pyannote.audio.pipelines.utils.hook import ProgressHook
 from csvToSubTiltle import csv_to_subtitle
 import time
 #Constants
+DATASET_FOLDER="V0.5DataSet"
 
-def run_diarization(filename):
+def run_diarization(filename,datasetName=DATASET_FOLDER):
     start_time = time.time()
     ##################################################################
     #Credit https://github.com/pyannote/pyannote-audio README.md
@@ -44,7 +45,7 @@ def run_diarization(filename):
 
     # Save dataframe as CSV with file name and timestamp
     base_filename = os.path.splitext(os.path.basename(filename))[0]  # clip_001
-    output_dir = os.path.join("V0DataSet", "Diarization_Results")
+    output_dir = os.path.join(datasetName, "Diarization_Results")
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -53,7 +54,7 @@ def run_diarization(filename):
     print(f"[Diarization] Saved diarization results here: {pathname}")
 
     # Convert CSV as subtitle file and save it
-    subtitle_output = os.path.join("V0DataSet", "Subtitle")
+    subtitle_output = os.path.join(datasetName, "Subtitle")
     os.makedirs(subtitle_output, exist_ok=True)
     csv_to_subtitle(pathname, os.path.join(subtitle_output, f"{base_filename}.srt"))
 

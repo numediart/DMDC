@@ -1,6 +1,7 @@
 import cv2
 import os
 from OpenFace.actionUnitExtract import process_FaceLandMark_from_container
+from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 import shutil
 import time
 import csv
@@ -177,13 +178,16 @@ def run_openface_on_all_clips(clips_dir, openface_out_dir):
             print(f"[OpenFace] Already processed: {clip}")
             continue
         print(f"[OpenFace] Processing {clip}")
-        subprocess.run([
-            r"D:/Users/Gaspard/OpenFace/FaceLandmarkVidMulti.exe",
-            "-f", clip_path,
-            "-out_dir", openface_out_dir,
-            '-aus',
-            '-tracked'
-        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # subprocess.run([
+        #     r"D:/Users/Gaspard/OpenFace/FaceLandmarkVidMulti.exe",
+        #     "-f", clip_path,
+        #     "-out_dir", openface_out_dir,
+        #     '-aus',
+        #     '-tracked'
+        # ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        process_FaceLandmarkVidMulti_from_container(clip_path,openface_out_dir)
+        
+
 
 EXPECTED_AUS = ["AU25_r", "AU26_r", "AU27_r"]
 

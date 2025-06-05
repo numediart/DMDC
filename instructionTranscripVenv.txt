@@ -7,7 +7,7 @@ pip install parakeet
 
 #Windows
 
-python -m venv .venv_parakeet
+python3.12 -m venv .venv_parakeet
 .venv_parakeet\Scripts\activate
 pip install -r requirements_parakeet.txt
 pip install parakeet
