@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences version="1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
+    <pref key="FrameSize">
+        <Object class="java.awt.Dimension">1920,1032</Object>
+    </pref>
+    <pref key="LayoutManager.SelectedTabIndex">
+        <Int>7</Int>
+    </pref>
+    <pref key="LayoutManager.VisibleMultiTierViewer">
+        <String>mpi.eudico.client.annotator.viewer.TimeLineViewer</String>
+    </pref>
+    <pref key="TextViewer.TierName">
+        <String>SPEAKER_00</String>
+    </pref>
+    <pref key="MultiTierViewer.ActiveTierName">
+        <String>transcription</String>
+    </pref>
+    <pref key="LayoutManager.MediaAreaHeight">
+        <Int>543</Int>
+    </pref>
+    <pref key="SelectionEndTime">
+        <Long>262000</Long>
+    </pref>
+    <pref key="LayoutManager.CurrentMode">
+        <Int>1</Int>
+    </pref>
+    <prefGroup key="CommentViewer.Columns">
+        <pref key="Acteur">
+            <Int>75</Int>
+        </pref>
+        <pref key="Date de modification">
+            <Int>75</Int>
+        </pref>
+        <pref key="Initiales">
+            <Int>75</Int>
+        </pref>
+        <pref key="Commentaire">
+            <Int>75</Int>
+        </pref>
+        <pref key="Start Time">
+            <Int>75</Int>
+        </pref>
+        <pref key="Destinataire">
+            <Int>0</Int>
+        </pref>
+        <pref key="Expéditeur">
+            <Int>0</Int>
+        </pref>
+        <pref key="Date de création">
+            <Int>75</Int>
+        </pref>
+        <pref key="End Time">
+            <Int>75</Int>
+        </pref>
+        <pref key="Thread">
+            <Int>75</Int>
+        </pref>
+    </prefGroup>
+    <pref key="TextViewer.FontSize">
+        <Int>24</Int>
+    </pref>
+    <prefList key="CommentViewer.Columns.Order">
+        <String>Start Time</String>
+        <String>End Time</String>
+        <String>Acteur</String>
+        <String>Initiales</String>
+        <String>Commentaire</String>
+        <String>Thread</String>
+        <String>Expéditeur</String>
+        <String>Destinataire</String>
+        <String>Date de création</String>
+        <String>Date de modification</String>
+    </prefList>
+    <pref key="ActiveRecognizerName">
+        <String>Whisper transcribe/translate</String>
+    </pref>
+    <pref key="FrameLocation">
+        <Object class="java.awt.Point">0,0</Object>
+    </pref>
+    <pref key="TimeLineViewer.ZoomLevel">
+        <Float>1.0</Float>
+    </pref>
+    <pref key="SubTitleViewer.TierName-1">
+        <String>SPEAKER_00</String>
+    </pref>
+    <pref key="DetachedEditor.Bounds">
+        <Object class="java.awt.Rectangle">810,390,300,300</Object>
+    </pref>
+    <pref key="SelectionBeginTime">
+        <Long>261000</Long>
+    </pref>
+    <prefList key="MultiTierViewer.HiddenTiers"/>
+    <prefGroup key="BAS - WebMAUS Basic">
+        <pref key="LANGUAGE">
+            <String>deu-DE</String>
+        </pref>
+        <prefGroup key="TierUrl"/>
+        <pref key="SignalParamName">
+            <String>SIGNAL</String>
+        </pref>
+        <pref key="ServiceName">
+            <String>runMAUSBasic</String>
+        </pref>
+        <pref key="TextParamName">
+            <String>TEXT</String>
+        </pref>
+    </prefGroup>
+    <pref key="MediaControlRate">
+        <Float>2.0</Float>
+    </pref>
+    <pref key="TimeScaleBeginTime">
+        <Long>0</Long>
+    </pref>
+    <pref key="MediaTime">
+        <Long>7009</Long>
+    </pref>
+    <prefGroup key="TierColors">
+        <pref key="default">
+            <Object class="java.awt.Color">90,0,160</Object>
+        </pref>
+        <pref key="SPEAKER_00">
+            <Object class="java.awt.Color">90,160,90</Object>
+        </pref>
+        <pref key="speaker">
+            <Object class="java.awt.Color">0,160,0</Object>
+        </pref>
+        <pref key="SPEAKER_01">
+            <Object class="java.awt.Color">160,0,0</Object>
+        </pref>
+        <pref key="category">
+            <Object class="java.awt.Color">160,90,0</Object>
+        </pref>
+    </prefGroup>
+    <prefList key="MultiTierViewer.TierOrder">
+        <String>default</String>
+        <String>SPEAKER_01</String>
+        <String>SPEAKER_00</String>
+        <String>category</String>
+        <String>speaker</String>
+    </prefList>
+    <pref key="LayoutManager.SplitPaneDividerLocation">
+        <Int>1</Int>
+    </pref>
+    <prefList key="CommentViewer.Columns.Hidden">
+        <String>Destinataire</String>
+        <String>Expéditeur</String>
+    </prefList>
+    <prefGroup key="Whisper transcribe/translate">
+        <pref key="--beam_size">
+            <Float>5.0</Float>
+        </pref>
+        <pref key="run-command">
+            <String>whisper</String>
+        </pref>
+        <pref key="--no_speech_threshold">
+            <Float>0.6</Float>
+        </pref>
+        <pref key="--patience">
+            <Float>1.0</Float>
+        </pref>
+        <pref key="--temperature_increment_on_fallback">
+            <Float>0.2</Float>
+        </pref>
+        <pref key="--best_of">
+            <Float>5.0</Float>
+        </pref>
+        <pref key="--word_timestamps">
+            <String>False</String>
+        </pref>
+        <pref key="--length_penalty">
+            <Float>0.5</Float>
+        </pref>
+        <pref key="--compression_ratio_threshold">
+            <Float>2.4</Float>
+        </pref>
+        <pref key="--temperature">
+            <Float>0.0</Float>
+        </pref>
+        <pref key="--logprob_threshold">
+            <Float>-1.0</Float>
+        </pref>
+        <pref key="--language">
+            <String>en</String>
+        </pref>
+        <pref key="audio">
+            <String>C:/UMONS/DMDC/V0.2DataSet/mp4/3_video.mp4</String>
+        </pref>
+        <pref key="--fp16">
+            <String>True</String>
+        </pref>
+        <pref key="--suppress_tokens">
+            <String>-1</String>
+        </pref>
+        <pref key="--task">
+            <String>transcribe</String>
+        </pref>
+        <pref key="--model">
+            <String>base.en</String>
+        </pref>
+    </prefGroup>
+</preferences>

@@ -1,0 +1,628 @@
+1
+00:00:00,000 --> 00:00:16,950
+transcription President Trump reversing course and extending social distancing guidelines until the end of April. It comes after doctors on his pandemic task force warned that with the current precautions, even with the current precautions, the death toll in the United States could reach 200,000. Joining us now.
+category single
+speaker SPEAKER_00
+
+2
+00:00:16,950 --> 00:00:17,020
+speaker SPEAKER_00
+
+3
+00:00:17,020 --> 00:00:35,030
+One of those doctors, Dr. Anthony Fauci. He is the director of the National Institute of Allergy and Infectious Diseases. Dr. Fauci, thank you for getting up early for us. Thank you for all of your doing. Let me just ask you right away: why have the guidelines have been extended to the end of April? Why was that decision made?
+dyadic
+speaker SPEAKER_00
+
+4
+00:00:35,030 --> 00:00:36,954
+dyadic
+
+5
+00:00:36,954 --> 00:00:36,968
+[inaudible] when you look at the kinetics of the outbreak, the patterns that are going on now, even as
+SPEAKER_01
+
+6
+00:00:36,968 --> 00:00:42,810
+[inaudible] when you look at the kinetics of the outbreak, the patterns that are going on now, even as
+dyadic
+SPEAKER_01
+
+7
+00:00:42,880 --> 00:01:21,030
+Speak, they were not going to reach a peak and turn around the way we wanted to within the timeframe that was originally estimated. So I thought it was prudent and I think the right decision to extend them another 30 days. Because what you really want to do is you want to start seeing some flattening out and turning around of the curb and it coming down. It wasn't doing that. If you look at New York, it was doing this. If you look at New Orleans, it was doing this. Detroit is certainly going to start doing that. It would not have been a good idea to pull back at a time when you really needed to be pressing your foot on the pedal as opposed to.
+single
+SPEAKER_01
+
+8
+00:01:21,030 --> 00:01:22,467
+on the breaks.
+single
+SPEAKER_01
+
+9
+00:01:22,467 --> 00:01:22,500
+on the breaks.
+single
+
+10
+00:01:22,500 --> 00:01:22,567
+single
+SPEAKER_00
+
+11
+00:01:22,567 --> 00:01:22,850
+You keel talking about the peak. Can you explain to the American people what exactly that peak looks like and how it will tax the system?
+single
+SPEAKER_00
+
+12
+00:01:22,850 --> 00:01:22,920
+You keel talking about the peak. Can you explain to the American people what exactly that peak looks like and how it will tax the system?
+SPEAKER_00
+
+13
+00:01:22,920 --> 00:01:30,530
+You keel talking about the peak. Can you explain to the American people what exactly that peak looks like and how it will tax the system?
+dyadic
+SPEAKER_00
+
+14
+00:01:30,530 --> 00:01:32,640
+dyadic
+
+15
+00:01:32,640 --> 00:01:32,742
+Well, there are a number of factors that are going on at the same time. One is the number of new cases per day. The other is the number of deaths that you have. So if you have like 100 cases today, 200 cases tomorrow.
+dyadic
+SPEAKER_01
+
+16
+00:01:32,742 --> 00:01:47,210
+Well, there are a number of factors that are going on at the same time. One is the number of new cases per day. The other is the number of deaths that you have. So if you have like 100 cases today, 200 cases tomorrow.
+dyadic
+SPEAKER_01
+
+17
+00:01:47,270 --> 00:02:29,580
+400 cases the next day, 600 cases the next day, you are clearly going in the wrong direction. You don't want to interfere except to try and suppress that. If you reach the point where the number of new cases start to equilibrate so that yesterday you have 150, today you have 150, tomorrow you have 125, they're starting to level off, which is the kind of the beginning of the turning around of the curve of it coming down. Deaths tend to linger a little bit more after the hospitalizations, but when you see the new hospitalizations start to do this, you know you're going in the right direction. And we weren't doing that. And we felt that if we prematurely
+single
+SPEAKER_01
+
+18
+00:02:29,650 --> 00:02:47,450
+Pulled back, we would only form an acceleration or a rebound of something, which would have put you behind where you were before. And that's the reason why we argued strongly with the President that he not withdraw those guidelines after 15 days, but that he extend them. And he did listen.
+dyadic
+SPEAKER_01
+
+19
+00:02:48,040 --> 00:03:05,710
+You argued strongly, you said with the President. Our reporting is that, among other things, you showed him these models that suggest that even with the current guidelines, the death total in the United States could be between 100,000 and 200,000. So why do you think that was so convincing?
+dyadic
+SPEAKER_00
+
+20
+00:03:05,710 --> 00:03:07,944
+dyadic
+
+21
+00:03:07,944 --> 00:03:07,968
+Well, it was quite convincing. I mean, the President, his first, as he said multiple times at the press conference yesterday, his first goal is to prevent suffering and death. And we made it very clear to him that if we pulled back on what we were doing and didn't extend them, there would be more
+SPEAKER_01
+
+22
+00:03:07,968 --> 00:03:25,970
+Well, it was quite convincing. I mean, the President, his first, as he said multiple times at the press conference yesterday, his first goal is to prevent suffering and death. And we made it very clear to him that if we pulled back on what we were doing and didn't extend them, there would be more
+dyadic single
+SPEAKER_01
+
+23
+00:03:25,970 --> 00:03:26,040
+dyadic single
+
+24
+00:03:26,040 --> 00:03:31,267
+Avoidable suffering and avoidable death. So it was a pretty clear decision on his part. How much can we?
+dyadic single
+SPEAKER_01
+
+25
+00:03:31,267 --> 00:03:31,286
+Avoidable suffering and avoidable death. So it was a pretty clear decision on his part. How much can we?
+dyadic single
+
+26
+00:03:31,286 --> 00:03:31,300
+Avoidable suffering and avoidable death. So it was a pretty clear decision on his part. How much can we?
+dyadic single
+SPEAKER_0
+
+27
+00:03:31,300 --> 00:03:31,414
+dyadic single
+SPEAKER_0
+
+28
+00:03:31,414 --> 00:03:32,500
+How much convincing did it takes from you ?
+dyadic single
+SPEAKER_0
+
+29
+00:03:32,500 --> 00:03:32,543
+How much convincing did it takes from you ?
+SPEAKER_0
+
+30
+00:03:32,543 --> 00:03:33,772
+How much convincing did it takes from you ?
+dyadic
+SPEAKER_0
+
+31
+00:03:33,772 --> 00:03:33,800
+dyadic
+SPEAKER_0
+
+32
+00:03:33,800 --> 00:03:35,780
+dyadic
+
+33
+00:03:35,780 --> 00:03:57,020
+How much convincing? You know, interestingly, you know, we showed him the data. He looked at the data, and he got it right away. It was a pretty clear picture that Dr. Debbie Burks and I went in together in the Oval Office and leaned over the desk and said, Here are the data. Take a look. He looked at them, he understood them, and he just shook his head and said, I guess we got.
+dyadic
+SPEAKER_01
+
+34
+00:03:57,020 --> 00:04:15,000
+To do it. How important was it for you to make this case when you made it? Because we'd been, I guess, seven days into we can't make the cure worse than the disease, an aspirational goal to open by Easter. So, how important was it for you to go in and make that case? I guess it was just yesterday.
+dyadic
+SPEAKER_00
+
+35
+00:04:15,000 --> 00:04:16,935
+dyadic
+
+36
+00:04:16,940 --> 00:04:25,870
+Well, it was very important because from a public health standpoint, we felt strongly that it would have been the wrong decision to pull back.
+dyadic
+SPEAKER_01
+
+37
+00:04:25,930 --> 00:04:50,384
+I mean, we are scientists, physicians, public health officials. We're not economists. We're sensitive to the idea that the economy could suffer. But it was patently obvious looking at the data that at the end of the day, if we try to push back prematurely, not only would we lose lives, but it probably would even hurt the economy. So you would lose on double accounts. So to us, there was no question.
+single
+SPEAKER_01
+
+38
+00:04:50,384 --> 00:04:50,400
+single
+SPEAKER_01
+
+39
+00:04:50,400 --> 00:04:53,760
+So to us, there was no question what the right choice was.
+single
+SPEAKER_01
+
+40
+00:04:53,760 --> 00:04:53,767
+single
+SPEAKER_01
+
+41
+00:04:53,767 --> 00:04:54,250
+single
+
+42
+00:04:54,250 --> 00:04:54,317
+You have been in a position to talk about modeling to lay people probably more than you would ever like to. And I know that you make the case that models are only based on your best assumptions, but just so people understand exactly what you're saying here with this 100,000 to 200,000 death estimate.
+single
+
+43
+00:04:54,317 --> 00:04:54,934
+You have been in a position to talk about modeling to lay people probably more than you would ever like to. And I know that you make the case that models are only based on your best assumptions, but just so people understand exactly what you're saying here with this 100,000 to 200,000 death estimate.
+single
+SPEAKER_00
+
+44
+00:04:54,934 --> 00:05:11,320
+You have been in a position to talk about modeling to lay people probably more than you would ever like to. And I know that you make the case that models are only based on your best assumptions, but just so people understand exactly what you're saying here with this 100,000 to 200,000 death estimate.
+dyadic
+SPEAKER_00
+
+45
+00:05:11,320 --> 00:05:12,394
+dyadic
+
+46
+00:05:12,394 --> 00:05:12,419
+Is that even with the measures we have in place now?
+SPEAKER_00
+
+47
+00:05:12,419 --> 00:05:15,900
+Is that even with the measures we have in place now?
+dyadic
+SPEAKER_00
+
+48
+00:05:15,900 --> 00:05:17,580
+dyadic
+
+49
+00:05:17,580 --> 00:05:17,742
+Yeah, that was varying degrees of implementation and success of the methods. I believe, looking at the dynamic
+dyadic
+SPEAKER_01
+
+50
+00:05:17,742 --> 00:05:27,760
+Yeah, that was varying degrees of implementation and success of the methods. I believe, looking at the dynamic
+dyadic
+SPEAKER_01
+
+51
+00:05:27,830 --> 00:06:00,800
+Now, that if we really do pull a full press on the mitigation, and importantly, if we get the areas that are spiking now, New York, New Orleans, maybe Detroit, get them under control. But as importantly, there are a number of areas in the country that have relatively few cases. Those are the ones that are vulnerable and dangerous to go along and then spike. So, at the same time that we're concentrating.
+single
+SPEAKER_01
+
+52
+00:06:00,970 --> 00:06:19,150
+On the ones that we're mitigating, the New Yorks, the New Orleans. You've got to look at those other areas and make sure you very vigorously identify, test, concentrate, get individuals who you take out of society because they're isolated.
+single
+SPEAKER_01
+
+53
+00:06:19,210 --> 00:06:42,063
+Contact tracing. If you just look at those and say, there are very little infections in this area or that area or that area, we don't have to worry about it. You're making a big mistake because those are timbers that can turn into big fires. So you got to do both. You got to mitigate the ones with obvious trouble, but you got to stop the ones that are starting to spark.
+dyadic
+SPEAKER_01
+
+54
+00:06:42,063 --> 00:06:42,130
+Contact tracing. If you just look at those and say, there are very little infections in this area or that area or that area, we don't have to worry about it. You're making a big mistake because those are timbers that can turn into big fires. So you got to do both. You got to mitigate the ones with obvious trouble, but you got to stop the ones that are starting to spark.
+dyadic
+SPEAKER_01
+
+55
+00:06:42,130 --> 00:06:43,170
+dyadic
+
+56
+00:06:43,170 --> 00:06:47,688
+And even with that, you think 100,000 deaths is a reasonable projection at this point?
+dyadic
+SPEAKER_00
+
+57
+00:06:47,688 --> 00:06:47,710
+And even with that, you think 100,000 deaths is a reasonable projection at this point?
+dyadic
+SPEAKER_00
+
+58
+00:06:47,710 --> 00:06:49,360
+dyadic
+
+59
+00:06:49,360 --> 00:06:49,363
+I think, you know,
+dyadic
+
+60
+00:06:49,363 --> 00:06:51,300
+I think, you know,
+dyadic
+SPEAKER_01
+
+61
+00:06:51,300 --> 00:06:51,380
+dyadic
+SPEAKER_01
+
+62
+00:06:51,380 --> 00:07:09,530
+If you look at seasonal flu, we had a bad season in 2017, 18. We lost over 60,000 people just in a seasonal flu. This is clearly worse than that. So I would not be surprised. I don't want to see it, I'd like to avoid it.
+dyadic
+SPEAKER_01
+
+63
+00:07:09,530 --> 00:07:10,110
+dyadic
+
+64
+00:07:10,110 --> 00:07:12,940
+But I wouldn't be surprised if we saw 100,000 deaths.
+dyadic
+SPEAKER_01
+
+65
+00:07:12,940 --> 00:07:18,970
+You talked about New York, New Orleans, Detroit. Any other cities you're specifically concerned about this morning?
+dyadic
+SPEAKER_00
+
+66
+00:07:18,970 --> 00:07:21,190
+dyadic
+
+67
+00:07:21,190 --> 00:07:27,871
+Well, you know, there are cities outside the New York area. For example, the cities in New Jersey, you know, Newark and places like that.
+dyadic
+SPEAKER_01
+
+68
+00:07:27,871 --> 00:07:27,880
+Well, you know, there are cities outside the New York area. For example, the cities in New Jersey, you know, Newark and places like that.
+dyadic single
+SPEAKER_01
+
+69
+00:07:27,880 --> 00:07:27,950
+dyadic single
+
+70
+00:07:27,950 --> 00:07:46,030
+in Connecticut, Fairfax County, Rhenwich, Los Angeles, perhaps, cities in the Midwest, some of the larger cities. Those are the things we get concerned about. Because thus far they seem to be doing well, but they have the potential
+dyadic single
+SPEAKER_01
+
+71
+00:07:46,030 --> 00:07:47,600
+to get into trouble.
+single
+SPEAKER_00
+
+72
+00:07:47,600 --> 00:07:47,651
+single
+
+73
+00:07:47,651 --> 00:07:47,680
+single
+SPEAKER_00
+
+74
+00:07:47,680 --> 00:07:48,976
+What evidence have
+single
+SPEAKER_00
+
+75
+00:07:48,976 --> 00:07:49,001
+What evidence have
+dyadic
+SPEAKER_00
+
+76
+00:07:49,001 --> 00:08:09,070
+you seen that supplies are disappearing from hospitals at unusual rates. The President said something that got a lot of people's attention, that hospitals that normally order 20,000, 30,000 masks were having to order 200,000, 300,000, and then suggested they're walking out the back door. What evidence have you seen that these masks may be walking out the back door?
+dyadic
+SPEAKER_00
+
+77
+00:08:09,070 --> 00:08:10,910
+dyadic
+
+78
+00:08:10,910 --> 00:08:11,000
+You know, I have not looked at that carefully, so I really can't comment. I mean, it could be that there are many more patients there that need them, and they're actually not walking out the door, they're actually being utilized. I don't know. When that discussion came yesterday, I really didn't know what was going on, so I'll have to check that out later and find out what they were talking about.
+dyadic
+SPEAKER_01
+
+79
+00:08:11,000 --> 00:08:30,900
+You know, I have not looked at that carefully, so I really can't comment. I mean, it could be that there are many more patients there that need them, and they're actually not walking out the door, they're actually being utilized. I don't know. When that discussion came yesterday, I really didn't know what was going on, so I'll have to check that out later and find out what they were talking about.
+dyadic
+SPEAKER_01
+
+80
+00:08:30,900 --> 00:08:32,774
+dyadic
+
+81
+00:08:32,790 --> 00:08:40,420
+In terms of public health, one of the most important things in a public health crisis is public trust. How important is the consistent message in a public health crisis?
+dyadic
+SPEAKER_00
+
+82
+00:08:40,420 --> 00:08:42,900
+dyadic
+
+83
+00:08:42,900 --> 00:08:42,968
+Well, it is important. That's the reason why, if you go back and take a look at the things I've said over the
+dyadic
+SPEAKER_01
+
+84
+00:08:42,968 --> 00:08:48,130
+Well, it is important. That's the reason why, if you go back and take a look at the things I've said over the
+dyadic
+SPEAKER_01
+
+85
+00:08:48,190 --> 00:08:57,065
+Last several weeks, they're really rather consistent. I mean, almost word for word. Sometimes, as we get more cases,
+single
+SPEAKER_01
+
+86
+00:08:57,065 --> 00:08:57,150
+Last several weeks, they're really rather consistent. I mean, almost word for word. Sometimes, as we get more cases,
+dyadic
+SPEAKER_01
+
+87
+00:08:57,150 --> 00:08:58,040
+dyadic
+
+88
+00:08:58,040 --> 00:09:07,810
+I get a little bit more emphatic about what we should do, and that's the reason why I made a big pitch to do a couple of things over the last couple of days.
+dyadic
+SPEAKER_01
+
+89
+00:09:07,839 --> 00:09:10,040
+dyadic
+
+90
+00:09:10,040 --> 00:09:17,770
+New York. Do you feel that every official speaking at a microphone has been as consistent as you have been over the last days and weeks?
+dyadic
+SPEAKER_00
+
+91
+00:09:17,770 --> 00:09:24,030
+No, you know, not everybody's the same. People have different styles about how they communicate.
+dyadic
+SPEAKER_01
+
+92
+00:09:24,030 --> 00:09:24,041
+SPEAKER_01
+
+93
+00:09:24,041 --> 00:09:25,360
+dyadic
+
+94
+00:09:25,360 --> 00:09:37,710
+Testing right now. New York City, or New York State, I should say, is developing or has developed a test that can be taken with saliva and a nasal swab a self-test. How important is this to battle the coronavirus?
+dyadic
+SPEAKER_00
+
+95
+00:09:37,710 --> 00:09:37,880
+Testing right now. New York City, or New York State, I should say, is developing or has developed a test that can be taken with saliva and a nasal swab a self-test. How important is this to battle the coronavirus?
+dyadic
+SPEAKER_00
+
+96
+00:09:37,880 --> 00:09:39,720
+dyadic
+
+97
+00:09:39,720 --> 00:09:50,020
+You know, I think it's very important because what you want, if you're going to immediately identify, isolate, and contact, trace a person.
+dyadic
+SPEAKER_01
+
+98
+00:09:50,090 --> 00:10:35,230
+so that you could quickly get them out of society and stop spreading other people. You want to test that you know the answer right away. One of the problems with tests that you get back several days later is that you generally let that person who might actually be infected to go back into society and inadvertently be infecting other people while you're waiting for the result of the test. So if you really want to do what I mentioned just a moment ago, is to really get the handle on those areas where they don't have a lot of infected individuals, where you want to effectively identify, isolate, and contact, trace, you want the result of the test in real time.
+single
+SPEAKER_01
+
+99
+00:10:35,300 --> 00:10:39,040
+You want to know exactly what you're dealing with at the time you're dealing with it.
+dyadic
+SPEAKER_01
+
+100
+00:10:39,040 --> 00:10:48,940
+In terms of the other tests on some of these drugs for treatments, can you give us an update on what you're hearing, how effective they are?
+dyadic
+SPEAKER_00
+
+101
+00:10:48,940 --> 00:10:51,016
+dyadic
+
+102
+00:10:51,016 --> 00:10:51,032
+Well, you'll never know if a drug is really effective unless you compare it to something, and that's called a randomized controlled clinical trial.
+SPEAKER_01
+
+103
+00:10:51,032 --> 00:11:01,260
+Well, you'll never know if a drug is really effective unless you compare it to something, and that's called a randomized controlled clinical trial.
+dyadic
+SPEAKER_01
+
+104
+00:11:01,330 --> 00:11:28,950
+drug X and standard of care with just standard of care alone. We have a test of a drug called Remdesivir that's undergoing a standard, a randomized control trial. We have about 200 people in that trial. Hopefully in the next few weeks to a month or so, we'll be able to get data that will give us a definitive determination as to whether or not the drug works and whether or not it's safe.
+single
+SPEAKER_01
+
+105
+00:11:28,950 --> 00:11:30,774
+single
+
+106
+00:11:30,860 --> 00:11:30,936
+few minutes you've been on with me. I've been looking down in my email and my Twitter account and there's so many people writing in, first of all, grateful for the work you're doing, but also frankly concerned with how hard you're working. You know, you're talking yourself hoarse like many of us do on TV. So how are you doing through all this and this hard work and what do you want to tell the American people about your own health and well-being?
+SPEAKER_00
+
+107
+00:11:30,936 --> 00:11:54,548
+few minutes you've been on with me. I've been looking down in my email and my Twitter account and there's so many people writing in, first of all, grateful for the work you're doing, but also frankly concerned with how hard you're working. You know, you're talking yourself hoarse like many of us do on TV. So how are you doing through all this and this hard work and what do you want to tell the American people about your own health and well-being?
+dyadic
+SPEAKER_00
+
+108
+00:11:54,548 --> 00:11:54,620
+few minutes you've been on with me. I've been looking down in my email and my Twitter account and there's so many people writing in, first of all, grateful for the work you're doing, but also frankly concerned with how hard you're working. You know, you're talking yourself hoarse like many of us do on TV. So how are you doing through all this and this hard work and what do you want to tell the American people about your own health and well-being?
+dyadic
+SPEAKER_00
+
+109
+00:11:54,620 --> 00:11:56,210
+dyadic
+
+110
+00:11:56,210 --> 00:12:26,194
+Well, I'm fine. I'm healthy. I'm tired. I don't get nearly enough sleep as I should. This is not my regular voice. I'm constantly briefing people, talking, testifying, doing interviews. It's a long day. I mean, I work pretty much hours anyway, but I'm getting only about four or five hours of sleep, mostly four hours of sleep a night. There's a lot of things to do. When you're working in the White House, it's a very, very busy place.
+dyadic
+SPEAKER_01
+
+111
+00:12:26,194 --> 00:12:26,210
+Well, I'm fine. I'm healthy. I'm tired. I don't get nearly enough sleep as I should. This is not my regular voice. I'm constantly briefing people, talking, testifying, doing interviews. It's a long day. I mean, I work pretty much hours anyway, but I'm getting only about four or five hours of sleep, mostly four hours of sleep a night. There's a lot of things to do. When you're working in the White House, it's a very, very busy place.
+dyadic
+SPEAKER_01
+
+112
+00:12:26,210 --> 00:12:26,990
+dyadic
+
+113
+00:12:26,990 --> 00:12:38,040
+Well, we're grateful for the work that you're doing, Dr. Fauci. We're grateful for your consistent message. Thank you for coming on this morning and telling us the things that you have seen and what you need to see going forward. Appreciate it, sir.
+dyadic
+SPEAKER_00
+
+114
+00:12:38,040 --> 00:12:39,746
+dyadic
+
+115
+00:12:39,746 --> 00:12:39,760
+dyadic
+SPEAKER_01
+
+116
+00:12:39,760 --> 00:12:40,479
+My pleasure.
+dyadic
+SPEAKER_01
+
+117
+00:12:40,479 --> 00:12:40,480
+My pleasure.
+dyadic
+
+118
+00:12:40,480 --> 00:12:40,493
+dyadic
+
