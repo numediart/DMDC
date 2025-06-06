@@ -77,11 +77,17 @@ def main_batch(video_list_file='videoV0.5.txt'):
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
             download_youtube_video(url, output_name)
 
-            
+            #####################
+            # Extract the Audio
+            #####################
+            print(f"\n\n\n ---Step: 3--- Extract the audio")
+
+            extract_audio_to_wav(output_name, wav_dir)
+
             #####################
             # Segmentation (if needed)
             #####################
-            print(f"\n\n\n ---Step: 3--- Segmentations")
+            print(f"\n\n\n ---Step: 4--- Segmentations")
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
                 segments = load_segments_from_csv(segments_csv)
@@ -90,12 +96,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 segments = detect_faces_in_video(output_name)
             
             
-            #####################
-            # Extract the Audio
-            #####################
-            print(f"\n\n\n ---Step: 4--- Extract the audio")
 
-            extract_audio_to_wav(output_name, wav_dir)
 
             # Skip Diarization and Assignment if Segments Exist
             if os.path.exists(segments_csv):

@@ -56,7 +56,17 @@ def download_youtube_video(url, output_path):
         'outtmpl': output_path,
         'quiet': False,
         'merge_output_format': 'mp4',
-        'ffmpeg_location': ffmpeg_path 
+        'ffmpeg_location': ffmpeg_path,
+        'writesubtitles': False,
+        'writeautomaticsub': False,
+        'postprocessors': [{
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': 'mp4',
+        }],
+        'format_selector': lambda ctx: (
+            ctx.get('formats') and 
+            [f for f in ctx['formats'] if f.get('acodec') != 'none' and f.get('vcodec') != 'none']
+        ) or ctx.get('formats', [])
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
