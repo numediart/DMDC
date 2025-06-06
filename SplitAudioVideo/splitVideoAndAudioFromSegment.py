@@ -3,12 +3,15 @@ import os
 
 
 def extract_audio_segment(input_wav, start_frame, end_frame, output_wav, frame_rate=30):
+    # Ensure output_wav is a file path with .wav extension
+    base_name = os.path.splitext(os.path.basename(input_wav))[0]
+    output_wav = os.path.join(output_wav, f"{base_name}_{start_frame}_to_{end_frame}.wav")
     # Calculate start and end times in seconds
     start_time = start_frame / frame_rate
     duration = (end_frame - start_frame) / frame_rate
     # Use ffmpeg to extract the segment
     cmd = f'ffmpeg -y -ss {start_time} -i "{input_wav}" -t {duration} -c copy "{output_wav}"'
-    #cmd = f'ffmpeg -y -ss {start_time} -i "{input_wav}" -t {duration} -acodec pcm_s16le -ar 16000 "{output_wav}"
+    # cmd = f'ffmpeg -y -ss {start_time} -i "{input_wav}" -t {duration} -acodec pcm_s16le -ar 16000 "{output_wav}"'
     os.system(cmd)
     
 

@@ -53,7 +53,7 @@ def split_csv_with_sliding_window(input_csv, output_dir, window_size_frames=64, 
         window_df.to_csv(out_csv, index=False)
         count += 1
 
-def main_batch(video_list_file='videoV0.5test.txt'):
+def main_batch(video_list_file='videoV0.5.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
@@ -198,23 +198,31 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             #################
             print(f"\n\n\n ---Step: 9--- Who is speaking")
             print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
-            detect_who_speaking_from_clips(
-                video_id=str(idx),
-                segments_csv_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments",f"{idx}_segments.csv"),
-                openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
-                output_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
-            )
-            print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
+            mapping_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
+            if os.path.exists(mapping_csv_path):
+                print(f"[WhoIsSpeaking] Mapping already exists for video {idx}, skipping...")
+            else:
+                detect_who_speaking_from_clips(
+                    video_id=str(idx),
+                    segments_csv_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments",f"{idx}_segments.csv"),
+                    openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+                    output_path=mapping_csv_path
+                )
+                print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
 
             #####################
             # Format AU with Speaker-Listener
             #####################
             print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
-            format_all_clips(
-                mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
-                openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
-                output_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
-            )
+            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
+            if os.path.exists(formatted_dir) and os.listdir(formatted_dir):
+                print(f"[Format] Formatted clips already exist for video {idx}, skipping...")
+            else:
+                format_all_clips(
+                    mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
+                    openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+                    output_dir=formatted_dir
+                )
 
             #####################
             # Format AU with 64 frames
@@ -224,21 +232,31 @@ def main_batch(video_list_file='videoV0.5test.txt'):
 
 
 
-            # Example usage for all formatted clips in the directory
             print("[64f] Process Speaker files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video","speaker")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
+            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
+            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "speaker")
             os.makedirs(windowed_dir, exist_ok=True)
             csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
             for csv_file in csv_files:
+                base_name = os.path.splitext(os.path.basename(csv_file))[0]
+                # Check if at least one windowed file for this csv exists
+                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
+                if already_done:
+                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
+                    continue
                 split_csv_with_sliding_window(csv_file, windowed_dir)
-            
+
             print("[64f] Process listener files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video","listener")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","listener")
+            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "listener")
+            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "listener")
             os.makedirs(windowed_dir, exist_ok=True)
             csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
             for csv_file in csv_files:
+                base_name = os.path.splitext(os.path.basename(csv_file))[0]
+                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
+                if already_done:
+                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
+                    continue
                 split_csv_with_sliding_window(csv_file, windowed_dir)
 
 
@@ -247,9 +265,10 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             #####################
             print(f"\n\n\n ---Step: 12--- Split Audio from segments")
             # Check if audio and video clips have already been processed
-            clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video.mp4"))
+            clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video"))
 
-            output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio")
+            output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video")
+            os.makedirs(output_audio, exist_ok=True)
 
             if not clips_audio_done:
                 print(f"[Info] Splitting audio for video {idx}")
@@ -258,14 +277,13 @@ def main_batch(video_list_file='videoV0.5test.txt'):
                 for csv_file in glob.glob(os.path.join(csv_64frames_path, "*.csv")):
                     csv_file_base = os.path.basename(csv_file)
                     print(csv_file_base.split("_"))
-                    start_sec = int(csv_file_base.split("_")[0])  # start frame
-                    end_sec = int(csv_file_base.split("_")[2])    # end frame
+                    start_sec = float(csv_file_base.split("_")[0])  # start frame
+                    #end_sec = float(csv_file_base.split("_")[2])    # end frame
                     start_frm = int(start_sec*30)+int(csv_file_base.split("_")[5])  # start frame
-                    end_frm =  int(end_sec*30)+ int(csv_file_base.split("_")[6])    # end frame
+                    end_frm =  int(start_sec*30)+ int(csv_file_base.split("_")[6])    # end frame
                     print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {csv_file_base}")
                     extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
 
-                extract_audio_segment(input_path_wav)
             else:
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
@@ -275,18 +293,14 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             print(f"\n\n\n ---Step: 13--- Speaker Melspec")
 
             # Process MFCC for all audio clips in the directory and save as CSV
-            print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
             mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
             os.makedirs(mfcc_output_dir, exist_ok=True)
-            audioFileFolder = os.path.join(output_audio, f"{idx}_video.mp4")
-            audio_files = [file for file in glob.glob(os.path.join(audioFileFolder, "*.wav")) if os.path.isfile(file)]
+            print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
+            audio_files = [file for file in glob.glob(os.path.join(output_audio, "*.wav")) if os.path.isfile(file)]
             
             for audio_file in audio_files:
                 mfcc_csv_path = os.path.join(mfcc_output_dir, f"{os.path.basename(audio_file).replace('.wav', '_mfcc.csv')}")
-                if os.path.exists(mfcc_csv_path):
-                    print(f"[MFCC] MFCC features already exist for {audio_file}, skipping...")
-                    continue
-                
+      
                 try:
                     print(f"[MFCC] Processing {audio_file}")
                     y, sr = librosa.load(audio_file, sr=None)
