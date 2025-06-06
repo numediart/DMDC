@@ -137,11 +137,12 @@ def extract_openface_features(video_path, output_dir):
 def detect_who_speaking_from_clips(video_id, segments_csv_path, openface_dir, output_path):
     segments = pd.read_csv(segments_csv_path)
     dyadic_segments = segments[segments["category"] == "dyadic"].reset_index(drop=True)
-    
+    dyadic_segments = dyadic_segments[dyadic_segments["end_time"] - dyadic_segments["start_time"] >= 5].reset_index(drop=True)
+
     results = []
     for i, row in dyadic_segments.iterrows():
-        clip_name = f"clip_{i+1:03d}.mp4"
-        au_csv_path = os.path.join(openface_dir, f"clip_{i+1:03d}.csv")
+        clip_name = f"{row['start_time']}_to_{row['end_time']}_segment.mp4"
+        au_csv_path = os.path.join(openface_dir, f"{row['start_time']}_to_{row['end_time']}_segment.csv")
         speaker = row["speaker"]
         
         try:

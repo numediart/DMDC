@@ -71,15 +71,15 @@ def process_FaceLandmarkVidMulti_from_container(input_path, output_path,onlyCSVO
 
     print("[CP] Processed folder copied successfully to", output_folder)
 
-    # # Delete the processed folder inside the container to clean up
-    # command = ["docker", "exec", "-it", container_id, "rm", "-rf", "/home/openface-build/processed"]
-    # result = subprocess.run(command, capture_output=True, text=True)
+    # Delete the processed folder inside the container to clean up
+    command = ["docker", "exec", "-it", container_id, "rm", "-rf", "/home/openface-build/processed"]
+    result = subprocess.run(command, capture_output=True, text=True)
 
-    # if result.returncode != 0:
-    #     print("[ERR] Error deleting processed folder inside the container:", result.stderr)
-    #     exit(1)
+    if result.returncode != 0:
+        print("[ERR] Error deleting processed folder inside the container:", result.stderr)
+        exit(1)
 
-    # print("[OpenFace/Del] Processed folder deleted successfully inside the container.")
+    print("[OpenFace/Del] Processed folder deleted successfully inside the container.")
     return True
 
 

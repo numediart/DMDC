@@ -36,8 +36,31 @@ def get_diarization_csv(wav_path):
         return matches[0]
     else:
         raise FileNotFoundError(f"No CSV file found for {base_filename} in {diarization_folder}")
+    
+def split_csv_with_sliding_window(input_csv, output_dir, window_size_frames=64, step_size_frames=16):
+    """
+    Splits the input CSV into overlapping windows based on frame count.
 
-def main_batch(video_list_file='videoV0.5.txt'):
+    Args:
+        input_csv (str): Path to the input CSV file.
+        output_dir (str): Directory to save windowed CSVs.
+        window_size_frames (int): Number of frames per window.
+        step_size_frames (int): Step size in frames.
+    """
+    df = pd.read_csv(input_csv)
+    total_frames = len(df)
+    base_name = os.path.splitext(os.path.basename(input_csv))[0]
+
+    os.makedirs(output_dir, exist_ok=True)
+    count = 0
+    for start in range(0, total_frames - window_size_frames + 1, step_size_frames):
+        end = start + window_size_frames
+        window_df = df.iloc[start:end]
+        out_csv = os.path.join(output_dir, f"{base_name}_{df['frame'][start]}_{df['frame'][end]}_{count}_64frames_csv.csv")
+        window_df.to_csv(out_csv, index=False)
+        count += 1
+
+def main_batch(video_list_file='videoV0.5test.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
@@ -185,14 +208,16 @@ def main_batch(video_list_file='videoV0.5.txt'):
             print(f"\n\n\n ---Step: 9--- Action unit extraction")
 
 
-            print(f"[AU] Processing AU")
             output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU_output', f'{idx}_video')
             if not os.path.exists(output):
+                print(f"[AU] Processing AU")
                 os.makedirs(output, exist_ok=True)
-            clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video.mp4"
-            openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
-            os.makedirs(openface_out_dir, exist_ok=True)
-            run_openface_on_all_clips(clips_dir, openface_out_dir)
+                clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video.mp4"
+                openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
+                os.makedirs(openface_out_dir, exist_ok=True)
+                run_openface_on_all_clips(clips_dir, openface_out_dir)
+            else:
+                print(f"[AU] AU already done")
 
             # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
             # output_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER,"openface_clips")
@@ -209,9 +234,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
             print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
             detect_who_speaking_from_clips(
                 video_id=str(idx),
-                segments_csv_path=DATASET_FOLDER+f"/segments/{idx}_segments.csv",
-                openface_dir=openface_out_dir,
-                output_path=DATASET_FOLDER+f"/mapping_results/{idx}_video/mapping.csv"
+                segments_csv_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments",f"{idx}_segments.csv"),
+                openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+                output_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
             )
             print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
 
@@ -220,13 +245,35 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             print(f"\n\n\n ---Step: 11--- Format AU with Speaker-Listener")
             format_all_clips(
-                mapping_csv=DATASET_FOLDER+f"/mapping_results/{idx}_video/mapping.csv",
-                openface_dir=DATASET_FOLDER+f"/openface_clips/{idx}_video",
-                output_dir=DATASET_FOLDER+f"/formatted_clips/{idx}_video"
+                mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
+                openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+                output_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
             )
 
+            #####################
+            # Format AU with 64 frames
+            #####################
+            print(f"\n\n\n ---Step: 12---Format AU with 64 frames")
+           
 
 
+
+            # Example usage for all formatted clips in the directory
+            print("[64f] Process Speaker files")
+            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video","speaker")
+            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
+            os.makedirs(windowed_dir, exist_ok=True)
+            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
+            for csv_file in csv_files:
+                split_csv_with_sliding_window(csv_file, windowed_dir)
+            
+            print("[64f] Process listener files")
+            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video","listener")
+            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","listener")
+            os.makedirs(windowed_dir, exist_ok=True)
+            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
+            for csv_file in csv_files:
+                split_csv_with_sliding_window(csv_file, windowed_dir)
             #####################
             # End of the pipe, delete cache
             #####################

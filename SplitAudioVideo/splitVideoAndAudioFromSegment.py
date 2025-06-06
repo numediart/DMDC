@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import subprocess
 def splitVideoAndAudioFromSegment(pathVideoMP4, pathSegmentCSV, outputAudioClip, outputVideoClip, segment_frames=64, sliding_window_frames=16, frame_rate=30):
 
     segments = pd.read_csv(pathSegmentCSV)
@@ -8,34 +7,37 @@ def splitVideoAndAudioFromSegment(pathVideoMP4, pathSegmentCSV, outputAudioClip,
 
     dyadic_segments = []
 
-    videoName = pathVideoMP4.split("/")[-1]
+    videoName = os.path.basename(pathVideoMP4)
 
     for _, row in segments.iterrows():
         if row["category"] == "dyadic":
             start_time = row["start_time"]
             end_time = row["end_time"]
             # Ensure the segment duration is at least 5 seconds
-            if end_time - start_time < 5:
+            if end_time - start_time <= 5:
                 continue
             current_start_frame = int(start_time * frame_rate)
             end_frame = int(end_time * frame_rate)
 
             video_filename = f"{start_time}_to_{end_time}_segment.mp4"
             video_output_path = os.path.join(outputVideoClip, videoName, video_filename)
-            os.system(f"ffmpeg -i {pathVideoMP4} -ss {start_time} -to {end_time} -c copy {video_output_path}")
+
+            # Create directories for the output paths if they don't exist
+            os.makedirs(os.path.dirname(video_output_path), exist_ok=True)
+            print(video_output_path)
+
+            # Use ffmpeg with -ss before input for fast seeking, but use -t for duration instead of -to
+            os.system(f"ffmpeg -ss {start_time} -i {pathVideoMP4} -t {end_time - start_time} -c copy {video_output_path}")
 
             index=0
             while current_start_frame + segment_frames <= end_frame:
                 current_end_frame = current_start_frame + segment_frames
                 
                 audio_filename = f"{current_start_frame}_to_{current_end_frame}_segment.wav"
-                
-                # Generate output paths for audio and video
                 audio_output_path = os.path.join(outputAudioClip, videoName, audio_filename)
                 
                 # Create directories for the output paths if they don't exist
                 os.makedirs(os.path.dirname(audio_output_path), exist_ok=True)
-                os.makedirs(os.path.dirname(video_output_path), exist_ok=True)
 
                 # Use ffmpeg to extract the audio segment in WAV format
                 os.system(f"ffmpeg -i {pathVideoMP4} -ss {current_start_frame/30} -to {current_end_frame/30} -q:a 0 -map a -ar 44100 {audio_output_path}")
@@ -49,6 +51,7 @@ def splitVideoAndAudioFromSegment(pathVideoMP4, pathSegmentCSV, outputAudioClip,
                 dyadic_segments.append({
                     "start_frame": current_start_frame,
                     "end_frame": current_end_frame,
+                    "speaker":row["speaker"]
                 })
                 
                 # Move the sliding window forward
