@@ -4,7 +4,7 @@ from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_co
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
 from formatAUSpeakerListener import format_all_clips
-from SplitAudioVideo.splitVideoAndAudioFromSegment import splitVideoAndAudioFromSegment
+from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
 import librosa
@@ -38,25 +38,18 @@ def get_diarization_csv(wav_path):
         raise FileNotFoundError(f"No CSV file found for {base_filename} in {diarization_folder}")
     
 def split_csv_with_sliding_window(input_csv, output_dir, window_size_frames=64, step_size_frames=16):
-    """
-    Splits the input CSV into overlapping windows based on frame count.
-
-    Args:
-        input_csv (str): Path to the input CSV file.
-        output_dir (str): Directory to save windowed CSVs.
-        window_size_frames (int): Number of frames per window.
-        step_size_frames (int): Step size in frames.
-    """
     df = pd.read_csv(input_csv)
     total_frames = len(df)
     base_name = os.path.splitext(os.path.basename(input_csv))[0]
 
     os.makedirs(output_dir, exist_ok=True)
     count = 0
+    if 'frame' not in df.columns:
+        raise ValueError("Input CSV must contain a 'frame' column.")
     for start in range(0, total_frames - window_size_frames + 1, step_size_frames):
         end = start + window_size_frames
         window_df = df.iloc[start:end]
-        out_csv = os.path.join(output_dir, f"{base_name}_{df['frame'][start]}_{df['frame'][end]}_{count}_64frames_csv.csv")
+        out_csv = os.path.join(output_dir, f"{base_name}_{df['frame'][start]}_{df['frame'][end-1]}_{count}_64frames_csv.csv")
         window_df.to_csv(out_csv, index=False)
         count += 1
 
@@ -154,58 +147,31 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             
 
             #####################
-            # Split Audio/Video from segments 
+            # Split Video from segments 
             #####################
-            print(f"\n\n\n ---Step: 7--- Split Audio/Video from segments")
+            print(f"\n\n\n ---Step: 7--- Split Video from segments")
             # Check if audio and video clips have already been processed
-            clips_video_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video.mp4"))
+            clips_video_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video", f"{idx}_video.mp4"))
 
-            output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio")
             output_video = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video")
 
             if not clips_video_done:
-                print(f"[Info] Splitting audio and video for video {idx}")
+                print(f"[Info] Splitting video for video {idx}")
                 input_path_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
                 input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-                dyadicDF=splitVideoAndAudioFromSegment(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_audio), os.path.abspath(output_video))
+                dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
             else:
-                print(f"[Info] Audio and video clips already processed for video {idx}, skipping...")
+                print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
             
-            #####################
-            # MFCC Extract 
-            #####################
-            print(f"\n\n\n ---Step: 8--- Speaker Melspec")
-
-            # Process MFCC for all audio clips in the directory and save as CSV
-            print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
-            mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
-            os.makedirs(mfcc_output_dir, exist_ok=True)
-            audioFileFolder = os.path.join(output_audio, f"{idx}_video.mp4")
-            audio_files = [file for file in glob.glob(os.path.join(audioFileFolder, "*.wav")) if os.path.isfile(file)]
-            
-            for audio_file in audio_files:
-                mfcc_csv_path = os.path.join(mfcc_output_dir, f"{os.path.basename(audio_file).replace('.wav', '_mfcc.csv')}")
-                if os.path.exists(mfcc_csv_path):
-                    print(f"[MFCC] MFCC features already exist for {audio_file}, skipping...")
-                    continue
-                
-                try:
-                    print(f"[MFCC] Processing {audio_file}")
-                    y, sr = librosa.load(audio_file, sr=None)
-                    mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
-                    pd.DataFrame(mfcc_features).to_csv(mfcc_csv_path, index=False)
-                    print(f"[MFCC] Saved MFCC features to {mfcc_csv_path}")
-                except Exception as e:
-                    print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
-                
+           
 
 
 
             #####################
             # Openface Action Unit
             #####################
-            print(f"\n\n\n ---Step: 9--- Action unit extraction")
+            print(f"\n\n\n ---Step: 8--- Action unit extraction")
 
 
             output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU_output', f'{idx}_video')
@@ -230,7 +196,7 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             #################
             # Who is speaking
             #################
-            print(f"\n\n\n ---Step: 10--- Who is speaking")
+            print(f"\n\n\n ---Step: 9--- Who is speaking")
             print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
             detect_who_speaking_from_clips(
                 video_id=str(idx),
@@ -243,7 +209,7 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             #####################
             # Format AU with Speaker-Listener
             #####################
-            print(f"\n\n\n ---Step: 11--- Format AU with Speaker-Listener")
+            print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
             format_all_clips(
                 mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
                 openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
@@ -253,7 +219,7 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             #####################
             # Format AU with 64 frames
             #####################
-            print(f"\n\n\n ---Step: 12---Format AU with 64 frames")
+            print(f"\n\n\n ---Step: 11---Format AU with 64 frames")
            
 
 
@@ -274,6 +240,64 @@ def main_batch(video_list_file='videoV0.5test.txt'):
             csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
             for csv_file in csv_files:
                 split_csv_with_sliding_window(csv_file, windowed_dir)
+
+
+            #####################
+            # Split Audio from segments 
+            #####################
+            print(f"\n\n\n ---Step: 12--- Split Audio from segments")
+            # Check if audio and video clips have already been processed
+            clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video.mp4"))
+
+            output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio")
+
+            if not clips_audio_done:
+                print(f"[Info] Splitting audio for video {idx}")
+                input_path_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
+                csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
+                for csv_file in glob.glob(os.path.join(csv_64frames_path, "*.csv")):
+                    csv_file_base = os.path.basename(csv_file)
+                    print(csv_file_base.split("_"))
+                    start_sec = int(csv_file_base.split("_")[0])  # start frame
+                    end_sec = int(csv_file_base.split("_")[2])    # end frame
+                    start_frm = int(start_sec*30)+int(csv_file_base.split("_")[5])  # start frame
+                    end_frm =  int(end_sec*30)+ int(csv_file_base.split("_")[6])    # end frame
+                    print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {csv_file_base}")
+                    extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
+
+                extract_audio_segment(input_path_wav)
+            else:
+                print(f"[Info] Video clips already processed for video {idx}, skipping...")
+
+            #####################
+            # MFCC Extract 
+            #####################
+            print(f"\n\n\n ---Step: 13--- Speaker Melspec")
+
+            # Process MFCC for all audio clips in the directory and save as CSV
+            print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
+            mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
+            os.makedirs(mfcc_output_dir, exist_ok=True)
+            audioFileFolder = os.path.join(output_audio, f"{idx}_video.mp4")
+            audio_files = [file for file in glob.glob(os.path.join(audioFileFolder, "*.wav")) if os.path.isfile(file)]
+            
+            for audio_file in audio_files:
+                mfcc_csv_path = os.path.join(mfcc_output_dir, f"{os.path.basename(audio_file).replace('.wav', '_mfcc.csv')}")
+                if os.path.exists(mfcc_csv_path):
+                    print(f"[MFCC] MFCC features already exist for {audio_file}, skipping...")
+                    continue
+                
+                try:
+                    print(f"[MFCC] Processing {audio_file}")
+                    y, sr = librosa.load(audio_file, sr=None)
+                    mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
+                    pd.DataFrame(mfcc_features).to_csv(mfcc_csv_path, index=False)
+                    print(f"[MFCC] Saved MFCC features to {mfcc_csv_path}")
+                except Exception as e:
+                    print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
+                
+
+            
             #####################
             # End of the pipe, delete cache
             #####################
