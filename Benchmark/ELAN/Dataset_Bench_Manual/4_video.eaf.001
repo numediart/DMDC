@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-06-04T10:51:35+01:00"
+    FORMAT="3.0" VERSION="3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR
+            MEDIA_URL="file:///D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/4_video.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../Dev/DMDC/V0DataSet/mp4/4_video.mp4"/>
+        <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:74b2c147-b768-4c00-9b6e-eca58a2cbeeb</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">148</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="170"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="170"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="170"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="8610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="8610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="8610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="8610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="13720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="13720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="13720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="13720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="21450"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="21450"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="21590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="21590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="27630"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="27630"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="27630"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="27640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="33970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="33970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="34030"/>
+        <TIME_SLOT TIME_SLOT_ID="ts23" TIME_VALUE="34030"/>
+        <TIME_SLOT TIME_SLOT_ID="ts24" TIME_VALUE="43717"/>
+        <TIME_SLOT TIME_SLOT_ID="ts25" TIME_VALUE="43717"/>
+        <TIME_SLOT TIME_SLOT_ID="ts26" TIME_VALUE="43717"/>
+        <TIME_SLOT TIME_SLOT_ID="ts27" TIME_VALUE="43732"/>
+        <TIME_SLOT TIME_SLOT_ID="ts28" TIME_VALUE="52980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts29" TIME_VALUE="52980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts30" TIME_VALUE="52980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts31" TIME_VALUE="52980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts32" TIME_VALUE="65933"/>
+        <TIME_SLOT TIME_SLOT_ID="ts33" TIME_VALUE="65933"/>
+        <TIME_SLOT TIME_SLOT_ID="ts34" TIME_VALUE="65933"/>
+        <TIME_SLOT TIME_SLOT_ID="ts35" TIME_VALUE="65933"/>
+        <TIME_SLOT TIME_SLOT_ID="ts36" TIME_VALUE="128770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts37" TIME_VALUE="128770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts38" TIME_VALUE="130000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts39" TIME_VALUE="130000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts40" TIME_VALUE="131730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts41" TIME_VALUE="131800"/>
+        <TIME_SLOT TIME_SLOT_ID="ts42" TIME_VALUE="136900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts43" TIME_VALUE="136970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts44" TIME_VALUE="145760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts45" TIME_VALUE="145760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts46" TIME_VALUE="146517"/>
+        <TIME_SLOT TIME_SLOT_ID="ts47" TIME_VALUE="146517"/>
+        <TIME_SLOT TIME_SLOT_ID="ts48" TIME_VALUE="185590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts49" TIME_VALUE="185590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts50" TIME_VALUE="187020"/>
+        <TIME_SLOT TIME_SLOT_ID="ts51" TIME_VALUE="187020"/>
+        <TIME_SLOT TIME_SLOT_ID="ts52" TIME_VALUE="200470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts53" TIME_VALUE="200470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts54" TIME_VALUE="202190"/>
+        <TIME_SLOT TIME_SLOT_ID="ts55" TIME_VALUE="202190"/>
+        <TIME_SLOT TIME_SLOT_ID="ts56" TIME_VALUE="283130"/>
+        <TIME_SLOT TIME_SLOT_ID="ts57" TIME_VALUE="283130"/>
+        <TIME_SLOT TIME_SLOT_ID="ts58" TIME_VALUE="284440"/>
+        <TIME_SLOT TIME_SLOT_ID="ts59" TIME_VALUE="284440"/>
+        <TIME_SLOT TIME_SLOT_ID="ts60" TIME_VALUE="298317"/>
+        <TIME_SLOT TIME_SLOT_ID="ts61" TIME_VALUE="298317"/>
+        <TIME_SLOT TIME_SLOT_ID="ts62" TIME_VALUE="298317"/>
+        <TIME_SLOT TIME_SLOT_ID="ts63" TIME_VALUE="298317"/>
+        <TIME_SLOT TIME_SLOT_ID="ts64" TIME_VALUE="362300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts65" TIME_VALUE="362300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts66" TIME_VALUE="362300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts67" TIME_VALUE="362300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts68" TIME_VALUE="385470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts69" TIME_VALUE="385470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts70" TIME_VALUE="386300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts71" TIME_VALUE="386300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts72" TIME_VALUE="426770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts73" TIME_VALUE="426770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts74" TIME_VALUE="427420"/>
+        <TIME_SLOT TIME_SLOT_ID="ts75" TIME_VALUE="427420"/>
+        <TIME_SLOT TIME_SLOT_ID="ts76" TIME_VALUE="438190"/>
+        <TIME_SLOT TIME_SLOT_ID="ts77" TIME_VALUE="438190"/>
+        <TIME_SLOT TIME_SLOT_ID="ts78" TIME_VALUE="438814"/>
+        <TIME_SLOT TIME_SLOT_ID="ts79" TIME_VALUE="438822"/>
+        <TIME_SLOT TIME_SLOT_ID="ts80" TIME_VALUE="498060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts81" TIME_VALUE="498060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts82" TIME_VALUE="499310"/>
+        <TIME_SLOT TIME_SLOT_ID="ts83" TIME_VALUE="499310"/>
+        <TIME_SLOT TIME_SLOT_ID="ts84" TIME_VALUE="505230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts85" TIME_VALUE="505230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts86" TIME_VALUE="506450"/>
+        <TIME_SLOT TIME_SLOT_ID="ts87" TIME_VALUE="506450"/>
+        <TIME_SLOT TIME_SLOT_ID="ts88" TIME_VALUE="588230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts89" TIME_VALUE="588230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts90" TIME_VALUE="588680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts91" TIME_VALUE="588680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts92" TIME_VALUE="626881"/>
+        <TIME_SLOT TIME_SLOT_ID="ts93" TIME_VALUE="626881"/>
+        <TIME_SLOT TIME_SLOT_ID="ts94" TIME_VALUE="626886"/>
+        <TIME_SLOT TIME_SLOT_ID="ts95" TIME_VALUE="627428"/>
+        <TIME_SLOT TIME_SLOT_ID="ts96" TIME_VALUE="630261"/>
+        <TIME_SLOT TIME_SLOT_ID="ts97" TIME_VALUE="630268"/>
+        <TIME_SLOT TIME_SLOT_ID="ts98" TIME_VALUE="630268"/>
+        <TIME_SLOT TIME_SLOT_ID="ts99" TIME_VALUE="631621"/>
+        <TIME_SLOT TIME_SLOT_ID="ts100" TIME_VALUE="631634"/>
+        <TIME_SLOT TIME_SLOT_ID="ts101" TIME_VALUE="631634"/>
+        <TIME_SLOT TIME_SLOT_ID="ts102" TIME_VALUE="653034"/>
+        <TIME_SLOT TIME_SLOT_ID="ts103" TIME_VALUE="653034"/>
+        <TIME_SLOT TIME_SLOT_ID="ts104" TIME_VALUE="653047"/>
+        <TIME_SLOT TIME_SLOT_ID="ts105" TIME_VALUE="655634"/>
+        <TIME_SLOT TIME_SLOT_ID="ts106" TIME_VALUE="655634"/>
+        <TIME_SLOT TIME_SLOT_ID="ts107" TIME_VALUE="655634"/>
+        <TIME_SLOT TIME_SLOT_ID="ts108" TIME_VALUE="676680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts109" TIME_VALUE="676680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts110" TIME_VALUE="676680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts111" TIME_VALUE="676680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts112" TIME_VALUE="704490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts113" TIME_VALUE="704490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts114" TIME_VALUE="706100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts115" TIME_VALUE="706100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts116" TIME_VALUE="743880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts117" TIME_VALUE="743880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts118" TIME_VALUE="745380"/>
+        <TIME_SLOT TIME_SLOT_ID="ts119" TIME_VALUE="745380"/>
+        <TIME_SLOT TIME_SLOT_ID="ts120" TIME_VALUE="807790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts121" TIME_VALUE="807790"/>
+        <TIME_SLOT TIME_SLOT_ID="ts122" TIME_VALUE="808930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts123" TIME_VALUE="808930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts124" TIME_VALUE="857970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts125" TIME_VALUE="857970"/>
+        <TIME_SLOT TIME_SLOT_ID="ts126" TIME_VALUE="859248"/>
+        <TIME_SLOT TIME_SLOT_ID="ts127" TIME_VALUE="859250"/>
+        <TIME_SLOT TIME_SLOT_ID="ts128" TIME_VALUE="861650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts129" TIME_VALUE="861651"/>
+        <TIME_SLOT TIME_SLOT_ID="ts130" TIME_VALUE="862049"/>
+        <TIME_SLOT TIME_SLOT_ID="ts131" TIME_VALUE="862551"/>
+        <TIME_SLOT TIME_SLOT_ID="ts132" TIME_VALUE="862560"/>
+        <TIME_SLOT TIME_SLOT_ID="ts133" TIME_VALUE="862951"/>
+        <TIME_SLOT TIME_SLOT_ID="ts134" TIME_VALUE="950300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts135" TIME_VALUE="950300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts136" TIME_VALUE="950570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts137" TIME_VALUE="950570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts138" TIME_VALUE="989940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts139" TIME_VALUE="989940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts140" TIME_VALUE="990900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts141" TIME_VALUE="990900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts142" TIME_VALUE="1045570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts143" TIME_VALUE="1045570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts144" TIME_VALUE="1047110"/>
+        <TIME_SLOT TIME_SLOT_ID="ts145" TIME_VALUE="1047110"/>
+        <TIME_SLOT TIME_SLOT_ID="ts146" TIME_VALUE="1086580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts147" TIME_VALUE="1086580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts148" TIME_VALUE="1087470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts149" TIME_VALUE="1087470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts150" TIME_VALUE="1111119"/>
+        <TIME_SLOT TIME_SLOT_ID="ts151" TIME_VALUE="1111119"/>
+        <TIME_SLOT TIME_SLOT_ID="ts152" TIME_VALUE="1111119"/>
+        <TIME_SLOT TIME_SLOT_ID="ts153" TIME_VALUE="1111119"/>
+        <TIME_SLOT TIME_SLOT_ID="ts154" TIME_VALUE="1119642"/>
+        <TIME_SLOT TIME_SLOT_ID="ts155" TIME_VALUE="1119642"/>
+        <TIME_SLOT TIME_SLOT_ID="ts156" TIME_VALUE="1119716"/>
+        <TIME_SLOT TIME_SLOT_ID="ts157" TIME_VALUE="1119716"/>
+        <TIME_SLOT TIME_SLOT_ID="ts158" TIME_VALUE="1127530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts159" TIME_VALUE="1127530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts160" TIME_VALUE="1127530"/>
+    </TIME_ORDER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="SPEAKER_00">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
+                TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts5">
+                <ANNOTATION_VALUE>Today, we're talking about positive communication skills. We have a very special guest, Dr. Julien Mirivel. So, let's get into the details.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2"
+                TIME_SLOT_REF1="ts8" TIME_SLOT_REF2="ts25">
+                <ANNOTATION_VALUE>Hey there, welcome back. Alex Lyon here. And today we have a very special guest, Dr. Julian Miravelle. He's professor and interim dean at the University of Arkansas Little Rock, he's here to talk to us today about positive communication skills. And you could say, he wrote the book on it. "The Art of Positive Communication". It's available on Amazon. It's a real pleasure to have him here talking to us today. And he's also a really good friend of mine. So please welcome Dr. Julien Mirivel. How are you doing, my old friend?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
+                TIME_SLOT_REF1="ts28" TIME_SLOT_REF2="ts34">
+                <ANNOTATION_VALUE>Thanks for being here. I really appreciate it. I'm glad we finally got you on the channel. So, let's jump right in. How did you first become interested in positive communication and how did this model come about?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9"
+                TIME_SLOT_REF1="ts38" TIME_SLOT_REF2="ts44">
+                <ANNOTATION_VALUE>Wonderful. And this model. Has six part see, six key communication skills or what you call critical behaviors. So let's go through all six for our viewers. The first one is the importance of greeting people. What is so important about greeting one another?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a13"
+                TIME_SLOT_REF1="ts50" TIME_SLOT_REF2="ts52">
+                <ANNOTATION_VALUE>Yeah, I've noticed that myself. If I'm meeting up with somebody or if I bump into somebody, if the greeting is a little off, if it doesn't have that positive connection, it really sets the strange tone for the rest of the conversation.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a15"
+                TIME_SLOT_REF1="ts58" TIME_SLOT_REF2="ts62">
+                <ANNOTATION_VALUE>Excellent. All right, so start with a good, strong greeting, a warm greeting, a greeting that presses in and connects with the other people. So, behavior number two is about asking good questions. So, what kinds of questions really build relationships?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a17"
+                TIME_SLOT_REF1="ts64" TIME_SLOT_REF2="ts68">
+                <ANNOTATION_VALUE>So those open-ended questions might start with how or what and it invites people to share more detail and literally open the conversation rather than the closed-ended question sort of shutting that question down really quickly and not really inviting much detail. A yes or no question doesn't invite much detail. It doesn't lead to those warm positive relationship building moments.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a19"
+                TIME_SLOT_REF1="ts74" TIME_SLOT_REF2="ts76">
+                <ANNOTATION_VALUE>Excellent. And number three, another aspect of positive communication is helping people to feel good about themselves. So how can our viewers make other people feel good about themselves?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a21"
+                TIME_SLOT_REF1="ts82" TIME_SLOT_REF2="ts84">
+                <ANNOTATION_VALUE>That's wonderful. So along the same lines, how can our viewers create more closeness with other people?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a23"
+                TIME_SLOT_REF1="ts90" TIME_SLOT_REF2="ts95">
+                <ANNOTATION_VALUE>Yeah, and I got to say, you practice what you preach when you send me texts, you say, hey, I've been thinking about you, and you really do that well. And what it does is it frees me up to reciprocate. It creates room for me to be authentic in return. And then you do feel closer. You know, I can't tell you how many times you've said, hey, man, just thinking about you, miss you, looking forward to talking soon. And if I'm like hanging out with my wife, Erin, I'll say, oh, Julien was just saying this nice thing isn't that great and it really does create that bond of closeness so i do appreciate that and you you're not just writing about [overlap] it in a book you've lived it</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a128"
+                TIME_SLOT_REF1="ts96" TIME_SLOT_REF2="ts99">
+                <ANNOTATION_VALUE>Yeah, sure</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a131"
+                TIME_SLOT_REF1="ts102" TIME_SLOT_REF2="ts106">
+                <ANNOTATION_VALUE>[laugh]</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a26"
+                TIME_SLOT_REF1="ts108" TIME_SLOT_REF2="ts112">
+                <ANNOTATION_VALUE>Right. Yeah, there's a little risk involved in expressing closeness, but more I find more often than not, if you're around the right people to begin with, they do appreciate that and they handle it pretty well. They may not know how to do it back yet, but you're leading by example, by trying. So number five in the model is about when people are not so we're not always feeling great. Sometimes we're struggling, right? So what's the best way to communicate when people are feeling down?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a31"
+                TIME_SLOT_REF1="ts122" TIME_SLOT_REF2="ts124">
+                <ANNOTATION_VALUE>Yeah, I like how you emphasize this. It can be almost anything. You don't have to say the perfect statement or the thing that is so deep and so profound. It can just be your way. Almost anything you say to say you're there for them shows them that you are in it with them, that if they want to say more, just knowing you're available for that is a huge encouragement to them. You don't have to solve their problem with the perfect expression. Just any, just trying to begin with is a great move in the right direction when people are down. So number six, we can't get away from this without talking about listening. It's a huge part of good communication. So what are some easy ways that we can overcome those common listening barriers?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a132"
+                TIME_SLOT_REF1="ts130" TIME_SLOT_REF2="ts133">
+                <ANNOTATION_VALUE>Yeah</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a35"
+                TIME_SLOT_REF1="ts136" TIME_SLOT_REF2="ts138">
+                <ANNOTATION_VALUE>Yeah. And I really like the opening up. The physical gesture of opening your hands is more than just a physical gesture. It is, it puts you in the state of mind of being open. And also, I like how you said you don't have to agree. Being willing to listen does not mean you're agreeing with the person. You're just becoming a better listener. And you might just learn something. You may not agree, but at least you appreciate where they're coming from at a deeper level and they're going to feel more heard. And that creates a bond as well, even over a difficult conversation. They feel respected. They feel valued when you really listen.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a36"
+                TIME_SLOT_REF1="ts140" TIME_SLOT_REF2="ts142">
+                <ANNOTATION_VALUE>Yeah, I mean you're absolutely right. And I think and I really think this is the magic actually of communication and learning communication is when you have the right technique, it can really get the knot out of relationship, right? Because sometimes we have these knots with people and we can't seem to get out of them. [Right] But listening is one of those things that's gonna unloosen those knots. And I kind of want to share this story because I was working with somebody. Uh for three years and we now have this amazing uh professional relationship but also kind of friendship and in fact tonight I'll be going to her house bringing my children but three years ago it wasn't like this that that connection wasn't quite like this and what really solved our knots professionally and later on personally was doing a very simple exercise. I just said what do you need from me?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a38"
+                TIME_SLOT_REF1="ts144" TIME_SLOT_REF2="ts146">
+                <ANNOTATION_VALUE>And then to reciprocate this. So for her to say, you know, what do I need from you? And what do I need from you? And to be able to listen to one another's needs changed the relationship drastically. Because I was able to voice, you know, I need this from this professional relationship. And she was able to say, I really need this, and forced to slow down. And to hear that [mmh] and then to try to work on meeting those needs really, uh, really changed, really changed a lot in our connection. So it's called What I Need From You as an exercise can be really, really meaningful.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a40"
+                TIME_SLOT_REF1="ts148" TIME_SLOT_REF2="ts152">
+                <ANNOTATION_VALUE>Awesome. Thank you so much, Julien. So let's tell people again, they can get your book on Amazon, The Art of Positive Communication. They can find your website at julienmirivel.com and your TEDx talk is on YouTube. I will put links to all of those resources in the description below this video. Julien, thank you so much, my friend, for being with us today. It was a real treat.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a41"
+                TIME_SLOT_REF1="ts153" TIME_SLOT_REF2="ts155">
+                <ANNOTATION_VALUE>Thank you so much for having me it's my pleasure to share this moment with you and [music] all of your subscribers, and really appreciate the opportunity in the moment.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a42"
+                TIME_SLOT_REF1="ts157" TIME_SLOT_REF2="ts158">
+                <ANNOTATION_VALUE>Thanks. And if this is the first time you're watching this channel, Communication Coach, we have a lot more videos. So feel free to check out the channel. Take care.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="category">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a43"
+                TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a127"
+                TIME_SLOT_REF1="ts4" TIME_SLOT_REF2="ts11">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a44"
+                TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts15">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a45"
+                TIME_SLOT_REF1="ts14" TIME_SLOT_REF2="ts17">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a46"
+                TIME_SLOT_REF1="ts16" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a47"
+                TIME_SLOT_REF1="ts22" TIME_SLOT_REF2="ts40">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a52"
+                TIME_SLOT_REF1="ts41" TIME_SLOT_REF2="ts42">
+                <ANNOTATION_VALUE>other</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a53"
+                TIME_SLOT_REF1="ts43" TIME_SLOT_REF2="ts160">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="speaker">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a85"
+                TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts7">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a86"
+                TIME_SLOT_REF1="ts10" TIME_SLOT_REF2="ts13">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a87"
+                TIME_SLOT_REF1="ts12" TIME_SLOT_REF2="ts18">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a88"
+                TIME_SLOT_REF1="ts19" TIME_SLOT_REF2="ts21">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a89"
+                TIME_SLOT_REF1="ts23" TIME_SLOT_REF2="ts24">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a90"
+                TIME_SLOT_REF1="ts27" TIME_SLOT_REF2="ts29">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a91"
+                TIME_SLOT_REF1="ts30" TIME_SLOT_REF2="ts32">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a92"
+                TIME_SLOT_REF1="ts33" TIME_SLOT_REF2="ts36">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a93"
+                TIME_SLOT_REF1="ts39" TIME_SLOT_REF2="ts45">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a96"
+                TIME_SLOT_REF1="ts46" TIME_SLOT_REF2="ts48">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a97"
+                TIME_SLOT_REF1="ts51" TIME_SLOT_REF2="ts53">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a98"
+                TIME_SLOT_REF1="ts54" TIME_SLOT_REF2="ts56">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a99"
+                TIME_SLOT_REF1="ts59" TIME_SLOT_REF2="ts60">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a100"
+                TIME_SLOT_REF1="ts61" TIME_SLOT_REF2="ts65">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a101"
+                TIME_SLOT_REF1="ts66" TIME_SLOT_REF2="ts69">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a102"
+                TIME_SLOT_REF1="ts70" TIME_SLOT_REF2="ts72">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a103"
+                TIME_SLOT_REF1="ts75" TIME_SLOT_REF2="ts77">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a104"
+                TIME_SLOT_REF1="ts78" TIME_SLOT_REF2="ts80">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a105"
+                TIME_SLOT_REF1="ts83" TIME_SLOT_REF2="ts85">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a106"
+                TIME_SLOT_REF1="ts86" TIME_SLOT_REF2="ts88">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a107"
+                TIME_SLOT_REF1="ts91" TIME_SLOT_REF2="ts92">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a108"
+                TIME_SLOT_REF1="ts93" TIME_SLOT_REF2="ts98">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a129"
+                TIME_SLOT_REF1="ts97" TIME_SLOT_REF2="ts101">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a109"
+                TIME_SLOT_REF1="ts100" TIME_SLOT_REF2="ts109">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a110"
+                TIME_SLOT_REF1="ts110" TIME_SLOT_REF2="ts113">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a111"
+                TIME_SLOT_REF1="ts114" TIME_SLOT_REF2="ts116">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a112"
+                TIME_SLOT_REF1="ts118" TIME_SLOT_REF2="ts120">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a115"
+                TIME_SLOT_REF1="ts123" TIME_SLOT_REF2="ts125">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a116"
+                TIME_SLOT_REF1="ts127" TIME_SLOT_REF2="ts128">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a133"
+                TIME_SLOT_REF1="ts129" TIME_SLOT_REF2="ts131">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a117"
+                TIME_SLOT_REF1="ts132" TIME_SLOT_REF2="ts134">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a119"
+                TIME_SLOT_REF1="ts137" TIME_SLOT_REF2="ts139">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a120"
+                TIME_SLOT_REF1="ts141" TIME_SLOT_REF2="ts143">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a122"
+                TIME_SLOT_REF1="ts145" TIME_SLOT_REF2="ts147">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a124"
+                TIME_SLOT_REF1="ts149" TIME_SLOT_REF2="ts150">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a125"
+                TIME_SLOT_REF1="ts151" TIME_SLOT_REF2="ts154">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a126"
+                TIME_SLOT_REF1="ts156" TIME_SLOT_REF2="ts159">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="SPEAKER_01">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a134"
+                TIME_SLOT_REF1="ts26" TIME_SLOT_REF2="ts31">
+                <ANNOTATION_VALUE>I am doing fantastic. It's so good to be able to spend some time with you and all of your subscribers. Glad to share the moment. I'm looking forward to this conversation with you.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a135"
+                TIME_SLOT_REF1="ts35" TIME_SLOT_REF2="ts37">
+                <ANNOTATION_VALUE>Okay. You know, my whole passion with communications has always been about how, it's a big question, and I want people thinking about that question. What does it look like when we communicate at our best? So the first thing really was not about positive communication, it was really about a fundamental question. What does it look like when we communicate at our best? What does it look like when we communicate at our peak? What behaviors exemplify what we're capable of doing in most of our social life with our parents, with our family, with our friends, at work, at home, with our kids, and I really wanted to know what are some of the small behaviors that we have control over that can make a big difference in all of those relationships. So it really all started with big questions about the nature of excellence, the nature of ethical communication, and what it takes small concrete behaviors that all of us can practice that are going to help us create positive relationships.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a136"
+                TIME_SLOT_REF1="ts47" TIME_SLOT_REF2="ts49">
+                <ANNOTATION_VALUE>You know, the reason why greetings are so important is because they literally are at the opening of every conversation we have with other people. So it's the starting point of every relationship, the starting point of every friendship, of every loving, romantic relationship we have. Even in the morning, if you've got children, you know, one of the first things that takes place is your kids, you know, greet you, they come to see you. And so greetings are at the really starting point of how relationships happen. And I find them to be really, greetings are really critical because of the functions that they serve in these early, early points.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a137"
+                TIME_SLOT_REF1="ts55" TIME_SLOT_REF2="ts57">
+                <ANNOTATION_VALUE>Yeah, so the behavior is really about, and in the model, I talk about it as something that is an encouragement to kind of to move in towards people, because greeting is the opening up of connection, and it serves the really critical functions of creating the beginnings of our relationships, right? And we feel it when it's absent. So what is the first thing that's going to disappear when people have a conflict is they're not going to want to greet each other. They're going to want to separate. So greeting is kind of the opening up of that bridge, opening up of that connection almost anywhere in the world. Every culture we've ever studied, people have greeting sequences in place. You know, in France, it's a couple kisses on the cheeks. In Saudi Arabia, it's Asalamu alaikum. Peace be upon you. If you go to China, it's Nihao. Beautiful greeting if you go to India, Namaste. You know, I see the light in you. And I start this interaction with the fact that you have character. So I find that greetings are really important and a point of emphasis because all of us have the ability to greet, not always in all languages, but we can certainly learn how to move in. And we can learn to write the opening of emails with a warm tone. We have that capacity. So it only becomes a point of intention.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a138"
+                TIME_SLOT_REF1="ts63" TIME_SLOT_REF2="ts67">
+                <ANNOTATION_VALUE>Okay, so the question that people that I like to talk to people about is being able to learn how to flip your questions. So maybe I can give you a contrasting example. You know, you're coming to work in the morning, you're walking through the hallway, and the first inclination, as it would be for me, is I see my staff or I see people I work with them like, did you have a good weekend? And you'll notice here that the only answer is yes or no. It's a closing off of the encounter. We call those questions closing it questions. But I could just do the same thing. I could walk in and say hello to some of my staff and I could say, hey, what did you do this weekend? And it's a small change. But now when I say, what did you do this weekend? I'm actually putting myself in a position of curiosity. I want to discover what went on in that person's life. So asking questions in the way of kind of doing it positively is making that shift from closed-ended to open-ended so that you can open up a little bit more of that discovery of the other person.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a139"
+                TIME_SLOT_REF1="ts71" TIME_SLOT_REF2="ts73">
+                <ANNOTATION_VALUE>Yeah, and you can, I mean, anybody here can go home, you know, with their partner, their spouse, even their children, and you can test the difference. You can say, did you have a good day? And then just hear the response and probably you'll get something minimal. Yeah, it was not too bad. But if you ask, you know, what did you do during the day? Suddenly the answers, the possibilities are going to open up. And people won't always take you up on it. You know, it's not a law, but it's a guide. And when you make that transition, you notice that you are learning a lot more about people around you. And that connects you. That's where the connection is, it's in the discovery and the learning about the other people.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a140"
+                TIME_SLOT_REF1="ts79" TIME_SLOT_REF2="ts81">
+                <ANNOTATION_VALUE>You know it's, it's actually really simple. It's figuring out what are the good things, the strength, the things to celebrate about the people around you. It's really an other-oriented move. I am paying attention and you are paying attention to what is going well with the person that you're interacting with and being able to bring that to life. So complimenting is very simple. It's just celebrating that person's strength, that person's abilities to notice what you see in them that's going so well. And that's really all it takes is easy complimenting of that person and it helps to, you know, in our field, it helps to communicate to people who they are. It affects people. And that's the lesson that we know is we know communication affects people. So complimenting is the decision to kind of use communication in a way to bring people up, to celebrate their strength rather than say their weaknesses.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a141"
+                TIME_SLOT_REF1="ts87" TIME_SLOT_REF2="ts89">
+                <ANNOTATION_VALUE>So the way to create closeness, you know, in the kind of the fourth behavior of the model is really about disclosure. So we create intimacy, it's very simple. We create intimacy with other people by revealing who we are. And the more intimacy we feel, typically it's because we've been, we've had the courage and the willingness to get into that relationship and say, this is really who I am. You know, this is really what I'm thinking. This is really my values. This is what I believe in. And the more we can shed away the kind of the masks, the way we pretend to be, the more we can really connect. You know, an easy way to think about this is to think, I like to kind of share people, okay, today, like right now, you could just text someone, you could email someone, you could call someone and just tell them, you know, I'm thinking of you and I'm just really grateful for you. I'm grateful to have you in my life. And you'll notice if you do that, it takes a little bit of vulnerability, right? There's a little bit of a thing that you have to overcome. But the beautiful part of that easy thing is once you express the gratitude, that's going to necessarily impress the closeness that you have with that person. It's going to help you deepen that relationship.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a142"
+                TIME_SLOT_REF1="ts94" TIME_SLOT_REF2="ts103">
+                <ANNOTATION_VALUE>[laugh] Yeah, we try we try to do it. Can I just share a quick story here? I once asked people in an audience that I love, I asked people in an audience, like 300 people, to say, to do that exercise. So we're in a room, everybody is sending these beautiful messages of gratitude, 300 beautiful messages of gratitude into the world. And then somebody raises their hand and they're like, I got an answer. I got an answer. So I said, well, what did they say? And the response was, who the hell is this?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a144"
+                TIME_SLOT_REF1="ts104" TIME_SLOT_REF2="ts105">
+                <ANNOTATION_VALUE>[laugh]</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a145"
+                TIME_SLOT_REF1="ts107" TIME_SLOT_REF2="ts111">
+                <ANNOTATION_VALUE>And so I want people to know: you know, it's not always going to be reciprocated, and people may be confused by that move, but it is positive communication to have the courage to send that text and to say to that person, I'm grateful for you, and I love you, and I miss you, and I value that connection, I value that relationship.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a146"
+                TIME_SLOT_REF1="ts115" TIME_SLOT_REF2="ts117">
+                <ANNOTATION_VALUE>You know, the first thing I will say here for people, it really is hard. Sometimes we feel like we don't have the skills to help people and to say and communicate the right thing at the right time. You know, that's a pretty common human experience. Somebody is not feeling good and we want to help them and we don't know what to say. But the research that we've done does show us that the best thing we can do is to have the willingness to even just put a few words together to encourage that person. So even to be able to say, hey, I'm here with you.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a147"
+                TIME_SLOT_REF1="ts119" TIME_SLOT_REF2="ts121">
+                <ANNOTATION_VALUE>You know, I don't know what to do, but I'm here with you and I stand by you. And you're going to overcome this. And we're going to do it together. You can see suddenly the words start to add up, you know, about what the possibilities are. But what our research has shown us is that when people make that move, when they take a little bit of moment to say, you know, I was thinking of you and I'm here for you and I think you have a bright future ahead of you, whatever the encouragement might be, those conversations stick in that person's mind literally forever. You know, our conversations have an afterlife. So what we're doing is. Once we speak the words, it stays in that person's mind and two years down the road, five years down the road, ten years down the road, people can come back to it. They can relive that moment, they can feel the strength out of that statement. [mmh] And you can take any ordinary conversation, any simple phrase can become an extraordinary moment for somebody who is not doing well at that time.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a148"
+                TIME_SLOT_REF1="ts126" TIME_SLOT_REF2="ts135">
+                <ANNOTATION_VALUE>Yeah. Listening is a is a tough cookie, you know? [laugh] I mean, you know, in the art of communication it's probably the the ultimate. And certainly, learning how to listen deeply to another person is a big challenge, especially when we disagree with them, right? If we feel like we have a stance that is opposite to them. So, it's very complicated, but I want to give one little tool, one little technique, because it does help to think about it very physically, right? When we don't want to listen, we tend to close off. So, like we close our hand, you know, we tend to close our heart, we tend to just kind of withdraw from the interaction. But listening is the exact opposite. So, it may be very helpful instead of thinking of a skill to think, let me just open up my hand here and see if I can receive what this person is telling me without judging it, without, you know, I don't have to agree with it, I just have to acknowledge it as part of that person's experience. And when you open your hand, you can see here, I'm leaning in, I'm already coming into the camera. So, that's a huge shift from I'm tightening up, I'm withdrawing to I'm opening my hand, I'm moving in. And I think that openness is what's gonna change that little bit, the dynamics that are gonna take place. So, when I think about listening, I always think first, can I open my hand and can I lean in instead of withdrawing, instead of fighting, either internally or externally?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="imported-sep" TIME_ALIGNABLE="true"/>
+    <CONSTRAINT
+        DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT
+        DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT
+        DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>

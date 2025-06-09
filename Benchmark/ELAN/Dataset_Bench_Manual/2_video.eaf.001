@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-06-04T10:44:12+01:00"
+    FORMAT="3.0" VERSION="3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR
+            MEDIA_URL="file:///D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/2_video.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../Dev/DMDC/V0DataSet/mp4/2_video.mp4"/>
+        <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:787e6e29-b3f0-456b-bffc-0ee7242625b8</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">62</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="30"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="30"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="30"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="50150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="50220"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="50265"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="50271"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="50271"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="50271"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="60730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="60730"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="62889"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="62889"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="64289"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="64289"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="64760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="64760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="85670"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="85670"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="87650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="87650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="193760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts23" TIME_VALUE="193760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts24" TIME_VALUE="193760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts25" TIME_VALUE="193760"/>
+        <TIME_SLOT TIME_SLOT_ID="ts26" TIME_VALUE="210530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts27" TIME_VALUE="210530"/>
+        <TIME_SLOT TIME_SLOT_ID="ts28" TIME_VALUE="212660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts29" TIME_VALUE="212660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts30" TIME_VALUE="230370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts31" TIME_VALUE="230370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts32" TIME_VALUE="230370"/>
+        <TIME_SLOT TIME_SLOT_ID="ts33" TIME_VALUE="231980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts34" TIME_VALUE="231980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts35" TIME_VALUE="232640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts36" TIME_VALUE="234170"/>
+        <TIME_SLOT TIME_SLOT_ID="ts37" TIME_VALUE="234170"/>
+        <TIME_SLOT TIME_SLOT_ID="ts38" TIME_VALUE="239390"/>
+        <TIME_SLOT TIME_SLOT_ID="ts39" TIME_VALUE="239390"/>
+        <TIME_SLOT TIME_SLOT_ID="ts40" TIME_VALUE="239390"/>
+        <TIME_SLOT TIME_SLOT_ID="ts41" TIME_VALUE="241660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts42" TIME_VALUE="251230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts43" TIME_VALUE="251230"/>
+        <TIME_SLOT TIME_SLOT_ID="ts44" TIME_VALUE="253000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts45" TIME_VALUE="253000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts46" TIME_VALUE="286570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts47" TIME_VALUE="286570"/>
+        <TIME_SLOT TIME_SLOT_ID="ts48" TIME_VALUE="286770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts49" TIME_VALUE="286770"/>
+        <TIME_SLOT TIME_SLOT_ID="ts50" TIME_VALUE="311610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts51" TIME_VALUE="311610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts52" TIME_VALUE="313550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts53" TIME_VALUE="313550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts54" TIME_VALUE="390590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts55" TIME_VALUE="390590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts56" TIME_VALUE="390590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts57" TIME_VALUE="390590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts58" TIME_VALUE="400640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts59" TIME_VALUE="400640"/>
+        <TIME_SLOT TIME_SLOT_ID="ts60" TIME_VALUE="403040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts61" TIME_VALUE="403040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts62" TIME_VALUE="445480"/>
+        <TIME_SLOT TIME_SLOT_ID="ts63" TIME_VALUE="445480"/>
+        <TIME_SLOT TIME_SLOT_ID="ts64" TIME_VALUE="445480"/>
+        <TIME_SLOT TIME_SLOT_ID="ts65" TIME_VALUE="445480"/>
+        <TIME_SLOT TIME_SLOT_ID="ts66" TIME_VALUE="468950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts67" TIME_VALUE="468950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts68" TIME_VALUE="470540"/>
+        <TIME_SLOT TIME_SLOT_ID="ts69" TIME_VALUE="470540"/>
+        <TIME_SLOT TIME_SLOT_ID="ts70" TIME_VALUE="505960"/>
+        <TIME_SLOT TIME_SLOT_ID="ts71" TIME_VALUE="505960"/>
+        <TIME_SLOT TIME_SLOT_ID="ts72" TIME_VALUE="506940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts73" TIME_VALUE="506940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts74" TIME_VALUE="521150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts75" TIME_VALUE="521150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts76" TIME_VALUE="521150"/>
+    </TIME_ORDER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="SPEAKER_00">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
+                TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts4">
+                <ANNOTATION_VALUE>The president today signed the relief bill and invoked the Defense Production Act. That's from the 50s, wartime. It allows for government to ramp up production and address shortages. But then he said in a tweet not long after he may not be exercising those powers just yet, only in a worst case scenario. Well, what's worse than knowing what we do right now is that we don't have what we need to fight this. CNN has obtained a contingency plan by the Trump administration for the possibility that this pandemic could flare for 18 months or longer and include multiple waves of illness. 15 days, 18 months, which is it? Again, we are lucky to have Dr. Anthony Fauci back.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2"
+                TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts10">
+                <ANNOTATION_VALUE>With us, Director of the National Institute of Allergy and Infectious Diseases. I don't know where you're getting the energy from, Doctor, but thank you for being with us tonight. It's an important night.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a53"
+                TIME_SLOT_REF1="ts17" TIME_SLOT_REF2="ts19">
+                <ANNOTATION_VALUE>So doctor, the idea of we understand that you can't know definitively how long anything takes here, but it's jarring to hear the President or anybody say, it's not about politics, this is going to be a couple of weeks and then we'll see, maybe July, and then hear about a plan for 18 months. What can you tell the American people?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5"
+                TIME_SLOT_REF1="ts22" TIME_SLOT_REF2="ts26">
+                <ANNOTATION_VALUE>Right, and there are a lot of variables at play. I get it. I just wanted to hear it from you because you know hearing it from politicians is one thing. Hearing it from you is something else. I'll hear you. I'll let the audience decide. Quickly, is it true that you guys are starting to get a better feel for some drugs that you think may be able to help treat some of the worst cases?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
+                TIME_SLOT_REF1="ts30" TIME_SLOT_REF2="ts33">
+                <ANNOTATION_VALUE>[Overlap] Can you fast track the FDA?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9"
+                TIME_SLOT_REF1="ts38" TIME_SLOT_REF2="ts42">
+                <ANNOTATION_VALUE>[Overlap] So if you've got a good basis to try it, you'll be able to try it. Because I had been hearing they were going to be snags and they were afraid of what drugs you'd expose people to. But I mean, if they're in a life or death situation, it's like you might as well throw everything at it.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a11"
+                TIME_SLOT_REF1="ts48" TIME_SLOT_REF2="ts50">
+                <ANNOTATION_VALUE>Now young people, they've been nonchalant about some of this, some of them, some of them, let's not generalize, but young people had been given the impression that if I get this, I'm going to be okay. So some of the social isolation seems a little overblown for them. Let's leave it for the old folks. Now we're hearing about cases of young people getting hit hard abroad and here at home, being in extreme distress with cases. What changed?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a13"
+                TIME_SLOT_REF1="ts54" TIME_SLOT_REF2="ts58">
+                <ANNOTATION_VALUE>A couple more quick things and then I'll let you go. I know how busy you are. First, this new understanding of how long it lives on surfaces. Do you have a new understanding and does it inform on what we need to do?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a15"
+                TIME_SLOT_REF1="ts62" TIME_SLOT_REF2="ts66">
+                <ANNOTATION_VALUE>Absolutely, we got it: "Happy birthday" two times in a row, soap and water, dry them off. I got it. Now, something I keep hearing from people that I wanted you to address directly, Tony, Dr. Fauci, is, you know, swine flu, 61 million Americans were affected, 12,000 people died. We didn't do all this crazy stuff with the economy. Why? Why are we doing it all now when we didn't do it then? What's your answer?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a17"
+                TIME_SLOT_REF1="ts72" TIME_SLOT_REF2="ts74">
+                <ANNOTATION_VALUE>Dr. Tony Fauci, I know how, uh you know, busy you are. I can't tell you, I know you're in the bubble, but I can't tell you how many Americans are looking up to the information you're giving them, the consistency you're providing, and it means everything to us on this show. Thank you, sir.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="category">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a18"
+                TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts7">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a19"
+                TIME_SLOT_REF1="ts8" TIME_SLOT_REF2="ts76">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="speaker">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a35"
+                TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a36"
+                TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts11">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a54"
+                TIME_SLOT_REF1="ts12" TIME_SLOT_REF2="ts14">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a37"
+                TIME_SLOT_REF1="ts16" TIME_SLOT_REF2="ts18">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a38"
+                TIME_SLOT_REF1="ts20" TIME_SLOT_REF2="ts23">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a39"
+                TIME_SLOT_REF1="ts24" TIME_SLOT_REF2="ts27">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a40"
+                TIME_SLOT_REF1="ts28" TIME_SLOT_REF2="ts31">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a41"
+                TIME_SLOT_REF1="ts32" TIME_SLOT_REF2="ts34">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a42"
+                TIME_SLOT_REF1="ts36" TIME_SLOT_REF2="ts39">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a43"
+                TIME_SLOT_REF1="ts40" TIME_SLOT_REF2="ts43">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a44"
+                TIME_SLOT_REF1="ts44" TIME_SLOT_REF2="ts46">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a45"
+                TIME_SLOT_REF1="ts49" TIME_SLOT_REF2="ts51">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a46"
+                TIME_SLOT_REF1="ts52" TIME_SLOT_REF2="ts55">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a47"
+                TIME_SLOT_REF1="ts56" TIME_SLOT_REF2="ts59">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a48"
+                TIME_SLOT_REF1="ts60" TIME_SLOT_REF2="ts63">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a49"
+                TIME_SLOT_REF1="ts64" TIME_SLOT_REF2="ts67">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a50"
+                TIME_SLOT_REF1="ts68" TIME_SLOT_REF2="ts70">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a51"
+                TIME_SLOT_REF1="ts73" TIME_SLOT_REF2="ts75">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="SPEAKER_01">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a55"
+                TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts15">
+                <ANNOTATION_VALUE>Good to be with you Chris.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a56"
+                TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts25">
+                <ANNOTATION_VALUE>Well, all of that is not incompatible with each of the things that were said. As I've told you before, Chris, when you have an outbreak like this, if you look historically and what has happened more recently in China and in South Korea and now it's going on in a very dramatic way in Europe, you have the outbreak goes like this, and then it spares up like this, and then after a while it goes down. If it's left to its own devices, you'll get the maximum peak, a lot of suffering, a lot of illness, a lot of death. What our responsibility is, and what we are doing very, very vigorously right now, is to put into play the kinds of things that would blunt that curve. I've said that many, many times [right]. But when you blunt the curve by modifying society, particularly with the rather dramatic physical separations, which people call social distancing, you can blunt it, but it is unlikely that you're going to make it completely disappear. If we're lucky, it will happen. But what more likely would happen is that we do this, go down, and if it's still around, we'd have to deal with it next season. That's the challenging issue. The good news about that, that will give us time to test and prove whether drugs are safe and effective. And as I've told you many times, the vaccine, whose trial we started just a couple of days ago, in a year to a year and a half, we should know whether we're ready to go. And that's not the only candidate. So it is not untrue that in 18 months or next season, we may see another flare, but we'd be much better prepared than we are right now.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a57"
+                TIME_SLOT_REF1="ts29" TIME_SLOT_REF2="ts35">
+                <ANNOTATION_VALUE>Yeah yes, the answer to that is yes when you say a better feel, but no definitive proof yet, Chris, and that's important. There are anecdotal reports that there are a number of drugs that are already out there that we're repurposing, drugs that have been used for other diseases. [inaudible] and it totally reported.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a58"
+                TIME_SLOT_REF1="ts37" TIME_SLOT_REF2="ts41">
+                <ANNOTATION_VALUE>Oh yes, I mean the FDA is totally on board with this now. I was on the phone like a half an hour ago. With the FDA commissioner..</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a59"
+                TIME_SLOT_REF1="ts45" TIME_SLOT_REF2="ts47">
+                <ANNOTATION_VALUE>Yeah but Chris, if you do it in a protocol, you can you know there's a balance between just throwing the drug out there, which is not a good idea, but you don't want to make it unavailable to people. So what you do is you do a bit of a compromise. You do it under the auspices of a protocol so that you could make it very heavily available, but at the same time you're learning something. You're learning how safe it is and does it really work. We need to do both. We need to make it available at the same time as we learn whether or not it really works and whether it's safe.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a60"
+                TIME_SLOT_REF1="ts53" TIME_SLOT_REF2="ts57">
+                <ANNOTATION_VALUE>Well, nothing has changed except we learn more and more. Again, remember, Chris, a couple of times ago when I was on your show, I told you this is a work in motion. It's evolving. Every day we learn more and more. And when you see reports from other countries, and now even in our own country, you realize there are things you didn't fully appreciate. But getting back to young people, there are two reasons why young people need to take this very seriously. One, you yourself can be in harm's way. I mean, obviously, most of the difficulties are in people who are older and or who have underlying conditions. And many of the young people who have actually gotten into trouble did have underlying conditions. But you're not out of danger. But even as important is that you have a responsibility, a societal responsibility to protect the vulnerable. And you do that, interestingly, by not letting yourself get infected. Because you need to make sure that you don't inadvertently pass on the infection to someone who would not fare as well as you fare because you're young and healthy. So there's two pillars to that, yourself and your responsibility to society.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a61"
+                TIME_SLOT_REF1="ts61" TIME_SLOT_REF2="ts65">
+                <ANNOTATION_VALUE>Yes, I mean a study from my own group at my institute was done to show that if you do different surfaces and you look at the titer or the level of virus that's viable, that's culturable, that's dangerous, over a period of time, depending on the surface, it can be anywhere from a few hours to in some places, even a day or so. Now, that day or so may actually be so low it's not going to hurt you, but you don't want to take any chances, which is the reason why you want to make sure that you do clean off surfaces that are commonly used. But more important than all of that, I've said it many times, Chris, make sure you wash your hands as often as you possibly can.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a62"
+                TIME_SLOT_REF1="ts69" TIME_SLOT_REF2="ts71">
+                <ANNOTATION_VALUE>But Chris, this is different. This is totally different. The swine flu of 2009, the H1N1, was truly a pandemic. It spread widely. However, its lethality, its its its capability of causing really bad harm with morbidity and mortality was much, much less than what we have seen in China, of what we've seen in South Korea, what's going on in Europe, and what we're starting to see now in our own country. So there are worlds of difference between those two.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="imported-sep" TIME_ALIGNABLE="true"/>
+    <CONSTRAINT
+        DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT
+        DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT
+        DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>
