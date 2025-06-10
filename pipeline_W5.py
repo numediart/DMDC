@@ -2,7 +2,7 @@ from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, 
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release
+from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from formatAUSpeakerListener import format_all_clips
 from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
 from Whisper.transcriptFromAudio import transcriptFromAudio
@@ -156,16 +156,17 @@ def main_batch(video_list_file='videoV0.5.txt'):
             output_video = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video")
 
             if not clips_video_done:
-                print(f"[Info] Splitting video for video {idx}")
-                input_path_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
-                input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-                dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
+                # print(f"[Info] Splitting video for video {idx}")
+                # input_path_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
+                # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
+                # dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
+                print(f"[Splitting] Processing dyadic clips for video {idx}")
+                extract_dyadic_clips(str(idx))
+                print(f"[Splitting] Dyadic clips processing done")
             else:
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
             
-           
-
 
 
             #####################
@@ -178,7 +179,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             if not os.path.exists(output):
                 print(f"[AU] Processing AU")
                 os.makedirs(output, exist_ok=True)
-                clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video.mp4"
+                clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video"
                 openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
                 os.makedirs(openface_out_dir, exist_ok=True)
                 run_openface_on_all_clips(clips_dir, openface_out_dir)

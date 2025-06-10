@@ -20,7 +20,7 @@ FRAME_SKIP = 5
 FPS = 25
 MIN_DURATION_SEC = 3
 SEGMENTS_CSV = "segments/"
-CLIPS_DIR = "V0DataSet/clips_dyadic/"
+CLIPS_DIR = "V0.5DataSet/clips_video/"
 DEBUG_MODE = False  # Enable/disable debug display
 
 DISPLAY_DISABLE_LINUX=False
@@ -239,7 +239,8 @@ def load_segments_from_csv(csv_path=SEGMENTS_CSV):
 def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
     os.makedirs(output_dir, exist_ok=True)
     for i, (start, end) in enumerate(segments):
-        output_clip = os.path.join(output_dir, f"clip_{i+1:03d}.mp4")
+        output_clip = os.path.join(output_dir, f"{start}_to_{end}_segment.mp4")
+
         if os.path.exists(output_clip):
             print(f"[Filter/Info] Clip already exists, skipping: {output_clip}")
             continue
@@ -255,8 +256,8 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
 
 # --- Extract segments from a CSV ---
 def extract_dyadic_clips(video_id):
-    video_path = f"V0DataSet/mp4/{video_id}_video.mp4"
-    segment_path = f"V0DataSet/segments/{video_id}_segments.csv"
+    video_path = f"V0.5DataSet/mp4/{video_id}_video.mp4"
+    segment_path = f"V0.5DataSet/segments/{video_id}_segments.csv"
     output_dir = os.path.join(CLIPS_DIR, f"{video_id}_video")
     
     df = pd.read_csv(segment_path)

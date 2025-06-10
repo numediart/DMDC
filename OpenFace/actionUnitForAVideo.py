@@ -10,7 +10,7 @@ from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 import subprocess
 import pandas as pd
 
-TEMP_CLIPS_DIR = "V0DataSet/temp_clips"
+TEMP_CLIPS_DIR = "V0.5DataSet/temp_clips"
 
 # start_time_all_pross=time.time()
 
