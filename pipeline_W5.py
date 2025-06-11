@@ -12,6 +12,7 @@ import os
 import warnings
 import pandas as pd
 import glob
+import numpy as np
 import shutil
 import subprocess
 import platform
@@ -42,7 +43,7 @@ def split_csv_with_sliding_window(input_csv, output_dir, window_size_frames=64, 
     df = pd.read_csv(input_csv)
     total_frames = len(df)
     base_name = os.path.splitext(os.path.basename(input_csv))[0]
-
+    base_name_split= base_name.split("_")
     os.makedirs(output_dir, exist_ok=True)
     count = 0
     if 'frame' not in df.columns:
@@ -50,8 +51,8 @@ def split_csv_with_sliding_window(input_csv, output_dir, window_size_frames=64, 
     for start in range(0, total_frames - window_size_frames + 1, step_size_frames):
         end = start + window_size_frames
         window_df = df.iloc[start:end]
-        out_csv = os.path.join(output_dir, f"{base_name}_{df['frame'][start]}_{df['frame'][end-1]}_{count}_64frames_csv.csv")
-        window_df.to_csv(out_csv, index=False)
+        out_npy = os.path.join(output_dir, f"{str(int(base_name_split[0])+int(df['frame'][start]))}_to_{str(int(base_name_split[0])+int(df['frame'][end-1]))}_{count}_64frames.npy")
+        np.save(out_npy, window_df.to_numpy())
         count += 1
 
 def main_batch(video_list_file='videoV0.5.txt'):
@@ -276,14 +277,12 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 print(f"[Info] Splitting audio for video {idx}")
                 input_path_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
                 csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
-                for csv_file in glob.glob(os.path.join(csv_64frames_path, "*.csv")):
-                    csv_file_base = os.path.basename(csv_file)
-                    print(csv_file_base.split("_"))
-                    start_sec = float(csv_file_base.split("_")[0])  # start frame
-                    #end_sec = float(csv_file_base.split("_")[2])    # end frame
-                    start_frm = int(start_sec*30)+int(csv_file_base.split("_")[5])  # start frame
-                    end_frm =  int(start_sec*30)+ int(csv_file_base.split("_")[6])    # end frame
-                    print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {csv_file_base}")
+                for npy_file in glob.glob(os.path.join(csv_64frames_path, "*.npy")):
+                    npy_file_base = os.path.basename(npy_file)
+                    print(npy_file_base.split("_"))
+                    start_frm = int(npy_file_base.split("_")[0])
+                    end_frm =  int(npy_file_base.split("_")[2])
+                    print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {npy_file_base}")
                     extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
 
             else:

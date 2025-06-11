@@ -6,7 +6,7 @@ from pyannote.audio.pipelines.utils.hook import ProgressHook
 from csvToSubTiltle import csv_to_subtitle
 import time
 #Constants
-DATASET_FOLDER="V0.5DataSet"
+DATASET_FOLDER="V0.6DataSet"
 
 def run_diarization(filename,datasetName=DATASET_FOLDER):
     start_time = time.time()

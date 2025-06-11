@@ -141,8 +141,8 @@ def detect_who_speaking_from_clips(video_id, segments_csv_path, openface_dir, ou
 
     results = []
     for i, row in dyadic_segments.iterrows():
-        clip_name = f"{row['start_time']}_to_{row['end_time']}_segment.mp4"
-        au_csv_path = os.path.join(openface_dir, f"{row['start_time']}_to_{row['end_time']}_segment.csv")
+        clip_name = f"{int(row['start_time']*30)}_to_{int(row['end_time']*30)}_segment.mp4"
+        au_csv_path = os.path.join(openface_dir, f"{int(row['start_time']*30)}_to_{int(row['end_time']*30)}_segment.csv")
         speaker = row["speaker"]
         
         try:
