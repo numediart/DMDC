@@ -23,7 +23,8 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.5DataSet"
+DATASET_FOLDER="V0.6DataSet"
+VIDEO_TEXT_FILE="./videoV0.5test.txt"
 
 def get_diarization_csv(wav_path):
     base_filename = os.path.splitext(os.path.basename(wav_path))[0]  # e.g. "1_video"
@@ -323,4 +324,4 @@ def main_batch(video_list_file='videoV0.5.txt'):
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
 if __name__ == "__main__":
-    main_batch()
+    main_batch(VIDEO_TEXT_FILE)

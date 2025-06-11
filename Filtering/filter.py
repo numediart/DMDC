@@ -239,7 +239,7 @@ def load_segments_from_csv(csv_path=SEGMENTS_CSV):
 def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
     os.makedirs(output_dir, exist_ok=True)
     for i, (start, end) in enumerate(segments):
-        output_clip = os.path.join(output_dir, f"{start}_to_{end}_segment.mp4")
+        output_clip = os.path.join(output_dir, f"{int(start/30)}_to_{int(end/30)}_segment.mp4")
 
         if os.path.exists(output_clip):
             print(f"[Filter/Info] Clip already exists, skipping: {output_clip}")
