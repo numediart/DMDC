@@ -195,46 +195,46 @@ def main_batch(video_list_file='videoV0.txt'):
                     print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
-            #####################
-            # Split the video into dyadic clips
-            #####################
-            print(f"[Splitting] Processing dyadic clips for video {idx}")
-            extract_dyadic_clips(str(idx))
-            print(f"[Splitting] Dyadic clips processing done")
+            # #####################
+            # # Split the video into dyadic clips
+            # #####################
+            # print(f"[Splitting] Processing dyadic clips for video {idx}")
+            # extract_dyadic_clips(str(idx))
+            # print(f"[Splitting] Dyadic clips processing done")
 
-            #####################
-            # Openface Action Unit
-            #####################
-            print(f"[AU] Processing AU")
-            output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
-            if not os.path.exists(output):
-                os.makedirs(output, exist_ok=True)
-            clips_dir = f"V0DataSet/clips_dyadic/{idx}_video"
-            openface_out_dir = f"V0DataSet/openface_clips/{idx}_video"
-            os.makedirs(openface_out_dir, exist_ok=True)
-            run_openface_on_all_clips(clips_dir, openface_out_dir)
-            print(f"[AU] AU processing done")
+            # #####################
+            # # Openface Action Unit
+            # #####################
+            # print(f"[AU] Processing AU")
+            # output = os.path.join(os.path.dirname(__file__),'V0DataSet/output', f'{idx}_video')
+            # if not os.path.exists(output):
+            #     os.makedirs(output, exist_ok=True)
+            # clips_dir = f"V0DataSet/clips_dyadic/{idx}_video"
+            # openface_out_dir = f"V0DataSet/openface_clips/{idx}_video"
+            # os.makedirs(openface_out_dir, exist_ok=True)
+            # run_openface_on_all_clips(clips_dir, openface_out_dir)
+            # print(f"[AU] AU processing done")
 
-            #################
-            # Who is speaking
-            #################
-            print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
-            detect_who_speaking_from_clips(
-                video_id=str(idx),
-                segments_csv_path=f"V0DataSet/segments/{idx}_segments.csv",
-                openface_dir=openface_out_dir,
-                output_path=f"V0DataSet/mapping_results/{idx}_video/mapping.csv"
-            )
-            print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
+            # #################
+            # # Who is speaking
+            # #################
+            # print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
+            # detect_who_speaking_from_clips(
+            #     video_id=str(idx),
+            #     segments_csv_path=f"V0DataSet/segments/{idx}_segments.csv",
+            #     openface_dir=openface_out_dir,
+            #     output_path=f"V0DataSet/mapping_results/{idx}_video/mapping.csv"
+            # )
+            # print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
 
-            #####################
-            # Format AU with Speaker-Listener
-            #####################
-            format_all_clips(
-                mapping_csv=f"V0DataSet/mapping_results/{idx}_video/mapping.csv",
-                openface_dir=f"V0DataSet/openface_clips/{idx}_video",
-                output_dir=f"V0DataSet/formatted_clips/{idx}_video"
-            )
+            # #####################
+            # # Format AU with Speaker-Listener
+            # #####################
+            # format_all_clips(
+            #     mapping_csv=f"V0DataSet/mapping_results/{idx}_video/mapping.csv",
+            #     openface_dir=f"V0DataSet/openface_clips/{idx}_video",
+            #     output_dir=f"V0DataSet/formatted_clips/{idx}_video"
+            # )
 
             #####################
             # End of the pipe, delete cache

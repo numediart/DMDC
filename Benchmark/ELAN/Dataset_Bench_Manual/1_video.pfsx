@@ -60,7 +60,7 @@
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>0</Long>
+        <Long>36940</Long>
     </pref>
     <prefGroup key="Silence Recognizer MPI-PL">
         <pref key="NoiseThresholdSetManually">
@@ -92,14 +92,11 @@
         <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>0</Long>
+        <Long>31000</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="default">
             <Object class="java.awt.Color">160,0,90</Object>
-        </pref>
-        <pref key="Tier-3">
-            <Object class="java.awt.Color">160,90,90</Object>
         </pref>
         <pref key="SPEAKER_00">
             <Object class="java.awt.Color">0,90,90</Object>
@@ -110,12 +107,15 @@
         <pref key="SPEAKER_01">
             <Object class="java.awt.Color">160,0,160</Object>
         </pref>
+        <pref key="category">
+            <Object class="java.awt.Color">160,90,90</Object>
+        </pref>
     </prefGroup>
     <prefList key="MultiTierViewer.TierOrder">
         <String>default</String>
         <String>SPEAKER_01</String>
         <String>SPEAKER_00</String>
-        <String>Tier-3</String>
+        <String>category</String>
         <String>Tier-4</String>
     </prefList>
     <prefGroup key="TierHighlightColors"/>
@@ -160,7 +160,7 @@
             <String>en</String>
         </pref>
         <pref key="audio">
-            <String>C:/UMONS/DMDC/V0.2DataSet/mp4/1_video.mp4</String>
+            <String>D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/1_video.mp4</String>
         </pref>
         <pref key="--fp16">
             <String>True</String>
@@ -199,34 +199,34 @@
         <Int>471</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>818</Long>
+        <Long>42810</Long>
     </pref>
     <pref key="ExportTabDialog.SelectTiersMode">
         <String>Tier</String>
     </pref>
     <prefGroup key="CommentViewer.Columns">
-        <pref key="Acteur">
+        <pref key="Sender">
             <Int>75</Int>
         </pref>
-        <pref key="Date de modification">
+        <pref key="Comment">
             <Int>75</Int>
         </pref>
-        <pref key="Initiales">
+        <pref key="Creation Date">
             <Int>75</Int>
         </pref>
-        <pref key="Commentaire">
+        <pref key="Tier">
+            <Int>75</Int>
+        </pref>
+        <pref key="Modification Date">
+            <Int>75</Int>
+        </pref>
+        <pref key="Recipient">
             <Int>75</Int>
         </pref>
         <pref key="Start Time">
             <Int>75</Int>
         </pref>
-        <pref key="Destinataire">
-            <Int>0</Int>
-        </pref>
-        <pref key="Expéditeur">
-            <Int>0</Int>
-        </pref>
-        <pref key="Date de création">
+        <pref key="Initials">
             <Int>75</Int>
         </pref>
         <pref key="End Time">
@@ -242,17 +242,17 @@
     <prefList key="CommentViewer.Columns.Order">
         <String>Start Time</String>
         <String>End Time</String>
-        <String>Acteur</String>
-        <String>Initiales</String>
-        <String>Commentaire</String>
         <String>Thread</String>
-        <String>Expéditeur</String>
-        <String>Destinataire</String>
-        <String>Date de création</String>
-        <String>Date de modification</String>
+        <String>Tier</String>
+        <String>Initials</String>
+        <String>Comment</String>
+        <String>Sender</String>
+        <String>Recipient</String>
+        <String>Creation Date</String>
+        <String>Modification Date</String>
     </prefList>
     <pref key="GridViewer.TierName">
-        <String>Tier-3</String>
+        <String>category</String>
     </pref>
     <pref key="ActiveRecognizerName">
         <String>Whisper transcribe/translate</String>
@@ -267,7 +267,7 @@
         <Boolean>false</Boolean>
     </pref>
     <pref key="SubTitleViewer.TierName-3">
-        <String>Tier-3</String>
+        <String>category</String>
     </pref>
     <prefList key="ExportSubtitleDialog.TierOrder">
         <String>default</String>
@@ -315,10 +315,7 @@
         <String>Tier-2</String>
         <String>Tier-3</String>
     </prefList>
-    <prefList key="CommentViewer.Columns.Hidden">
-        <String>Destinataire</String>
-        <String>Expéditeur</String>
-    </prefList>
+    <prefList key="CommentViewer.Columns.Hidden"/>
     <pref key="SegmentationManager.SelectedTabIndex">
         <Int>0</Int>
     </pref>

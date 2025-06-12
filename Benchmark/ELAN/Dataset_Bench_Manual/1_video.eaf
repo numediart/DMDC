@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-06-04T12:25:05+01:00"
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-06-12T10:19:07+01:00"
     FORMAT="3.0" VERSION="3.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
     <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
         <MEDIA_DESCRIPTOR
-            MEDIA_URL="file:///C:/UMONS/DMDC/V0.2DataSet/mp4/1_video.mp4"
-            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../../../V0.2DataSet/mp4/1_video.mp4"/>
+            MEDIA_URL="file:///D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/1_video.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../../../V0DataSet/mp4/1_video.mp4"/>
         <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:d71912a7-5bdd-41bc-914c-4b5d4dfbaa7e</PROPERTY>
         <PROPERTY NAME="lastUsedAnnotationId">225</PROPERTY>
     </HEADER>
@@ -258,7 +258,7 @@
         <TIME_SLOT TIME_SLOT_ID="ts246" TIME_VALUE="760545"/>
     </TIME_ORDER>
     <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
-    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="Tier-3">
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="category">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a55"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts4">
