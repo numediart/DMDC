@@ -14,7 +14,7 @@ V0.5DataSet
 V0.3DataSet
 V0.2DataSet
 temp_frames
-
+/OpenFace/output
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
