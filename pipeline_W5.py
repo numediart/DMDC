@@ -356,8 +356,8 @@ def main_batch(video_list_file='videoV0.5.txt'):
                     print(f"[MFCC] Processing {audio_file}")
                     y, sr = librosa.load(audio_file, sr=None)
                     mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
-                    pd.DataFrame(mfcc_features).to_numpy(mfcc_csv_path, index=False)
-                    print(f"[MFCC] Saved MFCC features to {mfcc_csv_path}")
+                    np.save(mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy'), mfcc_features)
+                    print(f"[MFCC] Saved MFCC features to {mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy')}")
                 except Exception as e:
                     print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
                 
@@ -367,13 +367,23 @@ def main_batch(video_list_file='videoV0.5.txt'):
             # End of the pipe, delete cache
             #####################
             print(stat_one_vid)
+            # Format the values in stat_one_vid to 3 decimal places
+            stat_one_vid = {key: round(value, 4) for key, value in stat_one_vid.items()}
             all_stat.append(stat_one_vid)
+            # Save statistics to CSV
+            print(f"[Main/Info] Saving statistics to CSV...")
+            stats_df = pd.DataFrame(all_stat)
+            stats_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "monitoring", f"{idx}_video_processing_statistics.csv")
+            stats_df.to_csv(stats_csv_path, index=False)
+            print(f"[Main/Info] Statistics saved to {stats_csv_path}")
             
             # if os.path.exists(output_name):
             #     os.remove(output_name)
             #     print(f"[Main/Info] Video deleted: {output_name}")
         except Exception as e:
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
+
+
 
 if __name__ == "__main__":
     main_batch(VIDEO_TEXT_FILE)
