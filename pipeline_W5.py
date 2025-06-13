@@ -16,6 +16,7 @@ import numpy as np
 import shutil
 import subprocess
 import platform
+import time
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
@@ -84,8 +85,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
         are properly installed and configured before running this function.
         Check : requirement.txt
     """
-
-
+    
+    # Monitoring 
+    all_stat=[]
     ###################
     # Open videos
     ###################
@@ -97,6 +99,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
     for idx, url in enumerate(video_urls, start=1):
         try:
+
+            stat_one_vid={}
+
             output_name = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
             segments_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
             wav_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
@@ -105,30 +110,40 @@ def main_batch(video_list_file='videoV0.5.txt'):
             # Download
             #####################
             print(f"\n\n\n ---Step: 2--- Dowloading")
+            start_time_process = time.time()
+
+
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
             download_youtube_video(url, output_name)
 
+
+            stat_one_vid["2.Download"]=time.time()-start_time_process
             #####################
             # Extract the Audio
             #####################
             print(f"\n\n\n ---Step: 3--- Extract the audio")
+            start_time_process = time.time()
+
 
             extract_audio_to_wav(output_name, wav_dir)
 
+            stat_one_vid["3.AudioExtract"]=time.time()-start_time_process
             #####################
             # Segmentation (if needed)
             #####################
             print(f"\n\n\n ---Step: 4--- Segmentations")
+            start_time_process = time.time()
+
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
                 segments = load_segments_from_csv(segments_csv)
             else:
                 print("[Info] Segments under creation with face detections...")
                 segments = detect_faces_in_video(output_name)
-            
-            
 
 
+
+            stat_one_vid["4.Extract"]=time.time()-start_time_process
             # Skip Diarization and Assignment if Segments Exist
             if os.path.exists(segments_csv):
                 print("[Info] Segments already exist, skipping diarization and assignment...")
@@ -137,6 +152,8 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 # Diarization (Identify which person is speaking)
                 #####################
                 print(f"\n\n\n ---Step: 5--- Diarization")
+                start_time_process = time.time()
+
                 print("[Diarization] Diarization starts")
                 run_diarization(wav_dir,DATASET_FOLDER)
                 print("[Diarization] Diarization completed")
@@ -144,11 +161,14 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
                 df_diarization = pd.read_csv(csv_path)
 
-
+                stat_one_vid["5.Diarization"]=time.time()-start_time_process
                 #####################
                 # Identify which speaker is speaking during each segment using diarization results
                 #####################
                 print(f"\n\n\n ---Step: 6--- Assigning speakers to segments")
+                start_time_process = time.time()
+
+
                 print("[Assignment] Assigning speakers to segments...")
 
                 merged = assign_speakers_to_segments_from_df(segments, df_diarization)
@@ -159,12 +179,18 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 export_segments_with_speaker_to_csv(merged, segments_csv)
                 print("[Assignment] Assignment Exported")
 
-            
+                stat_one_vid["6.Assigning"]=time.time()-start_time_process
+
 
             #####################
             # Split Video from segments 
             #####################
             print(f"\n\n\n ---Step: 7--- Split Video from segments")
+            start_time_process = time.time()
+
+
+
+
             # Check if audio and video clips have already been processed
             clips_video_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video", f"{idx}_video.mp4"))
 
@@ -183,11 +209,12 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
             
 
-
+            stat_one_vid["7.Split_video"]=time.time()-start_time_process
             #####################
             # Openface Action Unit
             #####################
             print(f"\n\n\n ---Step: 8--- Action unit extraction")
+            start_time_process = time.time()
 
 
             output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'openface_clips', f'{idx}_video')
@@ -201,18 +228,16 @@ def main_batch(video_list_file='videoV0.5.txt'):
             else:
                 print(f"[AU] AU already done")
 
-            # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-            # output_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER,"openface_clips")
-            # os.makedirs(output_path, exist_ok=True)
-
-            # # openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
-            # process_FaceLandmarkVidMulti_from_container(input_path_mp4,output_path)
-            # print(f"[AU] AU processing done")
+            stat_one_vid["8.OpenFace"]=time.time()-start_time_process
 
             #################
             # Who is speaking
             #################
             print(f"\n\n\n ---Step: 9--- Who is speaking")
+            start_time_process = time.time()
+
+
+
             print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
             mapping_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
             if os.path.exists(mapping_csv_path):
@@ -226,10 +251,14 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 )
                 print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
 
+
+            stat_one_vid["9.WhoIsSpeaking"]=time.time()-start_time_process
             #####################
             # Format AU with Speaker-Listener
             #####################
             print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
+            start_time_process = time.time()
+
             formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
             if os.path.exists(formatted_dir) and os.listdir(formatted_dir):
                 print(f"[Format] Formatted clips already exist for video {idx}, skipping...")
@@ -240,11 +269,13 @@ def main_batch(video_list_file='videoV0.5.txt'):
                     output_dir=formatted_dir
                 )
 
+
+            stat_one_vid["10.FormatAU"]=time.time()-start_time_process
             #####################
             # Format AU with 64 frames
             #####################
             print(f"\n\n\n ---Step: 11---Format AU with 64 frames")
-           
+            start_time_process = time.time()
 
 
 
@@ -275,11 +306,14 @@ def main_batch(video_list_file='videoV0.5.txt'):
                     continue
                 split_csv_with_sliding_window(csv_file, windowed_dir)
 
-
+            stat_one_vid["11.FormatTO64f"]=time.time()-start_time_process
             #####################
             # Split Audio from segments 
             #####################
             print(f"\n\n\n ---Step: 12--- Split Audio from segments")
+            start_time_process = time.time()
+
+
             # Check if audio and video clips have already been processed
             clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video"))
 
@@ -301,10 +335,13 @@ def main_batch(video_list_file='videoV0.5.txt'):
             else:
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
+
+            stat_one_vid["12.SplitAudio"]=time.time()-start_time_process
             #####################
             # MFCC Extract 
             #####################
             print(f"\n\n\n ---Step: 13--- Speaker Melspec")
+            start_time_process = time.time()
 
             # Process MFCC for all audio clips in the directory and save as CSV
             mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
@@ -325,10 +362,13 @@ def main_batch(video_list_file='videoV0.5.txt'):
                     print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
                 
 
-            
+            stat_one_vid["13.MFCC"]=time.time()-start_time_process
             #####################
             # End of the pipe, delete cache
             #####################
+            print(stat_one_vid)
+            all_stat.append(stat_one_vid)
+            
             # if os.path.exists(output_name):
             #     os.remove(output_name)
             #     print(f"[Main/Info] Video deleted: {output_name}")
