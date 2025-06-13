@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 # Constants 
 
 DATASET_FOLDER="V0.6DataSet"
-VIDEO_TEXT_FILE="./videoV0.5test.txt"
+VIDEO_TEXT_FILE="./VideoList/videoV0.5test.txt"
 
 def get_diarization_csv(wav_path):
     base_filename = os.path.splitext(os.path.basename(wav_path))[0]  # e.g. "1_video"
@@ -63,11 +63,24 @@ def main_batch(video_list_file='videoV0.5.txt'):
     Args:
         video_list_file (str): Path to the text file containing video URLs, one per line.
     Pipeline:
-       
+        1. Open video list: Reads video URLs from the provided text file.
+        2. Download video: Downloads each video from its URL.
+        3. Extract audio: Extracts the audio track from the downloaded video.
+        4. Segment video: Detects and segments faces in the video, or loads existing segments.
+        5. Diarization: Identifies speakers in the audio (if segments are not already available).
+        6. Assign speakers: Assigns speaker identities to each segment using diarization results.
+        7. Split video: Splits the video into clips based on the detected segments.
+        8. Action unit extraction: Runs OpenFace to extract facial action units (AUs) from video clips.
+        9. Who is speaking: Maps speaking activity to video segments using OpenFace and diarization data.
+        10. Format AU with Speaker-Listener: Formats AU data to distinguish between speaker and listener roles.
+        11. Format AU with 64 frames: Splits formatted AU data into fixed-size (64-frame) sliding windows.
+        12. Split audio: Extracts audio segments corresponding to the 64-frame video windows.
+        13. Speaker MFCC extraction: Extracts MFCC features from each audio segment for speaker analysis.
+        Catches and logs any errors encountered during the processing of each video, allowing the batch to continue.
     Exceptions:
         - Catches and logs any errors encountered during the processing of each video.
     Note:
-        Ensure all required dependencies and external tools (e.g., Whisper, OpenFace) 
+        Ensure all required dependencies and external tools (e.g., OpenFace) 
         are properly installed and configured before running this function.
         Check : requirement.txt
     """
@@ -125,7 +138,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 #####################
                 print(f"\n\n\n ---Step: 5--- Diarization")
                 print("[Diarization] Diarization starts")
-                run_diarization(wav_dir)
+                run_diarization(wav_dir,DATASET_FOLDER)
                 print("[Diarization] Diarization completed")
 
                 csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
@@ -177,7 +190,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             print(f"\n\n\n ---Step: 8--- Action unit extraction")
 
 
-            output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU_output', f'{idx}_video')
+            output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'openface_clips', f'{idx}_video')
             if not os.path.exists(output):
                 print(f"[AU] Processing AU")
                 os.makedirs(output, exist_ok=True)
@@ -306,7 +319,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
                     print(f"[MFCC] Processing {audio_file}")
                     y, sr = librosa.load(audio_file, sr=None)
                     mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
-                    pd.DataFrame(mfcc_features).to_csv(mfcc_csv_path, index=False)
+                    pd.DataFrame(mfcc_features).to_numpy(mfcc_csv_path, index=False)
                     print(f"[MFCC] Saved MFCC features to {mfcc_csv_path}")
                 except Exception as e:
                     print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
