@@ -202,7 +202,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
                 # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
                 # dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
                 print(f"[Splitting] Processing dyadic clips for video {idx}")
-                extract_dyadic_clips(str(idx))
+                extract_dyadic_clips(str(idx),DATASET_FOLDER)
                 print(f"[Splitting] Dyadic clips processing done")
             else:
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
