@@ -60,7 +60,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
-    feature extraction, transcription, and facial action unit analysis.
+    feature extraction, and facial action unit analysis.
     Args:
         video_list_file (str): Path to the text file containing video URLs, one per line.
     Pipeline:

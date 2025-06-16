@@ -15,6 +15,7 @@ V0.3DataSet
 V0.2DataSet
 temp_frames
 /OpenFace/output
+/NemoDiarization/model/diar_sortformer_4spk-v1.nemo
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

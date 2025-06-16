@@ -1,0 +1,1 @@
+https://huggingface.co/nvidia/diar_sortformer_4spk-v1/blob/ea494c8e13217ce989d6bb911e0d600d499208c6/diar_sortformer_4spk-v1.nemo
