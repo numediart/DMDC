@@ -17,7 +17,7 @@
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>0</Long>
+        <Long>961417</Long>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
         <Int>501</Int>
@@ -26,28 +26,28 @@
         <Int>1</Int>
     </pref>
     <prefGroup key="CommentViewer.Columns">
-        <pref key="Acteur">
+        <pref key="Sender">
             <Int>75</Int>
         </pref>
-        <pref key="Date de modification">
+        <pref key="Comment">
             <Int>75</Int>
         </pref>
-        <pref key="Initiales">
+        <pref key="Creation Date">
             <Int>75</Int>
         </pref>
-        <pref key="Commentaire">
+        <pref key="Tier">
+            <Int>75</Int>
+        </pref>
+        <pref key="Modification Date">
+            <Int>75</Int>
+        </pref>
+        <pref key="Recipient">
             <Int>75</Int>
         </pref>
         <pref key="Start Time">
             <Int>75</Int>
         </pref>
-        <pref key="Destinataire">
-            <Int>0</Int>
-        </pref>
-        <pref key="Expéditeur">
-            <Int>0</Int>
-        </pref>
-        <pref key="Date de création">
+        <pref key="Initials">
             <Int>75</Int>
         </pref>
         <pref key="End Time">
@@ -63,14 +63,14 @@
     <prefList key="CommentViewer.Columns.Order">
         <String>Start Time</String>
         <String>End Time</String>
-        <String>Acteur</String>
-        <String>Initiales</String>
-        <String>Commentaire</String>
         <String>Thread</String>
-        <String>Expéditeur</String>
-        <String>Destinataire</String>
-        <String>Date de création</String>
-        <String>Date de modification</String>
+        <String>Tier</String>
+        <String>Initials</String>
+        <String>Comment</String>
+        <String>Sender</String>
+        <String>Recipient</String>
+        <String>Creation Date</String>
+        <String>Modification Date</String>
     </prefList>
     <pref key="ActiveRecognizerName">
         <String>Whisper transcribe/translate</String>
@@ -79,7 +79,7 @@
         <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>21.0</Float>
+        <Float>151.0</Float>
     </pref>
     <pref key="SubTitleViewer.TierName-1">
         <String>SPEAKER_01</String>
@@ -88,7 +88,7 @@
         <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>0</Long>
+        <Long>954560</Long>
     </pref>
     <pref key="DetachedEditor.Bounds">
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
@@ -113,10 +113,10 @@
         <Float>1.2</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>0</Long>
+        <Long>955477</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>484</Long>
+        <Long>960510</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="transcribe">
@@ -153,10 +153,7 @@
     <pref key="LayoutManager.SplitPaneDividerLocation">
         <Int>1</Int>
     </pref>
-    <prefList key="CommentViewer.Columns.Hidden">
-        <String>Destinataire</String>
-        <String>Expéditeur</String>
-    </prefList>
+    <prefList key="CommentViewer.Columns.Hidden"/>
     <prefGroup key="Whisper transcribe/translate">
         <pref key="--beam_size">
             <Float>5.0</Float>
@@ -195,7 +192,7 @@
             <String>--</String>
         </pref>
         <pref key="audio">
-            <String>C:/UMONS/DMDC/V0.2DataSet/mp4/10_video.mp4</String>
+            <String>D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/10_video.mp4</String>
         </pref>
         <pref key="--fp16">
             <String>True</String>

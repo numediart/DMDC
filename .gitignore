@@ -14,6 +14,8 @@ V0.5DataSet
 V0.3DataSet
 V0.2DataSet
 temp_frames
+test
+evaluation_results.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

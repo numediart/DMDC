@@ -6,6 +6,7 @@ from omegaconf import OmegaConf
 from nemo.collections.asr.models import EncDecCTCModel
 import shutil
 import tempfile
+import torchaudio
 
 def load_parakeet_model(model_name="nvidia/parakeet-tdt-0.6b-v2"):
     print("[Parakeet] Loading model:", model_name)
@@ -18,18 +19,28 @@ def load_parakeet_model(model_name="nvidia/parakeet-tdt-0.6b-v2"):
 
 def transcribe_audio(model, audio_path):
     # Temp copy of the file to avoid issues with file locks or permissions
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp_file:
-        temp_audio_path = tmp_file.name
-    shutil.copy(audio_path, temp_audio_path)
+    waveform, sample_rate = torchaudio.load(audio_path)
 
-    print(f"[Parakeet] Transcribing copy of: {audio_path}")
-    result = model.transcribe([temp_audio_path])
+    # Vérifier si le son est stéréo (plus d'un canal)
+    if waveform.shape[0] > 1:
+        # Convertir en mono en moyennant les canaux
+        waveform = torch.mean(waveform, dim=0, keepdim=True)
+        
+        # Créer un fichier temporaire pour la version mono
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp_file:
+            mono_audio_path = tmp_file.name
+            torchaudio.save(mono_audio_path, waveform, sample_rate)
+        
+        # Transcrire le fichier mono
+        result = model.transcribe([mono_audio_path])
+        
+        # Supprimer le fichier temporaire
+        os.remove(mono_audio_path)
+        
+    else:
+        # Si déjà en mono, transcrire directement
+        result = model.transcribe([audio_path])
 
-    # Clean up the temporary file
-    try:
-        os.remove(temp_audio_path)
-    except Exception as e:
-        print(f"[WARN] Could not delete temporary audio copy: {e}")
     return result[0].text.strip()
 
 def main():
@@ -42,7 +53,11 @@ def main():
 
     
     base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "V0DataSet")
-    segments_csv_path = os.path.join(base_dir, "segments", f"{video_idx}_segments.csv")
+    CUSTOM_SEGMENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test", "clean_segments")
+
+    # Puis remplacer cette ligne :
+    # segments_csv_path = os.path.join(base_dir, "segments", f"{video_idx}_segments.csv")
+    segments_csv_path = os.path.join(CUSTOM_SEGMENT_DIR, f"{video_idx}_clean_segments.csv")
 
     if not os.path.exists(segments_csv_path):
         print(f"[ERROR] Segments file not found: {segments_csv_path}")

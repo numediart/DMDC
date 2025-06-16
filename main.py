@@ -13,6 +13,7 @@ import glob
 import shutil
 import subprocess
 import platform
+import sys
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
@@ -181,19 +182,27 @@ def main_batch(video_list_file='videoV0.txt'):
             # # Parakeet (Transcript) 
             # #####################
 
+            # subprocess.run([
+            #     python_path,
+            #     "transcribe_parakeet.py",
+            #     str(idx),
+            #     *segment_paths
+            # ])
+
+            # if os.path.exists(output_tmp_wav):
+            #     if wait_for_file_release(output_tmp_wav):
+            #         os.remove(output_tmp_wav)
+            #     else:
+            #         print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
+
+            # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
+
             subprocess.run([
-                python_path,
+                sys.executable,
                 "transcribe_parakeet.py",
                 str(idx),
                 *segment_paths
             ])
-
-            if os.path.exists(output_tmp_wav):
-                if wait_for_file_release(output_tmp_wav):
-                    os.remove(output_tmp_wav)
-                else:
-                    print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
-            # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
             # #####################
             # # Split the video into dyadic clips
