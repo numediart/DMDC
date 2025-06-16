@@ -17,6 +17,8 @@ temp_frames
 test
 evaluation_results.csv
 
+/OpenFace/output
+/NemoDiarization/model/diar_sortformer_4spk-v1.nemo
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

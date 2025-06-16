@@ -268,9 +268,9 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
         print(f"[Filter] Segment saved: {output_clip}")
 
 # --- Extract segments from a CSV ---
-def extract_dyadic_clips(video_id):
-    video_path = f"V0.5DataSet/mp4/{video_id}_video.mp4"
-    segment_path = f"V0.5DataSet/segments/{video_id}_segments.csv"
+def extract_dyadic_clips(video_id,dataset):
+    video_path = dataset+f"/mp4/{video_id}_video.mp4"
+    segment_path = dataset+f"/segments/{video_id}_segments.csv"
     output_dir = os.path.join(CLIPS_DIR, f"{video_id}_video")
     
     df = pd.read_csv(segment_path)

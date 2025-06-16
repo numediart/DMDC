@@ -38,7 +38,7 @@ def process_FaceLandmarkVidMulti_from_container(input_path, output_path,onlyCSVO
     # Run the FaceLandmarkVidMulti command inside the container
     command = [
         "docker", "exec", "-it", container_id,
-        "build/bin/FaceLandmarkVidMulti", "-f", copiedFile
+        "build/bin/FaceLandmarkVidMulti", "-f", copiedFile, "-aus"
     ]
     result = subprocess.run(command, capture_output=True, text=True)
 
@@ -85,12 +85,12 @@ def process_FaceLandmarkVidMulti_from_container(input_path, output_path,onlyCSVO
 
 if __name__ == "__main__":
     # Example usage of the process_FaceLandMark_video_from_container function
-    input_path = os.path.join(os.path.dirname(__file__), "input", "testextract.mp4")
+    input_path = os.path.join(os.path.dirname(__file__), "input", "clip3.mp4")
     # input_path = os.path.join(os.path.dirname(__file__), "input", "1_video.mp4")
     output_path = os.path.join(os.path.dirname(__file__), "output")
 
     try:
-        success = process_FaceLandmarkVidMulti_from_container(input_path, output_path, onlyCSVOutput=True)
+        success = process_FaceLandmarkVidMulti_from_container(input_path, output_path, onlyCSVOutput=False)
         if success:
             print("[Main] Video processing completed successfully.")
     except RuntimeError as e:
