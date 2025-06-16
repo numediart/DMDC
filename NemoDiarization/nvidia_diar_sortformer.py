@@ -10,19 +10,29 @@ import os
 TEMPFOLDER="./tempsegment"
 
 
-# load model from Hugging Face model card directly (You need a Hugging Face token)
-# diar_model = SortformerEncLabelModel.restore_from(restore_path="./NemoDiarization/model/diar_sortformer_4spk-v1.nemo", map_location='cuda', strict=False)
 diar_model = SortformerEncLabelModel.restore_from(restore_path="./NemoDiarization/model/diar_sortformer_4spk-v1.nemo", map_location='cuda', strict=False)
 
 
 
 
 def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_minutes=5):
+    """
+    Perform speaker diarization on an audio file using NVIDIA's SortFormer model.
+    Args:
+        audio_input (str): Path to the input audio file.
+        output_path (str): Directory to save the diarization results as a CSV file.
+        segmentation_minutes (int, optional): Duration of audio segments in minutes. Defaults to 5.
+    Returns:
+        None: Saves the diarization results to a CSV file in the specified output directory.
+    """
+
     audio_base_name = os.path.basename(audio_input)
     print(f"Base name of the audio input: {audio_base_name}")
+
     # Create the temporary folder if it doesn't exist
     if not os.path.exists(TEMPFOLDER):
         os.mkdir(TEMPFOLDER)
+
 
     # Load the audio file
     audio, sr = librosa.load(audio_input, sr=16000, mono=True)
@@ -39,18 +49,16 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
         segment_audio_path = f"{TEMPFOLDER}/segment_{idx}_{audio_base_name}.wav"
         sf.write(segment_audio_path, segment, sr)
         
-        # Perform diarization on the segment
         segment_predicted = diar_model.diarize(audio=segment_audio_path, batch_size=4, include_tensor_outputs=True)
-        
+        # For each segments catch information to fit our own requirment (start time, end time, speaker)
         for diarized_segments in segment_predicted[0]:
             for one_diarized_segment in diarized_segments:
                 split_one_diarized_segment = one_diarized_segment.split(" ")
                 
-                # Create a dictionary for each diarized segment
                 segment_predicted_dict = {
                     "start_time": float(split_one_diarized_segment[0]) + (segmentation_sec * idx),
                     "end_time": float(split_one_diarized_segment[1]) + (segmentation_sec * idx),
-                    "speaker": split_one_diarized_segment[2],
+                    "speaker": split_one_diarized_segment[2].upper(),
                 }
 
                 predicted_segments.append(segment_predicted_dict)
@@ -76,6 +84,9 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
 
 
 if __name__ == "__main__":
-    audio_input="./NemoDiarization/input/thedeepskintest.wav"
-    output_path="./NemoDiarization/output/"
+    output_path="./NemoDiarization/output/v0/"
+    # for i in range(1,11):
+    #     audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
+    #     diarization_nvidia_sortformer_process(audio_input,output_path, 5)
+    audio_input="./NemoDiarization/input/1.1_video.wav"
     diarization_nvidia_sortformer_process(audio_input,output_path, 5)
