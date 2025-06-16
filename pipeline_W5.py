@@ -1,4 +1,4 @@
-from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
+from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
@@ -25,8 +25,8 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.6DataSet"
-VIDEO_TEXT_FILE="./VideoList/videoV0.5test.txt"
+DATASET_FOLDER="V0.7DataSet"
+VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 
 def get_diarization_csv(wav_path):
     base_filename = os.path.splitext(os.path.basename(wav_path))[0]  # e.g. "1_video"

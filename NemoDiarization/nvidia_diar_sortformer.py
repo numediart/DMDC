@@ -40,7 +40,7 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
         sf.write(segment_audio_path, segment, sr)
         
         # Perform diarization on the segment
-        segment_predicted = diar_model.diarize(audio=segment_audio_path, batch_size=4,map="cuda", include_tensor_outputs=True)
+        segment_predicted = diar_model.diarize(audio=segment_audio_path, batch_size=4, include_tensor_outputs=True)
         
         for diarized_segments in segment_predicted[0]:
             for one_diarized_segment in diarized_segments:
@@ -76,6 +76,6 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
 
 
 if __name__ == "__main__":
-    audio_input="./NemoDiarization/input/1.1_video.wav"
+    audio_input="./NemoDiarization/input/thedeepskintest.wav"
     output_path="./NemoDiarization/output/"
     diarization_nvidia_sortformer_process(audio_input,output_path, 5)
