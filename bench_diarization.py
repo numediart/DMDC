@@ -64,10 +64,12 @@ def evaluate_diarization(eaf_path, csv_path):
 # === Exemple d'utilisation ===
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
+# csv_dir = Path("NemoDiarization/output/v0")
 csv_dir = Path("V0DataSet/segments")
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
+    csv_file = csv_dir / f"{base_name}_video_diarization.csv"
     csv_file = csv_dir / f"{base_name}_segments.csv"
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file)
