@@ -81,7 +81,7 @@ def evaluate_diarization(eaf_path, csv_path, results):
 # === Evaluation loop and CSV export ===
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
-csv_dir = Path("NemoDiarization/output/v0test")
+csv_dir = Path("NemoDiarization/output/v0")
 # csv_dir = Path("V0DataSet/segments")
 results = []
 
