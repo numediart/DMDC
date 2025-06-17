@@ -5,13 +5,12 @@ from pathlib import Path
 import subprocess
 import sys
 
-# Dossiers
+# PATH
 BASE_DIR = Path(__file__).resolve().parent
 VIDEO_DIR = BASE_DIR / "V0DataSet" / "mp4"
 SEGMENTS_DIR = BASE_DIR / "test" / "clean_segments"
 TMP_WAV_DIR = BASE_DIR / "test" / "tmp_wav"
 
-# Crée le dossier temporaire s’il n’existe pas
 TMP_WAV_DIR.mkdir(parents=True, exist_ok=True)
 
 def extract_wav_segments(video_idx):
@@ -20,10 +19,8 @@ def extract_wav_segments(video_idx):
     output_dir = TMP_WAV_DIR / str(video_idx)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Charger les segments
     df = pd.read_csv(segment_csv)
 
-    # Charger la vidéo
     video = VideoFileClip(str(video_path))
 
     segment_paths = []
@@ -31,7 +28,7 @@ def extract_wav_segments(video_idx):
     for i, row in df.iterrows():
         start_time = float(row["start_ms"])
         stop_time = float(row["end_ms"])
-        # Convertir les millisecondes en secondes
+        # Convert from ms to seconds
         start_time /= 1000.0
         stop_time /= 1000.0
         segment_clip = video.subclipped(start_time, stop_time)
@@ -50,7 +47,7 @@ def process_all_segments():
 
         segment_paths = extract_wav_segments(video_idx)
 
-        # Lancer la transcription
+        # Transcript
         subprocess.run([
             sys.executable,
             "transcribe_parakeet.py",

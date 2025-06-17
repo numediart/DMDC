@@ -2,7 +2,7 @@
 <preferences version="1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
     <pref key="FrameSize">
-        <Object class="java.awt.Dimension">1920,1025</Object>
+        <Object class="java.awt.Dimension">1920,1040</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
         <Int>5</Int>
@@ -17,7 +17,7 @@
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>961417</Long>
+        <Long>771818</Long>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
         <Int>501</Int>
@@ -79,7 +79,7 @@
         <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>151.0</Float>
+        <Float>120.99999</Float>
     </pref>
     <pref key="SubTitleViewer.TierName-1">
         <String>SPEAKER_01</String>
@@ -88,7 +88,7 @@
         <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>954560</Long>
+        <Long>771760</Long>
     </pref>
     <pref key="DetachedEditor.Bounds">
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
@@ -113,10 +113,10 @@
         <Float>1.2</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>955477</Long>
+        <Long>287603</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>960510</Long>
+        <Long>302052</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="transcribe">
@@ -131,11 +131,11 @@
         <pref key="SPEAKER_00">
             <Object class="java.awt.Color">160,0,160</Object>
         </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">160,90,90</Object>
-        </pref>
         <pref key="SPEAKER_01">
             <Object class="java.awt.Color">90,160,0</Object>
+        </pref>
+        <pref key="speaker">
+            <Object class="java.awt.Color">160,90,90</Object>
         </pref>
         <pref key="category">
             <Object class="java.awt.Color">90,90,0</Object>
