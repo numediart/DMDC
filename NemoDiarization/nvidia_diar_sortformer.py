@@ -58,7 +58,7 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
                 segment_predicted_dict = {
                     "start_time": float(split_one_diarized_segment[0]) + (segmentation_sec * idx),
                     "end_time": float(split_one_diarized_segment[1]) + (segmentation_sec * idx),
-                    "speaker": split_one_diarized_segment[2].upper(),
+                    "speaker": split_one_diarized_segment[2][:-1].upper() + "0" + split_one_diarized_segment[2][-1].upper(),
                 }
 
                 predicted_segments.append(segment_predicted_dict)
@@ -85,8 +85,8 @@ def diarization_nvidia_sortformer_process(audio_input,output_path,segmentation_m
 
 if __name__ == "__main__":
     output_path="./NemoDiarization/output/v0/"
-    # for i in range(1,11):
-    #     audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
-    #     diarization_nvidia_sortformer_process(audio_input,output_path, 5)
-    audio_input="./NemoDiarization/input/1.1_video.wav"
+    for i in range(1,11):
+        audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
+        diarization_nvidia_sortformer_process(audio_input,output_path, 5)
+    # audio_input="./NemoDiarization/input/1.1_video.wav"
     diarization_nvidia_sortformer_process(audio_input,output_path, 5)
