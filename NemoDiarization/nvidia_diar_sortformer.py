@@ -102,8 +102,8 @@ def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation
 
 if __name__ == "__main__":
     output_path="./NemoDiarization/output/v0/"
-    for i in range(3,11):
-        audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
-        diarization_nvidia_sortformer_process(audio_input,output_path,disable_segmentation=True)
-    # audio_input="./NemoDiarization/input/1.1_video.wav"
-    diarization_nvidia_sortformer_process(audio_input,output_path, 5)
+    # for i in range(3,11):
+    #     audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
+    #     diarization_nvidia_sortformer_process(audio_input,output_path,disable_segmentation=True)
+    audio_input="./NemoDiarization/input/thedeepskintest.wav"
+    diarization_nvidia_sortformer_process(audio_input,output_path, 5,disable_segmentation=True)
