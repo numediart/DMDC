@@ -18,7 +18,7 @@ def load_csv_as_annotation(csv_path):
     df = pd.read_csv(csv_path)
     annotation = Annotation()
     for _, row in df.iterrows():
-        segment = Segment(float(row['start_time']), float(row['end_time']))
+        segment = Segment(float(row['start']), float(row['end']))
         speaker = str(row['speaker'])
         annotation[segment] = speaker
     return annotation
@@ -81,7 +81,7 @@ def evaluate_diarization(eaf_path, csv_path, results):
 # === Evaluation loop and CSV export ===
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
-csv_dir = Path("NemoDiarization/output/v0")
+csv_dir = Path("test_9/Diarization_Results")
 # csv_dir = Path("V0DataSet/segments")
 results = []
 
