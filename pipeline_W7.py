@@ -102,6 +102,22 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
             stat_one_vid["3.AudioExtract"]=time.time()-start_time_process
             #####################
+            # Openface Action Unit
+            #####################
+            print(f"\n\n\n ---Step: 4--- Action unit extraction")
+            start_time_process = time.time()
+
+            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
+            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'test.mp4')
+            AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
+            if not os.path.exists(AU_output):
+                process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
+            else:
+                print(f"[AU] AU already done")
+
+            stat_one_vid["4.OpenFace"]=time.time()-start_time_process
+
+            #####################
             # Segmentation (if needed)
             #####################
             print(f"\n\n\n ---Step: 4--- Segmentations")
@@ -139,20 +155,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             stat_one_vid["5.Diarization"]=time.time()-start_time_process
 
 
-            #####################
-            # Openface Action Unit
-            #####################
-            print(f"\n\n\n ---Step: 6--- Action unit extraction")
-            start_time_process = time.time()
-
-            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video')
-            AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
-            if not os.path.exists(AU_output):
-                process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
-            else:
-                print(f"[AU] AU already done")
-
-            stat_one_vid["6.OpenFace"]=time.time()-start_time_process
+           
 
             #####################
             # Diarization merging
