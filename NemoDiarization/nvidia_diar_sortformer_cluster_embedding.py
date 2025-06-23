@@ -16,7 +16,7 @@ diar_model = SortformerEncLabelModel.restore_from(restore_path="./NemoDiarizatio
 
 
 
-def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation_minutes=5, disable_segmentation=False):
+def diarization_nvidia_sortformer_process(audio_input, output_path, audio_divide_ratio=5, disable_segmentation=False):
     """
     Perform speaker diarization on an audio file using NVIDIA's SortFormer model.
     Args:
@@ -37,16 +37,24 @@ def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation
 
     # Load the audio file
     audio, sr = librosa.load(audio_input, sr=16000, mono=True)
-    segmentation_sec = segmentation_minutes * 60
 
+    # Calculate the duration of each segment based on the audio_divide_ratio
+    total_samples = len(audio)
+    video_lengh=total_samples/sr
+    print("video_lenght",video_lengh)
+    segment_duration = total_samples // audio_divide_ratio
+    
+    # Split the audio into equal parts based on audio_divide_ratio
+    segments = [audio[i:i + segment_duration] for i in range(0, total_samples, segment_duration)]
 
-
-    # Split the audio into n-minute segments
-    segment_duration = segmentation_sec * sr
-    segments = [audio[i:i + segment_duration] for i in range(0, len(audio), segment_duration)]
+    # Ensure the last segment is included if the division isn't perfect
+    if len(segments) > audio_divide_ratio:
+        segments[-2] = np.concatenate([segments[-2], segments[-1]])
+        segments = segments[:-1]
 
     all_embeddings=[]
-
+    segments_data = []
+    index_embedding=0
     for idx, segment in enumerate(segments):
         # Save each segment to a temporary file
         segment_audio_path = f"{TEMPFOLDER}/segment_{idx}_{audio_base_name}.wav"
@@ -60,39 +68,51 @@ def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation
             all_embeddings.append(embedding)
 
         diarized_segments = predicted_segments[0]
-        segment_data = []
-        for one_diarized_segment in diarized_segments:
+        for one_diarized_segment, embedding in zip(diarized_segments, embeddings):
             split_one_diarized_segment = one_diarized_segment.split(" ")
 
             segment_predicted_dict = {
-            "start_time": float(split_one_diarized_segment[0]) + (segmentation_sec * idx),
-            "end_time": float(split_one_diarized_segment[1]) + (segmentation_sec * idx),
+            "start_time": float(split_one_diarized_segment[0]) + (segment_duration / sr * idx),
+            "end_time": float(split_one_diarized_segment[1]) + (segment_duration / sr * idx),
             "speaker": split_one_diarized_segment[2][:-1].upper() + "0" + split_one_diarized_segment[2][-1].upper(),
+            # "embedding": embedding.tolist(),  # Add embedding to the dictionary
+            "embedding_index_start":index_embedding,
+            "embedding_index_end":index_embedding+len(embedding),
             }
+            index_embedding+=len(embedding)
 
-            segment_data.append(segment_predicted_dict)
+            segments_data.append(segment_predicted_dict)
 
-        # Convert segment data to a DataFrame
-        df = pd.DataFrame(segment_data)
-        print(df)
 
-    
+    # Convert segment data to a DataFrame
+    df = pd.DataFrame(segments_data)
+    print(df)
+    embedding_output_path = os.path.join(output_path, f"embedding_results_{audio_base_name}.csv")
+    df.to_csv(embedding_output_path)
+
     # Perform clustering using KMeans on the embeddings
-    num_speakers = 2  
+    num_speakers=2
+
+    # Not Sure
+    flattened_embeddings = np.vstack([embedding.numpy() for embedding in all_embeddings])
+
     kmeans = KMeans(n_clusters=num_speakers, random_state=0)
-    kmeans.fit(all_embeddings)
+
+    kmeans.fit(flattened_embeddings)
 
     # Assign cluster labels to embeddings
     cluster_labels = kmeans.labels_
 
     # Map cluster labels to speaker IDs
-    speaker_mapping = {i: f"SPEAKER_{i}" for i in range(num_speakers)}
+    speaker_mapping = {i: f"SPEAKER_0{i}" for i in range(num_speakers)}
 
     # Create a DataFrame for clustering results
     clustering_results = []
     for idx, label in enumerate(cluster_labels):
         clustering_results.append({
             "embedding_index": idx,
+            "start_time": round(idx/12.5,3),
+            "end_time": round(idx/12.5,3)+0.08,
             "speaker": speaker_mapping[label]
         })
 
@@ -106,9 +126,9 @@ def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation
 
 
 if __name__ == "__main__":
-    output_path="./NemoDiarization/output/v0/"
+    output_path="./NemoDiarization/output/embedding/"
     for i in range(1,2):
         audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
-        diarization_nvidia_sortformer_process(audio_input,output_path)
+        diarization_nvidia_sortformer_process(audio_input,output_path,audio_divide_ratio=3)
     # audio_input="./NemoDiarization/input/1.1_video.wav"
     # diarization_nvidia_sortformer_process(audio_input,output_path, 5)

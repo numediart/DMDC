@@ -1,3 +1,6 @@
+# Install necessary libraries
+!pip install nemo_toolkit pandas librosa soundfile
+
 from nemo.collections.asr.models import SortformerEncLabelModel
 import csv
 import pandas as pd
@@ -5,15 +8,17 @@ import librosa
 import soundfile as sf
 import os
 
-import os
+# Define temporary folder for segmentation
+TEMPFOLDER = "./tempsegment"
 
-TEMPFOLDER="./tempsegment"
+# Download the model file if not already present
+if not os.path.exists("./diar_sortformer_4spk-v1.nemo"):
+    !wget -O diar_sortformer_4spk-v1.nemo https://path_to_model_file/diar_sortformer_4spk-v1.nemo
 
-
-diar_model = SortformerEncLabelModel.restore_from(restore_path="./NemoDiarization/model/diar_sortformer_4spk-v1.nemo", map_location='cuda', strict=False)
-
-
-
+# Restore the diarization model
+diar_model = SortformerEncLabelModel.restore_from(
+    restore_path="./diar_sortformer_4spk-v1.nemo", map_location='cuda', strict=False
+)
 
 def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation_minutes=5, disable_segmentation=False):
     """
@@ -101,9 +106,19 @@ def diarization_nvidia_sortformer_process(audio_input, output_path, segmentation
 
 
 if __name__ == "__main__":
-    output_path="./NemoDiarization/output/v0/"
-    for i in range(1,11):
-        audio_input="./V0.2DataSet/wav/"+str(i)+"_video"
-        diarization_nvidia_sortformer_process(audio_input,output_path)
-    # audio_input="./NemoDiarization/input/thedeepskintest.wav"
-    # diarization_nvidia_sortformer_process(audio_input,output_path, 5,disable_segmentation=True)
+    # Define output path
+    output_path = "./output/"
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
+
+    # Upload audio files to Colab
+    from google.colab import files
+    uploaded = files.upload()
+
+    # Process each uploaded audio file
+    for audio_input in uploaded.keys():
+        diarization_nvidia_sortformer_process(audio_input, output_path)
+
+    # Download results
+    !zip -r diarization_results.zip ./output/
+    files.download("diarization_results.zip")

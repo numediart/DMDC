@@ -1,0 +1,103 @@
+import os
+import json
+from omegaconf import OmegaConf
+
+import nemo.collections.asr as nemo_asr
+
+def diarization_nvidia_sortformer_process(diar_model, audio_path, output_dir):
+    """
+    This function performs speaker diarization on a single audio file using a
+    pre-loaded NeMo model.
+
+    Args:
+        diar_model: The pre-loaded NeMo ClusteringDiarizer model.
+        audio_path (str): The path to the input audio file (.wav).
+        output_dir (str): The directory to save the output RTTM files.
+    """
+    # --- 1. Setup Directories ---
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Create a temporary directory for the manifest file inside the output directory
+    # to avoid conflicts when processing multiple files.
+    temp_manifest_dir = os.path.join(output_dir, 'temp_manifest')
+    os.makedirs(temp_manifest_dir, exist_ok=True)
+
+    # --- 2. Create Manifest File ---
+    manifest_path = os.path.join(temp_manifest_dir, 'input_manifest.json')
+    meta = {
+        'audio_filepath': os.path.abspath(audio_path),
+        'offset': 0,
+        'duration': None,
+        'label': 'infer',
+        'text': '-',
+        'num_speakers': None,  # Let the model determine the number of speakers
+        'rttm_filepath': None,
+        'uem_filepath': None
+    }
+    with open(manifest_path, 'w') as f:
+        json.dump(meta, f)
+        f.write('\n')
+
+    # --- 3. Configure the Diarization Model ---
+    cfg = OmegaConf.create(diar_model.cfg)
+    
+    cfg.diarizer.manifest_filepath = manifest_path
+    cfg.diarizer.out_dir = output_dir
+    cfg.diarizer.speaker_embeddings.model_path = 'titanet_large'
+    cfg.diarizer.vad.model_path = 'vad_multilingual_marblenet'
+    cfg.diarizer.oracle_vad = False 
+
+    diar_model.setup_diarizer(cfg)
+
+    # --- 4. Run Diarization ---
+    print(f"Starting speaker diarization for {audio_path}...")
+    diar_model.diarize()
+    print("Diarization complete.")
+
+    # --- 5. Display Results ---
+    base_name = os.path.basename(audio_path).rsplit('.', 1)[0]
+    rttm_file = os.path.join(output_dir, 'pred_rttms', f'{base_name}.rttm')
+    
+    if os.path.exists(rttm_file):
+        print(f"\n--- Diarization Results for {base_name} (RTTM Format) ---")
+        with open(rttm_file, 'r') as f:
+            for line in f:
+                print(line.strip())
+    else:
+        print(f"Could not find the RTTM file. Check the '{os.path.join(output_dir, 'pred_rttms')}' directory.")
+
+
+def main():
+    """
+    This script loads a NeMo diarization model and runs it on specified audio files.
+    """
+    # --- Load the Diarization Model Once ---
+    print("Loading NeMo diarization model...")
+    # For telephonic speech, `diar_msdd_telephonic` is recommended.
+    diar_model = nemo_asr.models.ClusteringDiarizer.from_pretrained(model_name="diar_msdd_telephonic")
+
+    # --- Define Input and Output Paths ---
+    output_path = "./NemoDiarization/output/v0/"
+    
+    # --- Process Audio Files ---
+    # Example with a loop (uncomment to use)
+    # for i in range(1, 2):
+    #     audio_input_base = "./V0.2DataSet/wav/" + str(i) + "_video"
+    #     audio_input_wav = audio_input_base + ".wav"
+    #     if os.path.exists(audio_input_wav):
+    #         diarization_nvidia_sortformer_process(diar_model, audio_input_wav, output_path)
+    #     else:
+    #         print(f"Audio file not found: {audio_input_wav}")
+
+    # Example with a single file
+    audio_input_base = "./V0.2DataSet/wav/" + str(1) + "_video"
+    audio_input_wav = audio_input_base + ".wav"
+    
+    if os.path.exists(audio_input_wav):
+        diarization_nvidia_sortformer_process(diar_model, audio_input_wav, output_path)
+    else:
+        print(f"Audio file not found: {audio_input_wav}")
+
+
+if __name__ == '__main__':
+    main()
