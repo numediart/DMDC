@@ -1,0 +1,4 @@
+,start_time,end_time,speaker,embedding_index_start,embedding_index_end
+0,0.32,5.6,SPEAKER_00,0,3171
+1,253.6315625,254.99156250000001,SPEAKER_00,3171,6342
+2,507.263125,509.903125,SPEAKER_00,6342,9513

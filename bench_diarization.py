@@ -81,14 +81,16 @@ def evaluate_diarization(eaf_path, csv_path, results):
 # === Evaluation loop and CSV export ===
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
-csv_dir = Path("test_9/Diarization_Results")
-# csv_dir = Path("V0DataSet/segments")
+# csv_dir = Path("NemoDiarization/output/fromgooglecolab")
+# csv_dir = Path("NemoDiarization/output/embedding")
+# csv_dir = Path("PyannoteDiarization/output")
+csv_dir = Path("V0.2DataSet/segments")
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
-    csv_file = csv_dir / f"{base_name}_video_diarization.csv"
-    # csv_file = csv_dir / f"{base_name}_segments.csv"
+    # csv_file = csv_dir / f"{base_name}_video_diarization.csv"
+    csv_file = csv_dir / f"{base_name}_segments.csv"
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file, results)
     else:
@@ -96,5 +98,6 @@ for eaf_file in eaf_dir.glob("*.eaf"):
 
 # Save evaluation results to CSV
 results_df = pd.DataFrame(results)
+results_df.sort_values(by="file", inplace=True)
 results_df.to_csv("diarization_results.csv", index=False)
 print("\n✅ All evaluations completed. Results saved to diarization_results.csv.")
