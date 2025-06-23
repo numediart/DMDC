@@ -72,6 +72,32 @@ def download_youtube_video(url, output_path):
         ydl.download([url])
     print(f"Video downloaded: {output_path}")
 
+
+def download_youtube_video_480p(url, output_path):
+    if os.path.exists(output_path):
+        print(f"Video already present locally: {output_path}")
+        return
+    ydl_opts = {
+        'format': 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/mp4',
+        'outtmpl': output_path,
+        'quiet': False,
+        'merge_output_format': 'mp4',
+        'ffmpeg_location': ffmpeg_path,
+        'writesubtitles': False,
+        'writeautomaticsub': False,
+        'postprocessors': [{
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': 'mp4',
+        }],
+        'format_selector': lambda ctx: (
+            ctx.get('formats') and 
+            [f for f in ctx['formats'] if f.get('acodec') != 'none' and f.get('vcodec') != 'none']
+        ) or ctx.get('formats', [])
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+    print(f"480p video downloaded: {output_path}")
+
 # --- Function to extract audio ---
 def extract_audio_to_wav(video_path, wav_output_path):
     os.makedirs(os.path.dirname(wav_output_path), exist_ok=True)

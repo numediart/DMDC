@@ -2,7 +2,7 @@ from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_t
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
+from Filtering.filter import download_youtube_video,download_youtube_video_480p, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from formatAUSpeakerListener import format_all_clips
 from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
 from Whisper.transcriptFromAudio import transcriptFromAudio
@@ -87,7 +87,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
 
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
-            download_youtube_video(url, output_name)
+            download_youtube_video_480p(url, output_name)
 
 
             stat_one_vid["2.Download"]=time.time()-start_time_process
@@ -108,7 +108,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             start_time_process = time.time()
 
             AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
-            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'test.mp4')
+            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
             AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
             if not os.path.exists(AU_output):
                 process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
