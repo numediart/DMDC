@@ -88,8 +88,8 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
 
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
-            fps_video=download_youtube_video_480p_h264(url, output_name)
-
+            fps_video=round(download_youtube_video_480p_h264(url, output_name))
+            print("[Info] Fps :",fps_video)
             
 
             stat_one_vid["2.Download"]=time.time()-start_time_process
@@ -155,7 +155,8 @@ def main_batch(video_list_file='videoV0.5.txt'):
             start_time_process = time.time()
 
             print("[Diarization] Diarization starts")
-            run_diarization(wav_dir,DATASET_FOLDER)
+            output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "diarization",f'{idx}_video')
+            run_diarization(wav_dir,output_diar,fps_video)
             print("[Diarization] Diarization completed")
 
             csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
@@ -169,6 +170,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             # Diarization merging
             #####################
+
+
+            
 
 
 

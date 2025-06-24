@@ -76,28 +76,29 @@ def download_youtube_video(url, output_path):
 def download_youtube_video_480p_h264(url, output_path):
     if os.path.exists(output_path):
         print(f"Video already present locally: {output_path}")
-        return
-    ydl_opts = {
-        'format': 'bestvideo[height<=480][vcodec=h264][ext=mp4]+bestaudio[ext=m4a]/mp4',
-        'outtmpl': output_path,
-        'quiet': False,
-        'merge_output_format': 'mp4',
-        'ffmpeg_location': ffmpeg_path,
-        'writesubtitles': False,
-        'writeautomaticsub': False,
-        'postprocessors': [{
-            'key': 'FFmpegVideoConvertor',
-            'preferedformat': 'mp4',
-        }],
-        'format_selector': lambda ctx: (
-            ctx.get('formats') and 
-            [f for f in ctx['formats'] if f.get('acodec') != 'none' and f.get('vcodec') == 'h264']
-        ) or ctx.get('formats', [])
-    }
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-    print(f"480p H264 video downloaded: {output_path}")
-    # --- Return the FPS number ---
+        
+    else:
+        ydl_opts = {
+            'format': 'bestvideo[height<=480][vcodec=h264][ext=mp4]+bestaudio[ext=m4a]/mp4',
+            'outtmpl': output_path,
+            'quiet': False,
+            'merge_output_format': 'mp4',
+            'ffmpeg_location': ffmpeg_path,
+            'writesubtitles': False,
+            'writeautomaticsub': False,
+            'postprocessors': [{
+                'key': 'FFmpegVideoConvertor',
+                'preferedformat': 'mp4',
+            }],
+            'format_selector': lambda ctx: (
+                ctx.get('formats') and 
+                [f for f in ctx['formats'] if f.get('acodec') != 'none' and f.get('vcodec') == 'h264']
+            ) or ctx.get('formats', [])
+        }
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+        print(f"480p H264 video downloaded: {output_path}")
+        
     cap = cv2.VideoCapture(output_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
     cap.release()

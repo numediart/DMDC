@@ -59,12 +59,12 @@ def typeOfSceneFrameToSegments(df_type_of_scene,output_path,fps):
         # New segments
         if current_segment["type"] is None:
             start_frame=current_segment["start_frame"] = frame
-            current_segment["start_sec"] = round(start_frame/30,2)
+            current_segment["start_sec"] = round(start_frame / fps, 2)  
             current_segment["type"] = frame_type
         # Change detected
         elif current_segment["type"] != frame_type:
             end_frame=current_segment["end_frame"] = frame - 1
-            current_segment["end_sec"] = round(end_frame/30,2)
+            current_segment["end_sec"] = round(end_frame / fps, 2)  # Ensure fps is not None
             if(current_segment["end_sec"]-current_segment["start_sec"]>1):
                 segments.append(current_segment)
             current_segment = {"start_frame": frame, "end_frame": None,"start_sec": None, "end_sec": None, "type": None}
@@ -87,5 +87,5 @@ if __name__ == "__main__":
     input_path = os.path.join(os.path.dirname(__file__), "input", "test.csv")
     output_path = os.path.join(os.path.dirname(__file__), "output")
 
-    df_type_of_scene=typeOfSceneDetectionAU(input_path)
+    df_type_of_scene=typeOfSceneDetectionAU(input_path,output_path)
     typeOfSceneFrameToSegments(df_type_of_scene,output_path,24)

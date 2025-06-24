@@ -6,7 +6,7 @@ from pyannote.audio.pipelines.utils.hook import ProgressHook
 import time
 #Constants
 
-def run_diarization(filename,datasetName):
+def run_diarization(filename,datasetName,fps=30):
     start_time = time.time()
     ##################################################################
     #Credit https://github.com/pyannote/pyannote-audio README.md
@@ -33,7 +33,7 @@ def run_diarization(filename,datasetName):
     # Create a dataframe from the diarization results
     data = []
     for turn, _, speaker in diarization.itertracks(yield_label=True):
-        data.append({'start': turn.start, 'end': turn.end, 'speaker': speaker})
+        data.append({'start': turn.start, 'end': turn.end,'start_frame':int(turn.start*fps),'end_frame' :int(turn.end*fps),'speaker': speaker})
     df = pd.DataFrame(data)
 
     # Display the dataframe
@@ -47,7 +47,7 @@ def run_diarization(filename,datasetName):
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    pathname = os.path.join(output_dir, f"{base_filename}_diarization_results_{timestamp}.csv")
+    pathname = os.path.join(output_dir, f"{base_filename}_diarization_results.csv")
     df.to_csv(pathname, index=False)
     print(f"[Diarization] Saved diarization results here: {pathname}")
 

@@ -84,13 +84,17 @@ eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 # csv_dir = Path("NemoDiarization/output/fromgooglecolab")
 # csv_dir = Path("NemoDiarization/output/embedding")
 # csv_dir = Path("PyannoteDiarization/output")
-csv_dir = Path("V0.2DataSet/segments")
+# csv_dir = Path("V0.2DataSet/segments")
+
+csv_dir = Path("OpenFace/output")
+# csv_dir = Path("V0.7DataSet/diarization/6_video/Diarization_Results")
+
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
-    # csv_file = csv_dir / f"{base_name}_video_diarization.csv"
-    csv_file = csv_dir / f"{base_name}_segments.csv"
+    csv_file = csv_dir / f"{base_name}_video_diarization.csv"
+    # csv_file = csv_dir / f"{base_name}_segments.csv"
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file, results)
     else:
