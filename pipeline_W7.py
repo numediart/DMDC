@@ -2,11 +2,12 @@ from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_t
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
-from Filtering.filter import download_youtube_video,download_youtube_video_480p, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
+from Filtering.filter import download_youtube_video,download_youtube_video_480p_h264, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from formatAUSpeakerListener import format_all_clips
 from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
+from OpenFace.typeOfSceneFromOpenFace import typeOfSceneDetectionAU,typeOfSceneFrameToSegments
 import librosa
 import os
 import warnings
@@ -87,8 +88,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
 
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
-            download_youtube_video_480p(url, output_name)
+            fps_video=download_youtube_video_480p_h264(url, output_name)
 
+            
 
             stat_one_vid["2.Download"]=time.time()-start_time_process
             #####################
@@ -108,7 +110,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             start_time_process = time.time()
 
             AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
-            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
+            # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
             AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
             if not os.path.exists(AU_output):
                 process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
@@ -120,29 +122,36 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             # Segmentation (if needed)
             #####################
-            print(f"\n\n\n ---Step: 4--- Segmentations")
-            start_time_process = time.time()
+            print(f"\n\n\n ---Step: 5--- Segmentations type of scene from openface")
+            # start_time_process = time.time()
 
-            if os.path.exists(segments_csv):
-                print("[Info] Segments already done, load segments from CSV ...")
-                segments = load_segments_from_csv(segments_csv)
-            else:
-                print("[Info] Segments under creation with face detections...")
-                process = subprocess.Popen(
-                    ['python3.10', '-c', f'import Filtering.filter as ff; ff.detect_faces_in_video("{output_name}")'],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                )
-                process.wait()
+            # if os.path.exists(segments_csv):
+            #     print("[Info] Segments already done, load segments from CSV ...")
+            #     segments = load_segments_from_csv(segments_csv)
+            # else:
+            #     print("[Info] Segments under creation with face detections...")
+            #     process = subprocess.Popen(
+            #         ['python3.10', '-c', f'import Filtering.filter as ff; ff.detect_faces_in_video("{output_name}")'],
+            #         stdout=subprocess.DEVNULL,
+            #         stderr=subprocess.DEVNULL
+            #     )
+            #     process.wait()
+            input_path_segmentation = os.path.join(AU_output,f'{idx}_video.csv')
+            output_path_segmentation = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'segments_video_type', f'{idx}_video')
+            os.makedirs(output_path_segmentation, exist_ok=True)
+            df_type_of_scene=typeOfSceneDetectionAU(input_path_segmentation)
+            typeOfSceneFrameToSegments(df_type_of_scene,output_path_segmentation,fps_video)
+            print("[Segmentation] Segementation done & export to ",output_path_segmentation)
 
 
 
-            stat_one_vid["4.Extract"]=time.time()-start_time_process
+
+            stat_one_vid["5.Extract"]=time.time()-start_time_process
 
             #####################
             # Diarization (Identify which person is speaking)
             #####################
-            print(f"\n\n\n ---Step: 5--- Diarization")
+            print(f"\n\n\n ---Step: 6--- Diarization")
             start_time_process = time.time()
 
             print("[Diarization] Diarization starts")
@@ -152,7 +161,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
             csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
             df_diarization = pd.read_csv(csv_path)
 
-            stat_one_vid["5.Diarization"]=time.time()-start_time_process
+            stat_one_vid["6.Diarization"]=time.time()-start_time_process
 
 
            

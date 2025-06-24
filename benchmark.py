@@ -177,3 +177,4 @@ for eaf_file in eaf_dir.glob("*.eaf"):
         run_benchmark(eaf_file, csv_file)
     else:
         print(f"⚠️ No CSV for {eaf_file.name}")
+        
