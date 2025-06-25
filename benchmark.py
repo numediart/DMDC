@@ -13,20 +13,20 @@ def run_benchmark(eaf_path, csv_path):
     eaf_obj = pympi.Elan.Eaf(eaf_path)
 
     # Mapping only for SkinDeep videos
-    video_number_match = re.match(r"(\d+)_video", eaf_path.stem)
-    apply_mapping = False
-    if video_number_match:
-        video_number = int(video_number_match.group(1))
-        apply_mapping = 6 <= video_number <= 10
+    # video_number_match = re.match(r"(\d+)_video", eaf_path.stem)
+    # apply_mapping = False
+    # if video_number_match:
+    #     video_number = int(video_number_match.group(1))
+    #     apply_mapping = 6 <= video_number <= 10
 
-    if apply_mapping:
-        speaker_mapping = {
-            "SPEAKER_00": "SPEAKER_02",
-            "SPEAKER_01": "SPEAKER_00",
-            "SPEAKER_02": "SPEAKER_01",
-        }
-    else:
-        speaker_mapping = {}
+    # if apply_mapping:
+    #     speaker_mapping = {
+    #         "SPEAKER_00": "SPEAKER_02",
+    #         "SPEAKER_01": "SPEAKER_00",
+    #         "SPEAKER_02": "SPEAKER_01",
+    #     }
+    # else:
+    #     speaker_mapping = {}
 
     annotations_manuelles = []
     tier_names = eaf_obj.get_tier_names()
@@ -34,17 +34,18 @@ def run_benchmark(eaf_path, csv_path):
     for tier_name in tier_names:
         annotations_data = eaf_obj.get_annotation_data_for_tier(tier_name)
         
-        if 'SPEAKER_' in tier_name:
-            for start, end, transcript_text in annotations_data:
-                annotations_manuelles.append({
-                    'type': 'transcription',
-                    'speaker_id': tier_name,  # ex: 'SPEAKER_00'
-                    'start_ms': start,
-                    'end_ms': end,
-                    'label': transcript_text
-                })
+        # if 'SPEAKER_' in tier_name:
+        #     for start, end, transcript_text in annotations_data:
+        #         annotations_manuelles.append({
+        #             'type': 'transcription',
+        #             'speaker_id': tier_name,  # ex: 'SPEAKER_00'
+        #             'start_ms': start,
+        #             'end_ms': end,
+        #             'label': transcript_text
+        #         })
                 
-        elif tier_name == 'category':
+        # el
+        if tier_name == 'category':
             for start, end, category_type in annotations_data:
                 annotations_manuelles.append({
                     'type': 'category',
@@ -70,13 +71,13 @@ def run_benchmark(eaf_path, csv_path):
         end_ms = row['end_time'] * 1000
         
 
-        annotations_auto.append({
-            'type': 'transcription',
-            'speaker_id': row['speaker'],
-            'start_ms': start_ms,
-            'end_ms': end_ms,
-            'label': row['transcription']
-        })
+        # annotations_auto.append({
+        #     'type': 'transcription',
+        #     'speaker_id': row['speaker'],
+        #     'start_ms': start_ms,
+        #     'end_ms': end_ms,
+        #     'label': row['transcription']
+        # })
         
 
         annotations_auto.append({
@@ -125,42 +126,42 @@ def run_benchmark(eaf_path, csv_path):
     all_speaker_ids = sorted([str(spk) for spk in unique_speakers])
 
     wer_results = {}
-    print("\n--- Word Error for each speaker ---")
+    # print("\n--- Word Error for each speaker ---")
 
-    for speaker in all_speaker_ids:
-        # 2. Ground Truth ELAN
-        manual_texts = sorted(
-            [ann for ann in annotations_manuelles 
-            if ann.get('speaker_id') == speaker_mapping.get(speaker, speaker)], 
-            key=lambda x: x['start_ms']
-        )
-        ground_truth = " ".join([ann['label'] for ann in manual_texts])
+    # for speaker in all_speaker_ids:
+    #     # 2. Ground Truth ELAN
+    #     manual_texts = sorted(
+    #         [ann for ann in annotations_manuelles 
+    #         if ann.get('speaker_id') == speaker_mapping.get(speaker, speaker)], 
+    #         key=lambda x: x['start_ms']
+    #     )
+    #     ground_truth = " ".join([ann['label'] for ann in manual_texts])
 
-        # 3. CSV Hypothesis
-        df_speaker_auto = df_auto[df_auto['speaker'] == speaker].sort_values(by='start_time')
-        hypothesis = " ".join(df_speaker_auto['transcription'].astype(str))
+    #     # 3. CSV Hypothesis
+    #     df_speaker_auto = df_auto[df_auto['speaker'] == speaker].sort_values(by='start_time')
+    #     hypothesis = " ".join(df_speaker_auto['transcription'].astype(str))
         
-        # print(f"\n--- DÉBOGAGE POUR LE SPEAKER : {speaker} ---")
-        # print(f"Nombre de mots (Vérité Terrain): {len(ground_truth.split())}")
-        # print(f"Extrait Vérité Terrain: {ground_truth[:200]}")
-        # print(f"Nombre de mots (Hypothèse)    : {len(hypothesis.split())}")
-        # print(f"Extrait Hypothèse    : {hypothesis[:200]}")
+    #     # print(f"\n--- DÉBOGAGE POUR LE SPEAKER : {speaker} ---")
+    #     # print(f"Nombre de mots (Vérité Terrain): {len(ground_truth.split())}")
+    #     # print(f"Extrait Vérité Terrain: {ground_truth[:200]}")
+    #     # print(f"Nombre de mots (Hypothèse)    : {len(hypothesis.split())}")
+    #     # print(f"Extrait Hypothèse    : {hypothesis[:200]}")
 
-        # 4. WER (Word Error Rate) Calculation
-        if ground_truth:
-            measures = jiwer.compute_measures(ground_truth, hypothesis)
-            wer_results[speaker] = measures['wer']
-            print(f"Speaker '{speaker}' - WER: {measures['wer']:.2%}")
-        else:
-            # If Speaker in CSV but not in EAF
-            wer_results[speaker] = None
-            print(f"Speaker '{speaker}' - No ground truth available, skipping WER calculation.")
+    #     # 4. WER (Word Error Rate) Calculation
+    #     if ground_truth:
+    #         measures = jiwer.compute_measures(ground_truth, hypothesis)
+    #         wer_results[speaker] = measures['wer']
+    #         print(f"Speaker '{speaker}' - WER: {measures['wer']:.2%}")
+    #     else:
+    #         # If Speaker in CSV but not in EAF
+    #         wer_results[speaker] = None
+    #         print(f"Speaker '{speaker}' - No ground truth available, skipping WER calculation.")
 
-    # Mean WER
-    valid_wers = [w for w in wer_results.values() if w is not None]
-    if valid_wers:
-        average_wer = sum(valid_wers) / len(valid_wers)
-        print(f"\nMean WER (Macro-average): {average_wer:.2%}")
+    # # Mean WER
+    # valid_wers = [w for w in wer_results.values() if w is not None]
+    # if valid_wers:
+    #     average_wer = sum(valid_wers) / len(valid_wers)
+    #     print(f"\nMean WER (Macro-average): {average_wer:.2%}")
     
     return
 
