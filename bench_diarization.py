@@ -43,7 +43,7 @@ def evaluate_diarization(eaf_path, csv_path, results):
     print(f"Reference speech duration: {duration:.2f} seconds")
 
     confusion = details.get("confusion", None)
-    missed = details.get("missed speech", None)
+    missed = details.get("missed detection", None)
     false_alarm = details.get("false alarm", None)
 
     if confusion is not None:
@@ -87,9 +87,9 @@ eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 # csv_dir = Path("V0.2DataSet/segments")
 
 # csv_dir = Path("OpenFace/output")
-# csv_dir = Path("whisperX/output/")
+csv_dir = Path("whisperX/output/")
 # csv_dir = Path("V0.7DataSet/diarization/6_video/Diarization_Results")
-csv_dir = Path("V0.7DataSet/diarization/7_video/Diarization_Results")
+# csv_dir = Path("V0.7DataSet/diarization/7_video/Diarization_Results")
 
 results = []
 

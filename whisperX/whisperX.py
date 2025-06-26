@@ -5,7 +5,7 @@ import os
 
 
 
-def process_audio_file(audio_file, output_folder="./output", batch_size=16, device="cpu", compute_type="int8"):
+def whisperX_process(audio_file, output_folder="./output", batch_size=16, device="cpu", compute_type="int8"):
 
     # 1. Transcribe with original whisper (batched)
     model = whisperx.load_model("large-v2", device, compute_type=compute_type)
@@ -26,7 +26,8 @@ def process_audio_file(audio_file, output_folder="./output", batch_size=16, devi
 
     # 3. Assign speaker labels
     diarize_model = whisperx.diarize.DiarizationPipeline(use_auth_token="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", device=device)
-    diarize_segments = diarize_model(audio)
+    # diarize_segments = diarize_model(audio)
+    diarize_segments =diarize_model(audio, min_speakers=0, max_speakers=2)
     result = whisperx.assign_word_speakers(diarize_segments, result)
     print(diarize_segments)
     print(result["segments"])  # segments are now assigned speaker IDs
@@ -47,4 +48,4 @@ def process_audio_file(audio_file, output_folder="./output", batch_size=16, devi
 
 if __name__ == "__main__":
     audio_file = os.path.join(os.path.dirname(__file__), "input", "7_video.wav")
-    process_audio_file(audio_file)
+    whisperX_process(audio_file)

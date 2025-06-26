@@ -8,6 +8,8 @@ from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
 from OpenFace.typeOfSceneFromOpenFace import typeOfSceneDetectionAU,typeOfSceneFrameToSegments
+from whisperX.whisperX import whisperX_process 
+from whisperX.whisperXresultAnalysis import process_diarization_data
 import librosa
 import os
 import warnings
@@ -26,8 +28,8 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.7DataSet"
-VIDEO_TEXT_FILE="./VideoList/video_thedeepskin.txt"
+DATASET_FOLDER="V0.8DataSet"
+VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 
 def get_diarization_csv(wav_path):
     base_filename = os.path.splitext(os.path.basename(wav_path))[0]  # e.g. "1_video"
@@ -71,7 +73,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=6):
+    for idx, url in enumerate(video_urls, start=1):
         try:
 
             stat_one_vid={}
@@ -106,18 +108,18 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             # Openface Action Unit
             #####################
-            print(f"\n\n\n ---Step: 4--- Action unit extraction")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 4--- Action unit extraction")
+            # start_time_process = time.time()
 
-            AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
-            # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
-            AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
-            if not os.path.exists(AU_output):
-                process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
-            else:
-                print(f"[AU] AU already done")
+            # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
+            # # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
+            # AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
+            # if not os.path.exists(AU_output):
+            #     process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
+            # else:
+            #     print(f"[AU] AU already done")
 
-            stat_one_vid["4.OpenFace"]=time.time()-start_time_process
+            # stat_one_vid["4.OpenFace"]=time.time()-start_time_process
 
             #####################
             # Segmentation (if needed)
@@ -136,33 +138,53 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #         stderr=subprocess.DEVNULL
             #     )
             #     process.wait()
-            input_path_segmentation = os.path.join(AU_output,f'{idx}_video.csv')
-            output_path_segmentation = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'segments_video_type', f'{idx}_video')
-            os.makedirs(output_path_segmentation, exist_ok=True)
-            df_type_of_scene=typeOfSceneDetectionAU(input_path_segmentation)
-            typeOfSceneFrameToSegments(df_type_of_scene,output_path_segmentation,fps_video)
-            print("[Segmentation] Segementation done & export to ",output_path_segmentation)
 
 
 
 
-            stat_one_vid["5.Extract"]=time.time()-start_time_process
+            # input_path_segmentation = os.path.join(AU_output,f'{idx}_video.csv')
+            # output_path_segmentation = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'segments_video_type', f'{idx}_video')
+            # os.makedirs(output_path_segmentation, exist_ok=True)
+            # df_type_of_scene=typeOfSceneDetectionAU(input_path_segmentation)
+            # typeOfSceneFrameToSegments(df_type_of_scene,output_path_segmentation,fps_video)
+            # print("[Segmentation] Segementation done & export to ",output_path_segmentation)
+
+
+
+
+            # stat_one_vid["5.Extract"]=time.time()-start_time_process
 
             #####################
             # Diarization (Identify which person is speaking)
             #####################
-            print(f"\n\n\n ---Step: 6--- Diarization")
+            # print(f"\n\n\n ---Step: 6--- Diarization")
+            # start_time_process = time.time()
+
+            # print("[Diarization] Diarization starts")
+            # output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "diarization",f'{idx}_video')
+            # run_diarization(wav_dir,output_diar,fps_video)
+            # print("[Diarization] Diarization completed")
+
+
+            # stat_one_vid["6.Diarization"]=time.time()-start_time_process
+
+            #####################
+            # Whisper X
+            #####################
+            print(f"\n\n\n ---Step: 7--- WhisperX")
             start_time_process = time.time()
 
-            print("[Diarization] Diarization starts")
-            output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "diarization",f'{idx}_video')
-            run_diarization(wav_dir,output_diar,fps_video)
+            output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "whisperX",f'{idx}_video')
+            whisperX_process(wav_dir,output_diar)
             print("[Diarization] Diarization completed")
 
-            csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
-            df_diarization = pd.read_csv(csv_path)
+            diarization_json=os.path.join(output_diar,f'{idx}_video_diarization.csv')
+            output_diar_csv=os.path.join(output_diar,f'{idx}_video_diarization.json')
+            process_diarization_data(diarization_json,output_diar_csv)
 
-            stat_one_vid["6.Diarization"]=time.time()-start_time_process
+
+            stat_one_vid["7.WhisperX"]=time.time()-start_time_process
+
 
 
            
@@ -179,204 +201,204 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             # Identify which speaker is speaking during each segment using diarization results
             #####################
-            print(f"\n\n\n ---Step: 6--- Assigning speakers to segments")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 6--- Assigning speakers to segments")
+            # start_time_process = time.time()
 
 
-            print("[Assignment] Assigning speakers to segments...")
+            # print("[Assignment] Assigning speakers to segments...")
 
-            merged = assign_speakers_to_segments_from_df(segments, df_diarization)
-            merged = merge_contiguous_segments(merged, max_gap=1)
-            merged = filter_short_segments(merged, min_duration=1.5)
+            # merged = assign_speakers_to_segments_from_df(segments, df_diarization)
+            # merged = merge_contiguous_segments(merged, max_gap=1)
+            # merged = filter_short_segments(merged, min_duration=1.5)
 
-            print("[Assignment] Assignment completed")
-            export_segments_with_speaker_to_csv(merged, segments_csv)
-            print("[Assignment] Assignment Exported")
+            # print("[Assignment] Assignment completed")
+            # export_segments_with_speaker_to_csv(merged, segments_csv)
+            # print("[Assignment] Assignment Exported")
 
-            stat_one_vid["6.Assigning"]=time.time()-start_time_process
+            # stat_one_vid["6.Assigning"]=time.time()-start_time_process
 
 
             #####################
             # Split Video from segments 
             #####################
-            print(f"\n\n\n ---Step: 7--- Split Video from segments")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 7--- Split Video from segments")
+            # start_time_process = time.time()
 
 
 
 
-            # Check if audio and video clips have already been processed
-            clips_video_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video", f"{idx}_video.mp4"))
+            # # Check if audio and video clips have already been processed
+            # clips_video_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video", f"{idx}_video.mp4"))
 
-            output_video = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video")
+            # output_video = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_video")
 
-            if not clips_video_done:
-                # print(f"[Info] Splitting video for video {idx}")
-                # input_path_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
-                # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-                # dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
-                print(f"[Splitting] Processing dyadic clips for video {idx}")
-                extract_dyadic_clips(str(idx),DATASET_FOLDER)
-                print(f"[Splitting] Dyadic clips processing done")
-            else:
-                print(f"[Info] Video clips already processed for video {idx}, skipping...")
+            # if not clips_video_done:
+            #     # print(f"[Info] Splitting video for video {idx}")
+            #     # input_path_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
+            #     # input_path_mp4 = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
+            #     # dyadicDF=extract_video_segments(os.path.abspath(input_path_mp4), os.path.abspath(input_path_csv), os.path.abspath(output_video))
+            #     print(f"[Splitting] Processing dyadic clips for video {idx}")
+            #     extract_dyadic_clips(str(idx),DATASET_FOLDER)
+            #     print(f"[Splitting] Dyadic clips processing done")
+            # else:
+            #     print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
             
 
-            stat_one_vid["7.Split_video"]=time.time()-start_time_process
+            # stat_one_vid["7.Split_video"]=time.time()-start_time_process
             #####################
             # Openface Action Unit
             #####################
-            print(f"\n\n\n ---Step: 8--- Action unit extraction")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 8--- Action unit extraction")
+            # start_time_process = time.time()
 
 
-            output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'openface_clips', f'{idx}_video')
-            if not os.path.exists(output):
-                print(f"[AU] Processing AU")
-                os.makedirs(output, exist_ok=True)
-                clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video"
-                openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
-                os.makedirs(openface_out_dir, exist_ok=True)
-                run_openface_on_all_clips(clips_dir, openface_out_dir)
-            else:
-                print(f"[AU] AU already done")
+            # output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'openface_clips', f'{idx}_video')
+            # if not os.path.exists(output):
+            #     print(f"[AU] Processing AU")
+            #     os.makedirs(output, exist_ok=True)
+            #     clips_dir = DATASET_FOLDER+f"/clips_video/{idx}_video"
+            #     openface_out_dir = DATASET_FOLDER+f"/openface_clips/{idx}_video"
+            #     os.makedirs(openface_out_dir, exist_ok=True)
+            #     run_openface_on_all_clips(clips_dir, openface_out_dir)
+            # else:
+            #     print(f"[AU] AU already done")
 
-            stat_one_vid["8.OpenFace"]=time.time()-start_time_process
+            # stat_one_vid["8.OpenFace"]=time.time()-start_time_process
 
             #################
             # Who is speaking
             #################
-            print(f"\n\n\n ---Step: 9--- Who is speaking")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 9--- Who is speaking")
+            # start_time_process = time.time()
 
 
 
-            print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
-            mapping_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
-            if os.path.exists(mapping_csv_path):
-                print(f"[WhoIsSpeaking] Mapping already exists for video {idx}, skipping...")
-            else:
-                detect_who_speaking_from_clips(
-                    video_id=str(idx),
-                    segments_csv_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments",f"{idx}_segments.csv"),
-                    openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
-                    output_path=mapping_csv_path
-                )
-                print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
+            # print(f"[WhoIsSpeaking] Detecting who is speaking in video {idx}")
+            # mapping_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv")
+            # if os.path.exists(mapping_csv_path):
+            #     print(f"[WhoIsSpeaking] Mapping already exists for video {idx}, skipping...")
+            # else:
+            #     detect_who_speaking_from_clips(
+            #         video_id=str(idx),
+            #         segments_csv_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments",f"{idx}_segments.csv"),
+            #         openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+            #         output_path=mapping_csv_path
+            #     )
+            #     print(f"[WhoIsSpeaking] Who is speaking completed for video {idx}")
 
 
-            stat_one_vid["9.WhoIsSpeaking"]=time.time()-start_time_process
+            # stat_one_vid["9.WhoIsSpeaking"]=time.time()-start_time_process
             #####################
             # Format AU with Speaker-Listener
             #####################
-            print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
+            # start_time_process = time.time()
 
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
-            if os.path.exists(formatted_dir) and os.listdir(formatted_dir):
-                print(f"[Format] Formatted clips already exist for video {idx}, skipping...")
-            else:
-                format_all_clips(
-                    mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
-                    openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
-                    output_dir=formatted_dir
-                )
+            # formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
+            # if os.path.exists(formatted_dir) and os.listdir(formatted_dir):
+            #     print(f"[Format] Formatted clips already exist for video {idx}, skipping...")
+            # else:
+            #     format_all_clips(
+            #         mapping_csv=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mapping_results", f"{idx}_video", "mapping.csv"),
+            #         openface_dir=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "openface_clips", f"{idx}_video"),
+            #         output_dir=formatted_dir
+            #     )
 
 
-            stat_one_vid["10.FormatAU"]=time.time()-start_time_process
+            # stat_one_vid["10.FormatAU"]=time.time()-start_time_process
             #####################
             # Format AU with 64 frames
             #####################
-            print(f"\n\n\n ---Step: 11---Format AU with 64 frames")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 11---Format AU with 64 frames")
+            # start_time_process = time.time()
 
 
 
-            print("[64f] Process Speaker files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "speaker")
-            os.makedirs(windowed_dir, exist_ok=True)
-            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
-            for csv_file in csv_files:
-                base_name = os.path.splitext(os.path.basename(csv_file))[0]
-                # Check if at least one windowed file for this csv exists
-                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
-                if already_done:
-                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
-                    continue
-                split_csv_with_sliding_window(csv_file, windowed_dir)
+            # print("[64f] Process Speaker files")
+            # formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
+            # windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "speaker")
+            # os.makedirs(windowed_dir, exist_ok=True)
+            # csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
+            # for csv_file in csv_files:
+            #     base_name = os.path.splitext(os.path.basename(csv_file))[0]
+            #     # Check if at least one windowed file for this csv exists
+            #     already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
+            #     if already_done:
+            #         print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
+            #         continue
+            #     split_csv_with_sliding_window(csv_file, windowed_dir)
 
-            print("[64f] Process listener files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "listener")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "listener")
-            os.makedirs(windowed_dir, exist_ok=True)
-            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
-            for csv_file in csv_files:
-                base_name = os.path.splitext(os.path.basename(csv_file))[0]
-                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
-                if already_done:
-                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
-                    continue
-                split_csv_with_sliding_window(csv_file, windowed_dir)
+            # print("[64f] Process listener files")
+            # formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "listener")
+            # windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "listener")
+            # os.makedirs(windowed_dir, exist_ok=True)
+            # csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
+            # for csv_file in csv_files:
+            #     base_name = os.path.splitext(os.path.basename(csv_file))[0]
+            #     already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
+            #     if already_done:
+            #         print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
+            #         continue
+            #     split_csv_with_sliding_window(csv_file, windowed_dir)
 
-            stat_one_vid["11.FormatTO64f"]=time.time()-start_time_process
+            # stat_one_vid["11.FormatTO64f"]=time.time()-start_time_process
             #####################
             # Split Audio from segments 
             #####################
-            print(f"\n\n\n ---Step: 12--- Split Audio from segments")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 12--- Split Audio from segments")
+            # start_time_process = time.time()
 
 
-            # Check if audio and video clips have already been processed
-            clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video"))
+            # # Check if audio and video clips have already been processed
+            # clips_audio_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video"))
 
-            output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video")
-            os.makedirs(output_audio, exist_ok=True)
+            # output_audio = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", f"{idx}_video")
+            # os.makedirs(output_audio, exist_ok=True)
 
-            if not clips_audio_done:
-                print(f"[Info] Splitting audio for video {idx}")
-                input_path_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
-                csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
-                for npy_file in glob.glob(os.path.join(csv_64frames_path, "*.npy")):
-                    npy_file_base = os.path.basename(npy_file)
-                    print(npy_file_base.split("_"))
-                    start_frm = int(npy_file_base.split("_")[0])
-                    end_frm =  int(npy_file_base.split("_")[2])
-                    print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {npy_file_base}")
-                    extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
+            # if not clips_audio_done:
+            #     print(f"[Info] Splitting audio for video {idx}")
+            #     input_path_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
+            #     csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
+            #     for npy_file in glob.glob(os.path.join(csv_64frames_path, "*.npy")):
+            #         npy_file_base = os.path.basename(npy_file)
+            #         print(npy_file_base.split("_"))
+            #         start_frm = int(npy_file_base.split("_")[0])
+            #         end_frm =  int(npy_file_base.split("_")[2])
+            #         print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {npy_file_base}")
+            #         extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
 
-            else:
-                print(f"[Info] Video clips already processed for video {idx}, skipping...")
+            # else:
+            #     print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
 
-            stat_one_vid["12.SplitAudio"]=time.time()-start_time_process
+            # stat_one_vid["12.SplitAudio"]=time.time()-start_time_process
             #####################
             # MFCC Extract 
             #####################
-            print(f"\n\n\n ---Step: 13--- Speaker Melspec")
-            start_time_process = time.time()
+            # print(f"\n\n\n ---Step: 13--- Speaker Melspec")
+            # start_time_process = time.time()
 
-            # Process MFCC for all audio clips in the directory and save as CSV
-            mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
-            os.makedirs(mfcc_output_dir, exist_ok=True)
-            print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
-            audio_files = [file for file in glob.glob(os.path.join(output_audio, "*.wav")) if os.path.isfile(file)]
+            # # Process MFCC for all audio clips in the directory and save as CSV
+            # mfcc_output_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mfcc_output", str(idx) + "_video")
+            # os.makedirs(mfcc_output_dir, exist_ok=True)
+            # print(f"[MFCC] Extracting MFCC features for audio clips in {output_audio}")
+            # audio_files = [file for file in glob.glob(os.path.join(output_audio, "*.wav")) if os.path.isfile(file)]
             
-            for audio_file in audio_files:
-                mfcc_csv_path = os.path.join(mfcc_output_dir, f"{os.path.basename(audio_file).replace('.wav', '_mfcc.csv')}")
+            # for audio_file in audio_files:
+            #     mfcc_csv_path = os.path.join(mfcc_output_dir, f"{os.path.basename(audio_file).replace('.wav', '_mfcc.csv')}")
       
-                try:
-                    print(f"[MFCC] Processing {audio_file}")
-                    y, sr = librosa.load(audio_file, sr=None)
-                    mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
-                    np.save(mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy'), mfcc_features)
-                    print(f"[MFCC] Saved MFCC features to {mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy')}")
-                except Exception as e:
-                    print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
+            #     try:
+            #         print(f"[MFCC] Processing {audio_file}")
+            #         y, sr = librosa.load(audio_file, sr=None)
+            #         mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
+            #         np.save(mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy'), mfcc_features)
+            #         print(f"[MFCC] Saved MFCC features to {mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy')}")
+            #     except Exception as e:
+            #         print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
                 
 
-            stat_one_vid["13.MFCC"]=time.time()-start_time_process
+            # stat_one_vid["13.MFCC"]=time.time()-start_time_process
             #####################
             # End of the pipe, delete cache
             #####################
