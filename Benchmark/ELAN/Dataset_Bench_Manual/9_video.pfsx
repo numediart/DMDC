@@ -20,7 +20,7 @@
         <Int>545</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>53524</Long>
+        <Long>887048</Long>
     </pref>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
@@ -79,13 +79,13 @@
         <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>11.000001</Float>
+        <Float>90.999855</Float>
     </pref>
     <pref key="DetachedEditor.Bounds">
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>53476</Long>
+        <Long>886390</Long>
     </pref>
     <prefGroup key="Silence Recognizer MPI-PL">
         <pref key="NoiseThresholdSetManually">
@@ -136,10 +136,10 @@
         <Float>1.2</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>273091</Long>
+        <Long>326924</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>298621</Long>
+        <Long>886390</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="transcribe">
@@ -158,7 +158,7 @@
             <Object class="java.awt.Color">160,0,160</Object>
         </pref>
         <pref key="Tier-0">
-            <Object class="java.awt.Color">160,90,90</Object>
+            <Object class="java.awt.Color">90,160,90</Object>
         </pref>
         <pref key="category">
             <Object class="java.awt.Color">90,160,160</Object>

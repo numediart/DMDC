@@ -43,7 +43,7 @@ def evaluate_diarization(eaf_path, csv_path, results):
     print(f"Reference speech duration: {duration:.2f} seconds")
 
     confusion = details.get("confusion", None)
-    missed = details.get("missed speech", None)
+    missed = details.get("missed detection", None)
     false_alarm = details.get("false alarm", None)
 
     if confusion is not None:
@@ -84,13 +84,16 @@ eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 # csv_dir = Path("NemoDiarization/output/fromgooglecolab")
 # csv_dir = Path("NemoDiarization/output/embedding")
 # csv_dir = Path("PyannoteDiarization/output")
-csv_dir = Path("V0.2DataSet/segments")
+# csv_dir = Path("syncnet_python")
+csv_dir = Path("V0DataSet/Diarization_Results")
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
-    # csv_file = csv_dir / f"{base_name}_video_diarization.csv"
-    csv_file = csv_dir / f"{base_name}_segments.csv"
+    csv_file = csv_dir / f"{base_name}_video_diarization_fusionnee.csv"
+    # csv_file = csv_dir / f"test_9_diarization_synced.csv"
+    #csv_file = csv_dir / f"9_video_diarization_reclustered.csv"
+    # csv_file = Path("diarization_fusionnee.csv")
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file, results)
     else:
