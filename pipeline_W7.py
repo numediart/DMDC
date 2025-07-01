@@ -73,9 +73,9 @@ def main_batch(video_list_file='videoV0.5.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls, start=6):
         try:
-
+            print(f"\n\n\n [Info] URL of the video  {url}")
             stat_one_vid={}
 
             output_name = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
@@ -178,8 +178,8 @@ def main_batch(video_list_file='videoV0.5.txt'):
             whisperX_process(wav_dir,output_diar)
             print("[Diarization] Diarization completed")
 
-            diarization_json=os.path.join(output_diar,f'{idx}_video_diarization.csv')
-            output_diar_csv=os.path.join(output_diar,f'{idx}_video_diarization.json')
+            diarization_json=os.path.join(output_diar,f'{idx}_video_diarization.json')
+            output_diar_csv=os.path.join(output_diar,f'{idx}_video_diarization.csv')
             process_diarization_data(diarization_json,output_diar_csv)
 
 

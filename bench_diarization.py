@@ -90,6 +90,8 @@ eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 csv_dir = Path("whisperX/output/")
 # csv_dir = Path("V0.7DataSet/diarization/6_video/Diarization_Results")
 # csv_dir = Path("V0.7DataSet/diarization/7_video/Diarization_Results")
+csv_dir = Path("V0.8DataSet/whisperX")
+csv_dir= Path("V0.8DataSet/diarizationbywhisperX")
 
 results = []
 

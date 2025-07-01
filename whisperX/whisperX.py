@@ -3,9 +3,11 @@ import gc
 import pandas as pd
 import os
 
+import torch
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
 
-
-def whisperX_process(audio_file, output_folder="./output", batch_size=16, device="cpu", compute_type="int8"):
+def whisperX_process(audio_file, output_folder="./output", batch_size=16, device="cuda", compute_type="int8"):
 
     # 1. Transcribe with original whisper (batched)
     model = whisperx.load_model("large-v2", device, compute_type=compute_type)
@@ -26,8 +28,8 @@ def whisperX_process(audio_file, output_folder="./output", batch_size=16, device
 
     # 3. Assign speaker labels
     diarize_model = whisperx.diarize.DiarizationPipeline(use_auth_token="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", device=device)
-    # diarize_segments = diarize_model(audio)
-    diarize_segments =diarize_model(audio, min_speakers=0, max_speakers=2)
+    diarize_segments = diarize_model(audio)
+    # diarize_segments =diarize_model(audio, min_speakers=0, max_speakers=2)
     result = whisperx.assign_word_speakers(diarize_segments, result)
     print(diarize_segments)
     print(result["segments"])  # segments are now assigned speaker IDs
