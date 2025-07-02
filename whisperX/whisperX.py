@@ -3,14 +3,17 @@ import gc
 import pandas as pd
 import os
 
-import torch
-torch.backends.cuda.matmul.allow_tf32 = True
-torch.backends.cudnn.allow_tf32 = True
+# import torch
+# torch.backends.cuda.matmul.allow_tf32 = True
+# torch.backends.cudnn.allow_tf32 = True
 
-def whisperX_process(audio_file, output_folder="./output", batch_size=16, device="cuda", compute_type="int8"):
+
+
+def whisperX_process(audio_file, output_folder="./output", batch_size=16, device="cuda", compute_type="int8",model_type="large-v2"):
 
     # 1. Transcribe with original whisper (batched)
-    model = whisperx.load_model("large-v2", device, compute_type=compute_type)
+    # turbo
+    model = whisperx.load_model(model_type, device, compute_type=compute_type)
     audio = whisperx.load_audio(audio_file)
     result = model.transcribe(audio, batch_size=batch_size)
     print(result["segments"])  # before alignment
@@ -50,4 +53,4 @@ def whisperX_process(audio_file, output_folder="./output", batch_size=16, device
 
 if __name__ == "__main__":
     audio_file = os.path.join(os.path.dirname(__file__), "input", "7_video.wav")
-    whisperX_process(audio_file)
+    whisperX_process(audio_file,model_type="medium.en")

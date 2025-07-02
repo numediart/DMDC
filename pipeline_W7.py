@@ -1,14 +1,14 @@
-from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
-from extractMFCC import extractAndSaveMFCC
-from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
+# from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
+# from extractMFCC import extractAndSaveMFCC
+# from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
+# from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
 from Filtering.filter import download_youtube_video,download_youtube_video_480p_h264, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
-from formatAUSpeakerListener import format_all_clips
-from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
-from Whisper.transcriptFromAudio import transcriptFromAudio
-from MFCCmergeWithDF import MFCCmergeWithDF
-from OpenFace.typeOfSceneFromOpenFace import typeOfSceneDetectionAU,typeOfSceneFrameToSegments
-from whisperX.whisperX import whisperX_process 
+# from formatAUSpeakerListener import format_all_clips
+# from SplitAudioVideo.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
+# from Whisper.transcriptFromAudio import transcriptFromAudio
+# from MFCCmergeWithDF import MFCCmergeWithDF
+# from OpenFace.typeOfSceneFromOpenFace import typeOfSceneDetectionAU,typeOfSceneFrameToSegments
+# from whisperX.whisperX import whisperX_process 
 from whisperX.whisperXresultAnalysis import process_diarization_data
 import librosa
 import os
@@ -28,7 +28,7 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.8DataSet"
+DATASET_FOLDER="V0.9DataSet"
 VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 
 def get_diarization_csv(wav_path):
@@ -73,7 +73,7 @@ def main_batch(video_list_file='videoV0.5.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=6):
+    for idx, url in enumerate(video_urls, start=1):
         try:
             print(f"\n\n\n [Info] URL of the video  {url}")
             stat_one_vid={}
@@ -105,26 +105,11 @@ def main_batch(video_list_file='videoV0.5.txt'):
             extract_audio_to_wav(output_name, wav_dir)
 
             stat_one_vid["3.AudioExtract"]=time.time()-start_time_process
-            #####################
-            # Openface Action Unit
-            #####################
-            # print(f"\n\n\n ---Step: 4--- Action unit extraction")
-            # start_time_process = time.time()
-
-            # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'{idx}_video.mp4')
-            # # AU_input_path=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4",f'6_video_480p.mp4')
-            # AU_output = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, 'AU', f'{idx}_video')
-            # if not os.path.exists(AU_output):
-            #     process_FaceLandmarkVidMulti_from_container(AU_input_path,AU_output)
-            # else:
-            #     print(f"[AU] AU already done")
-
-            # stat_one_vid["4.OpenFace"]=time.time()-start_time_process
 
             #####################
             # Segmentation (if needed)
             #####################
-            print(f"\n\n\n ---Step: 5--- Segmentations type of scene from openface")
+            # print(f"\n\n\n ---Step: 5--- Segmentations type of scene from mediapipe")
             # start_time_process = time.time()
 
             # if os.path.exists(segments_csv):
@@ -161,8 +146,14 @@ def main_batch(video_list_file='videoV0.5.txt'):
             # start_time_process = time.time()
 
             # print("[Diarization] Diarization starts")
-            # output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "diarization",f'{idx}_video')
-            # run_diarization(wav_dir,output_diar,fps_video)
+            # output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "diarization", f'{idx}_video')
+            # subprocess.run(
+            #     [
+            #         "conda", "run", "-n", "whisperx",
+            #         "python", "-c", f'import PyannoteDiarization.whoIsSpeaking as pds; pds.run_diarization("{wav_dir}", "{output_diar}", {fps_video})'
+            #     ],
+            #     check=True,
+            # )
             # print("[Diarization] Diarization completed")
 
 
@@ -171,19 +162,27 @@ def main_batch(video_list_file='videoV0.5.txt'):
             #####################
             # Whisper X
             #####################
-            print(f"\n\n\n ---Step: 7--- WhisperX")
-            start_time_process = time.time()
-
-            output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "whisperX",f'{idx}_video')
-            whisperX_process(wav_dir,output_diar)
-            print("[Diarization] Diarization completed")
-
-            diarization_json=os.path.join(output_diar,f'{idx}_video_diarization.json')
-            output_diar_csv=os.path.join(output_diar,f'{idx}_video_diarization.csv')
-            process_diarization_data(diarization_json,output_diar_csv)
 
 
-            stat_one_vid["7.WhisperX"]=time.time()-start_time_process
+            # print(f"\n\n\n ---Step: 7--- WhisperX")
+            # start_time_process = time.time()
+
+            # output_diar = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "whisperX",f'{idx}_video')
+            # subprocess.run(
+            #     [
+            #         "conda", "run", "-n", "whisperx", 
+            #         "python", "-c", f'import whisperX.whisperX as wx; wx.whisperX_process("{wav_dir}", "{output_diar}", model_type="medium.en")'
+            #     ],
+            #     check=True
+            # )
+            # print("[Diarization] Diarization completed")
+
+            # diarization_json=os.path.join(output_diar,f'{idx}_video_diarization.json')
+            # output_diar_csv=os.path.join(output_diar,f'{idx}_video_diarization.csv')
+            # process_diarization_data(diarization_json,output_diar_csv)
+
+
+            # stat_one_vid["7.WhisperX"]=time.time()-start_time_process
 
 
 

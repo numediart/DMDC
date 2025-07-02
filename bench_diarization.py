@@ -92,6 +92,7 @@ csv_dir = Path("whisperX/output/")
 # csv_dir = Path("V0.7DataSet/diarization/7_video/Diarization_Results")
 csv_dir = Path("V0.8DataSet/whisperX")
 csv_dir= Path("V0.8DataSet/diarizationbywhisperX")
+csv_dir= Path("V0.9DataSet/diarizationbenchv0")
 
 results = []
 
