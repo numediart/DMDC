@@ -56,4 +56,4 @@ def process_all_segments():
         ])
 
 if __name__ == "__main__":
-    process_all_segments()
+    pd.read_csv("")

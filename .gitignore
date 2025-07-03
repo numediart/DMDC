@@ -9,15 +9,22 @@ Subtitle
 wav
 mfcc
 V0DataSet
+V0.10DataSet
+V0.9DataSet
+V0.8DataSet
+V0.7DataSet
 V0.6DataSet
 V0.5DataSet
 V0.3DataSet
 V0.2DataSet
+.whisperx-env
 temp_frames
 tempsegment
 test
 transcription_results.csv
 diarization_results.csv
+V0.7DataSet/AU
+
 
 /OpenFace/output
 /NemoDiarization/model/diar_sortformer_4spk-v1.nemo

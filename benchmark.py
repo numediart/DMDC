@@ -121,7 +121,7 @@ def run_benchmark(eaf_path, csv_path):
     print(classification_report(y_true, y_pred, zero_division=0))
 
 
-    # 1. Identify unique speakers
+
     unique_speakers = df_auto['speaker'].dropna().unique()
     all_speaker_ids = sorted([str(spk) for spk in unique_speakers])
 
@@ -168,7 +168,8 @@ def run_benchmark(eaf_path, csv_path):
 
 # PATH
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
-csv_dir = Path("V0DataSet/segments")
+csv_dir = Path("V0.7DataSet/segments_video_type/7_video")
+csv_dir = Path("V0DataSet/segments/")
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
