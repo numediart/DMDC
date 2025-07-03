@@ -81,31 +81,17 @@ def evaluate_diarization(eaf_path, csv_path, results):
 # === Evaluation loop and CSV export ===
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
-# csv_dir = Path("NemoDiarization/output/fromgooglecolab")
-# csv_dir = Path("NemoDiarization/output/embedding")
-# csv_dir = Path("PyannoteDiarization/output")
-# csv_dir = Path("V0.2DataSet/segments")
 
-# csv_dir = Path("OpenFace/output")
-csv_dir = Path("whisperX/output/")
-# csv_dir = Path("V0.7DataSet/diarization/6_video/Diarization_Results")
-# csv_dir = Path("V0.7DataSet/diarization/7_video/Diarization_Results")
-csv_dir = Path("V0.8DataSet/whisperX")
-csv_dir= Path("V0.8DataSet/diarizationbywhisperX")
-csv_dir= Path("V0.9DataSet/diarizationbenchv0")
+csv_dir = Path("V0DataSet/segments")
 
-# csv_dir = Path("syncnet_python")
-csv_dir = Path("V0DataSet/Diarization_Results")
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
     csv_file = csv_dir / f"{base_name}_video_diarization.csv"
-    # csv_file = csv_dir / f"{base_name}_segments.csv"
-    # csv_file = csv_dir / f"{base_name}_video_diarization_fusionnee.csv"
-    # csv_file = csv_dir / f"test_9_diarization_synced.csv"
-    #csv_file = csv_dir / f"9_video_diarization_reclustered.csv"
-    # csv_file = Path("diarization_fusionnee.csv")
+    csv_file = csv_dir / f"{base_name}_segments.csv"
+    print(csv_file)
+
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file, results)
     else:
