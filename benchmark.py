@@ -121,11 +121,11 @@ def run_benchmark(eaf_path, csv_path):
     print(classification_report(y_true, y_pred, zero_division=0))
 
 
-    # 1. Identify unique speakers
-    # unique_speakers = df_auto['speaker'].dropna().unique()
-    # all_speaker_ids = sorted([str(spk) for spk in unique_speakers])
 
-    # wer_results = {}
+    unique_speakers = df_auto['speaker'].dropna().unique()
+    all_speaker_ids = sorted([str(spk) for spk in unique_speakers])
+
+    wer_results = {}
     # print("\n--- Word Error for each speaker ---")
 
     # for speaker in all_speaker_ids:

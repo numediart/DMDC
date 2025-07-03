@@ -98,7 +98,7 @@
         <Float>1.2</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>0</Long>
+        <Long>1004585</Long>
     </pref>
     <pref key="MediaTime">
         <Long>1047146</Long>

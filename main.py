@@ -1,10 +1,11 @@
-from whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
+from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
 from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from MFCCmergeWithDF import MFCCmergeWithDF
 from formatAUSpeakerListener import format_all_clips
+from test_reclustering import recluster_pyannote_diarization
 import librosa
 import os
 import warnings
@@ -14,6 +15,7 @@ import shutil
 import subprocess
 import platform
 import sys
+import time
 
 #Warnings deletes
 warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
@@ -31,7 +33,7 @@ def get_diarization_csv(wav_path):
     else:
         raise FileNotFoundError(f"No CSV file found for {base_filename} in {diarization_folder}")
 
-def main_batch(video_list_file='videoV0.txt'):
+def main_batch(video_list_file='VideoList/videoV0.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
@@ -81,7 +83,7 @@ def main_batch(video_list_file='videoV0.txt'):
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
-            wav_dir = f"V0DataSet/wav/{idx}_video"         
+            wav_dir = f"V0DataSet/wav/{idx}_video.wav"         
 
             #####################
             # Download
@@ -93,46 +95,52 @@ def main_batch(video_list_file='videoV0.txt'):
             #####################
             # Segmentation (if needed)
             #####################
-            if os.path.exists(segments_csv):
-                print("[Info] Segments already done, load segments from CSV ...")
-                segments = load_segments_from_csv(segments_csv)
-            else:
-                print("[Info] Segments under creation with face detections...")
-                segments = detect_faces_in_video(output_name)
+            # if os.path.exists(segments_csv):
+            #     print("[Info] Segments already done, load segments from CSV ...")
+            #     segments = load_segments_from_csv(segments_csv)
+            # else:
+            #     print("[Info] Segments under creation with face detections...")
+            #     segments = detect_faces_in_video(output_name)
             
             
+            # #####################
+            # # Extract the Audio
+            # #####################
+            # extract_audio_to_wav(output_name, wav_dir)
+
+            # # Skip Diarization and Assignment if Segments Exist
+            # if os.path.exists(segments_csv):
+            #     print("[Info] Segments already exist, skipping diarization and assignment...")
+            # else :
+            #     #####################
+            #     # Diarization (Identify which person is speaking)
+            #     #####################
+            start_time = time.time()
+            print("[Diarization] Diarization starts")
+            run_diarization(wav_dir, "V0DataSet")
+            print("[Diarization] Diarization completed")
+
+            csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
+            df_diarization = pd.read_csv(csv_path)
+
+            print(f"[Diarization] Starting reclustering")
+            recluster_pyannote_diarization(wav_dir, csv_path, f"V0DataSet/Diarization_Results/{idx}_video_diarization_reclustered.csv", num_speakers=2)
+            print(f"[Diarization] Reclustering completed")
+            end_time = time.time()
+            print(f"[Diarization] Time taken for diarization: {end_time - start_time:.2f} seconds")
+
             #####################
-            # Extract the Audio
+            # Identify which speaker is speaking during each segment using diarization results
             #####################
-            extract_audio_to_wav(output_name, wav_dir)
+            # print("[Assignment] Assigning speakers to segments...")
 
-            # Skip Diarization and Assignment if Segments Exist
-            if os.path.exists(segments_csv):
-                print("[Info] Segments already exist, skipping diarization and assignment...")
-            else :
-                #####################
-                # Diarization (Identify which person is speaking)
-                #####################
-                print("[Diarization] Diarization starts")
-                run_diarization(wav_dir)
-                print("[Diarization] Diarization completed")
+            # merged = assign_speakers_to_segments_from_df(segments, df_diarization)
+            # merged = merge_contiguous_segments(merged, max_gap=1)
+            # merged = filter_short_segments(merged, min_duration=1.5)
 
-                csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
-                df_diarization = pd.read_csv(csv_path)
-
-
-                #####################
-                # Identify which speaker is speaking during each segment using diarization results
-                #####################
-                print("[Assignment] Assigning speakers to segments...")
-
-                merged = assign_speakers_to_segments_from_df(segments, df_diarization)
-                merged = merge_contiguous_segments(merged, max_gap=1)
-                merged = filter_short_segments(merged, min_duration=1.5)
-
-                print("[Assignment] Assignment completed")
-                export_segments_with_speaker_to_csv(merged, segments_csv)
-                print("[Assignment] Assignment Exported")
+            # print("[Assignment] Assignment completed")
+            # export_segments_with_speaker_to_csv(merged, segments_csv)
+            # print("[Assignment] Assignment Exported")
 
              
 
@@ -165,18 +173,18 @@ def main_batch(video_list_file='videoV0.txt'):
             # # Path for transcription
             # #####################
 
-            base_dir = os.path.dirname(__file__)
-            output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
-            if platform.system() == "Windows":
-                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            else:
-                python_path = os.path.join(".venv_parakeet", "bin", "python")
+            # base_dir = os.path.dirname(__file__)
+            # output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
+            # if platform.system() == "Windows":
+            #     python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            # else:
+            #     python_path = os.path.join(".venv_parakeet", "bin", "python")
 
             #####################
             # Splitting WAV from timestamps
             #####################
-            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
-            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+            # output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            # segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
             # #####################
             # # Parakeet (Transcript) 
@@ -197,12 +205,12 @@ def main_batch(video_list_file='videoV0.txt'):
 
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
-            subprocess.run([
-                sys.executable,
-                "transcribe_parakeet.py",
-                str(idx),
-                *segment_paths
-            ])
+            # subprocess.run([
+            #     sys.executable,
+            #     "transcribe_parakeet.py",
+            #     str(idx),
+            #     *segment_paths
+            # ])
 
             # #####################
             # # Split the video into dyadic clips

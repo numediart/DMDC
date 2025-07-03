@@ -18,7 +18,7 @@ def load_csv_as_annotation(csv_path):
     df = pd.read_csv(csv_path)
     annotation = Annotation()
     for _, row in df.iterrows():
-        segment = Segment(float(row['start_time']), float(row['end_time']))
+        segment = Segment(float(row['start']), float(row['end']))
         speaker = str(row['speaker'])
         annotation[segment] = speaker
     return annotation
@@ -94,12 +94,18 @@ csv_dir = Path("V0.8DataSet/whisperX")
 csv_dir= Path("V0.8DataSet/diarizationbywhisperX")
 csv_dir= Path("V0.9DataSet/diarizationbenchv0")
 
+# csv_dir = Path("syncnet_python")
+csv_dir = Path("V0DataSet/Diarization_Results")
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
     csv_file = csv_dir / f"{base_name}_video_diarization.csv"
     # csv_file = csv_dir / f"{base_name}_segments.csv"
+    # csv_file = csv_dir / f"{base_name}_video_diarization_fusionnee.csv"
+    # csv_file = csv_dir / f"test_9_diarization_synced.csv"
+    #csv_file = csv_dir / f"9_video_diarization_reclustered.csv"
+    # csv_file = Path("diarization_fusionnee.csv")
     if csv_file.exists():
         evaluate_diarization(eaf_file, csv_file, results)
     else:

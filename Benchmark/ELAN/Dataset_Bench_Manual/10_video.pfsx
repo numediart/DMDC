@@ -5,7 +5,7 @@
         <Object class="java.awt.Dimension">1920,1040</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
-        <Int>5</Int>
+        <Int>7</Int>
     </pref>
     <pref key="LayoutManager.VisibleMultiTierViewer">
         <String>mpi.eudico.client.annotator.viewer.TimeLineViewer</String>
@@ -17,7 +17,7 @@
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>771818</Long>
+        <Long>184863</Long>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
         <Int>501</Int>
@@ -79,7 +79,7 @@
         <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>120.99999</Float>
+        <Float>30.999979</Float>
     </pref>
     <pref key="SubTitleViewer.TierName-1">
         <String>SPEAKER_01</String>
@@ -88,7 +88,7 @@
         <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>771760</Long>
+        <Long>184863</Long>
     </pref>
     <pref key="DetachedEditor.Bounds">
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
@@ -113,10 +113,10 @@
         <Float>1.2</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>287603</Long>
+        <Long>168613</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>302052</Long>
+        <Long>184863</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="transcribe">
@@ -131,11 +131,14 @@
         <pref key="SPEAKER_00">
             <Object class="java.awt.Color">160,0,160</Object>
         </pref>
+        <pref key="speaker">
+            <Object class="java.awt.Color">160,90,90</Object>
+        </pref>
         <pref key="SPEAKER_01">
             <Object class="java.awt.Color">90,160,0</Object>
         </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">160,90,90</Object>
+        <pref key="Tier-0">
+            <Object class="java.awt.Color">160,160,0</Object>
         </pref>
         <pref key="category">
             <Object class="java.awt.Color">90,90,0</Object>
@@ -149,6 +152,7 @@
         <String>speaker</String>
         <String>transcribe</String>
         <String>SPEAKER_02</String>
+        <String>Tier-0</String>
     </prefList>
     <pref key="LayoutManager.SplitPaneDividerLocation">
         <Int>1</Int>
