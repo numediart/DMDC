@@ -1,10 +1,9 @@
 from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
-from extractMFCC import extractAndSaveMFCC
 from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
-from Filtering.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
+from Tools.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from Whisper.transcriptFromAudio import transcriptFromAudio
-from MFCCmergeWithDF import MFCCmergeWithDF
-from formatAUSpeakerListener import format_all_clips
+from Tools.MFCCmergeWithDF import MFCCmergeWithDF
+from Tools.formatAUSpeakerListener import format_all_clips
 from test_reclustering import recluster_pyannote_diarization
 import librosa
 import os
