@@ -17,8 +17,15 @@ def load_eaf_as_annotation(eaf_path):
 def load_csv_as_annotation(csv_path):
     df = pd.read_csv(csv_path)
     annotation = Annotation()
+    # Handle both start/end and start_time/end_time columns
+    if 'start' in df.columns and 'end' in df.columns:
+        start_col, end_col = 'start', 'end'
+    elif 'start_time' in df.columns and 'end_time' in df.columns:
+        start_col, end_col = 'start_time', 'end_time'
+    else:
+        raise ValueError(f"CSV columns not recognized: {df.columns}")
     for _, row in df.iterrows():
-        segment = Segment(float(row['start']), float(row['end']))
+        segment = Segment(float(row[start_col]), float(row[end_col]))
         speaker = str(row['speaker'])
         annotation[segment] = speaker
     return annotation
@@ -82,14 +89,15 @@ def evaluate_diarization(eaf_path, csv_path, results):
 
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 
-csv_dir = Path("V0DataSet/segments")
+# csv_dir = Path("V0DataSet/segments")
+csv_dir = Path("TitaNet-LargeDiarization/output")
 
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
     csv_file = csv_dir / f"{base_name}_video_diarization.csv"
-    csv_file = csv_dir / f"{base_name}_segments.csv"
+    # csv_file = csv_dir / f"{base_name}_segments.csv"
     print(csv_file)
 
     if csv_file.exists():
