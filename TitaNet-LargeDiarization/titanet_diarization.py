@@ -88,7 +88,7 @@ def titanet_diarization_to_csv(
     kmeans = KMeans(n_clusters=n_speakers, random_state=0)
     labels = kmeans.fit_predict(embeddings)
 
-    DataFrame
+    # DataFrame
     diar_results = []
     for (start, end), label in zip(segment_times, labels):
         diar_results.append({

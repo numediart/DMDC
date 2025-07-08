@@ -91,12 +91,14 @@ eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 
 # csv_dir = Path("V0DataSet/segments")
 csv_dir = Path("TitaNet-LargeDiarization/output")
+csv_dir = Path("PyannoteDiarizationV2.1/output")
 
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")
-    csv_file = csv_dir / f"{base_name}_video_diarization.csv"
+    csv_file = csv_dir / f"{base_name}_video_diarization_results.csv"
+    # csv_file = csv_dir / f"{base_name}_video_diarization.csv"
     # csv_file = csv_dir / f"{base_name}_segments.csv"
     print(csv_file)
 

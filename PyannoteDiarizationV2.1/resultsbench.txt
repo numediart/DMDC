@@ -1,0 +1,99 @@
+
+=== DER Evaluation: 10_video.eaf vs 10_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 31.11%
+Reference speech duration: 718.63 seconds
+   - Confusion: 3.69%
+   - Missed speech: 21.07%
+   - False alarm: 6.57%
+PyannoteDiarizationV2.1/output/8_video_diarization_results.csv
+
+=== DER Evaluation: 8_video.eaf vs 8_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 49.61%
+Reference speech duration: 1345.07 seconds
+   - Confusion: 39.10%
+   - Missed speech: 11.42%
+   - False alarm: 3.22%
+PyannoteDiarizationV2.1/output/3_video_diarization_results.csv
+
+=== DER Evaluation: 3_video.eaf vs 3_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 3.65%
+Reference speech duration: 938.63 seconds
+   - Confusion: 0.48%
+   - Missed speech: 1.36%
+   - False alarm: 1.83%
+PyannoteDiarizationV2.1/output/5_video_diarization_results.csv
+
+=== DER Evaluation: 5_video.eaf vs 5_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 2.63%
+Reference speech duration: 1047.66 seconds
+   - Confusion: 0.43%
+   - Missed speech: 0.52%
+   - False alarm: 1.68%
+PyannoteDiarizationV2.1/output/1_video_diarization_results.csv
+
+=== DER Evaluation: 1_video.eaf vs 1_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 2.98%
+Reference speech duration: 718.21 seconds
+   - Confusion: 0.39%
+   - Missed speech: 0.54%
+   - False alarm: 2.05%
+PyannoteDiarizationV2.1/output/9_video_diarization_results.csv
+
+=== DER Evaluation: 9_video.eaf vs 9_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 24.22%
+Reference speech duration: 678.86 seconds
+   - Confusion: 2.04%
+   - Missed speech: 17.26%
+   - False alarm: 5.72%
+PyannoteDiarizationV2.1/output/4_video_diarization_results.csv
+
+=== DER Evaluation: 4_video.eaf vs 4_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 1.89%
+Reference speech duration: 1101.51 seconds
+   - Confusion: 0.18%
+   - Missed speech: 1.19%
+   - False alarm: 0.53%
+PyannoteDiarizationV2.1/output/2_video_diarization_results.csv
+
+=== DER Evaluation: 2_video.eaf vs 2_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 0.82%
+Reference speech duration: 503.90 seconds
+   - Confusion: 0.17%
+   - Missed speech: 0.21%
+   - False alarm: 0.45%
+PyannoteDiarizationV2.1/output/7_video_diarization_results.csv
+
+=== DER Evaluation: 7_video.eaf vs 7_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 24.99%
+Reference speech duration: 714.56 seconds
+   - Confusion: 3.46%
+   - Missed speech: 17.06%
+   - False alarm: 5.78%
+PyannoteDiarizationV2.1/output/6_video_diarization_results.csv
+
+=== DER Evaluation: 6_video.eaf vs 6_video_diarization_results.csv ===
+/home/hugo-mny/.local/lib/python3.10/site-packages/pyannote/metrics/utils.py:200: UserWarning: 'uem' was approximated by the union of 'reference' and 'hypothesis' extents.
+  warnings.warn(
+👉 DER: 12.10%
+Reference speech duration: 956.57 seconds
+   - Confusion: 2.93%
+   - Missed speech: 7.40%
+   - False alarm: 2.53%
