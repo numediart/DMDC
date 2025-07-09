@@ -24,6 +24,9 @@ test
 transcription_results.csv
 diarization_results.csv
 V0.7DataSet/AU
+test_crisperwhisper
+test_distillarge
+test_fb_wav2vec2
 
 
 /OpenFace/output

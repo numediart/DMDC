@@ -278,7 +278,7 @@ def export_segments_with_speaker_to_csv(segments, output_path):
 # --- Reload segments from a CSV ---
 def load_segments_from_csv(csv_path=SEGMENTS_CSV):
     df = pd.read_csv(csv_path)
-    return list(zip(df["start_time"], df["end_time"]))
+    return list(zip(df["start_time"], df["end_time"], df["category"]))
 
 # --- Cut segments with ffmpeg ---
 def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):

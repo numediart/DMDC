@@ -52,12 +52,13 @@ def main():
     audio_files = sys.argv[2:]
 
     
-    base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "V0DataSet")
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # remonte deux niveaux
+    base_dir = os.path.join(project_root, "V0DataSet")
     CUSTOM_SEGMENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test", "clean_segments")
 
     # Puis remplacer cette ligne :
-    # segments_csv_path = os.path.join(base_dir, "segments", f"{video_idx}_segments.csv")
-    segments_csv_path = os.path.join(CUSTOM_SEGMENT_DIR, f"{video_idx}_clean_segments.csv")
+    segments_csv_path = os.path.join(base_dir, "segments", f"{video_idx}_segments.csv")
+    # segments_csv_path = os.path.join(CUSTOM_SEGMENT_DIR, f"{video_idx}_clean_segments.csv")
 
     if not os.path.exists(segments_csv_path):
         print(f"[ERROR] Segments file not found: {segments_csv_path}")
