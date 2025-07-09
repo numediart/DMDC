@@ -27,24 +27,6 @@ It also requires the command-line tool [`ffmpeg`](https://ffmpeg.org/) to be ins
    ```
 4. **Additional Setup for Parakeet transcription**
 
-   To set up the environment for using Parakeet, follow these steps: 
-
-      **Linux/MacOS**
-      1. Install necessary dependencies:
-         ```bash
-         sudo apt install python3.12-dev
-         sudo apt install build-essential
-         ```
-      2. Create a virtual environment:
-         ```bash
-         python3.12 -m venv .venv_parakeet
-         ```
-      3. Activate the virtual environment:
-         ```bash
-         source .venv_parakeet/bin/activate
-         ```
-      4. Install required packages:
-         ```bash
          pip install -r requirements_parakeet.txt
          pip install parakeet
          ```
