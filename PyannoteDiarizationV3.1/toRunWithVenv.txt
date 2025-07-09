@@ -1,0 +1,4 @@
+python3 -m venv .pyannoteGPU
+source .pyannoteGPU/bin/activate
+pip install --upgrade pip
+pip install pyannote.audio[torch]

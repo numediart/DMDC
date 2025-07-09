@@ -62,3 +62,9 @@ env/
 # Miscellaneous
 .DS_Store
 Archives/NemoDiarization/model/diar_sortformer_4spk-v1.nemo
+TitaNet-LargeDiarization/input/
+TitaNet-LargeDiarization/output/
+PyannoteDiarizationV2.1/input/
+PyannoteDiarizationV2.1/output/
+
+.pyannoteGPU

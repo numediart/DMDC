@@ -1,5 +1,5 @@
 from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
+# from OpenFace.actionUnitForAVideo imkport process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
 from Tools.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from Tools.MFCCmergeWithDF import MFCCmergeWithDF
@@ -79,7 +79,7 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls, start=13):
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
@@ -269,4 +269,4 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
 if __name__ == "__main__":
-    main_batch()
+    main_batch("./VideoList/newVideoHugo.txt")
