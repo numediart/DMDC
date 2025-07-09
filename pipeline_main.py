@@ -1,5 +1,5 @@
 from PyannoteDiarization.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
+# from OpenFace.actionUnitForAVideo imkport process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
 from Tools.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from Tools.MFCCmergeWithDF import MFCCmergeWithDF
@@ -78,7 +78,7 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls, start=13):
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
@@ -94,18 +94,18 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
             #####################
             # Segmentation (if needed)
             #####################
-            # if os.path.exists(segments_csv):
-            #     print("[Info] Segments already done, load segments from CSV ...")
-            #     segments = load_segments_from_csv(segments_csv)
-            # else:
-            #     print("[Info] Segments under creation with face detections...")
-            #     segments = detect_faces_in_video(output_name)
-            
+            if os.path.exists(segments_csv):
+                print("[Info] Segments already done, load segments from CSV ...")
+                segments = load_segments_from_csv(segments_csv)
+            else:
+                print("[Info] Segments under creation with face detections...")
+                segments = detect_faces_in_video(output_name)
+                pd.DataFrame(segments).to_csv(segments_csv, index=False)
             
             # #####################
             # # Extract the Audio
             # #####################
-            # extract_audio_to_wav(output_name, wav_dir)
+            extract_audio_to_wav(output_name, wav_dir)
 
             # # Skip Diarization and Assignment if Segments Exist
             # if os.path.exists(segments_csv):
@@ -172,35 +172,36 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
             # # Path for transcription
             # #####################
 
-            # base_dir = os.path.dirname(__file__)
-            # output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
-            # if platform.system() == "Windows":
-            #     python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            # else:
-            #     python_path = os.path.join(".venv_parakeet", "bin", "python")
+            base_dir = os.path.dirname(__file__)
+            output_tmp_wav = os.path.join(base_dir, "V0DataSet", "tmp_wav")
+            if platform.system() == "Windows":
+                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            else:
+                python_path = os.path.join(".venv_parakeet", "bin", "python")
 
             #####################
             # Splitting WAV from timestamps
             #####################
-            # output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
-            # segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+            output_tmp_wav = os.path.join(os.path.dirname(__file__), "V0DataSet", "tmp_wav", f"{idx}_video.wav")
+            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
 
             # #####################
             # # Parakeet (Transcript) 
             # #####################
 
-            # subprocess.run([
-            #     python_path,
-            #     "transcribe_parakeet.py",
-            #     str(idx),
-            #     *segment_paths
-            # ])
+            subprocess.run([
+                python_path,
+                "transcribe_parakeet.py",
+                str(idx),
+                *segment_paths
+            ])
 
-            # if os.path.exists(output_tmp_wav):
-            #     if wait_for_file_release(output_tmp_wav):
-            #         os.remove(output_tmp_wav)
-            #     else:
-            #         print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
+            if os.path.exists(output_tmp_wav):
+                if wait_for_file_release(output_tmp_wav):
+                    os.remove(output_tmp_wav)
+                else:
+                    print(f"[WARN] Could not delete {output_tmp_wav} - file in use.")
+
 
             # transcriptFromAudio(audiofile=wav_dir, outputFolder=output_folder_whisper, modelType="tiny")
 
@@ -262,4 +263,4 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
 if __name__ == "__main__":
-    main_batch()
+    main_batch("./VideoList/newVideoHugo.txt")
