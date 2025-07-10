@@ -1,7 +1,7 @@
 from PyannoteDiarizationV31.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
 from PyannoteRecluster.pyannote_reclustering import recluster_pyannote_diarization
 from OpenFace.actionUnitForAVideo import run_openface_on_all_clips, detect_who_speaking_from_clips
-from Tools.filter import download_youtube_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, extract_dyadic_clips
+from Tools.filter import download_youtube_video_480p_h264, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, extract_dyadic_clips
 from Tools.formatAUSpeakerListener import format_all_clips
 from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
@@ -39,9 +39,19 @@ WINDOWING_SIZE_FRAME=128
 
 def run_pipeline(video_list_file='videoV0.5.txt'):
     """
-    Processes a batch of videos listed in a text file, performing a series of operations 
-    including downloading, segmentation, audio extraction, diarization, speaker assignment, 
-    feature extraction, and facial action unit analysis.
+    Runs the full DMDC video processing pipeline on a batch of YouTube videos listed in a text file.
+    For each video, this pipeline will:
+      - Download the video from YouTube
+      - Extract and segment the audio and video
+      - Perform speaker diarization and assign speakers to segments
+      - Split videos and audio into speaker-specific clips
+      - Extract facial action units (AUs) and map them to speakers
+      - Format and window AU data for analysis
+      - Crop faces from video segments
+      - Extract MFCC features from audio clips
+      - Transcribe speaker segments using Parakeet
+      - Aggregate and save all results and processing statistics
+    This pipeline is designed for large-scale, automated multimodal dataset creation, combining audio, video, and facial features for each speaker segment. All intermediate and final results are saved in a structured dataset folder. Errors are caught and logged for each video, allowing the pipeline to continue processing the remaining videos.
     Args:
         video_list_file (str): Path to the text file containing video URLs, one per line.
     Pipeline:
@@ -205,8 +215,10 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             start_time_process = time.time()
 
 
+            
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
-            download_youtube_video(url, output_name)
+            fps_video=round(download_youtube_video_480p_h264(url, output_name))
+            print("[Info] Fps :",fps_video)
 
 
             stat_one_vid["2.Download"]=time.time()-start_time_process

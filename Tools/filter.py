@@ -104,6 +104,10 @@ def download_youtube_video_480p_h264(url, output_path):
     cap.release()
     return fps        
 
+
+
+
+
 # --- Function to extract audio ---
 def extract_audio_to_wav(video_path, wav_output_path):
     os.makedirs(os.path.dirname(wav_output_path), exist_ok=True)
