@@ -1,12 +1,9 @@
 from PyannoteDiarizationV31.whoIsSpeaking import run_diarization, assign_speakers_to_segments_from_df, merge_contiguous_segments, filter_short_segments
-from OpenFace.actionUnitExtractVideo import process_FaceLandmarkVidMulti_from_container
 from PyannoteRecluster.pyannote_reclustering import recluster_pyannote_diarization
-from OpenFace.actionUnitForAVideo import process_FaceLandMark_video, process_AU_for_segments, extract_openface_features, run_openface_on_all_clips, detect_who_speaking_from_clips
-from Tools.filter import download_youtube_video, detect_faces_in_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, split_audio_from_csv, wait_for_file_release, extract_dyadic_clips
+from OpenFace.actionUnitForAVideo import run_openface_on_all_clips, detect_who_speaking_from_clips
+from Tools.filter import download_youtube_video, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, extract_dyadic_clips
 from Tools.formatAUSpeakerListener import format_all_clips
-from Tools.splitVideoAndAudioFromSegment import extract_audio_segment,extract_video_segments
-from Whisper.transcriptFromAudio import transcriptFromAudio
-from Tools.MFCCmergeWithDF import MFCCmergeWithDF
+from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
 from Tools.crop_vid import extract_and_align_faces
@@ -16,7 +13,6 @@ import warnings
 import pandas as pd
 import glob
 import numpy as np
-import shutil
 import subprocess
 import platform
 import time
@@ -145,14 +141,52 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
     """
     
     all_stat=[]
+    def print_step_box(step_num, step_title):
+        box_width = 80
+        top = f"\n{'═'*box_width}"
+        middle = f"║{f'{step_num}. {step_title}'.center(box_width-2)}║"
+        bottom = f"{'═'*box_width}\n"
+        print(top)
+        print(middle)
+        print(bottom)
+
     # ╔════════════════════════════════════════════════════════════════════════╗
     # ║                           1  Open Videos                               ║
     # ╚════════════════════════════════════════════════════════════════════════╝
 
-    print(f"\n\n\n---Step: 1--- Open video")
+    print_step_box(1, "Open Videos")
+
     with open(video_list_file, 'r') as f:
         video_urls = [line.strip() for line in f if line.strip()]
-    
+
+
+    # ╔════════════════════════════════════════════════════════════════════════╗
+    # ║                     1.1  Make subfolders                               ║
+    # ╚════════════════════════════════════════════════════════════════════════╝
+
+    # Ensure DATASET_FOLDER and all required subfolders exist (centralized)
+    base_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER)
+    required_dirs = [
+        base_dir,
+        os.path.join(base_dir, "mp4"),
+        os.path.join(base_dir, "segments"),
+        os.path.join(base_dir, "wav"),
+        os.path.join(base_dir, "clips_video"),
+        os.path.join(base_dir, "openface_clips"),
+        os.path.join(base_dir, "mapping_results"),
+        os.path.join(base_dir, "formatted_clips"),
+        os.path.join(base_dir, "n_frames_windowed_clips"),
+        os.path.join(base_dir, "clips_audio"),
+        os.path.join(base_dir, "mfcc_output"),
+        os.path.join(base_dir, "monitoring"),
+        os.path.join(base_dir, "Diarization_Results"),
+    ]
+    for d in required_dirs:
+        os.makedirs(d, exist_ok=True)
+
+
+
+
 
     for idx, url in enumerate(video_urls, start=1):
         try:
@@ -166,38 +200,34 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                           2  Downloading                               ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 2--- Downloading")
+            print_step_box(2, "Downloading")
             start_time_process = time.time()
-
-
 
 
             print(f"\n\n\n [Youtube] Downloading the video n°{idx} : {url}")
             download_youtube_video(url, output_name)
 
 
-
-
             stat_one_vid["2.Download"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                           3  Extract the audio                         ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 3--- Extract the audio")
+
+            print_step_box(3, "Extract the audio")
+
+
             start_time_process = time.time()
-
-
 
             extract_audio_to_wav(output_name, wav_dir)
 
 
-
             stat_one_vid["3.AudioExtract"]=time.time()-start_time_process
 
-            
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                           4  Segmentation                              ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 4--- Segmentations")
+            print_step_box(4, "Segmentation")
+
             start_time_process = time.time()
 
 
@@ -235,7 +265,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 # ╔════════════════════════════════════════════════════════════════════════╗
                 # ║                           5  Diarization                               ║
                 # ╚════════════════════════════════════════════════════════════════════════╝
-                print(f"\n\n\n ---Step: 5--- Diarization")
+                print_step_box(5,"Diarization")
                 start_time_process = time.time()
 
 
@@ -265,7 +295,8 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 # ╔════════════════════════════════════════════════════════════════════════╗
                 # ║                6  Assigning speakers to segments                       ║
                 # ╚════════════════════════════════════════════════════════════════════════╝
-                print(f"\n\n\n ---Step: 6--- Assigning speakers to segments")
+                print_step_box(6,"Assigning")
+
                 start_time_process = time.time()
 
 
@@ -290,7 +321,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                    7  Split Video from segments                        ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 7--- Split Video from segments")
+            print_step_box(7,"Split Video from segments")
             start_time_process = time.time()
 
 
@@ -320,7 +351,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                    8  Action unit extraction                           ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 8--- Action unit extraction")
+            print_step_box(8,"Action unit extraction")
             start_time_process = time.time()
 
 
@@ -345,7 +376,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║          9 Speaker Mapping with OpenFace and Diarization               ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 9--- Speaker Mapping with OpenFace and Diarization")
+            print_step_box(9,"Speaker Mapping with OpenFace and Diarization")
             start_time_process = time.time()
 
 
@@ -373,7 +404,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                 9.5 Format AU with Speaker-Listener                    ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 9.5--- Format AU with Speaker-Listener")
+            print_step_box(9,".5 Format AU with Speaker-Listener")
             start_time_process = time.time()
 
             formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
@@ -392,15 +423,17 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                     10  Face Cropping                                  ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            
+            print_step_box(10,"Face Cropping")
+            start_time_process = time.time()
+
             video_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
             extract_and_align_faces(video_path, idx)
 
-
+            stat_one_vid["10.Face Cropping"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                 11 Format AU with n frames                             ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 11---Format AU with n frames")
+            print_step_box(11,"Format AU with n frames")
             start_time_process = time.time()
 
 
@@ -441,7 +474,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                 12 Split Audio from segments                           ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 12--- Split Audio from segments")
+            print_step_box(12,"Split Audio from segments")
             start_time_process = time.time()
 
 
@@ -473,7 +506,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                         13 MFCC Speaker                                ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 13--- MFCC Speaker")
+            print_step_box(13," MFCC Speaker")
             start_time_process = time.time()
 
             # Process MFCC for all audio clips in the directory and save as CSV
@@ -502,8 +535,9 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                         14 Transcription                               ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            
-            
+            print_step_box(14,"Transcription")
+            start_time_process = time.time()
+
 
             base_dir = os.path.dirname(__file__)
             if platform.system() == "Windows":
@@ -524,10 +558,11 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-
+            stat_one_vid["14.Transcription"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                         15 End the pipeline                            ║
+            # ║                      15 End of the pipeline                            ║
             # ╚════════════════════════════════════════════════════════════════════════╝
+            print_step_box(15,"End of the pipeline")
             print(f"[Main/Info] Stats \n ",stat_one_vid)
             # Format the values in stat_one_vid to 3 decimal places
             stat_one_vid = {key: round(value, 4) for key, value in stat_one_vid.items()}
@@ -536,12 +571,17 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             print(f"[Main/Info] Saving statistics to CSV...")
             stats_df = pd.DataFrame(all_stat)
             stats_csv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "monitoring", f"{idx}_video_processing_statistics.csv")
+            os.makedirs(os.path.dirname(stats_csv_path), exist_ok=True)
             stats_df.to_csv(stats_csv_path, index=False)
             print(f"[Main/Info] Statistics saved to {stats_csv_path}")
             
+
+
             # if os.path.exists(output_name):
             #     os.remove(output_name)
             #     print(f"[Main/Info] Video deleted: {output_name}")
+
+
         except Exception as e:
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
