@@ -245,30 +245,30 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-            # if os.path.exists(segments_csv):
-            #     print("[Info] Segments already done, load segments from CSV ...")
-            #     segments = load_segments_from_csv(segments_csv)
-            # else:
-            #     print("[Info] Segments under creation with face detections...")
-            #     segments = detect_faces_in_video(output_name)
-
-
-            # WARNING Test to remove the mediapipe printing
-
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
                 segments = load_segments_from_csv(segments_csv)
             else:
                 print("[Info] Segments under creation with face detections...")
-                python_executable = os.sys.executable
-                process = subprocess.Popen(
-                    [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                    # stdout=None,  # debug
-                    # stderr=None # debug
-                )
-                process.wait()
+                segments = detect_faces_in_video(output_name)
+
+
+            # WARNING Test to remove the mediapipe printing
+
+            # if os.path.exists(segments_csv):
+            #     print("[Info] Segments already done, load segments from CSV ...")
+            #     segments = load_segments_from_csv(segments_csv)
+            # else:
+            #     print("[Info] Segments under creation with face detections...")
+            #     python_executable = os.sys.executable
+            #     process = subprocess.Popen(
+            #         [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
+            #         stdout=subprocess.DEVNULL,
+            #         stderr=subprocess.DEVNULL
+            #         # stdout=None,  # debug
+            #         # stderr=None # debug
+            #     )
+            #     process.wait()
 
 
 
