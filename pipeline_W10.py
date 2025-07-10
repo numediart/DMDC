@@ -388,44 +388,49 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
             stat_one_vid["10.FormatAU"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                 10 Format AU with Speaker-Listener                     ║
+            # ║                 11 Format AU with n frames                             ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 11---Format AU with 64 frames")
+            print(f"\n\n\n ---Step: 11---Format AU with n frames")
             start_time_process = time.time()
 
 
 
-            print("[64f] Process Speaker files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "speaker")
-            os.makedirs(windowed_dir, exist_ok=True)
-            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
-            for csv_file in csv_files:
-                base_name = os.path.splitext(os.path.basename(csv_file))[0]
-                # Check if at least one windowed file for this csv exists
-                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
-                if already_done:
-                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
-                    continue
-                split_csv_with_sliding_window(csv_file, windowed_dir)
 
-            print("[64f] Process listener files")
-            formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "listener")
-            windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video", "listener")
-            os.makedirs(windowed_dir, exist_ok=True)
-            csv_files = glob.glob(os.path.join(formatted_dir, "*.csv"))
-            for csv_file in csv_files:
-                base_name = os.path.splitext(os.path.basename(csv_file))[0]
-                already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_dir))
-                if already_done:
-                    print(f"[64f] Windowed files already exist for {csv_file}, skipping...")
-                    continue
-                split_csv_with_sliding_window(csv_file, windowed_dir)
+            print("[n_frame Format] Processing speaker and listener files for windowing")
 
-            stat_one_vid["11.FormatTO64f"]=time.time()-start_time_process
-            #####################
-            # Split Audio from segments 
-            #####################
+
+            def process_windowing(formatted_role_dir, windowed_role_dir, role_name):
+                os.makedirs(windowed_role_dir, exist_ok=True)
+                csv_files = glob.glob(os.path.join(formatted_role_dir, "*.csv"))
+                for csv_file in csv_files:
+                    base_name = os.path.splitext(os.path.basename(csv_file))[0]
+                    # Skip if windowed files for this CSV already exist
+                    already_done = any(f.startswith(base_name + "_") for f in os.listdir(windowed_role_dir))
+                    if already_done:
+                        print(f"[n_frame Format] Windowed files already exist for {role_name} {csv_file}, skipping...")
+                        continue
+                    print(f"[n_frame Format] Windowing {role_name} file: {csv_file}")
+                    split_csv_with_sliding_window(csv_file, windowed_role_dir)
+
+            # Process speaker files
+            speaker_formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
+            speaker_windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "n_frames_windowed_clips", f"{idx}_video", "speaker")
+            process_windowing(speaker_formatted_dir, speaker_windowed_dir, "speaker")
+
+            # Process listener files
+            listener_formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "listener")
+            listener_windowed_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "n_frames_windowed_clips", f"{idx}_video", "listener")
+            process_windowing(listener_formatted_dir, listener_windowed_dir, "listener")
+
+
+            print("[n_frame Format] Processing speaker and listener files for windowing DONE")
+
+
+
+            stat_one_vid["11.FormatT_n_frames"]=time.time()-start_time_process
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                 12 Split Audio from segments                           ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
             print(f"\n\n\n ---Step: 12--- Split Audio from segments")
             start_time_process = time.time()
 
@@ -439,7 +444,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             if not clips_audio_done:
                 print(f"[Info] Splitting audio for video {idx}")
                 input_path_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
-                csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "64_frames_windowed_clips", f"{idx}_video","speaker")
+                csv_64frames_path= os.path.join(os.path.dirname(__file__),DATASET_FOLDER, "n_frames_windowed_clips", f"{idx}_video","speaker")
                 for npy_file in glob.glob(os.path.join(csv_64frames_path, "*.npy")):
                     npy_file_base = os.path.basename(npy_file)
                     print(npy_file_base.split("_"))
@@ -453,10 +458,12 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
             stat_one_vid["12.SplitAudio"]=time.time()-start_time_process
-            #####################
-            # MFCC Extract 
-            #####################
-            print(f"\n\n\n ---Step: 13--- Speaker Melspec")
+
+
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                         13 MFCC Speaker                                ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            print(f"\n\n\n ---Step: 13--- MFCC Speaker")
             start_time_process = time.time()
 
             # Process MFCC for all audio clips in the directory and save as CSV
@@ -479,10 +486,39 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 
 
             stat_one_vid["13.MFCC"]=time.time()-start_time_process
-            #####################
-            # End of the pipe, delete cache
-            #####################
-            print(stat_one_vid)
+            
+
+
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                         14 Transcription                               ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            
+            
+
+            base_dir = os.path.dirname(__file__)
+            if platform.system() == "Windows":
+                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            else:
+                python_path = os.path.join(".venv_parakeet", "bin", "python")
+
+            # # Parakeet (Transcript) 
+            # #####################
+            print(f"[Transcription] Transcribing audio segments for video using Parakeet")
+            subprocess.run([
+                python_path,
+                os.path.join(base_dir, "Transcribe", "transcribe_parakeet.py"),
+                str(idx),
+                *audio_files
+            ])
+            print(f"[Transcription] Transcription completed for video {idx}")
+
+
+
+
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                         15 End the pipeline                            ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            print(f"[Main/Info] Stats \n ",stat_one_vid)
             # Format the values in stat_one_vid to 3 decimal places
             stat_one_vid = {key: round(value, 4) for key, value in stat_one_vid.items()}
             all_stat.append(stat_one_vid)
