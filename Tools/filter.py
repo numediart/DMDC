@@ -307,7 +307,7 @@ def cut_video_segments(input_path, segments, output_dir=CLIPS_DIR):
 def extract_dyadic_clips(video_id,dataset):
     video_path = dataset+f"/mp4/{video_id}_video.mp4"
     segment_path = dataset+f"/segments/{video_id}_segments.csv"
-    output_dir = os.path.join(CLIPS_DIR, f"{video_id}_video")
+    output_dir = os.path.join(dataset,"clips_video", f"{video_id}_video")
     
     df = pd.read_csv(segment_path)
     dyadic_df = df[df["category"] == "dyadic"]
