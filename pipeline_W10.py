@@ -292,7 +292,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 run_diarization(wav_dir,DATASET_FOLDER)
                 print("[Diarization] Diarization completed")
 
-                csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"))
+                csv_path = get_diarization_csv(output_name.replace(".mp4", ".wav"),DATASET_FOLDER)
                 df_diarization = pd.read_csv(csv_path)
 
 
