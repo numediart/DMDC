@@ -58,7 +58,7 @@ def process_all_segments():
         # Call transcription script
         subprocess.run([
             sys.executable,
-            str(BASE_DIR.parent / "Transcribe" / "transcribe_distillarge.py"),
+            str(BASE_DIR.parent / "Transcribe" / "transcribe_whisperx.py"),
             video_idx,
             *segment_paths
         ])
