@@ -9,6 +9,7 @@ from Whisper.transcriptFromAudio import transcriptFromAudio
 from Tools.MFCCmergeWithDF import MFCCmergeWithDF
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
+from Tools.crop_vid import extract_and_align_faces
 import librosa
 import os
 import warnings
@@ -370,9 +371,9 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                 10 Format AU with Speaker-Listener                     ║
+            # ║                 9.5 Format AU with Speaker-Listener                    ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print(f"\n\n\n ---Step: 10--- Format AU with Speaker-Listener")
+            print(f"\n\n\n ---Step: 9.5--- Format AU with Speaker-Listener")
             start_time_process = time.time()
 
             formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video")
@@ -386,7 +387,16 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 )
 
 
-            stat_one_vid["10.FormatAU"]=time.time()-start_time_process
+            stat_one_vid["9.5.FormatAU"]=time.time()-start_time_process
+
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                     10  Face Cropping                                  ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            
+            video_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
+            extract_and_align_faces(video_path, idx)
+
+
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                 11 Format AU with n frames                             ║
             # ╚════════════════════════════════════════════════════════════════════════╝
