@@ -1,0 +1,18 @@
+name: dmdc-pipeline
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - librosa
+  - glob2
+  - pip:
+      - -r requirements.txt
+      - yt-dlp
+      - torch
+      - numpy
+      - scipy
+      - torchaudio
+      - mediapipe

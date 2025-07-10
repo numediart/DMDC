@@ -7,6 +7,7 @@ from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
 from Tools.crop_vid import extract_and_align_faces
+from Tools.filter import detect_faces_in_video
 import librosa
 import os
 import warnings
@@ -241,15 +242,19 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
             # WARNING Test to remove the mediapipe printing
+
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
                 segments = load_segments_from_csv(segments_csv)
             else:
                 print("[Info] Segments under creation with face detections...")
+                python_executable = os.sys.executable
                 process = subprocess.Popen(
-                    ['python3.10', '-c', f'import Filtering.filter as ff; ff.detect_faces_in_video("{output_name}")'],
+                    [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL
+                    # stdout=None,  # debug
+                    # stderr=None # debug
                 )
                 process.wait()
 
