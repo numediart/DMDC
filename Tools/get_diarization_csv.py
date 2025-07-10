@@ -6,7 +6,7 @@ def get_diarization_csv(wav_path,dataset):
     diarization_folder = os.path.join(dataset, "Diarization_Results")
 
     # Search for the CSV file that starts with the correct name
-    pattern = os.path.join(diarization_folder, f"{base_filename}_diarization_results_*.csv")
+    pattern = os.path.join(diarization_folder, f"{base_filename}_diarization_results.csv")
     matches = glob.glob(pattern)
     if matches:
         return matches[0]

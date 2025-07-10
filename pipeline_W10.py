@@ -605,4 +605,5 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 if __name__ == "__main__":
-    run_pipeline(VIDEO_TEXT_FILE)
+    run_pipeline("./VideoList/videoV0.5test.txt")
+    # run_pipeline(VIDEO_TEXT_FILE)
