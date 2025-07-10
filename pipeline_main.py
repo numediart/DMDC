@@ -4,7 +4,7 @@ from Tools.filter import download_youtube_video, detect_faces_in_video, load_seg
 from Whisper.transcriptFromAudio import transcriptFromAudio
 from Tools.MFCCmergeWithDF import MFCCmergeWithDF
 from Tools.formatAUSpeakerListener import format_all_clips
-from test_reclustering import recluster_pyannote_diarization
+from PyannoteRecluster.pyannote_reclustering import recluster_pyannote_diarization
 import librosa
 import os
 import warnings

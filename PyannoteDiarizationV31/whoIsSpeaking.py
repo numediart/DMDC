@@ -24,7 +24,6 @@ def run_diarization(filename,datasetName,fps=30):
 
 
 
-    # apply pretrained pipeline with 2 speakers
     with ProgressHook() as hook:
         diarization = pipeline(filename,min_speakers=0,hook=hook)
 
