@@ -54,29 +54,11 @@ def transcribe_whisperx(audio_path):
     final_result = whisperx.assign_word_speakers(diarized_result, aligned_result)
 
     # 6. Formatage de la sortie
-    # On reconstruit la transcription complète à partir des segments, 
-    # en ajoutant le nom du locuteur (ex: "[SPEAKER_01]: Bonjour.")
+    # On reconstruit la transcription complète à partir des segments, sans ajouter le nom du locuteur
     full_text = []
-    current_speaker = None
-    current_sentence = []
-
     for segment in final_result["segments"]:
-        if "speaker" not in segment:
-            segment['speaker'] = 'UNKNOWN'
-
-        speaker = segment["speaker"]
         text = segment["text"]
-        
-        if speaker != current_speaker:
-            if current_speaker is not None:
-                full_text.append(f"[{current_speaker}]: {' '.join(current_sentence)}")
-            current_sentence = [text]
-            current_speaker = speaker
-        else:
-            current_sentence.append(text)
-    
-    if current_sentence:
-         full_text.append(f"[{current_speaker}]: {' '.join(current_sentence)}")
+        full_text.append(text)
 
     # Nettoyage de la mémoire GPU
     gc.collect()
