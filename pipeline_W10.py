@@ -39,7 +39,7 @@ WINDOWING_SIZE_FRAME=128
 
 
 
-def main_batch(video_list_file='videoV0.5.txt'):
+def run_pipeline(video_list_file='videoV0.5.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
@@ -47,10 +47,91 @@ def main_batch(video_list_file='videoV0.5.txt'):
     Args:
         video_list_file (str): Path to the text file containing video URLs, one per line.
     Pipeline:
-        
-    
 
-        PUT AN UTF ART HERE
+        ╔════════════════════════════════════╗
+        ║  1. YouTube Video List             ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  2. Download Videos                ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  3. Extract / Process Audio        ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  4. Segment Videos                 ║
+        ║     ├─ Dyadic                      ║
+        ║     ├─ Single                      ║
+        ║     └─ Other                       ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  5. Audio Diarization              ║
+        ║     (Detect speakers)              ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  6. Assign Speakers to Segments    ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  7. Split Video by Timestamps      ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  8. AU Extraction                  ║
+        ║     (Action Units per speaker)     ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║  9. Format AU (64 frames)          ║
+        ║     (Mark speaker)                 ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║ 10. Face Cropping                  ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║ 11. AU Windowing                   ║
+        ║     (n = 64 frames)                ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║ 12. Audio Segmentation             ║
+        ║     (Aligned with AU window)       ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║ 13. MFCC Extraction                ║
+        ║     (Speaker-level features)       ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════╗
+        ║ 14. Transcription                  ║
+        ║     (Text per speaker segment)     ║
+        ╚════════════════════════════════════╝
+                        │
+                        ▼
+        ╔══════════════════════════════════════════════════════════════╗
+        ║ 15. Dataset Creation                                         ║
+        ╚══════════════════════════════════════════════════════════════╝
+
 
 
 
@@ -421,4 +502,4 @@ def main_batch(video_list_file='videoV0.5.txt'):
 
 
 if __name__ == "__main__":
-    main_batch(VIDEO_TEXT_FILE)
+    run_pipeline(VIDEO_TEXT_FILE)
