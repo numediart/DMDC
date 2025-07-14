@@ -30,6 +30,8 @@ DATASET_FOLDER="V0.10DataSet"
 VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
+START_VIDEO=5
+END_VIDEO=6
 
 
 
@@ -201,7 +203,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls[START_VIDEO-1:END_VIDEO-1], start=START_VIDEO):
         try:
 
             stat_one_vid={}
@@ -620,6 +622,6 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 if __name__ == "__main__":
-    run_pipeline("./VideoList/videoV0.5test.txt")
+    # run_pipeline("./VideoList/videoV0.5test.txt")
     run_pipeline("./VideoList/videoV0.5.txt")
     # run_pipeline(VIDEO_TEXT_FILE)
