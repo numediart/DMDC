@@ -1,55 +1,31 @@
+import numpy as np
 import os
 import re
+import csv
 
-def clean_dataset(dataset):
-    for index in range(1, 10):
+def create_DMDC_database_from_pipeline(dataset, output_dir, csv_file, video_index_start=1, video_index_end=10):
+    all_listener_data = []
+    all_speaker_data = []
+    all_mfcc_data = []
+    all_transcript_data = []
+    csv_rows = []  # Collect rows for CSV output
+
+    for index in range(video_index_start, video_index_end + 1):
         listener_dir = os.path.join('.', dataset, 'n_frames_windowed_clips', f'{index}_video', 'listener')
         speaker_dir = os.path.join('.', dataset, 'n_frames_windowed_clips', f'{index}_video', 'speaker')
         mfcc_dir = os.path.join('.', dataset, 'mfcc_output', f'{index}_video')
         transcript_dir = os.path.join('.', dataset, 'transcripts', f'{index}_video')
 
         def extract_base(filename):
-            m = re.search(r'(\d+_to_\d+)', filename)
-            return m.group(1) if m else None
-
-        def get_basenames(folder):
-            basenames = []
-            if not os.path.exists(folder):
-                print(f"Warning: Directory {folder} does not exist.")
-                return basenames
-            for filename in os.listdir(folder):
-                path = os.path.join(folder, filename)
-                if not os.path.isfile(path):
-                    continue
-                base = extract_base(filename)
-                if base:
-                    basenames.append(base)
-            return basenames
-
-        listener_files = get_basenames(listener_dir)
-        speaker_files = get_basenames(speaker_dir)
-        mfcc_files = get_basenames(mfcc_dir)
-        transcript_files = get_basenames(transcript_dir)
-
-        listener_set = set(listener_files)
-        speaker_set = set(speaker_files)
-        mfcc_set = set(mfcc_files)
-        transcript_set = set(transcript_files)
-
-        common = listener_set & speaker_set & mfcc_set & transcript_set
-
-        print(f"Found {len(common)} complete quadruples.")
-
-        not_in_common = {
-            'listener': listener_set - common,
-            'speaker': speaker_set - common,
-            'mfcc': mfcc_set - common,
-            'transcript': transcript_set - common
-        }
+            m = re.search(r'(\d+)_to_(\d+)', filename)
+            return m.groups() if m else None
 
         def build_base_to_filename(folder):
             mapping = {}
-            for filename in os.listdir(folder):
+            if not os.path.exists(folder):
+                print(f"Warning: Directory {folder} does not exist.")
+                return mapping
+            for filename in sorted(os.listdir(folder)):  # Sort filenames alphabetically
                 path = os.path.join(folder, filename)
                 if not os.path.isfile(path):
                     continue
@@ -63,43 +39,72 @@ def clean_dataset(dataset):
         mfcc_map = build_base_to_filename(mfcc_dir)
         transcript_map = build_base_to_filename(transcript_dir)
 
-        role_to_dir = {
-            'listener': listener_dir,
-            'speaker': speaker_dir,
-            'mfcc': mfcc_dir,
-            'transcript': transcript_dir
-        }
-        role_to_map = {
-            'listener': listener_map,
-            'speaker': speaker_map,
-            'mfcc': mfcc_map,
-            'transcript': transcript_map
-        }
+        listener_set = set(listener_map.keys())
+        speaker_set = set(speaker_map.keys())
+        mfcc_set = set(mfcc_map.keys())
+        transcript_set = set(transcript_map.keys())
 
-        # Show mismatches
-        for role, missing in not_in_common.items():
-            if missing:
-                print(f"\n{role.capitalize()} files not in a complete quadruple:")
-                for base in missing:
-                    filename = role_to_map[role].get(base, f"{base} (filename not found)")
-                    print(f"- {filename}")
+        common = listener_set & speaker_set & mfcc_set & transcript_set
 
-        # Ask for deletion after all mismatches are shown
-        for role, missing in not_in_common.items():
-            if missing:
-                resp = input(f"\nDo you want to delete these {role} files? (y/n): ")
-                if resp.lower() == 'y':
-                    for base in missing:
-                        filename = role_to_map[role].get(base)
-                        if filename:
-                            path = os.path.join(role_to_dir[role], filename)
-                            try:
-                                os.remove(path)
-                                print(f"Deleted {path}")
-                            except FileNotFoundError:
-                                print(f"File not found: {path}")
-                else:
-                    print(f"Kept all {role} files.")
+        print(f"Found {len(common)} complete quadruples.")
 
+        for base in common:
+            def read_file_content(filepath, is_npy=False):
+                try:
+                    if is_npy:
+                        return np.load(filepath)
+                    else:
+                        with open(filepath, 'r') as file:
+                            return file.read()
+                except Exception as e:
+                    print(f"Error reading file {filepath}: {e}")
+                    return None
 
-clean_dataset("V0.10DataSet")
+            listener_file = os.path.join(listener_dir, listener_map[base])
+            speaker_file = os.path.join(speaker_dir, speaker_map[base])
+            mfcc_file = os.path.join(mfcc_dir, mfcc_map[base])
+            transcript_file = os.path.join(transcript_dir, transcript_map[base])
+
+            listener_data = read_file_content(listener_file, is_npy=True)
+            speaker_data = read_file_content(speaker_file, is_npy=True)
+            mfcc_data = read_file_content(mfcc_file, is_npy=True)
+            transcript_data = read_file_content(transcript_file, is_npy=False)
+
+            if all(data is not None for data in (listener_data, speaker_data, mfcc_data, transcript_data)):
+                all_listener_data.append(listener_data)
+                all_speaker_data.append(speaker_data)
+                all_mfcc_data.append(mfcc_data)
+                all_transcript_data.append(transcript_data)
+                start_frame, end_frame = base
+                csv_rows.append([index, start_frame, end_frame, transcript_data, listener_file, speaker_file, mfcc_file, transcript_file])
+
+    # Save numpy arrays
+    if all_listener_data:
+        np.save(os.path.join(output_dir, f"{dataset}_listener.npy"), np.array(all_listener_data, dtype=object))
+        print(f"Saved listener numpy array to {os.path.join(output_dir, f'{dataset}_AU_listener.npy')}")
+
+    if all_speaker_data:
+        np.save(os.path.join(output_dir, f"{dataset}_speaker.npy"), np.array(all_speaker_data, dtype=object))
+        print(f"Saved speaker numpy array to {os.path.join(output_dir, f'{dataset}_AU_speaker.npy')}")
+
+    if all_mfcc_data:
+        np.save(os.path.join(output_dir, f"{dataset}_mfcc.npy"), np.array(all_mfcc_data, dtype=object))
+        print(f"Saved mfcc numpy array to {os.path.join(output_dir, f'{dataset}_mfcc.npy')}")
+
+    if all_transcript_data:
+        np.save(os.path.join(output_dir, f"{dataset}_transcript.npy"), np.array(all_transcript_data, dtype=object))
+        print(f"Saved transcript numpy array to {os.path.join(output_dir, f'{dataset}_transcript.npy')}")
+
+    # Save CSV file
+    if csv_rows:
+        csv_path = os.path.join(output_dir, csv_file)
+        with open(csv_path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Video Index', 'Start Frame', 'End Frame', 'Transcript Data', 'listener_file', "speaker_file", "mfcc_file", "transcript_file"])
+            writer.writerows(csv_rows)
+        print(f"Saved CSV file to {csv_path}")
+    else:
+        print("No data found to save to CSV.")
+
+# Example usage
+create_DMDC_database_from_pipeline("V0.10DataSet", "/home/hugo-mny/UMONS/DMDC/DataSetCleaningTools/cleaned", "V0.10DataSet_5K_segments_info.csv")

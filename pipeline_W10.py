@@ -203,7 +203,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-    for idx, url in enumerate(video_urls[START_VIDEO-1:END_VIDEO-1], start=START_VIDEO):
+    for idx, url in enumerate(video_urls[START_VIDEO-1:END_VIDEO], start=START_VIDEO):
         try:
 
             stat_one_vid={}
