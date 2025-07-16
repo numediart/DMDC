@@ -1,11 +1,11 @@
 import cv2
 import os
-import numpy as np
+# pip install git+https://github.com/deepinsight/insightface.git
 from insightface.app import FaceAnalysis
 from insightface.utils import face_align
 
-def extract_and_align_faces(video_path, video_number):
-    output_dir = f"V0DataSet/face_aligned/{video_number}_video"
+def extract_and_align_faces(video_path, video_number,dataset):
+    output_dir = f"{dataset}/face_aligned/{video_number}_video"
     os.makedirs(output_dir, exist_ok=True)
 
     app = FaceAnalysis(name="buffalo_sc", providers=["CPUExecutionProvider"])
@@ -34,4 +34,6 @@ def extract_and_align_faces(video_path, video_number):
     print(f"[INFO] Extracted and aligned {face_count} faces from {frame_idx} frames in video {video_number}.")
 
 # Example usage:
-# extract_and_align_faces("V0DataSet/mp4/9_video.mp4", 9)
+
+if __name__ == "__main__":
+    extract_and_align_faces("V0DataSet/mp4/9_video.mp4", 9, "V0DataSet")

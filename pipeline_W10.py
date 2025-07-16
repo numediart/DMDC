@@ -29,6 +29,9 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 DATASET_FOLDER="V0.10DataSet"
 VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 WINDOWING_SIZE_FRAME=128
+WINDOWING_SIZE_STEP=32
+START_VIDEO=5
+END_VIDEO=6
 
 
 
@@ -190,6 +193,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
         os.path.join(base_dir, "clips_audio"),
         os.path.join(base_dir, "mfcc_output"),
         os.path.join(base_dir, "monitoring"),
+        os.path.join(base_dir, "transcripts"),
         os.path.join(base_dir, "Diarization_Results"),
     ]
     for d in required_dirs:
@@ -199,7 +203,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-    for idx, url in enumerate(video_urls, start=1):
+    for idx, url in enumerate(video_urls[START_VIDEO-1:END_VIDEO], start=START_VIDEO):
         try:
 
             stat_one_vid={}
@@ -444,7 +448,13 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             start_time_process = time.time()
 
             video_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-            extract_and_align_faces(video_path, idx)
+            face_cropping_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "face_aligned", f"{idx}_video"))
+            
+            if not face_cropping_done:
+                print(f"[Face Cropping] Extracting and aligning faces for video {idx}")
+                extract_and_align_faces(video_path, idx, DATASET_FOLDER)
+            else:
+                print(f"[Face Cropping] Faces already cropped for video {idx}, skipping...")
 
             stat_one_vid["10.Face Cropping"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
@@ -470,7 +480,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                         print(f"[n_frame Format] Windowed files already exist for {role_name} {csv_file}, skipping...")
                         continue
                     print(f"[n_frame Format] Windowing {role_name} file: {csv_file}")
-                    split_csv_with_sliding_window(csv_file, windowed_role_dir)
+                    split_csv_with_sliding_window(csv_file, windowed_role_dir,WINDOWING_SIZE_FRAME,WINDOWING_SIZE_STEP)
 
             # Process speaker files
             speaker_formatted_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "formatted_clips", f"{idx}_video", "speaker")
@@ -565,11 +575,18 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # # Parakeet (Transcript) 
             # #####################
             print(f"[Transcription] Transcribing audio segments for video using Parakeet")
+            audio_input_folder=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio",str(idx) + "_video")
+            transcript_outpur_folder=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "transcripts",str(idx) + "_video")
+            os.makedirs(transcript_outpur_folder, exist_ok=True)
             subprocess.run([
+                # Python path
                 python_path,
-                os.path.join(base_dir, "Transcribe", "transcribe_parakeet.py"),
-                str(idx),
-                *audio_files
+                # Python file to run
+                os.path.join(base_dir, "Transcribe", "transcribe_parakeet_one.py"),
+                # Audio input
+                audio_input_folder,
+                # Audio output
+                transcript_outpur_folder
             ])
             print(f"[Transcription] Transcription completed for video {idx}")
 
@@ -605,5 +622,6 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 if __name__ == "__main__":
-    run_pipeline("./VideoList/videoV0.5test.txt")
+    # run_pipeline("./VideoList/videoV0.5test.txt")
+    run_pipeline("./VideoList/videoV0.5.txt")
     # run_pipeline(VIDEO_TEXT_FILE)
