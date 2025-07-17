@@ -2,22 +2,25 @@
 <preferences version="1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
     <pref key="FrameSize">
-        <Object class="java.awt.Dimension">1646,878</Object>
+        <Object class="java.awt.Dimension">1936,1048</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
-        <Int>5</Int>
+        <Int>2</Int>
     </pref>
     <pref key="LayoutManager.VisibleMultiTierViewer">
         <String>mpi.eudico.client.annotator.viewer.TimeLineViewer</String>
     </pref>
+    <pref key="TextViewer.TierName">
+        <String>SPEAKER_01</String>
+    </pref>
     <pref key="MultiTierViewer.ActiveTierName">
-        <String>SPEAKER_00</String>
+        <String>SPEAKER_01</String>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
-        <Int>418</Int>
+        <Int>498</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>608032</Long>
+        <Long>641342</Long>
     </pref>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
@@ -54,6 +57,9 @@
             <Int>75</Int>
         </pref>
     </prefGroup>
+    <pref key="TextViewer.FontSize">
+        <Int>42</Int>
+    </pref>
     <prefList key="CommentViewer.Columns.Order">
         <String>Start Time</String>
         <String>End Time</String>
@@ -70,25 +76,25 @@
         <String>Whisper transcribe/translate</String>
     </pref>
     <pref key="FrameLocation">
-        <Object class="java.awt.Point">0,0</Object>
+        <Object class="java.awt.Point">-8,-8</Object>
     </pref>
     <pref key="SubTitleViewer.TierName-4">
-        <String>2</String>
+        <String>transcribe</String>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>31.0</Float>
+        <Float>1.0</Float>
     </pref>
     <pref key="SubTitleViewer.TierName-1">
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SubTitleViewer.TierName-3">
-        <String>speaker</String>
+        <String>category</String>
     </pref>
     <pref key="SubTitleViewer.TierName-2">
         <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>26927</Long>
+        <Long>48537</Long>
     </pref>
     <prefList key="MultiTierViewer.HiddenTiers"/>
     <prefGroup key="BAS - WebMAUS Basic">
@@ -107,37 +113,37 @@
         </pref>
     </prefGroup>
     <pref key="MediaControlRate">
-        <Float>1.4</Float>
+        <Float>1.3</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
         <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>29058</Long>
+        <Long>49585</Long>
     </pref>
     <prefGroup key="TierColors">
-        <pref key="2">
-            <Object class="java.awt.Color">90,90,0</Object>
+        <pref key="transcribe">
+            <Object class="java.awt.Color">0,160,160</Object>
         </pref>
         <pref key="default">
-            <Object class="java.awt.Color">160,0,160</Object>
+            <Object class="java.awt.Color">90,0,0</Object>
         </pref>
         <pref key="SPEAKER_00">
-            <Object class="java.awt.Color">160,160,90</Object>
-        </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">160,0,0</Object>
+            <Object class="java.awt.Color">90,0,160</Object>
         </pref>
         <pref key="SPEAKER_01">
-            <Object class="java.awt.Color">90,0,160</Object>
+            <Object class="java.awt.Color">160,0,160</Object>
+        </pref>
+        <pref key="category">
+            <Object class="java.awt.Color">0,160,90</Object>
         </pref>
     </prefGroup>
     <prefList key="MultiTierViewer.TierOrder">
         <String>default</String>
         <String>SPEAKER_01</String>
         <String>SPEAKER_00</String>
-        <String>2</String>
-        <String>speaker</String>
+        <String>category</String>
+        <String>transcribe</String>
     </prefList>
     <pref key="LayoutManager.SplitPaneDividerLocation">
         <Int>1</Int>
@@ -184,7 +190,7 @@
             <String>en</String>
         </pref>
         <pref key="audio">
-            <String>C:/UMONS/DMDC/V0DataSet/mp4/14_video.mp4</String>
+            <String>C:/UMONS/DMDC/V0DataSet/mp4/15_video.mp4</String>
         </pref>
         <pref key="--fp16">
             <String>True</String>
@@ -196,7 +202,7 @@
             <String>transcribe</String>
         </pref>
         <pref key="--model">
-            <String>medium.en</String>
+            <String>base.en</String>
         </pref>
     </prefGroup>
 </preferences>
