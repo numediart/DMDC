@@ -4,6 +4,8 @@ import subprocess
 import pandas as pd
 from pathlib import Path
 from moviepy import VideoFileClip
+import time
+import csv
 
 # PATHS
 BASE_DIR = Path(__file__).resolve().parent
@@ -45,7 +47,13 @@ def extract_wav_segments(video_idx):
     return segment_paths
 
 def process_all_segments():
+    exec_time_csv = BASE_DIR / "execution_times.csv"
+    if not exec_time_csv.exists():
+        with open(exec_time_csv, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["video_idx", "execution_time_seconds"])
     for csv_file in SEGMENTS_DIR.glob("*_clean_segments.csv"):
+        start = time.time()
         video_idx = csv_file.stem.split("_")[0]
         print(f"[INFO] Processing video {video_idx}")
 
@@ -58,10 +66,17 @@ def process_all_segments():
         # Call transcription script
         subprocess.run([
             sys.executable,
-            str(BASE_DIR.parent / "Transcribe" / "transcribe_whisperx.py"),
+            str(BASE_DIR.parent / "Transcribe" / "transcribe_parakeet.py"),
             video_idx,
             *segment_paths
         ])
+        end = time.time()
+        elapsed = end - start
+        print(f"Execution time : {end - start:.2f} seconds")
+        # Write execution time to CSV
+        with open(exec_time_csv, "a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow([video_idx, f"{elapsed:.2f}"])
 
 if __name__ == "__main__":
     process_all_segments()

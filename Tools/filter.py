@@ -20,7 +20,7 @@ FRAME_SKIP = 5
 FPS = 25
 MIN_DURATION_SEC = 3
 SEGMENTS_CSV = "segments/"
-CLIPS_DIR = "V0.6DataSet/clips_video/"
+CLIPS_DIR = "V0DataSet/clips_video/"
 DEBUG_MODE = False  # Enable/disable debug display
 
 DISPLAY_DISABLE_LINUX=False

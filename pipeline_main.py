@@ -33,7 +33,7 @@ def get_diarization_csv(wav_path):
     else:
         raise FileNotFoundError(f"No CSV file found for {base_filename} in {diarization_folder}")
 
-def main_batch(video_list_file='VideoList/videoV0.txt'):
+def main_batch(video_list_file='VideoList/newVideoGaspard.txt'):
     """
     Processes a batch of videos listed in a text file, performing a series of operations 
     including downloading, segmentation, audio extraction, diarization, speaker assignment, 
@@ -79,7 +79,9 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=13):
+    for idx, url in enumerate(video_urls, start=17):
+        print(f"video url : {video_urls}")
+        print(f"video list file : {video_list_file}")
         try:
             output_name = f"V0DataSet/mp4/{idx}_video.mp4"
             segments_csv = f"V0DataSet/segments/{idx}_segments.csv"
@@ -269,4 +271,4 @@ def main_batch(video_list_file='VideoList/videoV0.txt'):
             print(f"[Main/ERR] Error while processing the video {url} : {e}")
 
 if __name__ == "__main__":
-    main_batch("./VideoList/newVideoHugo.txt")
+    main_batch()

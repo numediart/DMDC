@@ -13,7 +13,7 @@ EMBEDDING_MODEL = "pyannote/embedding"
 
 print(f"Loading embedding model '{EMBEDDING_MODEL}' on device '{DEVICE}'...")
 try:
-    embedding_inference = Inference(EMBEDDING_MODEL, window="whole", device=DEVICE)
+    embedding_inference = Inference(EMBEDDING_MODEL, window="whole", device=DEVICE, use_auth_token="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")
 except Exception as e:
     print(f"Error while loading Pyannote model: {e}")
     embedding_inference = None

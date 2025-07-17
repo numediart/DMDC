@@ -3,45 +3,57 @@ import sys
 import torch
 import pandas as pd
 from omegaconf import OmegaConf
-from nemo.collections.asr.models import EncDecCTCModel
+import nemo.collections.asr as nemo_asr
 import shutil
 import tempfile
 import torchaudio
+from pathlib import Path
 
 def load_parakeet_model(model_name="nvidia/parakeet-tdt-0.6b-v2"):
     print("[Parakeet] Loading model:", model_name)
-    model = EncDecCTCModel.from_pretrained(
-        model_name=model_name, 
+    model = nemo_asr.models.ASRModel.from_pretrained(
+        model_name=model_name,
         map_location=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     )
     model.eval()
     return model
 
-def transcribe_audio(model, audio_path):
-    # Temp copy of the file to avoid issues with file locks or permissions
+def transcribe_audio(model, audio_path, segment_idx=None, word_timestamps_output_dir=None):
     waveform, sample_rate = torchaudio.load(audio_path)
 
-    # Vérifier si le son est stéréo (plus d'un canal)
     if waveform.shape[0] > 1:
-        # Convertir en mono en moyennant les canaux
         waveform = torch.mean(waveform, dim=0, keepdim=True)
-        
-        # Créer un fichier temporaire pour la version mono
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp_file:
             mono_audio_path = tmp_file.name
             torchaudio.save(mono_audio_path, waveform, sample_rate)
-        
-        # Transcrire le fichier mono
-        result = model.transcribe([mono_audio_path])
-        
-        # Supprimer le fichier temporaire
-        os.remove(mono_audio_path)
-        
+        audio_to_transcribe = mono_audio_path
     else:
-        # Si déjà en mono, transcrire directement
-        result = model.transcribe([audio_path])
+        audio_to_transcribe = audio_path
 
-    return result[0].text.strip()
+    try:
+        result = model.transcribe([audio_to_transcribe], timestamps=True)
+        transcription = result[0].text.strip()
+
+        # save timestamps if segment_idx is provided
+        if segment_idx is not None and word_timestamps_output_dir is not None:
+            word_ts = result[0].timestamp.get("word", [])
+            if word_ts:  # list not empty
+                Path(word_timestamps_output_dir).mkdir(parents=True, exist_ok=True)
+                word_ts_df = pd.DataFrame(word_ts)
+                word_ts_df.to_csv(os.path.join(word_timestamps_output_dir, f"segment_{segment_idx}_words.csv"), index=False)
+            else:
+                print(f"[WARNING] No word-level timestamps for segment {segment_idx}")
+        
+    except Exception as e:
+        print(f"[ERROR] Failed to transcribe {audio_path}: {e}")
+        transcription = "[UNTRANSCRIBED]"
+
+    if "mono_audio_path" in locals() and os.path.exists(mono_audio_path):
+        os.remove(mono_audio_path)
+
+    return transcription
+
+
 
 def main():
     if len(sys.argv) < 3:
@@ -56,9 +68,15 @@ def main():
     base_dir = os.path.join(project_root, "V0DataSet")
     CUSTOM_SEGMENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test", "clean_segments")
 
-    # Puis remplacer cette ligne :
+    BASE_DIR = Path(__file__).resolve().parent.parent 
+    CLEAN_SEGMENTS_DIR = BASE_DIR / "test" / "clean_segments"
+    csv_path = CLEAN_SEGMENTS_DIR / f"{video_idx}_clean_segments.csv"
+    WORD_TIMESTAMPS_DIR = BASE_DIR / "V0.10DataSet" / "word" / f"{video_idx}_video"
+    WORD_TIMESTAMPS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Change this line for benchmark :
     segments_csv_path = os.path.join(base_dir, "segments", f"{video_idx}_segments.csv")
-    # segments_csv_path = os.path.join(CUSTOM_SEGMENT_DIR, f"{video_idx}_clean_segments.csv")
+    # segments_csv_path = CLEAN_SEGMENTS_DIR / f"{video_idx}_clean_segments.csv"
 
     if not os.path.exists(segments_csv_path):
         print(f"[ERROR] Segments file not found: {segments_csv_path}")
@@ -74,7 +92,12 @@ def main():
         sys.exit(1)
 
     for i, audio_path in enumerate(audio_files):
-        transcription = transcribe_audio(model, audio_path)
+        transcription = transcribe_audio(
+            model,
+            audio_path,
+            segment_idx=i,
+            word_timestamps_output_dir=WORD_TIMESTAMPS_DIR
+        )
         df.at[i, "transcription"] = transcription
 
     output_csv_path = segments_csv_path
