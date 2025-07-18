@@ -1,6 +1,7 @@
 name: dmdc-pipeline
 channels:
   - conda-forge
+  - pytorch
 dependencies:
   - python=3.10
   - pip
@@ -8,11 +9,17 @@ dependencies:
   - pandas
   - librosa
   - glob2
+  - ffmpeg
+  - libsndfile  
+  - pytorch
+  - torchvision
+  - torchaudio
   - pip:
-      - -r requirements.txt
       - yt-dlp
-      - torch
-      - numpy
-      - scipy
-      - torchaudio
       - mediapipe
+      - pyannote.audio
+      - pyannote.core
+      - pyannote.database
+      - pyannote.metrics
+      - pyannote.pipeline
+      # - git+https://github.com/deepinsight/insightface.git
