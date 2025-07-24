@@ -11,13 +11,13 @@
         <String>mpi.eudico.client.annotator.viewer.TimeLineViewer</String>
     </pref>
     <pref key="MultiTierViewer.ActiveTierName">
-        <String>category</String>
+        <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>866909</Long>
+        <Long>1182016</Long>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
-        <Int>499</Int>
+        <Int>410</Int>
     </pref>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
@@ -70,25 +70,22 @@
         <String>Whisper transcribe/translate</String>
     </pref>
     <pref key="FrameLocation">
-        <Object class="java.awt.Point">-1,0</Object>
+        <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>11.000002</Float>
+        <Float>1.0</Float>
     </pref>
     <pref key="SubTitleViewer.TierName-1">
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SubTitleViewer.TierName-3">
-        <String>transcribe</String>
+        <String>category</String>
     </pref>
     <pref key="SubTitleViewer.TierName-2">
         <String>SPEAKER_00</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>20727</Long>
-    </pref>
-    <pref key="DetachedEditor.Bounds">
-        <Object class="java.awt.Rectangle">810,390,300,300</Object>
+        <Long>19000</Long>
     </pref>
     <prefGroup key="BAS - WebMAUS Basic">
         <pref key="LANGUAGE">
@@ -107,35 +104,29 @@
     </prefGroup>
     <prefList key="MultiTierViewer.HiddenTiers"/>
     <pref key="MediaControlRate">
-        <Float>1.1</Float>
+        <Float>1.7</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>751000</Long>
+        <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>866909</Long>
+        <Long>1182016</Long>
     </pref>
     <prefGroup key="TierColors">
-        <pref key="transcribe">
+        <pref key="default">
             <Object class="java.awt.Color">160,160,0</Object>
         </pref>
-        <pref key="default">
+        <pref key="SPEAKER_02">
             <Object class="java.awt.Color">90,0,90</Object>
         </pref>
-        <pref key="SPEAKER_02">
-            <Object class="java.awt.Color">90,0,0</Object>
-        </pref>
         <pref key="SPEAKER_00">
-            <Object class="java.awt.Color">160,90,0</Object>
-        </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">90,160,0</Object>
+            <Object class="java.awt.Color">0,160,90</Object>
         </pref>
         <pref key="SPEAKER_01">
-            <Object class="java.awt.Color">90,90,0</Object>
+            <Object class="java.awt.Color">90,160,90</Object>
         </pref>
         <pref key="category">
-            <Object class="java.awt.Color">160,90,160</Object>
+            <Object class="java.awt.Color">0,160,0</Object>
         </pref>
     </prefGroup>
     <prefList key="MultiTierViewer.TierOrder">
@@ -144,8 +135,6 @@
         <String>SPEAKER_01</String>
         <String>SPEAKER_00</String>
         <String>category</String>
-        <String>speaker</String>
-        <String>transcribe</String>
     </prefList>
     <pref key="LayoutManager.SplitPaneDividerLocation">
         <Int>1</Int>
@@ -189,10 +178,10 @@
             <Float>-1.0</Float>
         </pref>
         <pref key="--language">
-            <String>en</String>
+            <String>--</String>
         </pref>
         <pref key="audio">
-            <String>C:/UMONS/DMDC/V0DataSet/mp4/16_video.mp4</String>
+            <String>C:/UMONS/DMDC/V0DataSet/mp4/21_video.mp4</String>
         </pref>
         <pref key="--fp16">
             <String>True</String>
