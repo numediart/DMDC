@@ -5,7 +5,7 @@ import torchaudio
 from nemo.collections.asr.models import EncDecCTCModel
 import tempfile
 
-SEGMENT_LENGTH = 120  # seconds
+SEGMENT_LENGTH = 60  # seconds
 
 def load_parakeet_model(model_name="nvidia/parakeet-tdt-0.6b-v2"):
     print("[Parakeet] Loading model:", model_name)
@@ -25,24 +25,27 @@ def segment_audio(waveform, sample_rate, segment_length=SEGMENT_LENGTH):
         segments.append(waveform[:, start:end])
     return segments
 
-def transcribe_audio_segments(model, audio_path):
+def transcribe_audio_segments(model, audio_path, segment_length=SEGMENT_LENGTH):
     waveform, sample_rate = torchaudio.load(audio_path)
     # Convert to mono if needed
     if waveform.shape[0] > 1:
         waveform = torch.mean(waveform, dim=0, keepdim=True)
-    segments = segment_audio(waveform, sample_rate)
-    full_text = ""
+    segments = segment_audio(waveform, sample_rate, segment_length)
+    results = []  # List of (start_time, end_time, transcript)
 
     for i, segment in enumerate(segments):
+        start_time = i * segment_length
+        end_time = min((i + 1) * segment_length, waveform.shape[1] / sample_rate)
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp_file:
             segment_path = tmp_file.name
             torchaudio.save(segment_path, segment, sample_rate)
         result = model.transcribe([segment_path])[0]
         os.remove(segment_path)
-        segment_text = result.strip()
-        full_text += (" " if full_text else "") + segment_text
+        segment_text = result.text.strip()  # Extract text from Hypothesis object
+        results.append((start_time, end_time, segment_text))
 
-    return full_text
+    return results
+
 
 def main():
     if len(sys.argv) < 3:
@@ -61,15 +64,17 @@ def main():
 
     model = load_parakeet_model()
     print(f"[Transcription] Transcribing audio: {audio_file}")
-    text = transcribe_audio_segments(model, audio_file)
+    segment_results = transcribe_audio_segments(model, audio_file)
 
     base_name = os.path.basename(audio_file).replace('.wav', '')
-    output_path_txt = os.path.join(output_dir, f"{base_name}_transcript.txt")
+    output_path_tsv = os.path.join(output_dir, f"{base_name}_transcript.tsv")
 
-    with open(output_path_txt, "w") as output_file:
-        output_file.write(text)
+    with open(output_path_tsv, "w", encoding="utf-8") as output_file:
+        output_file.write("start_time\tend_time\ttranscript\n")
+        for start_time, end_time, transcript in segment_results:
+            output_file.write(f"{start_time:.2f}\t{end_time:.2f}\t{transcript}\n")
 
-    print(f"[Parakeet] Transcription saved to: {output_path_txt}")
+    print(f"[Parakeet] Transcription saved to: {output_path_tsv}")
 
 if __name__ == "__main__":
     main()

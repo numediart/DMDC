@@ -1,5 +1,6 @@
 from Tools.filter import detect_faces_in_video
 from Tools.filter import download_youtube_video_480p_h264, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, extract_dyadic_clips
+from Transcribe.basic_transcribe import *
 import os
 import warnings
 import subprocess
@@ -73,7 +74,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             stat_one_vid={}
 
             output_name = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-            segments_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.csv")
+            segments_csv = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.tsv")
             wav_dir = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "wav", f"{idx}_video")
 
             # ╔════════════════════════════════════════════════════════════════════════╗
@@ -115,18 +116,15 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
-                segments = load_segments_from_csv(segments_csv)
             else:
                 print("[Info] Segments under creation with face detections...")
                 segments = detect_faces_in_video(output_name)
-
-
-            # Save segments as TSV using pandas
-            tsv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.tsv")
-            df = pd.DataFrame(segments)
-            # Save all existing columns to TSV
-            df.to_csv(tsv_path, sep="\t", index=False)
-            stat_one_vid["4.Extract"]=time.time()-start_time_process
+                # Save segments as TSV using pandas
+                tsv_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "segments", f"{idx}_segments.tsv")
+                df = pd.DataFrame(segments)
+                # Save all existing columns to TSV
+                df.to_csv(tsv_path, sep="\t", index=False)
+                stat_one_vid["4.Extract"]=time.time()-start_time_process
 
             
             # ╔════════════════════════════════════════════════════════════════════════╗
@@ -135,30 +133,25 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             print_step_box(14, "Transcription")
             start_time_process = time.time()
 
-            base_dir = os.path.dirname(__file__)
-            if platform.system() == "Windows":
-                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            else:
-                python_path = os.path.join(".venv_parakeet", "bin", "python")
+           
 
-            # Parakeet (Transcript)
-            print(f"[Transcription] Transcribing audio segments for video using Parakeet")
-            audio_file= os.path.join(base_dir, DATASET_FOLDER, "wav", f"{idx}_video")
+
+            # Whisper (Transcript)
+            print(f"[Transcription] Transcribing audio segments for video using Whisper")
+            audio_file = os.path.join(base_dir, DATASET_FOLDER, "wav", f"{idx}_video")
             transcript_output_folder = os.path.join(base_dir, DATASET_FOLDER, "transcripts", f"{idx}_video")
             os.makedirs(transcript_output_folder, exist_ok=True)
 
-            subprocess.run([
-                python_path,
-                os.path.join(base_dir, "Transcribe", "transcribe_parakeet_all_video.py"),
-                audio_file,
-                transcript_output_folder
-            ])
+            tsv_output_path = os.path.join(transcript_output_folder, f"{idx}_transcribe.tsv")
+            
+            model = load_whisper_model("medium.en")
+            segments = transcribe_audio_with_timestamps(model, audio_file)
+            save_segments_to_tsv(segments, tsv_output_path)
 
+            print(f"Transcription with timestamps saved to {tsv_path}")
             print(f"[Transcription] Transcription completed for video {idx}")
             stat_one_vid["14.Transcription"] = time.time() - start_time_process
 
-            print(f"[Transcription] Transcription completed for video {idx}")
-            stat_one_vid["14.Transcription"] = time.time() - start_time_process
 
 
         except Exception as e:

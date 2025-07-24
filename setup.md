@@ -1,8 +1,9 @@
-## Needed
+# Setup DMDC for Linux
 
-- docker
-- conda
-- ffmpeg
+## Needed
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
+- [FFmpeg](https://ffmpeg.org/download.html#build-linux)
 
 ## Setup of the conda environment.
    ```bash
