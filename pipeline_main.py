@@ -79,7 +79,7 @@ def main_batch(video_list_file='VideoList/newVideoGaspard.txt'):
         video_urls = [line.strip() for line in f if line.strip()]
     
 
-    for idx, url in enumerate(video_urls, start=17):
+    for idx, url in enumerate(video_urls, start=22):
         print(f"video url : {video_urls}")
         print(f"video list file : {video_list_file}")
         try:
