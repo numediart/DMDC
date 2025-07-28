@@ -261,6 +261,11 @@ def detect_faces_in_video(video_path):
     if DEBUG_MODE:
         cv2.destroyAllWindows()
 
+
+    df = pd.DataFrame(segments, columns=["start_time", "end_time", "category"])
+    os.makedirs("./tempsegments", exist_ok=True)
+    df.to_csv("./tempsegments/" + os.path.basename(video_path)+".csv", index=False)
+    print("[Filter] Segments saved to ./tempsegments/", os.path.basename(video_path),".csv")
     return segments
 
 # --- Save detected segments ---
