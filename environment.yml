@@ -10,7 +10,7 @@ dependencies:
   - librosa
   - glob2
   - ffmpeg
-  - libsndfile  
+  - libsndfile
   - pytorch
   - torchvision
   - torchaudio
@@ -22,4 +22,9 @@ dependencies:
       - pyannote.database
       - pyannote.metrics
       - pyannote.pipeline
-      # - git+https://github.com/deepinsight/insightface.git
+      - pydub
+      - tqdm
+      - opencv-python
+      - ffmpeg-python
+      - scikit-learn
+      - soundfile

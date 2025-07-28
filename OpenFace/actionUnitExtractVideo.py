@@ -15,7 +15,10 @@ def process_FaceLandmarkVidMulti_from_container(input_path, output_path,onlyCSVO
 
         # Check that there is at least 2 container
         if len(lines) < 2:
-            raise RuntimeError("Aucun conteneur actif trouvé.")
+            print("[Docker/Error] No active container found.")
+            print("[Docker/Hint] Please start a container using the following command:")
+            print("               docker run -it --rm algebr/openface:latest")
+            raise RuntimeError("No active container found.")
 
         first_container_line = lines[1]
 

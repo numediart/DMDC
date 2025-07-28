@@ -1,9 +1,24 @@
 # Setup DMDC for Linux
 
 ## Needed
-- [Docker](https://docs.docker.com/engine/install/ubuntu/)
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
-- [FFmpeg](https://ffmpeg.org/download.html#build-linux)
+
+- [Docker](https://docs.docker.com/engine/install/ubuntu/):  
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y docker.io
+   ```
+
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html):  
+   ```bash
+   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   bash Miniconda3-latest-Linux-x86_64.sh
+   ```
+
+- [FFmpeg](https://ffmpeg.org/download.html#build-linux):  
+   ```bash
+   sudo apt update
+   sudo apt install -y ffmpeg
+   ```
 
 ## Setup of the conda environment.
    ```bash
@@ -11,9 +26,10 @@
    ```
 ## Delete the conda env
    ```bash
-   conda env remove -n dmdc-pipeline
+      conda env remove -n dmdc-pipeline
    ```
 
+# Additional Setups
 
 ## Additional Setup for Parakeet transcription
 
@@ -33,4 +49,12 @@
          ```bash
          pip install -r requirements_parakeet.txt
          pip install parakeet
+         ```
+
+## Additional Setup for face croping
+
+
+         ```bash
+         conda activate dmdc-pipeline
+         pip install git+https://github.com/deepinsight/insightface.git
          ```

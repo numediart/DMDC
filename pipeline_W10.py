@@ -3,11 +3,12 @@ from PyannoteRecluster.pyannote_reclustering import recluster_pyannote_diarizati
 from OpenFace.actionUnitForAVideo import run_openface_on_all_clips, detect_who_speaking_from_clips
 from Tools.filter import download_youtube_video_480p_h264, load_segments_from_csv, export_segments_with_speaker_to_csv, extract_audio_to_wav, extract_dyadic_clips
 from Tools.formatAUSpeakerListener import format_all_clips
+from Tools.getTranscriptWordsWindow import get_words_in_windows_all_segments
 from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
 from Tools.crop_vid import extract_and_align_faces
-from Tools.filter import detect_faces_in_video
+from Tools.filter import detect_faces_in_video,split_audio_from_csv
 import librosa
 import os
 import warnings
@@ -26,12 +27,14 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.10DataSet"
+DATASET_FOLDER="V0.12DataSet"
 VIDEO_TEXT_FILE="./VideoList/videoV0.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
-START_VIDEO=5
-END_VIDEO=6
+START_VIDEO=1
+END_VIDEO=1
+DO_FACE_CROPING=False
+TRANSCRIPTION_MODEL="parakeet"
 
 
 
@@ -249,32 +252,35 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-            if os.path.exists(segments_csv):
-                print("[Info] Segments already done, load segments from CSV ...")
-                segments = load_segments_from_csv(segments_csv)
-            else:
-                print("[Info] Segments under creation with face detections...")
-                segments = detect_faces_in_video(output_name)
-
-
-            # WARNING Test to remove the mediapipe printing
-
             # if os.path.exists(segments_csv):
             #     print("[Info] Segments already done, load segments from CSV ...")
             #     segments = load_segments_from_csv(segments_csv)
             # else:
             #     print("[Info] Segments under creation with face detections...")
-            #     python_executable = os.sys.executable
-            #     process = subprocess.Popen(
-            #         [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
-            #         stdout=subprocess.DEVNULL,
-            #         stderr=subprocess.DEVNULL
-            #         # stdout=None,  # debug
-            #         # stderr=None # debug
-            #     )
-            #     process.wait()
+            #     segments = detect_faces_in_video(output_name)
 
 
+            # WARNING Test to remove the mediapipe printing
+
+            if os.path.exists(segments_csv):
+                print("[Info] Segments already done, load segments from CSV ...")
+                segments = load_segments_from_csv(segments_csv)
+            else:
+                print("[Info] Segments under creation with face detections...")
+                python_executable = os.sys.executable
+                process = subprocess.Popen(
+                    [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                    # stdout=None,  # debug
+                    # stderr=None # debug
+                )
+                process.wait()
+
+                segments = pd.read_csv("./tempsegments/"+str(idx)+"_video.mp4.csv")
+                segments=pd.DataFrame(segments)
+                print(segments)
+                os.remove(f"./tempsegments/{idx}_video.mp4.csv")
 
             stat_one_vid["4.Extract"]=time.time()-start_time_process
 
@@ -325,6 +331,9 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
                 print("[Assignment] Assigning speakers to segments...")
 
+                # Convert segments DataFrame to a list of 3 lists, one for each column
+                if isinstance(segments, pd.DataFrame):
+                    segments = [segments[col].tolist() for col in segments.columns]
                 merged = assign_speakers_to_segments_from_df(segments, df_diarization)
                 merged = merge_contiguous_segments(merged, max_gap=1)
                 merged = filter_short_segments(merged, min_duration=1.5)
@@ -444,27 +453,72 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                     10  Face Cropping                                  ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print_step_box(10,"Face Cropping")
-            start_time_process = time.time()
+            if DO_FACE_CROPING:
+                print_step_box(10,"Face Cropping")
+                start_time_process = time.time()
 
-            video_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
-            face_cropping_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "face_aligned", f"{idx}_video"))
-            
-            if not face_cropping_done:
-                print(f"[Face Cropping] Extracting and aligning faces for video {idx}")
-                extract_and_align_faces(video_path, idx, DATASET_FOLDER)
-            else:
-                print(f"[Face Cropping] Faces already cropped for video {idx}, skipping...")
+                video_path = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "mp4", f"{idx}_video.mp4")
+                face_cropping_done = os.path.exists(os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "face_aligned", f"{idx}_video"))
+                
+                if not face_cropping_done:
+                    print(f"[Face Cropping] Extracting and aligning faces for video {idx}")
+                    extract_and_align_faces(video_path, idx, DATASET_FOLDER)
+                else:
+                    print(f"[Face Cropping] Faces already cropped for video {idx}, skipping...")
 
-            stat_one_vid["10.Face Cropping"]=time.time()-start_time_process
+                stat_one_vid["10.Face Cropping"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                 11 Format AU with n frames                             ║
+            # ║                         11 Transcription                               ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print_step_box(11,"Format AU with n frames")
+            print_step_box(11,"Transcription")
             start_time_process = time.time()
 
 
+            base_dir = os.path.dirname(__file__)
+            if platform.system() == "Windows":
+                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
+            else:
+                python_path = os.path.join(".venv_parakeet", "bin", "python")
 
+            # Splitting WAV from timestamps
+            output_tmp_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "tmp_wav", f"{idx}_video.wav")
+            segment_paths = split_audio_from_csv(wav_dir, segments_csv, output_tmp_wav)
+
+
+            if TRANSCRIPTION_MODEL.lower()=="parakeet":
+                # Parakeet (Transcript) 
+                print(f"[Transcription] Transcribing audio segments for video using Parakeet")
+                audio_input_folder = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", str(idx) + "_video")
+                transcript_output_folder = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "transcripts", str(idx) + "_video")
+                os.makedirs(transcript_output_folder, exist_ok=True)
+                subprocess.run([
+                    python_path,
+                    os.path.join(base_dir, "Transcribe", "transcribe_parakeet_one.py"),
+                    output_tmp_wav,
+                    transcript_output_folder
+                ])
+                print(f"[Transcription] Transcription completed for video {idx}")
+
+            if TRANSCRIPTION_MODEL.lower()=="whisper":
+                print(f"[Transcription] Transcribing audio segments for video using Whisper")
+                whisper_script = os.path.join(base_dir, "Transcribe", "transcribe_whisper_word_per_word.py")
+                audio_input_folder = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio", str(idx) + "_video")
+                transcript_output_folder = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "transcripts", str(idx) + "_video")
+                os.makedirs(transcript_output_folder, exist_ok=True)
+                audio_files = sorted([os.path.join(audio_input_folder, f) for f in os.listdir(audio_input_folder) if f.endswith('.wav')])
+                if not audio_files:
+                    print(f"[ERROR] No audio files found in {audio_input_folder} for Whisper transcription.")
+                else:
+                    cmd = [python_path, whisper_script, audio_input_folder, transcript_output_folder]
+                    subprocess.run(cmd)
+                print(f"[Transcription] Whisper transcription completed for video {idx}")
+
+            stat_one_vid["11.Transcription"] = time.time() - start_time_process
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                 12 Format AU with n frames                             ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            print_step_box(12,"Format AU with n frames")
+            start_time_process = time.time()
 
             print("[n_frame Format] Processing speaker and listener files for windowing")
 
@@ -497,11 +551,28 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-            stat_one_vid["11.FormatT_n_frames"]=time.time()-start_time_process
+            stat_one_vid["12.FormatT_n_frames"]=time.time()-start_time_process
+
+
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                 12 Split Audio from segments                           ║
+            # ║                 12.5 Word transcription                                ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print_step_box(12,"Split Audio from segments")
+            print_step_box(12.5,"Word transcription")
+            start_time_process = time.time()
+
+            transcript_folder = os.path.join(base_dir, DATASET_FOLDER, "transcripts", f"{idx}_video")
+            windows_folder = os.path.join(base_dir, DATASET_FOLDER, "n_frames_windowed_clips", f"{idx}_video", "speaker")
+            output_txt_folder = os.path.join(base_dir, DATASET_FOLDER, "windowed_transcripts", f"{idx}_video", "speaker")
+
+            get_words_in_windows_all_segments(transcript_folder, windows_folder, fps=fps_video, output_txt_folder=output_txt_folder)
+
+
+            stat_one_vid["12.5.Word_transcription"]=time.time()-start_time_process
+
+            # ╔════════════════════════════════════════════════════════════════════════╗
+            # ║                 13 Split Audio from segments                           ║
+            # ╚════════════════════════════════════════════════════════════════════════╝
+            print_step_box(13,"Split Audio from segments")
             start_time_process = time.time()
 
 
@@ -527,13 +598,13 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
 
-            stat_one_vid["12.SplitAudio"]=time.time()-start_time_process
+            stat_one_vid["13.SplitAudio"]=time.time()-start_time_process
 
 
             # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                         13 MFCC Speaker                                ║
+            # ║                         14 MFCC Speaker                                ║
             # ╚════════════════════════════════════════════════════════════════════════╝
-            print_step_box(13," MFCC Speaker")
+            print_step_box(14," MFCC Speaker")
             start_time_process = time.time()
 
             # Process MFCC for all audio clips in the directory and save as CSV
@@ -555,44 +626,8 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                     print(f"[MFCC/ERR] Error processing {audio_file}: {e}")
                 
 
-            stat_one_vid["13.MFCC"]=time.time()-start_time_process
+            stat_one_vid["14.MFCC"]=time.time()-start_time_process
             
-
-
-            # ╔════════════════════════════════════════════════════════════════════════╗
-            # ║                         14 Transcription                               ║
-            # ╚════════════════════════════════════════════════════════════════════════╝
-            print_step_box(14,"Transcription")
-            start_time_process = time.time()
-
-
-            base_dir = os.path.dirname(__file__)
-            if platform.system() == "Windows":
-                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            else:
-                python_path = os.path.join(".venv_parakeet", "bin", "python")
-
-            # # Parakeet (Transcript) 
-            # #####################
-            print(f"[Transcription] Transcribing audio segments for video using Parakeet")
-            audio_input_folder=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "clips_audio",str(idx) + "_video")
-            transcript_outpur_folder=os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "transcripts",str(idx) + "_video")
-            os.makedirs(transcript_outpur_folder, exist_ok=True)
-            subprocess.run([
-                # Python path
-                python_path,
-                # Python file to run
-                os.path.join(base_dir, "Transcribe", "transcribe_parakeet_one.py"),
-                # Audio input
-                audio_input_folder,
-                # Audio output
-                transcript_outpur_folder
-            ])
-            print(f"[Transcription] Transcription completed for video {idx}")
-
-
-
-            stat_one_vid["14.Transcription"]=time.time()-start_time_process
             # ╔════════════════════════════════════════════════════════════════════════╗
             # ║                      15 End of the pipeline                            ║
             # ╚════════════════════════════════════════════════════════════════════════╝
