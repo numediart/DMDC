@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-07-28T11:55:32+01:00"
+    FORMAT="3.0" VERSION="3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR
+            MEDIA_URL="file:///D:/Stage UMONS/Dev/DMDC/V0DataSet/mp4/28_video.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../Dev/DMDC/V0DataSet/mp4/28_video.mp4"/>
+        <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:a0ebe2de-b7ef-493c-bf52-8d9e619af04e</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">88</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="80"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="80"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="80"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="6610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="6610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="6670"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="6670"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="32580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="32580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="35720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="35720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="76340"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="76340"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="77400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="77400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="103950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="103950"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="107200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="107200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="159325"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="159362"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="159430"/>
+        <TIME_SLOT TIME_SLOT_ID="ts23" TIME_VALUE="159490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts24" TIME_VALUE="166180"/>
+        <TIME_SLOT TIME_SLOT_ID="ts25" TIME_VALUE="166180"/>
+        <TIME_SLOT TIME_SLOT_ID="ts26" TIME_VALUE="166610"/>
+        <TIME_SLOT TIME_SLOT_ID="ts27" TIME_VALUE="167262"/>
+        <TIME_SLOT TIME_SLOT_ID="ts28" TIME_VALUE="167330"/>
+        <TIME_SLOT TIME_SLOT_ID="ts29" TIME_VALUE="167330"/>
+        <TIME_SLOT TIME_SLOT_ID="ts30" TIME_VALUE="185550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts31" TIME_VALUE="185550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts32" TIME_VALUE="187830"/>
+        <TIME_SLOT TIME_SLOT_ID="ts33" TIME_VALUE="187830"/>
+        <TIME_SLOT TIME_SLOT_ID="ts34" TIME_VALUE="220940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts35" TIME_VALUE="220940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts36" TIME_VALUE="221350"/>
+        <TIME_SLOT TIME_SLOT_ID="ts37" TIME_VALUE="221350"/>
+        <TIME_SLOT TIME_SLOT_ID="ts38" TIME_VALUE="227940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts39" TIME_VALUE="227940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts40" TIME_VALUE="230360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts41" TIME_VALUE="230360"/>
+        <TIME_SLOT TIME_SLOT_ID="ts42" TIME_VALUE="236150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts43" TIME_VALUE="236150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts44" TIME_VALUE="237040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts45" TIME_VALUE="237040"/>
+        <TIME_SLOT TIME_SLOT_ID="ts46" TIME_VALUE="268580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts47" TIME_VALUE="268580"/>
+        <TIME_SLOT TIME_SLOT_ID="ts48" TIME_VALUE="271680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts49" TIME_VALUE="271680"/>
+        <TIME_SLOT TIME_SLOT_ID="ts50" TIME_VALUE="328533"/>
+        <TIME_SLOT TIME_SLOT_ID="ts51" TIME_VALUE="328940"/>
+        <TIME_SLOT TIME_SLOT_ID="ts52" TIME_VALUE="329090"/>
+        <TIME_SLOT TIME_SLOT_ID="ts53" TIME_VALUE="329090"/>
+        <TIME_SLOT TIME_SLOT_ID="ts54" TIME_VALUE="332910"/>
+        <TIME_SLOT TIME_SLOT_ID="ts55" TIME_VALUE="332910"/>
+        <TIME_SLOT TIME_SLOT_ID="ts56" TIME_VALUE="333280"/>
+        <TIME_SLOT TIME_SLOT_ID="ts57" TIME_VALUE="333280"/>
+        <TIME_SLOT TIME_SLOT_ID="ts58" TIME_VALUE="350320"/>
+        <TIME_SLOT TIME_SLOT_ID="ts59" TIME_VALUE="350660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts60" TIME_VALUE="363080"/>
+        <TIME_SLOT TIME_SLOT_ID="ts61" TIME_VALUE="363080"/>
+        <TIME_SLOT TIME_SLOT_ID="ts62" TIME_VALUE="363080"/>
+        <TIME_SLOT TIME_SLOT_ID="ts63" TIME_VALUE="364312"/>
+        <TIME_SLOT TIME_SLOT_ID="ts64" TIME_VALUE="365660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts65" TIME_VALUE="365660"/>
+        <TIME_SLOT TIME_SLOT_ID="ts66" TIME_VALUE="366720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts67" TIME_VALUE="366720"/>
+        <TIME_SLOT TIME_SLOT_ID="ts68" TIME_VALUE="451300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts69" TIME_VALUE="451300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts70" TIME_VALUE="451817"/>
+        <TIME_SLOT TIME_SLOT_ID="ts71" TIME_VALUE="452125"/>
+        <TIME_SLOT TIME_SLOT_ID="ts72" TIME_VALUE="483470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts73" TIME_VALUE="483470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts74" TIME_VALUE="486150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts75" TIME_VALUE="486150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts76" TIME_VALUE="500880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts77" TIME_VALUE="500880"/>
+        <TIME_SLOT TIME_SLOT_ID="ts78" TIME_VALUE="501980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts79" TIME_VALUE="501980"/>
+        <TIME_SLOT TIME_SLOT_ID="ts80" TIME_VALUE="532270"/>
+        <TIME_SLOT TIME_SLOT_ID="ts81" TIME_VALUE="532270"/>
+        <TIME_SLOT TIME_SLOT_ID="ts82" TIME_VALUE="533470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts83" TIME_VALUE="533470"/>
+        <TIME_SLOT TIME_SLOT_ID="ts84" TIME_VALUE="576630"/>
+        <TIME_SLOT TIME_SLOT_ID="ts85" TIME_VALUE="576630"/>
+        <TIME_SLOT TIME_SLOT_ID="ts86" TIME_VALUE="579650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts87" TIME_VALUE="579650"/>
+        <TIME_SLOT TIME_SLOT_ID="ts88" TIME_VALUE="647410"/>
+        <TIME_SLOT TIME_SLOT_ID="ts89" TIME_VALUE="647410"/>
+        <TIME_SLOT TIME_SLOT_ID="ts90" TIME_VALUE="647930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts91" TIME_VALUE="647930"/>
+        <TIME_SLOT TIME_SLOT_ID="ts92" TIME_VALUE="660620"/>
+        <TIME_SLOT TIME_SLOT_ID="ts93" TIME_VALUE="660620"/>
+        <TIME_SLOT TIME_SLOT_ID="ts94" TIME_VALUE="661400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts95" TIME_VALUE="661400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts96" TIME_VALUE="666270"/>
+        <TIME_SLOT TIME_SLOT_ID="ts97" TIME_VALUE="666270"/>
+        <TIME_SLOT TIME_SLOT_ID="ts98" TIME_VALUE="666299"/>
+        <TIME_SLOT TIME_SLOT_ID="ts99" TIME_VALUE="667115"/>
+        <TIME_SLOT TIME_SLOT_ID="ts100" TIME_VALUE="669550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts101" TIME_VALUE="669550"/>
+        <TIME_SLOT TIME_SLOT_ID="ts102" TIME_VALUE="671150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts103" TIME_VALUE="671150"/>
+        <TIME_SLOT TIME_SLOT_ID="ts104" TIME_VALUE="672249"/>
+    </TIME_ORDER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="SPEAKER_00">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
+                TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts9">
+                <ANNOTATION_VALUE>Here with me now is President Trump's Border Czar Tom Homan. Thank you so much for joining me this morning, sir. I do want to start with that ruling, the judge ordered the administration to stop making indiscriminate immigration arrests in the Los Angeles area and denying detainees right to legal counsel. She wrote that, quote, roving patrols without reasonable suspicion violate the Fourth Amendment to the Constitution and denying access to lawyers violates the Fifth Amendment to the Constitution. Will the administration comply with this order?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
+                TIME_SLOT_REF1="ts14" TIME_SLOT_REF2="ts16">
+                <ANNOTATION_VALUE>Let's talk about that reasonable suspicion and what it actually means on the ground when it comes to ICE detaining people. You said in an interview this week that reasonable suspicion can be based on, quote, the location, their occupation, their physical appearance, their actions. What about an individual's physical appearance would give immigration agents, quote, reasonable suspicion that they might be in the U.S. illegally?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
+                TIME_SLOT_REF1="ts26" TIME_SLOT_REF2="ts30">
+                <ANNOTATION_VALUE>So, when that judge, same judge in the case said is that an individual's race or ethnicity, the language they speak or their accent, their presence at a particular location like a bus stop or a work site or the type of work they do does not qualify as reasonable suspicions.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9"
+                TIME_SLOT_REF1="ts36" TIME_SLOT_REF2="ts38">
+                <ANNOTATION_VALUE>Okay, so obviously you're appealing, but until that happens, the administration will comply with the judge's order.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a11"
+                TIME_SLOT_REF1="ts44" TIME_SLOT_REF2="ts46">
+                <ANNOTATION_VALUE>I just want to ask more broadly and a little bit of a different sort of question here. One thing I have heard over and over anecdotally is that people who are in the United States legally, legally, are scared about getting swept up and all of this because of the color of their skin, because they speak with an accent, because of the location where they might be going. And they're not going out. They don't want to be detained by mistake, have their kids or themselves traumatized. Are you comfortable with that?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a14"
+                TIME_SLOT_REF1="ts56" TIME_SLOT_REF2="ts63">
+                <ANNOTATION_VALUE>Well, but you just said that there are, quote, collateral arrests, and that is sparking fear in communities where people are, again, scared to go out. So I guess my question is, do you have compassion? For those people who are seeing what's going on, hearing you speak, seeing what's happening in their neighborhoods, shouldn't have any concern, but do just because of the reality of what they saying.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a18"
+                TIME_SLOT_REF1="ts71" TIME_SLOT_REF2="ts72">
+                <ANNOTATION_VALUE>Let's turn to the raids this week onto cannabis farms in California. ICE says more than 200 undocumented immigrants were detained. The United Farmers Workers Union says multiple workers were critically injured. One, 57-year-old Jaime Alanis Garcia, died after falling 30 feet from a greenhouse roof while fleeing ICE agents. That's according to his family. What's your reaction to that? Somebody losing their life running from ICE?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a21"
+                TIME_SLOT_REF1="ts82" TIME_SLOT_REF2="ts84">
+                <ANNOTATION_VALUE>I do want to turn to what is going on in Florida, and that is what the administration, what you call Alligator Alcatraz, was visited by Democratic members of Congress yesterday. They were given limited access and this, of course, is a new detention facility set up by Florida Governor Ron DeSantis. What these congress people described was sweltering heat, bug infestations, meager meals. They say they heard detainees crying out for help. The wife of one man detained there said he's not been given access to a lawyer. He's been in detention for about two weeks. Is that acceptable to you? And is that what you're seeing when you go?</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a24"
+                TIME_SLOT_REF1="ts94" TIME_SLOT_REF2="ts99">
+                <ANNOTATION_VALUE>Okay. Mr. Homan, I know you have to go to catch a plane. Thank you so much for being here this morning I appreciate it.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="category">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a26"
+                TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts4">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a27"
+                TIME_SLOT_REF1="ts6" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a31"
+                TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts27">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a32"
+                TIME_SLOT_REF1="ts28" TIME_SLOT_REF2="ts97">
+                <ANNOTATION_VALUE>dyadic</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a50"
+                TIME_SLOT_REF1="ts98" TIME_SLOT_REF2="ts104">
+                <ANNOTATION_VALUE>single</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="imported-sep" TIER_ID="speaker">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a51"
+                TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts5">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a52"
+                TIME_SLOT_REF1="ts7" TIME_SLOT_REF2="ts8">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a53"
+                TIME_SLOT_REF1="ts10" TIME_SLOT_REF2="ts12">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a54"
+                TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts17">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a55"
+                TIME_SLOT_REF1="ts18" TIME_SLOT_REF2="ts22">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a56"
+                TIME_SLOT_REF1="ts23" TIME_SLOT_REF2="ts24">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a57"
+                TIME_SLOT_REF1="ts29" TIME_SLOT_REF2="ts31">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a58"
+                TIME_SLOT_REF1="ts32" TIME_SLOT_REF2="ts34">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a59"
+                TIME_SLOT_REF1="ts37" TIME_SLOT_REF2="ts39">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a60"
+                TIME_SLOT_REF1="ts40" TIME_SLOT_REF2="ts42">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a61"
+                TIME_SLOT_REF1="ts45" TIME_SLOT_REF2="ts47">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a62"
+                TIME_SLOT_REF1="ts48" TIME_SLOT_REF2="ts51">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a63"
+                TIME_SLOT_REF1="ts52" TIME_SLOT_REF2="ts54">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a64"
+                TIME_SLOT_REF1="ts57" TIME_SLOT_REF2="ts58">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a65"
+                TIME_SLOT_REF1="ts59" TIME_SLOT_REF2="ts60">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a66"
+                TIME_SLOT_REF1="ts61" TIME_SLOT_REF2="ts64">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a67"
+                TIME_SLOT_REF1="ts66" TIME_SLOT_REF2="ts68">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a68"
+                TIME_SLOT_REF1="ts69" TIME_SLOT_REF2="ts73">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a69"
+                TIME_SLOT_REF1="ts74" TIME_SLOT_REF2="ts76">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a70"
+                TIME_SLOT_REF1="ts78" TIME_SLOT_REF2="ts80">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a71"
+                TIME_SLOT_REF1="ts83" TIME_SLOT_REF2="ts85">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a72"
+                TIME_SLOT_REF1="ts86" TIME_SLOT_REF2="ts88">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a73"
+                TIME_SLOT_REF1="ts90" TIME_SLOT_REF2="ts92">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a74"
+                TIME_SLOT_REF1="ts95" TIME_SLOT_REF2="ts96">
+                <ANNOTATION_VALUE>SPEAKER_00</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a75"
+                TIME_SLOT_REF1="ts100" TIME_SLOT_REF2="ts102">
+                <ANNOTATION_VALUE>SPEAKER_01</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="SPEAKER_01">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a76"
+                TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts13">
+                <ANNOTATION_VALUE>If we're going to litigate that order, I think the order's wrong. I mean, she's assuming that the officers don't have reasonable suspicion. You know, they don't need probable calls to briefly detain and question somebody. They just need reasonable suspicion, and that's based on many articulable facts. So unless she's in the officer's mind, I don't know how she make that decision that, well, they're not using reasonable suspicion. How does she know that? I mean, every officer has to bring articulable facts to raise reasonable suspicion, and then they can briefly detain. I don't know how she knows that, but I don't think any federal judge can dictate immigration policy. That's a matter for Congress and for the president. And I know the Department of Justice is going to litigate this. We want to take it to the appeals court.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a77"
+                TIME_SLOT_REF1="ts19" TIME_SLOT_REF2="ts25">
+                <ANNOTATION_VALUE>Well, first of all, let me be clear. Physical description can't be the sole factor to give you reasonable suspicion. As I said in an interview, it's articulable facts with an S. So appearance can be just one. For instance, if someone has an MS-13 tattoo on their face, that may be one factor to add to other factors to raise reasonable suspicion. I want to be clear about that again because my words are taken out of context. Physical description cannot be the sole reason to detain and question somebody. That can't be the sole reason to raise reasonable suspicion. It's a myriad of factors, and I could sit here for the next half hour and give you all the factors. So every officer, every situation is different. But I can tell you this, every ICE officer goes through Fourth Amendment training every six months and reminded what their authorities are for arrest, detention, and questioning. So the officers are very well trained. So I look forward to DOJ litigating this judge's decision guide. I think she's making a decision while knowing what that officer knows when they get out of that vehicle to question somebody.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a78"
+                TIME_SLOT_REF1="ts33" TIME_SLOT_REF2="ts35">
+                <ANNOTATION_VALUE>Well, like I said, there are factors that lead to reasonable suspicion. There's a myriad of factors. Every case is different. I'm not going to disagree with everything the judge has said because a location alone shouldn't have reasonable suspicion. It's a combination of articulable facts that an officer determines before he detains somebody for a short period of time and questions them. So again, every case is different, different articulable facts for different people in different places. So again, I look forward to litigation. I think we will win this on appeal.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a79"
+                TIME_SLOT_REF1="ts41" TIME_SLOT_REF2="ts43">
+                <ANNOTATION_VALUE>The administration is never going to go against the judge's order. We'll litigate it, we'll win it, and we'll get back to doing what we're doing.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a80"
+                TIME_SLOT_REF1="ts49" TIME_SLOT_REF2="ts50">
+                <ANNOTATION_VALUE>There's no, if they're in the country legally, they got no reason to be afraid. ICE is looking for those in the country illegally, and we're still prioritizing public safety threats and national security threats. That's the priority. But like I said, you know, we do have collateral arrests in many areas because we're out looking for those public safety threats. But we're going to enforce immigration law, too. I mean, it's not okay to be in this country illegally. It's not okay to enter this country illegally. It's a crime. But legal aliens shouldn't be, and U.S. citizens should not be afraid that they're going to be swept up in a raid. We know who we're looking for, and that's what the agents are out there seeking. And again, they use a lot of information. Most of the operations we conduct are targeted enforcement operations. When we go out, we know exactly who we're looking for. Most likely we'll find them. Many times we have a criminal history and immigration history when we go out looking for that person. So if you're in a country legally, you shouldn't fear ICE.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a81"
+                TIME_SLOT_REF1="ts53" TIME_SLOT_REF2="ts55">
+                <ANNOTATION_VALUE>But what you should fear is the criminal aliens walking the communities and sanctuary cities.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a82"
+                TIME_SLOT_REF1="ts62" TIME_SLOT_REF2="ts65">
+                <ANNOTATION_VALUE>[inaudible]</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a83"
+                TIME_SLOT_REF1="ts67" TIME_SLOT_REF2="ts70">
+                <ANNOTATION_VALUE>Dana, the bottom line is if you want, let's collaborate arrest and let us in the jail. I mean, we want to arrest a bad guy in the safety and security of the county jail, but sanctuary cities release him in his community, which means we've got to go to the community and find him. And when we find that bad person, many, many times, whether it's at a work site or in the community, they're with other people, other people in the United States illegally. And we're going to let ICE enforce the law, uphold the oath they took. We're not going to be like the last administration who told ICE, instructed ICE, you can't arrest somebody for simply being here illegally. They got to be convicted of a serious offense. That's not what the law says. We're enforcing the law. But look, immigration enforcement, I'm going to be clear, immigration enforcement has always been emotional. It's always been controversial. I've been doing this since 1984. I get it. And I understand why people want to come to the greatest nation on earth. I get it. But we can't send the message to the whole world that it's okay to enter this country illegally. Don't worry about it. Even though it's a crime, come and enter illegally. And when you get an order of removal from a judge, you don't have to leave. You can become a fugitive and we'll never look for you. We've got to send a message to the whole world. There are consequences of breaking laws. And I think that's why, one of the reasons we have the most secure border in history of this nation today, it's just not because we've got boots on the ground on the border, not because we ended catch or leaves. A lot of it's consequences. You're watching what's happening. We're enforcing the immigration law. And I think that consequence has a lot to do with having the most secure border in the history of this nation.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a84"
+                TIME_SLOT_REF1="ts75" TIME_SLOT_REF2="ts77">
+                <ANNOTATION_VALUE>It's sad. It's unfortunate. He was in ICE custody, and ICE did not have hands on this person, but it's always unfortunate when there's deaths. I mean, no one wants to see people die, and you know, it's.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a85"
+                TIME_SLOT_REF1="ts79" TIME_SLOT_REF2="ts81">
+                <ANNOTATION_VALUE>They were doing the job. They were serving criminal arrest warrants. I mean, criminal search warrants. And I see the media saying, well, it was an ice raid. No, they were serving criminal search warrants as part of a criminal investigation involved with child trafficking and child labor. I think it was total 11 children that were found on that farm. And now they're being interviewed, forensics interviews, find out, you know, are the victims of trafficking? If so, who is the subject of that trafficking? And let's hold some people accountable. So it's unfortunate when anybody dies.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a86"
+                TIME_SLOT_REF1="ts87" TIME_SLOT_REF2="ts89">
+                <ANNOTATION_VALUE>I have not been there yet, and I doubt a lot of that's factual. I mean, bottom line is, you know, from the day one I've been doing this job since 1984, detainees complain about the conditions of detention. And I said this many times. You can simply go to ICE.gov and look at the detention standards ICE has. They have the highest detention standards in the industry. But these same congressmen are complaining about alligator alcatraz, you didn't see them complaining about under the Biden administration people being held in a border patrol parking lot surrounded by a fence in the sweltering heat. Not a word. You didn't hear a word about half a million children being trafficked in the country and them not being able to locate 300,000. President Trump, this administration, is finding thousands of those children. So, you know, they have a lot of anger under President Trump and how we're doing business and they ignored four years of open borders, historic migrant death, historic Americans dying from fentanyl, historic numbers of women and children being sex trafficked, historic number of people on terrorist watches coming across the border. Silence. Silence. Because they're complicit because they didn't take the administration on and ask them to secure the border.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a87"
+                TIME_SLOT_REF1="ts91" TIME_SLOT_REF2="ts93">
+                <ANNOTATION_VALUE>You can't have strong national security in this country if you don't have border security. We gotta know who's coming and what's coming and where it's coming from. But instead, they kept silent and they kept feeding the American people, we have a secure border, and we did not.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a88"
+                TIME_SLOT_REF1="ts101" TIME_SLOT_REF2="ts103">
+                <ANNOTATION_VALUE>Thank you for having me, Dana.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="imported-sep" TIME_ALIGNABLE="true"/>
+    <CONSTRAINT
+        DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT
+        DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT
+        DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>
