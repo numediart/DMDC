@@ -16,12 +16,12 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.11DataSet"
+DATASET_FOLDER="V0.12DataSet"
 VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDCW11.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
-START_VIDEO=22
-END_VIDEO=24
+START_VIDEO=27
+END_VIDEO=28
 
 
 
