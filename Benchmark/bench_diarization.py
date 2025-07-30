@@ -90,9 +90,9 @@ def evaluate_diarization(eaf_path, csv_path, results):
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 
 # csv_dir = Path("V0DataSet/segments")
-csv_dir = Path("TitaNet-LargeDiarization/output")
-csv_dir = Path("PyannoteDiarizationV2.1/output")
-
+# csv_dir = Path("TitaNet-LargeDiarization/output")
+# csv_dir = Path("PyannoteDiarizationV2.1/output")
+csv_dir = Path("V0.12DataSet/Diarization_Results")
 results = []
 
 for eaf_file in eaf_dir.glob("*.eaf"):

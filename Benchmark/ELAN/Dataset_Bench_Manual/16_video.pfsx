@@ -70,7 +70,7 @@
         <String>Whisper transcribe/translate</String>
     </pref>
     <pref key="FrameLocation">
-        <Object class="java.awt.Point">-1,0</Object>
+        <Object class="java.awt.Point">0,0</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
         <Float>11.000002</Float>
@@ -110,10 +110,10 @@
         <Float>1.1</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>751000</Long>
+        <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>866909</Long>
+        <Long>16636</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="transcribe">

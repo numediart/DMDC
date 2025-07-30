@@ -116,20 +116,20 @@
         <Long>29058</Long>
     </pref>
     <prefGroup key="TierColors">
-        <pref key="2">
-            <Object class="java.awt.Color">90,90,0</Object>
-        </pref>
         <pref key="default">
             <Object class="java.awt.Color">160,0,160</Object>
+        </pref>
+        <pref key="2">
+            <Object class="java.awt.Color">90,90,0</Object>
         </pref>
         <pref key="SPEAKER_00">
             <Object class="java.awt.Color">160,160,90</Object>
         </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">160,0,0</Object>
-        </pref>
         <pref key="SPEAKER_01">
             <Object class="java.awt.Color">90,0,160</Object>
+        </pref>
+        <pref key="speaker">
+            <Object class="java.awt.Color">160,0,0</Object>
         </pref>
     </prefGroup>
     <prefList key="MultiTierViewer.TierOrder">
