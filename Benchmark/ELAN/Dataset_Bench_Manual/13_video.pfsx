@@ -17,7 +17,7 @@
         <Int>449</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>8040</Long>
+        <Long>100610</Long>
     </pref>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
@@ -82,7 +82,7 @@
         <String>SPEAKER_01</String>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>3680</Long>
+        <Long>99878</Long>
     </pref>
     <prefGroup key="BAS - WebMAUS Basic">
         <pref key="LANGUAGE">
@@ -104,7 +104,7 @@
         <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>4952</Long>
+        <Long>105940</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="default">
@@ -116,9 +116,6 @@
         <pref key="SPEAKER_01">
             <Object class="java.awt.Color">0,90,160</Object>
         </pref>
-        <pref key="speaker">
-            <Object class="java.awt.Color">90,160,90</Object>
-        </pref>
         <pref key="category">
             <Object class="java.awt.Color">160,0,0</Object>
         </pref>
@@ -128,7 +125,6 @@
         <String>SPEAKER_00</String>
         <String>SPEAKER_01</String>
         <String>category</String>
-        <String>speaker</String>
     </prefList>
     <pref key="LayoutManager.SplitPaneDividerLocation">
         <Int>1</Int>
