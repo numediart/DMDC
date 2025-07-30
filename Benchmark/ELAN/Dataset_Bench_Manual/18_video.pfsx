@@ -2,7 +2,7 @@
 <preferences version="1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
     <pref key="FrameSize">
-        <Object class="java.awt.Dimension">1659,891</Object>
+        <Object class="java.awt.Dimension">1645,877</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
         <Int>7</Int>
@@ -67,7 +67,7 @@
         <String>BAS - WebMAUS Basic</String>
     </pref>
     <pref key="FrameLocation">
-        <Object class="java.awt.Point">-7,-7</Object>
+        <Object class="java.awt.Point">1,1</Object>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
         <Float>29.999954</Float>
@@ -95,14 +95,14 @@
         <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>5967</Long>
+        <Long>29733</Long>
     </pref>
     <prefGroup key="TierColors">
-        <pref key="default">
-            <Object class="java.awt.Color">90,0,160</Object>
-        </pref>
         <pref key="Subtitle-Tier">
             <Object class="java.awt.Color">160,0,90</Object>
+        </pref>
+        <pref key="default">
+            <Object class="java.awt.Color">90,0,160</Object>
         </pref>
         <pref key="SPEAKER_00">
             <Object class="java.awt.Color">0,90,160</Object>

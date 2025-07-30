@@ -252,35 +252,35 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
 
-            # if os.path.exists(segments_csv):
-            #     print("[Info] Segments already done, load segments from CSV ...")
-            #     segments = load_segments_from_csv(segments_csv)
-            # else:
-            #     print("[Info] Segments under creation with face detections...")
-            #     segments = detect_faces_in_video(output_name)
-
-
-            # WARNING Test to remove the mediapipe printing
-
             if os.path.exists(segments_csv):
                 print("[Info] Segments already done, load segments from CSV ...")
                 segments = load_segments_from_csv(segments_csv)
             else:
                 print("[Info] Segments under creation with face detections...")
-                python_executable = os.sys.executable
-                process = subprocess.Popen(
-                    [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                    # stdout=None,  # debug
-                    # stderr=None # debug
-                )
-                process.wait()
+                segments = detect_faces_in_video(output_name)
 
-                segments = pd.read_csv("./tempsegments/"+str(idx)+"_video.mp4.csv")
-                segments=pd.DataFrame(segments)
-                print(segments)
-                os.remove(f"./tempsegments/{idx}_video.mp4.csv")
+
+            # WARNING Test to remove the mediapipe printing
+
+            # if os.path.exists(segments_csv):
+            #     print("[Info] Segments already done, load segments from CSV ...")
+            #     segments = load_segments_from_csv(segments_csv)
+            # else:
+            #     print("[Info] Segments under creation with face detections...")
+            #     python_executable = os.sys.executable
+            #     process = subprocess.Popen(
+            #         [python_executable, '-c', f'import Tools.filter as ff; ff.detect_faces_in_video("{output_name}")'],
+            #         stdout=subprocess.DEVNULL,
+            #         stderr=subprocess.DEVNULL
+            #         # stdout=None,  # debug
+            #         # stderr=None # debug
+            #     )
+            #     process.wait()
+
+            #     segments = pd.read_csv("./tempsegments/"+str(idx)+"_video.mp4.csv")
+            #     segments=pd.DataFrame(segments)
+            #     print(segments)
+            #     os.remove(f"./tempsegments/{idx}_video.mp4.csv")
 
             stat_one_vid["4.Extract"]=time.time()-start_time_process
 
@@ -332,8 +332,8 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 print("[Assignment] Assigning speakers to segments...")
 
                 # Convert segments DataFrame to a list of 3 lists, one for each column
-                if isinstance(segments, pd.DataFrame):
-                    segments = [segments[col].tolist() for col in segments.columns]
+                # if isinstance(segments, pd.DataFrame):
+                #     segments = [segments[col].tolist() for col in segments.columns]
                 merged = assign_speakers_to_segments_from_df(segments, df_diarization)
                 merged = merge_contiguous_segments(merged, max_gap=1)
                 merged = filter_short_segments(merged, min_duration=1.5)

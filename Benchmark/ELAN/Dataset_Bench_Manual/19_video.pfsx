@@ -2,7 +2,7 @@
 <preferences version="1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
     <pref key="FrameSize">
-        <Object class="java.awt.Dimension">1918,994</Object>
+        <Object class="java.awt.Dimension">1646,878</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
         <Int>2</Int>
@@ -110,7 +110,7 @@
         <Float>1.1</Float>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>0</Long>
+        <Long>517459</Long>
     </pref>
     <pref key="MediaTime">
         <Long>540607</Long>
