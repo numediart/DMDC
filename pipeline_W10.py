@@ -28,11 +28,11 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 # Constants 
 
 DATASET_FOLDER="V0.12DataSet"
-VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDCW11.txt"
+VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDC.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
-START_VIDEO=1
-END_VIDEO=1
+START_VIDEO=13
+END_VIDEO=17
 DO_FACE_CROPING=False
 TRANSCRIPTION_MODEL="parakeet"
 
@@ -658,5 +658,5 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 if __name__ == "__main__":
     # run_pipeline("./VideoList/videoV0.5test.txt")
-    run_pipeline("./VideoList/videoV0.5.txt")
-    # run_pipeline(VIDEO_TEXT_FILE)
+    # run_pipeline("./VideoList/videoV0.5.txt")
+    run_pipeline(VIDEO_TEXT_FILE)
