@@ -170,6 +170,7 @@ def run_benchmark(eaf_path, csv_path):
 eaf_dir = Path("Benchmark/ELAN/Dataset_Bench_Manual")
 csv_dir = Path("V0.7DataSet/segments_video_type/7_video")
 csv_dir = Path("V0DataSet/segments/")
+csv_dir = Path("V0.12DataSet/segments")
 
 for eaf_file in eaf_dir.glob("*.eaf"):
     base_name = eaf_file.stem.replace("_video", "")

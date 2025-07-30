@@ -2,7 +2,7 @@
 <preferences version="1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/Prefs_v1.1.xsd">
     <pref key="FrameSize">
-        <Object class="java.awt.Dimension">1646,878</Object>
+        <Object class="java.awt.Dimension">1645,877</Object>
     </pref>
     <pref key="LayoutManager.SelectedTabIndex">
         <Int>5</Int>
@@ -70,7 +70,7 @@
         <String>Whisper transcribe/translate</String>
     </pref>
     <pref key="FrameLocation">
-        <Object class="java.awt.Point">0,0</Object>
+        <Object class="java.awt.Point">1,1</Object>
     </pref>
     <pref key="SubTitleViewer.TierName-4">
         <String>2</String>
@@ -113,7 +113,7 @@
         <Long>0</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>29058</Long>
+        <Long>14548</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="default">
