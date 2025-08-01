@@ -7,7 +7,6 @@ from Tools.getTranscriptWordsWindow import get_words_in_windows_all_segments
 from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
-from Tools.crop_vid import extract_and_align_faces
 from Tools.filter import detect_faces_in_video,split_audio_from_csv
 import librosa
 import os
@@ -27,12 +26,12 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.12DataSet"
+DATASET_FOLDER="V1DataSet"
 VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDC.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
-START_VIDEO=13
-END_VIDEO=17
+START_VIDEO=1
+END_VIDEO=30
 DO_FACE_CROPING=False
 TRANSCRIPTION_MODEL="parakeet"
 
@@ -451,6 +450,8 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ║                     10  Face Cropping                                  ║
             # ╚════════════════════════════════════════════════════════════════════════╝
             if DO_FACE_CROPING:
+                from Tools.crop_vid import extract_and_align_faces
+
                 print_step_box(10,"Face Cropping")
                 start_time_process = time.time()
 

@@ -8,7 +8,8 @@ The goal of this project is to reproduce the data creation process described in 
 ## Setup Instructions
 
 For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*** .
-
+> **Note:** The provided Setup Guide is tailored for the main pipeline. If you plan to add new modules or modify the pipeline, please ensure you manually add any additional libraries to the Conda environment. Success is not guaranteed for custom modifications.
+> **Note:** This project is primarily designed and tested for Linux environments, ensuring the most straightforward installation and usage experience. While Windows is also supported, additional configuration or troubleshooting may be required.
 ## Running step
 
 ### Running the Pipeline
@@ -17,8 +18,20 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
     Make sure you have followed all the steps in the [Setup Guide](setup.md) before proceeding.
 
 2. **Configure and Run the Pipeline**  
-    Open `pipeline_W10.py` and update the settings to match your environment and requirements.  
-    Then, run the script to start the data extraction process.
+    - Ensure you have activated the appropriate Conda environment.  
+    - Edit the configuration settings in `pipeline_W10.py` to match your system paths and project requirements.  
+    - Run the openface container
+        ```bash
+        docker run -it --rm algebr/openface:latest
+        #OR
+        sudo docker run -it --rm algebr/openface:latest
+        ```
+    - Run the pipeline using the Conda environment’s Python executable:  
+      ```bash
+      conda activate dmdc-pipeline
+      python pipeline_W10.py
+      ```
+    This will initiate the data extraction process according to your specified configuration.
 
 3. **Clean and Merge the Data**  
     After the pipeline finishes, run `DataSetCleaningTools/dataclean.py`.  
@@ -80,3 +93,10 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 
 15. **End of the Pipeline / Save Statistics**  
      Finalize processing and save summary statistics.
+
+
+
+## Acknowledgments
+
+Thank you for your interest in this project.  
+Developed at the UMONS ISIA Lab under the supervision of Thomas D. and Kevin E., by Gaspard C. and Hugo M.

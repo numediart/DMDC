@@ -23,8 +23,10 @@ dependencies:
       - pyannote.metrics
       - pyannote.pipeline
       - pydub
+      - moviepy
       - tqdm
       - opencv-python
       - ffmpeg-python
       - scikit-learn
       - soundfile
+      
