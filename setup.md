@@ -12,6 +12,8 @@
    ```bash
    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
    bash Miniconda3-latest-Linux-x86_64.sh
+   # Remove the installer after installation (optional)
+   rm Miniconda3-latest-Linux-x86_64.s
    ```
 
 - [FFmpeg](https://ffmpeg.org/download.html#build-linux):  
