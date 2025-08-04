@@ -106,5 +106,24 @@ def create_DMDC_database_from_pipeline(dataset, output_dir, csv_file, video_inde
     else:
         print("No data found to save to CSV.")
 
-# Example usage
-create_DMDC_database_from_pipeline("V0.10DataSet", "/home/hugo-mny/UMONS/DMDC/DataSetCleaningTools/cleaned", "V0.10DataSet_5K_segments_info.csv")
+if __name__ == "__main__":
+    DATASET = "V0.10DataSet"         # Name of the dataset directory
+    OUTPUT_DIR = "./output"          # Directory to save the output files
+    CSV_FILE = "output.csv"          # Name of the output CSV file
+    VIDEO_INDEX_START = 1            # Start index for video processing
+    VIDEO_INDEX_END = 10             # End index for video processing
+
+    print("Configuration:")
+    print(f"  Dataset: {DATASET}")
+    print(f"  Output directory: {OUTPUT_DIR}")
+    print(f"  CSV file: {CSV_FILE}")
+    print(f"  Video index start: {VIDEO_INDEX_START}")
+    print(f"  Video index end: {VIDEO_INDEX_END}")
+
+    create_DMDC_database_from_pipeline(
+        DATASET,
+        OUTPUT_DIR,
+        CSV_FILE,
+        video_index_start=VIDEO_INDEX_START,
+        video_index_end=VIDEO_INDEX_END
+    )

@@ -12,6 +12,11 @@
    ```bash
    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
    bash Miniconda3-latest-Linux-x86_64.sh
+   # Add Miniconda to PATH and create a global "conda" command
+   echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   # Remove the installer after installation (optional)
+   rm Miniconda3-latest-Linux-x86_64.sh
    ```
 
 - [FFmpeg](https://ffmpeg.org/download.html#build-linux):  
@@ -19,6 +24,8 @@
    sudo apt update
    sudo apt install -y ffmpeg
    ```
+
+> **Note:** Restart your PC after completing the installations above to ensure all changes take effect.
 
 ## Setup of the conda environment.
    ```bash
@@ -28,28 +35,38 @@
    ```bash
       conda env remove -n dmdc-pipeline
    ```
+## Install/Run the openface container (Size: 10Gb)
+   ```bash
+   docker run -it --rm algebr/openface:latest
+   #OR
+   sudo docker run -it --rm algebr/openface:latest
+   ```
 
 # Additional Setups
 
 ## Additional Setup for Parakeet transcription
 
-         pip install -r requirements_parakeet.txt
-         pip install parakeet
-         ```
-
-      1. Create a virtual environment:
-         ```bash
-         python3.12 -m venv .venv_parakeet
-         ```
-      2. Activate the virtual environment:
-         ```bash
-         .venv_parakeet\Scripts\activate
-         ```
-      3. Install required packages:
-         ```bash
-         pip install -r requirements_parakeet.txt
-         pip install parakeet
-         ```
+   0. Install Python 3.12 (if not already installed):
+      ```bash
+      sudo apt update
+      sudo apt install -y python3.12 python3.12-venv 
+      ```
+   1. Create a virtual environment:
+      ```bash
+      python3.12 -m venv .venv_parakeet
+      ```
+   2. Activate the virtual environment:
+      ```bash
+      #For windows
+      source .venv_parakeet\script\activate
+      #For Linux
+      source .venv_parakeet/bin/activate
+      ```
+   3. Once activated, install the required packages:
+      ```bash
+      pip install -r requirements_parakeet.txt
+      pip install parakeet
+      ```
 
 ## Additional Setup for face croping
 

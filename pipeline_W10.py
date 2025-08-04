@@ -7,7 +7,6 @@ from Tools.getTranscriptWordsWindow import get_words_in_windows_all_segments
 from Tools.splitVideoAndAudioFromSegment import extract_audio_segment
 from Tools.get_diarization_csv import get_diarization_csv
 from Tools.split_csv_with_sliding_window import split_csv_with_sliding_window
-from Tools.crop_vid import extract_and_align_faces
 from Tools.filter import detect_faces_in_video,split_audio_from_csv
 import librosa
 import os
@@ -27,12 +26,12 @@ warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was depreca
 
 # Constants 
 
-DATASET_FOLDER="V0.12DataSet"
+DATASET_FOLDER="V1DataSet"
 VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDC.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
-START_VIDEO=13
-END_VIDEO=17
+START_VIDEO=1
+END_VIDEO=30
 DO_FACE_CROPING=False
 TRANSCRIPTION_MODEL="parakeet"
 
@@ -53,101 +52,98 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
       - Split videos and audio into speaker-specific clips
       - Extract facial action units (AUs) and map them to speakers
       - Format and window AU data for analysis
-      - Crop faces from video segments
+      - Crop faces from video segments (optional)
       - Extract MFCC features from audio clips
-      - Transcribe speaker segments using Parakeet
+      - Transcribe speaker segments using Parakeet or Whisper
       - Aggregate and save all results and processing statistics
     This pipeline is designed for large-scale, automated multimodal dataset creation, combining audio, video, and facial features for each speaker segment. All intermediate and final results are saved in a structured dataset folder. Errors are caught and logged for each video, allowing the pipeline to continue processing the remaining videos.
     Args:
         video_list_file (str): Path to the text file containing video URLs, one per line.
     Pipeline:
 
-        ╔════════════════════════════════════╗
-        ║  1. YouTube Video List             ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  1. YouTube Video List                                                     ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  2. Download Videos                ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  2. Download Videos                                                        ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  3. Extract / Process Audio        ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  3. Extract Audio                                                          ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  4. Segment Videos                 ║
-        ║     ├─ Dyadic                      ║
-        ║     ├─ Single                      ║
-        ║     └─ Other                       ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  4. Segment Videos (face detection)                                        ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  5. Audio Diarization              ║
-        ║     (Detect speakers)              ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  5. Audio Diarization (Pyannote + Reclustering)                            ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  6. Assign Speakers to Segments    ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  6. Assign Speakers to Segments                                            ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  7. Split Video by Timestamps      ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  7. Split Video by Segments (Dyadic Clips)                                 ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  8. AU Extraction                  ║
-        ║     (Action Units per speaker)     ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  8. Action Unit Extraction (OpenFace)                                      ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║  9. Format AU (64 frames)          ║
-        ║     (Mark speaker)                 ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  9. Speaker Mapping (OpenFace + Diarization)                               ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║ 10. Face Cropping                  ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║  9.5 Format AU with Speaker-Listener                                       ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║ 11. AU Windowing                   ║
-        ║     (n = 64 frames)                ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 10. Face Cropping (optional)                                               ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║ 12. Audio Segmentation             ║
-        ║     (Aligned with AU window)       ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 11. Transcription (Parakeet or Whisper)                                    ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║ 13. MFCC Extraction                ║
-        ║     (Speaker-level features)       ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 12. Format AU with n frames (windowing)                                    ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔════════════════════════════════════╗
-        ║ 14. Transcription                  ║
-        ║     (Text per speaker segment)     ║
-        ╚════════════════════════════════════╝
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║12.5. Word transcription (align words to AU windows)                        ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
                         │
                         ▼
-        ╔══════════════════════════════════════════════════════════════╗
-        ║ 15. Dataset Creation                                         ║
-        ╚══════════════════════════════════════════════════════════════╝
-
-
-
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 13. Split Audio from segments (windowed)                                   ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 14. MFCC Extraction (Speaker-level features)                               ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
+                        │
+                        ▼
+        ╔════════════════════════════════════════════════════════════════════════════╗
+        ║ 15. End of the pipeline / Save statistics                                  ║
+        ╚════════════════════════════════════════════════════════════════════════════╝
 
     Exceptions:
         - Catches and logs any errors encountered during the processing of each video.
@@ -454,6 +450,8 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
             # ║                     10  Face Cropping                                  ║
             # ╚════════════════════════════════════════════════════════════════════════╝
             if DO_FACE_CROPING:
+                from Tools.crop_vid import extract_and_align_faces
+
                 print_step_box(10,"Face Cropping")
                 start_time_process = time.time()
 
