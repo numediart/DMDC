@@ -32,16 +32,28 @@ def extract_wav_segments(video_idx):
         return []
 
     video = VideoFileClip(str(video_path))
+    duration = video.duration
     segment_paths = []
 
     for i, row in df.iterrows():
         start_time = float(row["start_ms"]) / 1000.0
         stop_time = float(row["end_ms"]) / 1000.0
-        segment_clip = video.subclipped(start_time, stop_time)
 
-        segment_path = output_dir / f"seg_{i:04d}.wav"
-        segment_clip.audio.write_audiofile(str(segment_path), codec='pcm_s16le', logger=None)
-        segment_paths.append(str(segment_path))
+        if stop_time > duration:
+            print(f"[WARNING] Segment {i} stop_time ({stop_time:.2f}s) exceeds video duration ({duration:.2f}s), truncating.")
+            stop_time = duration - 0.01  # garde une petite marge de sécurité
+
+        if start_time >= stop_time:
+            print(f"[ERROR] Invalid segment {i}: start_time ({start_time:.2f}) >= stop_time ({stop_time:.2f}), skipping.")
+            continue
+
+        try:
+            segment_clip = video.subclipped(start_time, stop_time)
+            segment_path = output_dir / f"seg_{i:04d}.wav"
+            segment_clip.audio.write_audiofile(str(segment_path), codec='pcm_s16le', logger=None)
+            segment_paths.append(str(segment_path))
+        except Exception as e:
+            print(f"[ERROR] Failed to process segment {i}: {e}")
 
     video.close()
     return segment_paths
