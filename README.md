@@ -99,4 +99,4 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 ## Acknowledgments
 
 Thank you for your interest in this project.  
-Developed at the UMONS ISIA Lab under the supervision of Thomas D. and Kevin E., by Gaspard C. and Hugo M.
+Developed at the UMONS ISIA Lab under the supervision of Thomas B. and Kevin E., by Gaspard C. and Hugo M.
