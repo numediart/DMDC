@@ -1,6 +1,4 @@
-# DMDC README
-*WIP README*
-
+# DMDC : Dyadic Multimodal Dataset Construction
 ## Project Description
 
 The goal of this project is to reproduce the data creation process described in the *RealTalk* paper to extract dyadic multimodal conversations from platforms such as YouTube, Spotify, and Dailymotion. This work is part of a broader research initiative aimed at building listening agents. The resulting dataset will also be reusable for other projects related to social interaction and multimodal AI.
@@ -10,12 +8,11 @@ The goal of this project is to reproduce the data creation process described in 
 For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*** .
 > **Note:** The provided Setup Guide is tailored for the main pipeline. If you plan to add new modules or modify the pipeline, please ensure you manually add any additional libraries to the Conda environment. Success is not guaranteed for custom modifications.
 > **Note:** This project is primarily designed and tested for Linux environments, ensuring the most straightforward installation and usage experience. While Windows is also supported, additional configuration or troubleshooting may be required.
-## Running step
 
-### Running the Pipeline
+## How to run the pipeline ?
 
 1. **Complete the Installation**  
-    Make sure you have followed all the steps in the [Setup Guide](setup.md) before proceeding.
+    Make sure you have followed all the steps in the *[Setup Guide](setup.md)* before proceeding.
 
 2. **Configure and Run the Pipeline**  
     - Ensure you have activated the appropriate Conda environment.  
@@ -41,7 +38,7 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 
 ![Pipeline Schema](img/schemaDMDC.png)
 
-## Step-by-Step Pipeline Overview
+**Step-by-Step Pipeline Overview:**
 
 1. **YouTube Video List**  
     Prepare a list of YouTube video URLs to process.
@@ -70,29 +67,29 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 9. **Speaker Mapping (OpenFace + Diarization)**  
     Map facial features to corresponding speakers.
 
-9.5 **Format AU with Speaker-Listener**  
+    9.5. **Format AU with Speaker-Listener**  
     Structure action unit data by speaker and listener roles.
 
 10. **Face Cropping (Optional)**  
-     Crop faces from video frames if needed.
+    Crop faces from video frames if needed.
 
 11. **Transcription (Parakeet or Whisper)**  
-     Transcribe the audio to text.
+    Transcribe the audio to text.
 
 12. **Format AU with n Frames (Windowing)**  
-     Organize action unit data into fixed-length windows.
+    Organize action unit data into fixed-length windows.
 
 12.5 **Word Transcription (Align Words to AU Windows)**  
-     Align transcribed words with action unit windows.
+    Align transcribed words with action unit windows.
 
 13. **Split Audio from Segments (Windowed)**  
-     Extract windowed audio segments.
+    Extract windowed audio segments.
 
 14. **MFCC Extraction (Speaker-Level Features)**  
-     Compute MFCC features for each speaker.
+    Compute MFCC features for each speaker.
 
 15. **End of the Pipeline / Save Statistics**  
-     Finalize processing and save summary statistics.
+    Finalize processing and save summary statistics.
 
 
 
@@ -100,3 +97,15 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 
 Thank you for your interest in this project.  
 Developed at the UMONS ISIA Lab under the supervision of Thomas B. and Kevin E., by Gaspard C. and Hugo M.
+
+## Dependancies :
+
+- **[OpenFace](https://github.com/TadasBaltrusaitis/OpenFace)** (Action units)
+
+- **[Mediapipe](https://github.com/google-ai-edge/mediapipe)** (Type of scene)
+
+- **[Nvidia-Parakeet](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2)**(Transcription)
+
+- **[Pyannote](https://github.com/pyannote/pyannote-audio)**(Diarization)
+
+- **[Whisper](https://github.com/openai/whisper)**(Transcription)
