@@ -3,6 +3,12 @@
 
 The goal of this project is to reproduce the data creation process described in the *RealTalk* paper to extract dyadic multimodal conversations from platforms such as YouTube, Spotify, and Dailymotion. This work is part of a broader research initiative aimed at building listening agents. The resulting dataset will also be reusable for other projects related to social interaction and multimodal AI.
 
+### General overview of the pipeline
+The original purpose of the pipeline is to construct a multimodal dataset from dyadic conversations. Its objective is to enable the training of a machine learning model capable of predicting emotions and human interactions as it's showned below.
+
+![Global Pipeline Schema](img/globalschemaDMDC.png)
+
+
 ## Setup Instructions
 
 For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*** .
@@ -37,6 +43,9 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
 ## Pipeline Schema
 
 ![Pipeline Schema](img/schemaDMDC.png)
+/!\ WIP to determine which one is better
+![Pipeline Schema](img/schemaDMDCvert.png)
+
 
 **Step-by-Step Pipeline Overview:**
 
