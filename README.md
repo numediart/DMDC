@@ -101,6 +101,14 @@ For detailed setup instructions, please refer to the ***[Setup Guide](setup.md)*
     Finalize processing and save summary statistics.
 
 
+## Additional Notes
+
+If you encounter issues related to video downloading or extraction, ensure you have the lastest version of `yt_dlp` installed in your environment
+
+```bash
+pip install --upgrade yt-dlp
+```
+
 
 ## Acknowledgments
 

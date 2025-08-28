@@ -34,7 +34,7 @@ START_VIDEO=1
 END_VIDEO=30
 DO_FACE_CROPING=False
 TRANSCRIPTION_MODEL="parakeet"
-
+MFCC_HOP_LENGTH_128F=273
 
 
 
@@ -617,7 +617,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 try:
                     print(f"[MFCC] Processing {audio_file}")
                     y, sr = librosa.load(audio_file, sr=None)
-                    mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=256).T
+                    mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=MFCC_HOP_LENGTH_128F).T
                     np.save(mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy'), mfcc_features)
                     print(f"[MFCC] Saved MFCC features to {mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy')}")
                 except Exception as e:

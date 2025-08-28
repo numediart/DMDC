@@ -14,7 +14,7 @@ def create_DMDC_database_from_pipeline(dataset, output_dir, csv_file, video_inde
         listener_dir = os.path.join('.', dataset, 'n_frames_windowed_clips', f'{index}_video', 'listener')
         speaker_dir = os.path.join('.', dataset, 'n_frames_windowed_clips', f'{index}_video', 'speaker')
         mfcc_dir = os.path.join('.', dataset, 'mfcc_output', f'{index}_video')
-        transcript_dir = os.path.join('.', dataset, 'transcripts', f'{index}_video')
+        transcript_dir = os.path.join('.', dataset, 'windowed_transcripts', f'{index}_video', 'speaker')
 
         def extract_base(filename):
             m = re.search(r'(\d+)_to_(\d+)', filename)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-07-30T10:52:39+01:00"
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-08-11T15:31:52+01:00"
     FORMAT="3.0" VERSION="3.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
     <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
         <MEDIA_DESCRIPTOR
-            MEDIA_URL="file:///C:/UMONS/DMDC/V0DataSet/mp4/16_video.mp4"
+            MEDIA_URL="file:///C:/UMONS/V0.12DataSet/mp4/16_video.mp4"
             MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../../../V0DataSet/mp4/16_video.mp4"/>
         <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:6b82ec28-4410-434e-a4d1-50b86a9cc1f9</PROPERTY>
         <PROPERTY NAME="lastUsedAnnotationId">758</PROPERTY>

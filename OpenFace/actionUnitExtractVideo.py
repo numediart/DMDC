@@ -44,7 +44,7 @@ def process_FaceLandmarkVidMulti_from_container(input_path, output_path,onlyCSVO
         # Run the FaceLandmarkVidMulti command inside the container
         command = [
             "docker", "exec", "-it", container_id,
-            "build/bin/FaceLandmarkVidMulti", "-f", copiedFile, "-aus"
+            "build/bin/FaceLandmarkVidMulti", "-f", copiedFile, "-aus","-pose"
         ]
         result = subprocess.run(command, capture_output=True, text=True)
 
