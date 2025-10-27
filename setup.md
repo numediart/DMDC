@@ -46,26 +46,18 @@
 
 ## Additional Setup for Parakeet transcription
 
-   0. Install Python 3.12 (if not already installed):
+   1. Create a virtual environment with conda:
       ```bash
-      sudo apt update
-      sudo apt install -y python3.12 python3.12-venv 
-      ```
-   1. Create a virtual environment:
-      ```bash
-      python3.12 -m venv .venv_parakeet
+         1. Create a virtual environment:
       ```
    2. Activate the virtual environment:
       ```bash
-      #For windows
-      source .venv_parakeet\script\activate
-      #For Linux
-      source .venv_parakeet/bin/activate
+      conda activate parakeet
       ```
    3. Once activated, install the required packages:
       ```bash
       pip install -r requirements_parakeet.txt
-      pip install parakeet
+      pip install parakeet-asr
       ```
 
 ## Additional Setup for face croping
