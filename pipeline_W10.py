@@ -473,10 +473,6 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
 
 
             base_dir = os.path.dirname(__file__)
-            if platform.system() == "Windows":
-                python_path = os.path.join(".venv_parakeet", "Scripts", "python.exe")
-            else:
-                python_path = os.path.join(".venv_parakeet", "bin", "python")
 
             # Splitting WAV from timestamps
             output_tmp_wav = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "tmp_wav", f"{idx}_video.wav")
@@ -490,7 +486,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 transcript_output_folder = os.path.join(os.path.dirname(__file__), DATASET_FOLDER, "transcripts", str(idx) + "_video")
                 os.makedirs(transcript_output_folder, exist_ok=True)
                 subprocess.run([
-                    python_path,
+                    "conda", "run", "-n", "parakeet", "python",
                     os.path.join(base_dir, "Transcribe", "transcribe_parakeet_one.py"),
                     output_tmp_wav,
                     transcript_output_folder
@@ -507,7 +503,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                 if not audio_files:
                     print(f"[ERROR] No audio files found in {audio_input_folder} for Whisper transcription.")
                 else:
-                    cmd = [python_path, whisper_script, audio_input_folder, transcript_output_folder]
+                    cmd = ["conda", "run", "-n", "parakeet", "python", whisper_script, audio_input_folder, transcript_output_folder]
                     subprocess.run(cmd)
                 print(f"[Transcription] Whisper transcription completed for video {idx}")
 
