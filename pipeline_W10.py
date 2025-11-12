@@ -23,23 +23,17 @@ warnings.filterwarnings("ignore", message="std\(\): degrees of freedom is <= 0")
 warnings.filterwarnings("ignore", message=".*speechbrain.pretrained.*was deprecated.*")     
 
 
-
 # Constants 
 
 DATASET_FOLDER="V1DataSet"
-VIDEO_TEXT_FILE="./VideoList/videos_benchmarkDMDC.txt"
+VIDEO_TEXT_FILE="./VideoList/videoV05.txt"
 WINDOWING_SIZE_FRAME=128
 WINDOWING_SIZE_STEP=32
 START_VIDEO=1
 END_VIDEO=30
 DO_FACE_CROPING=False
 TRANSCRIPTION_MODEL="parakeet"
-MFCC_HOP_LENGTH_128F=273
-
-
-
-
-
+MFCC_HOP_LENGTH_128F=134
 
 
 def run_pipeline(video_list_file='videoV0.5.txt'):
@@ -588,7 +582,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                     print(f"[Audio] Extracting audio segment from frame {start_frm} to {end_frm} for {npy_file_base}")
                     extract_audio_segment(input_path_wav, start_frm, end_frm, output_audio)
 
-            else:
+            else: 
                 print(f"[Info] Video clips already processed for video {idx}, skipping...")
 
 
@@ -614,6 +608,7 @@ def run_pipeline(video_list_file='videoV0.5.txt'):
                     print(f"[MFCC] Processing {audio_file}")
                     y, sr = librosa.load(audio_file, sr=None)
                     mfcc_features = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, hop_length=MFCC_HOP_LENGTH_128F).T
+                    mfcc_features = mfcc_features[:512,:] # Ensure max 512 frames
                     np.save(mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy'), mfcc_features)
                     print(f"[MFCC] Saved MFCC features to {mfcc_csv_path.replace('_mfcc.csv', '_mfcc.npy')}")
                 except Exception as e:
