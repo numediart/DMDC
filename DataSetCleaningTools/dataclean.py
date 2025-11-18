@@ -80,17 +80,16 @@ def create_DMDC_database_from_pipeline(dataset, output_dir, csv_file, video_inde
 
     # Save numpy arrays
     if all_listener_data:
-        np.save(os.path.join(output_dir, f"{dataset}_listener.npy"), np.array(all_listener_data, dtype=object))
+        np.save(os.path.join(output_dir, f"{dataset}_listener.npy"), np.array(all_listener_data, dtype=np.float32))
         print(f"Saved listener numpy array to {os.path.join(output_dir, f'{dataset}_AU_listener.npy')}")
 
     if all_speaker_data:
-        np.save(os.path.join(output_dir, f"{dataset}_speaker.npy"), np.array(all_speaker_data, dtype=object))
+        np.save(os.path.join(output_dir, f"{dataset}_speaker.npy"), np.array(all_speaker_data, dtype=np.float32))
         print(f"Saved speaker numpy array to {os.path.join(output_dir, f'{dataset}_AU_speaker.npy')}")
 
     if all_mfcc_data:
-        np.save(os.path.join(output_dir, f"{dataset}_mfcc.npy"), np.array(all_mfcc_data, dtype=object))
+        np.save(os.path.join(output_dir, f"{dataset}_mfcc.npy"), np.array(all_mfcc_data, dtype=np.float32))
         print(f"Saved mfcc numpy array to {os.path.join(output_dir, f'{dataset}_mfcc.npy')}")
-
     if all_transcript_data:
         np.save(os.path.join(output_dir, f"{dataset}_transcript.npy"), np.array(all_transcript_data, dtype=object))
         print(f"Saved transcript numpy array to {os.path.join(output_dir, f'{dataset}_transcript.npy')}")
